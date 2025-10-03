@@ -97,3 +97,19 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+
+# Native plugin binaries (macOS)
+*.dylib
+*.bundle
+
+
+# Large binary/compiled files
+*.dll
+*.lib
+*.so
+*.exe
+*.app
+*.apk
+*.aab
+
