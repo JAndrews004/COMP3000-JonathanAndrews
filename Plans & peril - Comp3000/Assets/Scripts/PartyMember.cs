@@ -14,6 +14,8 @@ public class PartyMember : MonoBehaviour
     public int level;
     public int Xp;
     public int XpToLevelUp;
+    public bool HadTurn = false;
+    public bool Alive => CurrentHealth > 0;
 
     private void Awake()
     {
@@ -48,5 +50,17 @@ public class PartyMember : MonoBehaviour
     void UpdateStats()
     {
 
+    }
+
+    public void TakeDamage(int AttackPower)
+    {
+        if(CurrentHealth - AttackPower <= 0)
+        {
+            CurrentHealth = 0;
+        }
+        else
+        {
+            CurrentHealth -= AttackPower;
+        }
     }
 }

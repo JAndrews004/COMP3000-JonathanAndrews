@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {  get; private set; }
 
     public List<PartyMember> PartyMembers;
+    public List<EnemyMember> EnemyMembers;
 
     public bool InCombat = false;
     private void Awake()
@@ -88,14 +89,17 @@ public class GameManager : MonoBehaviour
         InCombat = true;
     }
 
-    void EndCombat()
+    public void EndCombat()
     {
-
+        SceneManager.LoadScene(0);
+        InCombat = false;
     }
 
     public void RefreshPartyMembers()
     {
         PartyMembers = new List<PartyMember>(GetComponentsInChildren<PartyMember>());
     }
+
+    
 
 }
