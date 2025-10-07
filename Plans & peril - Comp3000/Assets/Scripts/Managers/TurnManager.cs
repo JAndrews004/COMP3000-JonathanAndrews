@@ -3,129 +3,181 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
-    public static event Action<PartyMember> OnPlayerTurnStart;
-    public static event Action<PartyMember> OnPlayerTurnEnd;
-    public static event Action<EnemyMember> OnEnemyTurnStart;
-    public static event Action<EnemyMember> OnEnemyTurnEnd;
-
     public List<PartyMember> PartyMembers;
     public List<EnemyMember> EnemyMembers;
+    public List<Turn> turns = new List<Turn>();
 
-    private PartyMember currentPlayer;
-    private EnemyMember currentEnemy;
+    public CombatManager combatManager;
 
-    private bool IsPlayerPhase;
-    private int CurrentUnitIndex;
-    // Start is called before the first frame update
+    private PartyMember SelectedCharacter;
+    private string SelectedAction;
+    private EnemyMember SelectedTarget;
+
+    public event Action OnPlayerPhaseStart;
+    public event Action OnEnemyPhaseStart;
+
+    public event Action<PartyMember> OnCharacterSelected;
+    public event Action<EnemyMember> OnTargetSelected;
+    public event Action OnSelectingCharacter;
+    public event Action OnChoosingAction;
+    public event Action OnSelectingTarget;
+    public event Action<string> OnActionSelected;
+    public event Action<PartyMember, EnemyMember> OnConfirmRequired;
+    public event Action<PartyMember, string, EnemyMember> OnActionResolved;
+
     public void StartCombat()
     {
+        Debug.Log("Starting Combat from TM");
+        combatManager = GetComponentInParent<CombatManager>();
         PartyMembers = GameManager.Instance.PartyMembers;
         EnemyMembers = GameManager.Instance.EnemyMembers;
-        IsPlayerPhase = true;
-        CurrentUnitIndex = 0;
-        StartNextUnitTurn();
+
+        StartPlayerPhase();
     }
 
-    private void StartNextUnitTurn()
+    public void SetSelectedCharacter(PartyMember member)
     {
-        if (IsPlayerPhase)
-        {
-            
-            if (CurrentUnitIndex >= PartyMembers.Count)
-            {
-                // Player phase finished ? switch to enemy phase
-                IsPlayerPhase = false;
-                CurrentUnitIndex = 0;
-                StartNextUnitTurn();
-                return;
-            }
-
-            currentPlayer = PartyMembers[CurrentUnitIndex];
-            
-            gameObject.GetComponentInParent<CombatManager>().ShowActiveUnitUI(currentPlayer);
-            OnPlayerTurnStart?.Invoke(currentPlayer);
-            // Enable Attack/End Turn buttons here for Sprint 1
-        }
-        else
-        {
-            gameObject.GetComponentInParent<CombatManager>().HideActiveUnitUI();
-            if (CurrentUnitIndex >= EnemyMembers.Count)
-            {
-                // Enemy phase finished ? switch back to player phase
-                IsPlayerPhase = true;
-                CurrentUnitIndex = 0;
-                StartNextUnitTurn();
-                return;
-            }
-
-            currentEnemy = EnemyMembers[CurrentUnitIndex];
-            OnEnemyTurnStart?.Invoke(currentEnemy);
-            ExecuteEnemyTurn(currentEnemy);
-        }
+        SelectedCharacter = member;
+        OnCharacterSelected?.Invoke(member);
+        OnChoosingAction?.Invoke();
     }
 
-    public void EndUnitTurn()
+    public void SetChosenAction(string action)
     {
-        if (IsPlayerPhase)
-        {
-            currentPlayer = PartyMembers[CurrentUnitIndex];
-            OnPlayerTurnEnd?.Invoke(currentPlayer);
-        }
-        else
-        {
-            currentEnemy = EnemyMembers[CurrentUnitIndex];
-            OnEnemyTurnEnd?.Invoke(currentEnemy);
-        }
+        SelectedAction = action;
+        OnActionSelected?.Invoke(action);
 
-        CurrentUnitIndex++;
-        CheckWinLoss(); // optional, can also do after each action
-        StartNextUnitTurn();
+        // Tell the UI / CombatManager to show target buttons
+        OnSelectingTarget?.Invoke();
     }
-    private void ExecuteEnemyTurn(EnemyMember enemy)
-    {
-        PartyMember target = PartyMembers.FirstOrDefault(p => p.CurrentHealth > 0);
-        if (target != null)
-        {
-            enemy.BasicAttack(target);
-        }
 
-       
-        EndUnitTurn();
+
+    public void PlayerSelectedTarget(EnemyMember target)
+    {
+        SelectedTarget = target;
+        OnTargetSelected?.Invoke(target);
+        OnConfirmRequired?.Invoke(SelectedCharacter, SelectedTarget);
+
+        // Update the UI state of the currently active PartyMemberView
+        var view = combatManager?.currentActiveView?.GetComponent<PartyMemberView>();
+        view?.viewModel?.RequireConfirm();
     }
-    private void CheckWinLoss()
-    {
-        bool allEnemiesDead = EnemyMembers.All(enemy => !enemy.Alive);
-        bool allPlayersDead = PartyMembers.All(member => !member.Alive);
 
-        if (allEnemiesDead)
+
+
+    public void ConfirmAction()
+    {
+        if (SelectedCharacter != null && SelectedCharacter.HasTurn &&
+            SelectedAction != null && SelectedTarget != null)
         {
-            Debug.Log("All enemies defeated! You win!");
-                Win();
+            turns.Add(new Turn(SelectedTarget, SelectedAction, SelectedCharacter));
+            SelectedCharacter.HasTurn = false;
+            OnActionResolved?.Invoke(SelectedCharacter, SelectedAction, SelectedTarget);
+
+            var vm = combatManager.FindPartyMemberViewModel(SelectedCharacter);
+            vm?.DisableSelection();
         }
-        else if (allPlayersDead)
+
+        if (PartyMembers.All(m => !m.HasTurn))
+            ExecutePlayerActions();
+    }
+
+    public void ExecutePlayerActions()
+    {
+        foreach (var t in turns)
         {
-            Debug.Log("All party members defeated! Game over!");
-                Loss();
+            PlayerSelectedAttack(t.Attacker);
         }
+        EndPlayerPhase();
     }
 
     public void PlayerSelectedAttack(PartyMember model)
     {
-        Debug.Log("Attacked!");
+        Debug.Log($"{model.baseStats.characterName} attacked!");
         EnemyMembers[0].TakeDamage(model.CurrentAttack);
-        EndUnitTurn();
     }
 
-    private void Win()
+    public void StartPlayerPhase()
     {
-        GameManager.Instance.EndCombat();
+        SelectedCharacter = null;
+        SelectedAction = null;
+        SelectedTarget = null;
+        turns.Clear();
+
+        foreach (var member in PartyMembers) member.HasTurn = true;
+
+        StartCoroutine(DelayedPlayerPhaseStart());
     }
-    private void Loss()
+
+    private IEnumerator DelayedPlayerPhaseStart()
     {
-        GameManager.Instance.EndCombat();
+        yield return null; // wait one frame
+        OnPlayerPhaseStart?.Invoke();
+        OnSelectingCharacter?.Invoke();
     }
+
+    public void EndPlayerPhase()
+    {
+        
+        CheckWinLoss();
+        StartEnemyPhase();
+    }
+
+    private void StartEnemyPhase()
+    {
+        SelectedCharacter = null;
+        SelectedAction = null;
+        SelectedTarget = null;
+        turns.Clear();
+
+        OnEnemyPhaseStart?.Invoke();
+    }
+
+    public void ExecuteEnemyActions()
+    {
+        foreach (var enemy in EnemyMembers.Where(e => e.Alive))
+        {
+            var target = PartyMembers.FirstOrDefault(p => p.Alive);
+            if (target != null) enemy.BasicAttack(target);
+
+            Debug.Log($"{enemy.baseStats.characterName} attacked {target.baseStats.characterName} for {enemy.CurrentAttack} damage");
+        }
+        EndEnemyPhase();
+    }
+
+    private void EndEnemyPhase()
+    {
+        CheckWinLoss();
+        StartPlayerPhase();
+    }
+
+    private void CheckWinLoss()
+    {
+        if (EnemyMembers.All(e => !e.Alive))
+        {
+            Debug.Log("All enemies defeated! You win!");
+            combatManager.EndCombat();
+            GameManager.Instance.EndCombat();
+        }
+        else if (PartyMembers.All(p => !p.Alive))
+        {
+            Debug.Log("All players defeated! Game over!");
+            combatManager.EndCombat();
+            GameManager.Instance.EndCombat();
+        }
+    }
+
+    public void StartCharacterSelection()
+    {
+        OnSelectingCharacter?.Invoke();
+    }
+
+    public void InvokeOnSelectingTarget()
+    {
+        OnSelectingTarget?.Invoke();
+    }
+
 }

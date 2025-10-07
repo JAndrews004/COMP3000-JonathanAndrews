@@ -14,7 +14,7 @@ public class PartyMember : MonoBehaviour
     public int level;
     public int Xp;
     public int XpToLevelUp;
-    public bool HadTurn = false;
+    public bool HasTurn { get; set; } = true;
     public bool Alive => CurrentHealth > 0;
 
     private void Awake()
