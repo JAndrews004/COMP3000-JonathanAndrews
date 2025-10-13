@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CombatManager : MonoBehaviour
 {
     public List<GameObject> CharacterPositions;
-    public List<GameObject> EnemyPositions;
+    public List<EnemySlot> EnemyPositions;
     public List<PartyMember> PartyMembers;
 
     public List<GameObject> CharacterButtons;
@@ -24,8 +24,20 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         GameManager.Instance.RefreshPartyMembers();
+        GameManager.Instance.RefreshEnemyMembers();
         PartyMembers = GameManager.Instance.PartyMembers;
         turnManager = GetComponentInChildren<TurnManager>();
+
+        for(int i =0; i < GameManager.Instance.EnemyMembers.Count;i++)
+        {
+            if (i >= 6)
+            {
+                Debug.Log("Too many enemies for positions (6)");
+                break;
+            }
+
+            EnemyPositions[i].CurrentEnemyMember = GameManager.Instance.EnemyMembers[i];
+        }
 
         // Subscribe to events
         turnManager.OnPlayerPhaseStart += PlayerPhaseStart;

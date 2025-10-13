@@ -366,6 +366,8 @@
 "Assets/Scripts/Data classes/Turn.cs"
 "Assets/Scripts/EnemyMember.cs"
 "Assets/Scripts/EnemySlot.cs"
+"Assets/Scripts/HubWorldManager.cs"
+"Assets/Scripts/Managers/AudioManager.cs"
 "Assets/Scripts/Managers/CombatManager.cs"
 "Assets/Scripts/Managers/GameManager.cs"
 "Assets/Scripts/Managers/TurnManager.cs"

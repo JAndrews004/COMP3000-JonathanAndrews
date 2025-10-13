@@ -7,6 +7,7 @@ public class PartyMemberView : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
     public Slider hpSlider;
+    public TextMeshProUGUI healthText;
     public Button attackButton;
     public Button confirmButton;
     public Button endTurnButton;
@@ -22,12 +23,14 @@ public class PartyMemberView : MonoBehaviour
         hpSlider.maxValue = vm.model.CurrentMaxHealth;
         hpSlider.value = vm.model.CurrentHealth;
 
+        healthText.text = $"{ vm.model.CurrentHealth.ToString()}/{vm.model.CurrentMaxHealth.ToString()}";
+
         Debug.Log($"Binding buttons for {vm.model.baseStats.characterName}");
         // Button bindings
         attackButton.onClick.AddListener(() => {
             vm.AttackButtonPressed();
             //Debug.Log("Attack button clicked!");
-            
+
         });
 
         endTurnButton.onClick.RemoveAllListeners();
@@ -45,7 +48,12 @@ public class PartyMemberView : MonoBehaviour
         vm.OnTurnStateChanged += UpdateButtons;
     }
 
-    private void UpdateHealthBar(int newHealth) => hpSlider.value = newHealth;
+    private void UpdateHealthBar(int newHealth)
+    {
+        healthText.text = $"{newHealth}/{hpSlider.maxValue}";
+        hpSlider.value = newHealth;
+    
+    }
 
     private void UpdateButtons(bool canAct)
     {

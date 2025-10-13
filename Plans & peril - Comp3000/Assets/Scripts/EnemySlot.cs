@@ -7,12 +7,17 @@ public class EnemySlot : MonoBehaviour
 {
     public EnemyMember CurrentEnemyMember;
     public TextMeshPro NameText;
+    public GameObject TargetHighlight;
 
     private bool HasAssignedSprite = false;
 
     private void Start()
     {
         NameText = GetComponentInChildren<TextMeshPro>();
+        if (TargetHighlight != null)
+        {
+            TargetHighlight.SetActive(false);
+        }
     }
     private void Update()
     {

@@ -100,6 +100,11 @@ public class GameManager : MonoBehaviour
         PartyMembers = new List<PartyMember>(GetComponentsInChildren<PartyMember>());
     }
 
+    public void RefreshEnemyMembers()
+    {
+        EnemyMembers = new List<EnemyMember>(GetComponentsInChildren<EnemyMember>());
+    }
+
     
 
 }

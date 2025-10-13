@@ -16,6 +16,17 @@ public class EnemyMember : MonoBehaviour
     public int XPGiven;
     public bool Alive => CurrentHealth > 0;
 
+    private void Awake()
+    {
+        // Prevent duplicates when reloading scenes
+        if (FindObjectsOfType<EnemyMember>().Length > 6) // if you want exactly 4 members
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {

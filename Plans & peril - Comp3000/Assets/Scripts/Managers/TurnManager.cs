@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
     public List<PartyMember> PartyMembers;
-    public List<EnemyMember> EnemyMembers;
+    public List<EnemyMember> EnemyMembers = new List<EnemyMember>();
     public List<Turn> turns = new List<Turn>();
 
     public CombatManager combatManager;
@@ -33,18 +34,51 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Starting Combat from TM");
         combatManager = GetComponentInParent<CombatManager>();
         PartyMembers = GameManager.Instance.PartyMembers;
-        EnemyMembers = GameManager.Instance.EnemyMembers;
+        
+        foreach(var Enemyslot in combatManager.EnemyPositions)
+        {
+            EnemyMembers.Add(Enemyslot.CurrentEnemyMember);
+        }
 
         StartPlayerPhase();
     }
 
     public void SetSelectedCharacter(PartyMember member)
     {
+
+        //go through enemy members and see if curentPartyMember = SelectedCharacter
+
+        if (SelectedCharacter != null)
+        {
+            FindPartyMemberSlot(member).GetComponent<PartySlot>().TargetHighlight.SetActive(false);
+        }
+        
         SelectedCharacter = member;
+
+        FindPartyMemberSlot(member).GetComponent<PartySlot>().TargetHighlight.SetActive(true);
+
         OnCharacterSelected?.Invoke(member);
         OnChoosingAction?.Invoke();
     }
 
+    public GameObject FindPartyMemberSlot(PartyMember member)
+    {
+        GameObject selectedSlot = null;
+
+        if (SelectedCharacter != null)
+        {
+            for (int i = 0; i < combatManager.CharacterPositions.Count; i++)
+            {
+                if (PartyMembers[i] == SelectedCharacter)
+                {
+                    selectedSlot = combatManager.CharacterPositions[i];
+                }
+            }
+            
+        }
+
+        return selectedSlot;
+    }
     public void SetChosenAction(string action)
     {
         SelectedAction = action;
@@ -54,10 +88,33 @@ public class TurnManager : MonoBehaviour
         OnSelectingTarget?.Invoke();
     }
 
+    public EnemySlot FindEnemyMemberSlot(EnemyMember member)
+    {
+        EnemySlot selectedSlot = null;
+
+        if (SelectedTarget != null)
+        {
+            for (int i = 0; i < combatManager.EnemyPositions.Count; i++)
+            {
+                if (combatManager.EnemyPositions[i].CurrentEnemyMember == SelectedTarget)
+                {
+                    selectedSlot = combatManager.EnemyPositions[i];
+                }
+            }
+
+        }
+
+        return selectedSlot;
+    }
 
     public void PlayerSelectedTarget(EnemyMember target)
     {
+        if (SelectedTarget != null)
+        {
+            FindEnemyMemberSlot(target).GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
+        }
         SelectedTarget = target;
+        FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(true);
         OnTargetSelected?.Invoke(target);
         OnConfirmRequired?.Invoke(SelectedCharacter, SelectedTarget);
 
@@ -75,6 +132,10 @@ public class TurnManager : MonoBehaviour
         {
             turns.Add(new Turn(SelectedTarget, SelectedAction, SelectedCharacter));
             SelectedCharacter.HasTurn = false;
+
+            FindPartyMemberSlot(SelectedCharacter).GetComponent<PartySlot>().TargetHighlight.SetActive(false);
+            FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
+
             OnActionResolved?.Invoke(SelectedCharacter, SelectedAction, SelectedTarget);
 
             var vm = combatManager.FindPartyMemberViewModel(SelectedCharacter);
@@ -97,7 +158,7 @@ public class TurnManager : MonoBehaviour
     public void PlayerSelectedAttack(PartyMember model)
     {
         Debug.Log($"{model.baseStats.characterName} attacked!");
-        EnemyMembers[0].TakeDamage(model.CurrentAttack);
+        combatManager.EnemyPositions[0].CurrentEnemyMember.TakeDamage(model.CurrentAttack);
     }
 
     public void StartPlayerPhase()
@@ -121,7 +182,14 @@ public class TurnManager : MonoBehaviour
 
     public void EndPlayerPhase()
     {
-        
+        foreach(var slot in combatManager.CharacterPositions)
+        {
+            slot.GetComponent<PartySlot>().TargetHighlight.SetActive(false);
+        }
+        foreach (var slot in combatManager.EnemyPositions)
+        {
+            slot.GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
+        }
         CheckWinLoss();
         StartEnemyPhase();
     }
@@ -132,6 +200,8 @@ public class TurnManager : MonoBehaviour
         SelectedAction = null;
         SelectedTarget = null;
         turns.Clear();
+
+        foreach (var member in PartyMembers) member.HasTurn = false;
 
         OnEnemyPhaseStart?.Invoke();
     }
