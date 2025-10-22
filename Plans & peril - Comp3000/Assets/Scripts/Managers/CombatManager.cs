@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static AbilityData;
 
 public class CombatManager : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class CombatManager : MonoBehaviour
     public List<PartyMember> PartyMembers;
 
     public List<GameObject> CharacterButtons;
-    public List<GameObject> TargetButtons;
+    public List<GameObject> EnemyTargetButtons;
+    public List<GameObject> CharacterTargetButtons;
 
     [SerializeField] private GameObject partyMemberViewPrefab;
     [SerializeField] private Transform activeUnitUIParent;
@@ -44,7 +46,7 @@ public class CombatManager : MonoBehaviour
         turnManager.OnEnemyPhaseStart += EnemyPhaseStart;
         turnManager.OnSelectingCharacter += SelectingCharacter;
         turnManager.OnChoosingAction += ChoosingAction;
-        turnManager.OnSelectingTarget += SelectingTarget;
+        //turnManager.OnSelectingTarget += SelectingTarget;
         turnManager.OnConfirmRequired += ConfirmRequired;
         turnManager.OnActionResolved += ActionResolved;
         turnManager.OnCharacterSelected += ShowActiveUnitUI;
@@ -63,7 +65,7 @@ public class CombatManager : MonoBehaviour
         turnManager.OnEnemyPhaseStart -= EnemyPhaseStart;
         turnManager.OnSelectingCharacter -= SelectingCharacter;
         turnManager.OnChoosingAction -= ChoosingAction;
-        turnManager.OnSelectingTarget -= SelectingTarget;
+        //turnManager.OnSelectingTarget -= SelectingTarget;
         turnManager.OnConfirmRequired -= ConfirmRequired;
         turnManager.OnActionResolved -= ActionResolved;
         turnManager.OnCharacterSelected -= ShowActiveUnitUI;
@@ -115,7 +117,8 @@ public class CombatManager : MonoBehaviour
     public void SelectingCharacter()
     {
         HideActiveUnitUI();
-
+        foreach (var btn in CharacterButtons)
+            btn.SetActive(true);
         foreach (var button in CharacterButtons)
         {
             var slot = button.GetComponentInParent<PartySlot>();
@@ -154,7 +157,7 @@ public class CombatManager : MonoBehaviour
         foreach (var vm in PartyMemberViewModels)
         {
             vm.DisableSelection();
-            Debug.Log("Disabled selection");
+            //Debug.Log("Disabled selection");
             vm.DisableUI(); // optionally hide attack/end turn UI
         }
     }
@@ -162,15 +165,16 @@ public class CombatManager : MonoBehaviour
 
     public void ChoosingAction()
     {
-        Debug.Log("Choosing an action!");
+        //Debug.Log("Choosing an action!");
         viewModel?.StartChoosingAction();
     }
 
+    /*
     public void SelectingTarget()
     {
         Debug.Log("Select a target!");
 
-        foreach (var button in TargetButtons)
+        foreach (var button in EnemyTargetButtons)
         {
             var slot = button.GetComponentInParent<EnemySlot>();
             var enemy = slot.CurrentEnemyMember;
@@ -192,7 +196,7 @@ public class CombatManager : MonoBehaviour
                 });
             }
         }
-    }
+    }*/
 
     public PartyMemberViewModel FindPartyMemberViewModel(PartyMember member)
     {
@@ -203,7 +207,49 @@ public class CombatManager : MonoBehaviour
 
     public void ShowTargetButtons()
     {
-        foreach (var button in TargetButtons)
+        AbilityData currentAbility = turnManager.SelectedAction;
+
+        if (currentAbility == null)
+        {
+            return;
+        }
+        //Debug.Log("Showing target Buttons");
+
+        switch (currentAbility.targetType)
+            {
+            case TargetType.SingleEnemy:
+                //Debug.Log("Showing SingleEnemy Buttons");
+                ShowEnemyTargetButtons();
+                    break;
+
+            case TargetType.MultipleEnemy:
+                //Debug.Log("Showing MultipleEnemy Buttons");
+                ShowEnemyTargetButtons();
+                    break;
+
+            case TargetType.SingleAlly:
+                //Debug.Log("Showing SingleAlly Buttons");
+                ShowCharacterTargetButtons();
+                    break;
+
+            case TargetType.MultipleAlly:
+                //Debug.Log("Showing MultipleAlly Buttons");
+                ShowCharacterTargetButtons();
+                    break;
+
+            case TargetType.None:
+                //Debug.Log("Showing None Buttons");
+                turnManager.SelectedTarget = turnManager.SelectedCharacter;
+                    break;
+
+            };
+        
+       
+    }
+
+    void ShowEnemyTargetButtons()
+    {
+        foreach (var button in EnemyTargetButtons)
         {
             var slot = button.GetComponentInParent<EnemySlot>();
             var enemy = slot.CurrentEnemyMember;
@@ -225,23 +271,68 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-
-
-    public void ConfirmRequired(PartyMember attacker, EnemyMember target)
+    void ShowCharacterTargetButtons()
     {
-        Debug.Log("Waiting for player to confirm attack.");
-        currentActiveView?.GetComponent<PartyMemberView>().ShowConfirmButton();
+        foreach (var btn in CharacterButtons)
+            btn.SetActive(false);
+
+        //DisableAllCharacterSelections();
+        foreach (var button in CharacterTargetButtons)
+        {
+            var slot = button.GetComponentInParent<PartySlot>();
+            var partyMember = slot.CurrentPartyMember;
+            bool canSelect = partyMember != null && partyMember.Alive;
+            button.SetActive(canSelect);
+
+            if (canSelect)
+            {
+                var btnComp = button.GetComponent<Button>();
+                //Debug.Log("Selected: " + btnComp.name);
+                btnComp.onClick.RemoveAllListeners();
+                PartyMember capturedAlly = partyMember;
+                btnComp.onClick.AddListener(() =>
+                {
+                    turnManager.PlayerSelectedTarget(capturedAlly);
+                    // Optionally show confirm button for current character
+                    currentActiveView.GetComponent<PartyMemberView>().ShowConfirmButton();
+                });
+            }
+        }
+    }
+    public void DisableAllTargetButtons()
+    {
+        foreach (var btn in CharacterTargetButtons)
+        {
+            btn.SetActive(false);
+        }
+        foreach(var btn in EnemyTargetButtons)
+        {
+            btn.SetActive(false);
+        }
+        foreach (var button in CharacterButtons)
+        {
+
+            button.SetActive(true);
+
+        }
     }
 
-    public void ActionResolved(PartyMember attacker, string action, EnemyMember target)
+    public void ConfirmRequired(PartyMember attacker, CombatMember target)
     {
-        Debug.Log($"Action {action} by {attacker.name} on {target.name} resolved.");
+        //Debug.Log("Waiting for player to confirm attack.");
+        currentActiveView?.GetComponent<PartyMemberView>().ShowConfirmButton();
+        
+    }
+
+    public void ActionResolved(PartyMember attacker, AbilityData action, CombatMember target)
+    {
+        //Debug.Log($"Action {action.abilityName} by {attacker.name} on {target.name} resolved.");
         HideActiveUnitUI();
     }
 
     public void PlayerPhaseStart()
     {
-        Debug.Log("Player Phase Started!");
+        //Debug.Log("Player Phase Started!");
         turnManager.StartCharacterSelection();
 
     }
@@ -265,8 +356,8 @@ public class CombatManager : MonoBehaviour
         currentActiveView?.GetComponent<PartyMemberView>().HideConfirmButton();
 
         // Hide all target buttons after confirmation
-        foreach (var btn in TargetButtons) btn.SetActive(false);
-
+        foreach (var btn in EnemyTargetButtons) btn.SetActive(false);
+        foreach (var btn in CharacterTargetButtons) btn.SetActive(false);
     }
 
 
@@ -280,9 +371,10 @@ public class CombatManager : MonoBehaviour
         foreach (var btn in CharacterButtons)
             btn.SetActive(false);
 
-        foreach (var btn in TargetButtons)
+        foreach (var btn in EnemyTargetButtons)
             btn.SetActive(false);
-
+        foreach (var btn in CharacterTargetButtons)
+            btn.SetActive(false);
         // Any other cleanup, like resetting state or notifying GameManager
         Debug.Log("Combat ended!");
     }

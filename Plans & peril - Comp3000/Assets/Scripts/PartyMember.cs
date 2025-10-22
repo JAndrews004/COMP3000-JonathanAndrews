@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PartyMember : MonoBehaviour
+public class PartyMember : CombatMember
 {
     public Characters baseStats;
 
-    public int CurrentMaxHealth;
-    public int CurrentHealth;
-    public int CurrentAttack;
-    public int CurrentDefense;
-    public int CurrentIntelligence;
     public int level;
     public int Xp;
     public int XpToLevelUp;
     public bool HasTurn { get; set; } = true;
     public bool Alive => CurrentHealth > 0;
 
+   
+    //List<ActiveEffect> activeEffectsTurns;
     private void Awake()
     {
         // Prevent duplicates when reloading scenes
@@ -52,15 +49,14 @@ public class PartyMember : MonoBehaviour
 
     }
 
-    public void TakeDamage(int AttackPower)
-    {
-        if(CurrentHealth - AttackPower <= 0)
-        {
-            CurrentHealth = 0;
-        }
-        else
-        {
-            CurrentHealth -= AttackPower;
-        }
-    }
+    
+   
 }
+class ActiveEffect
+{
+    AbilityData source;
+    StatType statModified;
+    float modifier;
+    int remainingTurns;
+}
+    

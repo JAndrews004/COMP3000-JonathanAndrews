@@ -5,10 +5,10 @@ using UnityEngine;
 public class Turn
 {
     public PartyMember Attacker;
-    public EnemyMember Target { get; set; }
-    public string Action { get; set; }
+    public CombatMember Target { get; set; }
+    public AbilityData Action { get; set; }
 
-    public Turn(EnemyMember target, string action, PartyMember attacker)
+    public Turn(CombatMember target, AbilityData action, PartyMember attacker)
     {
         Target = target;
         Action = action;

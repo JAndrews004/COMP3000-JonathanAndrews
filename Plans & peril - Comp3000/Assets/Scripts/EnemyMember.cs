@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMember : MonoBehaviour
+public class EnemyMember : CombatMember
 {
 
     public Enemy baseStats;
 
-    public int CurrentMaxHealth;
-    public int CurrentHealth;
-    public int CurrentAttack;
-    public int CurrentDefense;
-    public int CurrentIntelligence;
     public int Level;
     public int XPGiven;
     public bool Alive => CurrentHealth > 0;
+
+    public List<AbilityData> Abilities;
+    //List<ActiveEffect> activeEffectsTurns;
 
     private void Awake()
     {
@@ -64,15 +62,6 @@ public class EnemyMember : MonoBehaviour
         target.TakeDamage(CurrentAttack);
     
     }
-    public void TakeDamage(int AttackPower)
-    {
-        if (CurrentHealth - AttackPower <= 0)
-        {
-            CurrentHealth = 0;
-        }
-        else
-        {
-            CurrentHealth -= AttackPower;
-        }
-    }
+   
+    
 }

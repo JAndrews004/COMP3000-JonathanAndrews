@@ -50,43 +50,53 @@ public class PartyMemberViewModel
     public void EnableSelection() => CanAct = true;
     public void DisableSelection() => CanAct = false;
 
-    public void AttackButtonPressed()
+    public void AbilityButtonPressed(AbilityData ability)
     {
         if (!CanAct) return;
 
-        turnManager.SetChosenAction("Attack");
+        turnManager.SetChosenAction(ability);
 
         // Notify CombatManager to show target buttons
         CombatManager cm = GameObject.FindObjectOfType<CombatManager>();
         if (cm != null)
             cm.ShowTargetButtons(); // or SelectingTarget
     }
-
+    
 
     public void EndTurnButtonPressed()
     {
         if (!CanAct) return;
 
-        Debug.Log($"{model.baseStats.characterName} ended their turn!");
+        //Debug.Log($"{model.baseStats.characterName} ended their turn!");
 
         // Disable all selections
         var cms = GameObject.FindObjectOfType<CombatManager>();
         cms.DisableAllCharacterSelections();
 
-        Debug.Log("Diabled selection Buttons");
+        //Debug.Log("Diabled selection Buttons");
         // Execute all chosen actions and end the phase
         turnManager.ExecutePlayerActions();
+    }
+
+    public void clearButtonPressed()
+    {
+        turnManager.SelectedAction = null;
+        turnManager.InvokeSelectingAction();
+        var cms = GameObject.FindObjectOfType<CombatManager>();
+        cms.DisableAllTargetButtons();
     }
     public void OnConfirmButtonPressed()
     {
         if (!CanAct) return;
 
-        Debug.Log($"{model.baseStats.characterName} confirmed attacked!");
+        //Debug.Log($"{model.baseStats.characterName} confirmed attacked!");
         CombatManager cm = GameObject.FindObjectOfType<CombatManager>();
         if (cm != null)
             cm.OnConfirmButtonPressed(); // or SelectingTarget
 
     }
+
+    
 
 
     public void UpdateHealth() => OnHealthChanged?.Invoke(model.CurrentHealth);

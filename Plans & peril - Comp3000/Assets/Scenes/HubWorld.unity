@@ -123,6 +123,60 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &34028271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34028272}
+  - component: {fileID: 34028273}
+  m_Layer: 0
+  m_Name: Slime1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &34028272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34028271}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.42618492, y: 1.8320773, z: 0.021061493}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2070275927}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &34028273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34028271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe08a0f24a8c1614697e8170f2f37fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 75
+  CurrentMaxHealth: 75
+  CurrentAttack: 10
+  CurrentDefense: 15
+  CurrentIntelligence: 1
+  abilities: []
+  baseStats: {fileID: 11400000, guid: 0ebf3159b08ad304e9f0d0ad75c06362, type: 2}
+  Level: 3
+  XPGiven: 20
+  Abilities: []
 --- !u!1 &257712760
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,12 +323,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249cec09c3676ed499d8e0eb323dc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: 55d8eca0c360b874f811986bd9837c3a, type: 2}
-  CurrentMaxHealth: 0
   CurrentHealth: 0
+  CurrentMaxHealth: 0
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
+  abilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  baseStats: {fileID: 11400000, guid: 55d8eca0c360b874f811986bd9837c3a, type: 2}
   level: 0
   Xp: 0
   XpToLevelUp: 0
@@ -525,12 +586,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249cec09c3676ed499d8e0eb323dc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: b3dc66d016058a14c9577b5b5072d837, type: 2}
-  CurrentMaxHealth: 0
   CurrentHealth: 0
+  CurrentMaxHealth: 0
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
+  abilities:
+  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
+  - {fileID: 11400000, guid: f50ba7b9efa391c4eb038a8881d985fd, type: 2}
+  - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
+  - {fileID: 11400000, guid: ea83db238500f234c91b8176671c2200, type: 2}
+  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  baseStats: {fileID: 11400000, guid: b3dc66d016058a14c9577b5b5072d837, type: 2}
   level: 0
   Xp: 0
   XpToLevelUp: 0
@@ -593,12 +661,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249cec09c3676ed499d8e0eb323dc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: 0953b6917d58d224f9d1b767cdb52e33, type: 2}
-  CurrentMaxHealth: 0
   CurrentHealth: 0
+  CurrentMaxHealth: 0
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
+  abilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  baseStats: {fileID: 11400000, guid: 0953b6917d58d224f9d1b767cdb52e33, type: 2}
   level: 0
   Xp: 0
   XpToLevelUp: 0
@@ -631,14 +706,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe08a0f24a8c1614697e8170f2f37fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: f387dd313ccf343479409da158c2cff1, type: 2}
-  CurrentMaxHealth: 100
   CurrentHealth: 100
-  CurrentAttack: 500
+  CurrentMaxHealth: 100
+  CurrentAttack: 50
   CurrentDefense: 10
   CurrentIntelligence: 0
+  abilities: []
+  baseStats: {fileID: 11400000, guid: f387dd313ccf343479409da158c2cff1, type: 2}
   Level: 1
   XPGiven: 10
+  Abilities: []
 --- !u!4 &1333242756
 Transform:
   m_ObjectHideFlags: 0
@@ -833,12 +910,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249cec09c3676ed499d8e0eb323dc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: f1d7c6db20df76d45a6a0104e25d7911, type: 2}
-  CurrentMaxHealth: 0
   CurrentHealth: 0
+  CurrentMaxHealth: 0
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
+  abilities:
+  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  - {fileID: 11400000, guid: f50ba7b9efa391c4eb038a8881d985fd, type: 2}
+  - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
+  baseStats: {fileID: 11400000, guid: f1d7c6db20df76d45a6a0104e25d7911, type: 2}
   level: 0
   Xp: 0
   XpToLevelUp: 0
@@ -1637,6 +1721,7 @@ Transform:
   - {fileID: 1237639828}
   - {fileID: 373294725}
   - {fileID: 1333242756}
+  - {fileID: 34028272}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

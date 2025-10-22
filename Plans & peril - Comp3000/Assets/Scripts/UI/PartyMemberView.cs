@@ -8,14 +8,21 @@ public class PartyMemberView : MonoBehaviour
     public TextMeshProUGUI nameText;
     public Slider hpSlider;
     public TextMeshProUGUI healthText;
-    public Button attackButton;
+
+    public Button[] abilityButtons;
+
+    public TextMeshProUGUI[] abilityButtonsText;
+    public TextMeshProUGUI[] usagesText;
+
     public Button confirmButton;
     public Button endTurnButton;
+    public Button clearButton;
 
     public PartyMemberViewModel viewModel;
 
     public void Bind(PartyMemberViewModel vm)
     {
+
         viewModel = vm;
 
         // Initial display
@@ -23,20 +30,70 @@ public class PartyMemberView : MonoBehaviour
         hpSlider.maxValue = vm.model.CurrentMaxHealth;
         hpSlider.value = vm.model.CurrentHealth;
 
+        for(int i = 0; i< abilityButtonsText.Length; i++)
+        {
+            if (vm.model.abilities[i] != null)
+            {
+                abilityButtonsText[i].text = vm.model.abilities[i].abilityName ?? null;
+            }
+            else
+            {
+                abilityButtonsText[i].text = "None";
+                abilityButtons[i].interactable = false;
+            }
+            
+            
+        }
+
+        for (int i = 0; i < usagesText.Length; i++)
+        {
+            if (vm.model.abilities[i] != null)
+            {
+                usagesText[i].text = $"{vm.model.abilities[i].usesLeft}/{vm.model.abilities[i].maxUsage}";
+            }
+            
+        }
+
         healthText.text = $"{ vm.model.CurrentHealth.ToString()}/{vm.model.CurrentMaxHealth.ToString()}";
 
-        Debug.Log($"Binding buttons for {vm.model.baseStats.characterName}");
-        // Button bindings
-        attackButton.onClick.AddListener(() => {
-            vm.AttackButtonPressed();
-            //Debug.Log("Attack button clicked!");
+        for (int i = 0; i < vm.model.abilities.Count && i < abilityButtons.Length; i++)
+        {
+            AbilityData ability = vm.model.abilities[i];
 
-        });
+            // Hook up ability click
+            abilityButtons[i].onClick.RemoveAllListeners();
+            abilityButtons[i].onClick.AddListener(() =>
+            {
+                vm.AbilityButtonPressed(ability);
+                
+            });
+        }
 
+        for(int i = 0; i < abilityButtons.Length; i++)
+        {
+            if (vm.model.abilities[i] != null && vm.model.abilities[i].usesLeft <= 0)
+            {
+                //Debug.Log("Setting interactability to false for button " + i);
+                abilityButtons[i].interactable = false;
+            }
+        }
+        for (int i = 0; i < abilityButtons.Length; i++)
+        {
+            if (vm.model.abilities[i] != null && vm.model.abilities[i].cooldownLeft > 0 )
+            {
+                Debug.Log("On Cooldown: button " + i);
+                abilityButtons[i].interactable = false;
+            }
+        }
         endTurnButton.onClick.RemoveAllListeners();
         endTurnButton.onClick.AddListener(() => {
             //Debug.Log("End Turn button clicked!");
             vm.EndTurnButtonPressed();
+        });
+        clearButton.onClick.RemoveAllListeners();
+        clearButton.onClick.AddListener(() => {
+            //Debug.Log("End Turn button clicked!");
+            vm.clearButtonPressed();
         });
 
         confirmButton.onClick.RemoveAllListeners();
@@ -52,19 +109,19 @@ public class PartyMemberView : MonoBehaviour
     {
         healthText.text = $"{newHealth}/{hpSlider.maxValue}";
         hpSlider.value = newHealth;
+        
     
     }
 
     private void UpdateButtons(bool canAct)
-    {
-        attackButton.interactable = canAct;
+    { 
         endTurnButton.interactable = canAct;
     }
 
     private void UpdateUIState(PartyUIState state)
     {
-        attackButton.gameObject.SetActive(state == PartyUIState.ChoosingAction);
-        endTurnButton.gameObject.SetActive(state == PartyUIState.ChoosingAction);
+        //abilityButton1.gameObject.SetActive(state == PartyUIState.ChoosingAction);
+        //endTurnButton.gameObject.SetActive(state == PartyUIState.ChoosingAction);
         confirmButton.gameObject.SetActive(state == PartyUIState.Confirm);
     }
 

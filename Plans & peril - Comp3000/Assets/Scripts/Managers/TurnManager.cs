@@ -13,25 +13,25 @@ public class TurnManager : MonoBehaviour
 
     public CombatManager combatManager;
 
-    private PartyMember SelectedCharacter;
-    private string SelectedAction;
-    private EnemyMember SelectedTarget;
+    public PartyMember SelectedCharacter;
+    public AbilityData SelectedAction;
+    public CombatMember SelectedTarget;
 
     public event Action OnPlayerPhaseStart;
     public event Action OnEnemyPhaseStart;
 
     public event Action<PartyMember> OnCharacterSelected;
-    public event Action<EnemyMember> OnTargetSelected;
+    public event Action<CombatMember> OnTargetSelected;
     public event Action OnSelectingCharacter;
     public event Action OnChoosingAction;
     public event Action OnSelectingTarget;
-    public event Action<string> OnActionSelected;
-    public event Action<PartyMember, EnemyMember> OnConfirmRequired;
-    public event Action<PartyMember, string, EnemyMember> OnActionResolved;
+    public event Action<AbilityData> OnActionSelected;
+    public event Action<PartyMember, CombatMember> OnConfirmRequired;
+    public event Action<PartyMember, AbilityData, CombatMember> OnActionResolved;
 
     public void StartCombat()
     {
-        Debug.Log("Starting Combat from TM");
+        //Debug.Log("Starting Combat from TM");
         combatManager = GetComponentInParent<CombatManager>();
         PartyMembers = GameManager.Instance.PartyMembers;
         
@@ -79,7 +79,7 @@ public class TurnManager : MonoBehaviour
 
         return selectedSlot;
     }
-    public void SetChosenAction(string action)
+    public void SetChosenAction(AbilityData action)
     {
         SelectedAction = action;
         OnActionSelected?.Invoke(action);
@@ -107,14 +107,14 @@ public class TurnManager : MonoBehaviour
         return selectedSlot;
     }
 
-    public void PlayerSelectedTarget(EnemyMember target)
+    public void PlayerSelectedTarget(CombatMember target)
     {
         if (SelectedTarget != null)
         {
-            FindEnemyMemberSlot(target).GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
+            //FindEnemyMemberSlot(target).GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
         }
         SelectedTarget = target;
-        FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(true);
+       // FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(true);
         OnTargetSelected?.Invoke(target);
         OnConfirmRequired?.Invoke(SelectedCharacter, SelectedTarget);
 
@@ -134,7 +134,7 @@ public class TurnManager : MonoBehaviour
             SelectedCharacter.HasTurn = false;
 
             FindPartyMemberSlot(SelectedCharacter).GetComponent<PartySlot>().TargetHighlight.SetActive(false);
-            FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
+            //FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
 
             OnActionResolved?.Invoke(SelectedCharacter, SelectedAction, SelectedTarget);
 
@@ -144,21 +144,28 @@ public class TurnManager : MonoBehaviour
 
         if (PartyMembers.All(m => !m.HasTurn))
             ExecutePlayerActions();
+        else
+        {
+            foreach (var button in combatManager.CharacterButtons)
+            {
+
+                button.SetActive(true);
+
+            }
+        }
     }
 
     public void ExecutePlayerActions()
     {
         foreach (var t in turns)
         {
-            PlayerSelectedAttack(t.Attacker);
+            t.Action.behaviour.Execute(t.Attacker, new[] { t.Target });
+            t.Action.DecreaseUses();
+
+            t.Action.cooldownLeft = t.Action.cooldown;
+           
         }
         EndPlayerPhase();
-    }
-
-    public void PlayerSelectedAttack(PartyMember model)
-    {
-        Debug.Log($"{model.baseStats.characterName} attacked!");
-        combatManager.EnemyPositions[0].CurrentEnemyMember.TakeDamage(model.CurrentAttack);
     }
 
     public void StartPlayerPhase()
@@ -168,8 +175,20 @@ public class TurnManager : MonoBehaviour
         SelectedTarget = null;
         turns.Clear();
 
-        foreach (var member in PartyMembers) member.HasTurn = true;
-
+        foreach (var member in PartyMembers)
+        {
+            member.HasTurn = true;
+            
+            //Go through all skills for all partymembers and decrease cooldown by 1
+            foreach(var ability in member.abilities)
+            {
+                if (ability != null)
+                {
+                    ability.DecreaseCooldown();
+                }
+            }
+        }
+ 
         StartCoroutine(DelayedPlayerPhaseStart());
     }
 
@@ -191,6 +210,10 @@ public class TurnManager : MonoBehaviour
             slot.GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
         }
         CheckWinLoss();
+        foreach (var member in PartyMembers)
+        {
+            member.TickEffects();
+        }
         StartEnemyPhase();
     }
 
@@ -221,6 +244,10 @@ public class TurnManager : MonoBehaviour
     private void EndEnemyPhase()
     {
         CheckWinLoss();
+        foreach (var member in EnemyMembers)
+        {
+            member.TickEffects();
+        }
         StartPlayerPhase();
     }
 
@@ -244,7 +271,10 @@ public class TurnManager : MonoBehaviour
     {
         OnSelectingCharacter?.Invoke();
     }
-
+    public void InvokeSelectingAction()
+    {
+        OnChoosingAction?.Invoke();
+    }
     public void InvokeOnSelectingTarget()
     {
         OnSelectingTarget?.Invoke();
