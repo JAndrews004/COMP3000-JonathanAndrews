@@ -17,8 +17,9 @@ MonoBehaviour:
   icon: {fileID: 0}
   abilityType: 2
   maxUsage: 10
-  usesLeft: 9
+  usesLeft: 10
   cooldown: 4
-  cooldownLeft: 2
+  cooldownLeft: 0
   targetType: 4
+  numberOfTargets: 2
   behaviour: {fileID: 11400000, guid: 392b8f59b0a0f66479e02c1f536f8937, type: 2}

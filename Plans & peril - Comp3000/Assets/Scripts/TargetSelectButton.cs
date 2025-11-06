@@ -21,8 +21,8 @@ public class TargetSelectButton : MonoBehaviour
         }
     }
 
-    public void OnCLick()
+    public void OnClick()
     {
-        TurnManager.PlayerSelectedTarget(Enemy);
+        //TurnManager.PlayerSelectedTarget(Enemy);
     }
 }

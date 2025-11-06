@@ -85,7 +85,9 @@ public class GameManager : MonoBehaviour
 
     public void StartCombat()
     {
+        
         SceneManager.LoadScene(1);
+        populateAbilities();
         InCombat = true;
     }
 
@@ -105,6 +107,48 @@ public class GameManager : MonoBehaviour
         EnemyMembers = new List<EnemyMember>(GetComponentsInChildren<EnemyMember>());
     }
 
-    
+    public void populateAbilities()
+    {
+        RefreshPartyMembers();
+        foreach (CombatMember member in PartyMembers)
+        {
+            foreach (AbilityData data in member.abilityDatas)
+            {
+                if (data != null)
+                {
+                    Ability ability = new Ability(data);
+                    Debug.Log(ability.AbilityData.abilityName + " added to Ability list");
+                    member.abilities.Add(ability);
 
-}
+                }
+
+            }
+        }
+
+        RefreshEnemyMembers();
+        foreach (CombatMember member in EnemyMembers)
+        {
+            if (member == null)
+            {
+                Debug.LogError("Null EnemyMember found in EnemyMembers list!");
+                continue;
+            }
+
+            if (member.abilities == null)
+                member.abilities = new List<Ability>();
+
+            if (member.abilityDatas == null)
+                member.abilityDatas = new List<AbilityData>();
+
+            foreach (AbilityData data in member.abilityDatas)
+            {
+                if (data == null) continue;
+
+                Ability ability = new Ability(data);
+                member.abilities.Add(ability);
+                Debug.Log($"{member.name} learned {ability.AbilityData.abilityName}");
+            }
+        }
+
+    }
+    }

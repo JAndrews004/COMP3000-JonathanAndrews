@@ -1,18 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyMember : CombatMember
 {
 
     public Enemy baseStats;
+    public EnemyAI aiController;
 
     public int Level;
     public int XPGiven;
     public bool Alive => CurrentHealth > 0;
 
-    public List<AbilityData> Abilities;
-    //List<ActiveEffect> activeEffectsTurns;
 
     private void Awake()
     {
@@ -24,11 +25,6 @@ public class EnemyMember : CombatMember
         }
 
         DontDestroyOnLoad(gameObject);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     public EnemyMember(int level,int XP)
@@ -46,11 +42,7 @@ public class EnemyMember : CombatMember
 
         UpdateStats(Level);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     void UpdateStats(int Level)
     {
@@ -62,6 +54,36 @@ public class EnemyMember : CombatMember
         target.TakeDamage(CurrentAttack);
     
     }
-   
+
+    public IEnumerator TakeTurn()
+    {
+        if (!Alive)
+        {
+            yield break;
+        }
+        yield return ExecuteAction(aiController.ChooseAction(this));
+        //yield until action is complete
+    }
+
+    public IEnumerator ExecuteAction(List<Turn> actions)
+    {
+        foreach (Turn action in actions)
+        {
+            Ability ability = action.Action;
+            List<CombatMember> target = action.Target;
+
+            if (ability.usesLeft > 0 && ability.cooldownLeft == 0)
+            {
+                ability.AbilityData.behaviour.Execute(this, target);
+            }
+        }
+        if (actions.Count >=1 && actions[0] != null)
+        {
+            actions[0].Action.DecreaseUses();
+            actions[0].Action.cooldownLeft = actions[0].Action.AbilityData.cooldown;
+        }
+        Debug.Log(baseStats.characterName + " has executed an action");
+        yield return null;
+    }
     
 }

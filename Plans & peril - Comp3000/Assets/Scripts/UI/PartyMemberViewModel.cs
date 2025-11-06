@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PartyMemberViewModel
@@ -50,7 +52,7 @@ public class PartyMemberViewModel
     public void EnableSelection() => CanAct = true;
     public void DisableSelection() => CanAct = false;
 
-    public void AbilityButtonPressed(AbilityData ability)
+    public void AbilityButtonPressed(Ability ability)
     {
         if (!CanAct) return;
 
@@ -81,9 +83,11 @@ public class PartyMemberViewModel
     public void clearButtonPressed()
     {
         turnManager.SelectedAction = null;
+        turnManager.SelectedTarget = new List<CombatMember>();
         turnManager.InvokeSelectingAction();
         var cms = GameObject.FindObjectOfType<CombatManager>();
         cms.DisableAllTargetButtons();
+        HideConfirmButton();
     }
     public void OnConfirmButtonPressed()
     {
@@ -96,7 +100,10 @@ public class PartyMemberViewModel
 
     }
 
-    
+    public void HideConfirmButton()
+    {
+        StartSelectingTarget();
+    }
 
 
     public void UpdateHealth() => OnHealthChanged?.Invoke(model.CurrentHealth);

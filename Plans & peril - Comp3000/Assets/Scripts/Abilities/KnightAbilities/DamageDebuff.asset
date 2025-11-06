@@ -21,4 +21,5 @@ MonoBehaviour:
   cooldown: 5
   cooldownLeft: 0
   targetType: 0
+  numberOfTargets: 1
   behaviour: {fileID: 11400000, guid: 2613d311a7d84c2438b0d1248d494762, type: 2}

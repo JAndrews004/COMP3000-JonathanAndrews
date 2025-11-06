@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySlot : MonoBehaviour
 {
     public EnemyMember CurrentEnemyMember;
     public TextMeshPro NameText;
     public GameObject TargetHighlight;
+    public Slider HPBar;
 
     private bool HasAssignedSprite = false;
 
@@ -24,7 +26,8 @@ public class EnemySlot : MonoBehaviour
         if (CurrentEnemyMember != null)
         {
             NameText.text = CurrentEnemyMember.baseStats.characterName;
-
+            HPBar.maxValue = CurrentEnemyMember.CurrentMaxHealth;
+            HPBar.value = CurrentEnemyMember.CurrentHealth;
             if (!HasAssignedSprite)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = CurrentEnemyMember.baseStats.characterSprite;

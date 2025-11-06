@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -14,20 +13,19 @@ public class TurnManager : MonoBehaviour
     public CombatManager combatManager;
 
     public PartyMember SelectedCharacter;
-    public AbilityData SelectedAction;
-    public CombatMember SelectedTarget;
+    public Ability SelectedAction;
+    public List<CombatMember> SelectedTarget = new List<CombatMember>();
 
     public event Action OnPlayerPhaseStart;
     public event Action OnEnemyPhaseStart;
 
     public event Action<PartyMember> OnCharacterSelected;
-    public event Action<CombatMember> OnTargetSelected;
     public event Action OnSelectingCharacter;
     public event Action OnChoosingAction;
     public event Action OnSelectingTarget;
-    public event Action<AbilityData> OnActionSelected;
-    public event Action<PartyMember, CombatMember> OnConfirmRequired;
-    public event Action<PartyMember, AbilityData, CombatMember> OnActionResolved;
+    public event Action<Ability> OnActionSelected;
+    public event Action<PartyMember, List<CombatMember>> OnConfirmRequired;
+    public event Action<PartyMember, Ability, List<CombatMember>> OnActionResolved;
 
     public void StartCombat()
     {
@@ -39,7 +37,7 @@ public class TurnManager : MonoBehaviour
         {
             EnemyMembers.Add(Enemyslot.CurrentEnemyMember);
         }
-
+        combatManager.enemyTurnManager.RegisterEnemies(EnemyMembers);
         StartPlayerPhase();
     }
 
@@ -79,7 +77,7 @@ public class TurnManager : MonoBehaviour
 
         return selectedSlot;
     }
-    public void SetChosenAction(AbilityData action)
+    public void SetChosenAction(Ability action)
     {
         SelectedAction = action;
         OnActionSelected?.Invoke(action);
@@ -96,7 +94,7 @@ public class TurnManager : MonoBehaviour
         {
             for (int i = 0; i < combatManager.EnemyPositions.Count; i++)
             {
-                if (combatManager.EnemyPositions[i].CurrentEnemyMember == SelectedTarget)
+                if (combatManager.EnemyPositions[i].CurrentEnemyMember == member)
                 {
                     selectedSlot = combatManager.EnemyPositions[i];
                 }
@@ -109,18 +107,43 @@ public class TurnManager : MonoBehaviour
 
     public void PlayerSelectedTarget(CombatMember target)
     {
-        if (SelectedTarget != null)
-        {
-            //FindEnemyMemberSlot(target).GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
+        if (SelectedTarget == null) { 
+            SelectedTarget = new List<CombatMember>();
         }
-        SelectedTarget = target;
-       // FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(true);
-        OnTargetSelected?.Invoke(target);
-        OnConfirmRequired?.Invoke(SelectedCharacter, SelectedTarget);
 
-        // Update the UI state of the currently active PartyMemberView
-        var view = combatManager?.currentActiveView?.GetComponent<PartyMemberView>();
-        view?.viewModel?.RequireConfirm();
+        
+        Debug.Log("Before click: " + SelectedTarget.Count());
+        
+
+        if (SelectedTarget.Contains(target))
+        {
+            SelectedTarget.Remove(target);
+        }
+        else if (SelectedTarget.Count() < SelectedAction.AbilityData.numberOfTargets)
+        {
+            SelectedTarget.Add(target);
+        }
+
+        Debug.Log("Adding " + target.name);
+        Debug.Log("After click: " + SelectedTarget.Count());
+
+       // FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(true);
+        
+
+        if(SelectedAction.AbilityData.numberOfTargets == SelectedTarget.Count)
+        {
+            OnConfirmRequired?.Invoke(SelectedCharacter, SelectedTarget);
+
+            // Update the UI state of the currently active PartyMemberView
+            var view = combatManager?.currentActiveView?.GetComponent<PartyMemberView>();
+            view?.viewModel?.RequireConfirm();
+        }
+        else if(SelectedTarget.Count == 0)
+        {
+            var view = combatManager?.currentActiveView?.GetComponent<PartyMemberView>();
+            view?.HideConfirmButton();
+        }
+        
     }
 
 
@@ -128,7 +151,7 @@ public class TurnManager : MonoBehaviour
     public void ConfirmAction()
     {
         if (SelectedCharacter != null && SelectedCharacter.HasTurn &&
-            SelectedAction != null && SelectedTarget != null)
+            SelectedAction != null && SelectedTarget != null && SelectedTarget.Count() >0)
         {
             turns.Add(new Turn(SelectedTarget, SelectedAction, SelectedCharacter));
             SelectedCharacter.HasTurn = false;
@@ -141,8 +164,13 @@ public class TurnManager : MonoBehaviour
             var vm = combatManager.FindPartyMemberViewModel(SelectedCharacter);
             vm?.DisableSelection();
         }
+        List<PartyMember> AlivePartyMembers = new List<PartyMember>();
 
-        if (PartyMembers.All(m => !m.HasTurn))
+        foreach (PartyMember mem in PartyMembers)
+        {
+            if (mem != null && mem.Alive) { AlivePartyMembers.Add(mem); }
+        }
+        if (AlivePartyMembers.All(m => !m.HasTurn))
             ExecutePlayerActions();
         else
         {
@@ -159,10 +187,10 @@ public class TurnManager : MonoBehaviour
     {
         foreach (var t in turns)
         {
-            t.Action.behaviour.Execute(t.Attacker, new[] { t.Target });
+            t.Action.AbilityData.behaviour.Execute(t.Attacker, t.Target );
             t.Action.DecreaseUses();
 
-            t.Action.cooldownLeft = t.Action.cooldown;
+            t.Action.cooldownLeft = t.Action.AbilityData.cooldown;
            
         }
         EndPlayerPhase();
@@ -177,16 +205,21 @@ public class TurnManager : MonoBehaviour
 
         foreach (var member in PartyMembers)
         {
-            member.HasTurn = true;
-            
+            if (!member.IsStunned)
+            {
+                member.HasTurn = true;
+            }
+
+
             //Go through all skills for all partymembers and decrease cooldown by 1
-            foreach(var ability in member.abilities)
+            foreach (var ability in member.abilities)
             {
                 if (ability != null)
                 {
                     ability.DecreaseCooldown();
                 }
             }
+            
         }
  
         StartCoroutine(DelayedPlayerPhaseStart());
@@ -231,17 +264,20 @@ public class TurnManager : MonoBehaviour
 
     public void ExecuteEnemyActions()
     {
+        /*
         foreach (var enemy in EnemyMembers.Where(e => e.Alive))
         {
             var target = PartyMembers.FirstOrDefault(p => p.Alive);
             if (target != null) enemy.BasicAttack(target);
 
             Debug.Log($"{enemy.baseStats.characterName} attacked {target.baseStats.characterName} for {enemy.CurrentAttack} damage");
-        }
+        }*/
+
+        combatManager.enemyTurnManager.StartEnemyPhase();
         EndEnemyPhase();
     }
 
-    private void EndEnemyPhase()
+    public void EndEnemyPhase()
     {
         CheckWinLoss();
         foreach (var member in EnemyMembers)

@@ -30,26 +30,21 @@ public class PartyMemberView : MonoBehaviour
         hpSlider.maxValue = vm.model.CurrentMaxHealth;
         hpSlider.value = vm.model.CurrentHealth;
 
-        for(int i = 0; i< abilityButtonsText.Length; i++)
+        for(int i = 0;i< vm.model.abilities.Count; i++)
         {
-            if (vm.model.abilities[i] != null)
+            if (vm.model.abilities[i].AbilityData != null)
             {
-                abilityButtonsText[i].text = vm.model.abilities[i].abilityName ?? null;
+                abilityButtonsText[i].text = vm.model.abilities[i].AbilityData.abilityName ?? null;
+                abilityButtons[i].interactable = true;
             }
-            else
-            {
-                abilityButtonsText[i].text = "None";
-                abilityButtons[i].interactable = false;
-            }
-            
-            
+         
         }
 
-        for (int i = 0; i < usagesText.Length; i++)
+        for (int i = 0; i < vm.model.abilities.Count; i++)
         {
             if (vm.model.abilities[i] != null)
             {
-                usagesText[i].text = $"{vm.model.abilities[i].usesLeft}/{vm.model.abilities[i].maxUsage}";
+                usagesText[i].text = $"{vm.model.abilities[i].usesLeft}/{vm.model.abilities[i].AbilityData.maxUsage}";
             }
             
         }
@@ -58,7 +53,7 @@ public class PartyMemberView : MonoBehaviour
 
         for (int i = 0; i < vm.model.abilities.Count && i < abilityButtons.Length; i++)
         {
-            AbilityData ability = vm.model.abilities[i];
+            Ability ability = vm.model.abilities[i];
 
             // Hook up ability click
             abilityButtons[i].onClick.RemoveAllListeners();
@@ -69,7 +64,7 @@ public class PartyMemberView : MonoBehaviour
             });
         }
 
-        for(int i = 0; i < abilityButtons.Length; i++)
+        for(int i = 0; i < vm.model.abilities.Count; i++)
         {
             if (vm.model.abilities[i] != null && vm.model.abilities[i].usesLeft <= 0)
             {
@@ -77,7 +72,7 @@ public class PartyMemberView : MonoBehaviour
                 abilityButtons[i].interactable = false;
             }
         }
-        for (int i = 0; i < abilityButtons.Length; i++)
+        for (int i = 0; i < vm.model.abilities.Count; i++)
         {
             if (vm.model.abilities[i] != null && vm.model.abilities[i].cooldownLeft > 0 )
             {
@@ -123,6 +118,11 @@ public class PartyMemberView : MonoBehaviour
         //abilityButton1.gameObject.SetActive(state == PartyUIState.ChoosingAction);
         //endTurnButton.gameObject.SetActive(state == PartyUIState.ChoosingAction);
         confirmButton.gameObject.SetActive(state == PartyUIState.Confirm);
+        if(state == PartyUIState.SelectingTarget)
+        {
+            confirmButton.gameObject.SetActive(false);
+        }
+        
     }
 
     public void ShowConfirmButton() => confirmButton.gameObject.SetActive(true);

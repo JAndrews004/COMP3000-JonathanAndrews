@@ -10,8 +10,29 @@ public abstract class CombatMember : MonoBehaviour
     public int CurrentAttack;
     public int CurrentDefense;
     public int CurrentIntelligence;
-    public List<AbilityData> abilities;
-    private List<Effect> activeEffects = new List<Effect>();
+
+    public bool gainImmediateExtraTurn = false;
+    public bool gainExtraTurnNextRound = false;
+    public bool IsStunned = false;
+
+    public List<AbilityData> abilityDatas;
+
+    public List<Ability> abilities = new List<Ability>();
+    public List<Effect> activeEffects = new List<Effect>();
+
+
+    protected virtual void Awake()
+    {
+        if (abilities == null)
+            abilities = new List<Ability>();
+
+        if (abilityDatas == null)
+            abilityDatas = new List<AbilityData>();
+
+        if (activeEffects == null)
+            activeEffects = new List<Effect>();
+    }
+
 
     public void ApplyEffect(Effect effect)
     {
@@ -215,5 +236,22 @@ public class ShieldEffect : Effect
     }
 }
 
+public class StunEffect : Effect
+{
 
+    public StunEffect(int duration)
+    {
+        this.duration = duration;
+    }
+
+    public override void Apply(CombatMember target)
+    {
+        target.IsStunned = true;
+    }
+
+    public override void Remove(CombatMember target)
+    {
+        target.IsStunned = false;
+    }
+}
 

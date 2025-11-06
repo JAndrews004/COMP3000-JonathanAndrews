@@ -20,5 +20,6 @@ MonoBehaviour:
   usesLeft: 15
   cooldown: 4
   cooldownLeft: 0
-  targetType: 3
+  targetType: 4
+  numberOfTargets: 3
   behaviour: {fileID: 11400000, guid: 93978f311e744dc478ea2c3a67d77b5a, type: 2}

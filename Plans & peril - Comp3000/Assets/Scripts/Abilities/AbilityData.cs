@@ -31,33 +31,12 @@ public class AbilityData : ScriptableObject
 
     public AbilityType abilityType;
     public int maxUsage;
-    [HideInInspector] public int usesLeft;
     public int cooldown;
-    [HideInInspector] public int cooldownLeft;
     public TargetType targetType;
+    public int numberOfTargets;
     public AbilityBehaviour behaviour;
 
-    public void DecreaseUses()
-    {
-        usesLeft--;
-
-        if (usesLeft <= 0)
-        {
-            Debug.Log("Uses depleated for: " + abilityName);
-            usesLeft = 0;
-        }
-    }
-    public void DecreaseCooldown()
-    {
-        cooldownLeft--;
-        if (cooldownLeft <= 0)
-        { 
-            cooldownLeft = 0; 
-        } 
-    }
-    private void OnEnable()
-    {
-        usesLeft = maxUsage; // Reset when reloaded or instantiated
-        cooldownLeft = 0;
-    }
+    
+    
+    
 }

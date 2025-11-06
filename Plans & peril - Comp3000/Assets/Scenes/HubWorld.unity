@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 34028272}
   - component: {fileID: 34028273}
+  - component: {fileID: 34028274}
   m_Layer: 0
   m_Name: Slime1
   m_TagString: Untagged
@@ -172,11 +173,27 @@ MonoBehaviour:
   CurrentAttack: 10
   CurrentDefense: 15
   CurrentIntelligence: 1
-  abilities: []
+  gainImmediateExtraTurn: 0
+  gainExtraTurnNextRound: 0
+  IsStunned: 0
+  abilityDatas:
+  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
   baseStats: {fileID: 11400000, guid: 0ebf3159b08ad304e9f0d0ad75c06362, type: 2}
+  aiController: {fileID: 34028274}
   Level: 3
   XPGiven: 20
-  Abilities: []
+--- !u!114 &34028274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34028271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc099ce1f7f07e24292b15a42a1e567f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &257712760
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +345,10 @@ MonoBehaviour:
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
-  abilities:
+  gainImmediateExtraTurn: 0
+  gainExtraTurnNextRound: 0
+  IsStunned: 0
+  abilityDatas:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -591,13 +611,16 @@ MonoBehaviour:
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
-  abilities:
+  gainImmediateExtraTurn: 0
+  gainExtraTurnNextRound: 0
+  IsStunned: 0
+  abilityDatas:
   - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
   - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
-  - {fileID: 11400000, guid: f50ba7b9efa391c4eb038a8881d985fd, type: 2}
   - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
   - {fileID: 11400000, guid: ea83db238500f234c91b8176671c2200, type: 2}
-  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  - {fileID: 11400000, guid: f50ba7b9efa391c4eb038a8881d985fd, type: 2}
+  - {fileID: 11400000, guid: 8f07c39db5b953840bdc4ac036150d4b, type: 2}
   baseStats: {fileID: 11400000, guid: b3dc66d016058a14c9577b5b5072d837, type: 2}
   level: 0
   Xp: 0
@@ -666,7 +689,10 @@ MonoBehaviour:
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
-  abilities:
+  gainImmediateExtraTurn: 0
+  gainExtraTurnNextRound: 0
+  IsStunned: 0
+  abilityDatas:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -687,6 +713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1333242756}
   - component: {fileID: 1333242755}
+  - component: {fileID: 1333242757}
   m_Layer: 0
   m_Name: Goblin1
   m_TagString: Untagged
@@ -711,11 +738,16 @@ MonoBehaviour:
   CurrentAttack: 50
   CurrentDefense: 10
   CurrentIntelligence: 0
-  abilities: []
+  gainImmediateExtraTurn: 0
+  gainExtraTurnNextRound: 0
+  IsStunned: 0
+  abilityDatas:
+  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
   baseStats: {fileID: 11400000, guid: f387dd313ccf343479409da158c2cff1, type: 2}
+  aiController: {fileID: 1333242757}
   Level: 1
   XPGiven: 10
-  Abilities: []
 --- !u!4 &1333242756
 Transform:
   m_ObjectHideFlags: 0
@@ -731,6 +763,18 @@ Transform:
   m_Father: {fileID: 2070275927}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1333242757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333242754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc099ce1f7f07e24292b15a42a1e567f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1432472539
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,13 +959,16 @@ MonoBehaviour:
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
-  abilities:
-  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
-  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
-  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  gainImmediateExtraTurn: 0
+  gainExtraTurnNextRound: 0
+  IsStunned: 0
+  abilityDatas:
   - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
   - {fileID: 11400000, guid: f50ba7b9efa391c4eb038a8881d985fd, type: 2}
+  - {fileID: 11400000, guid: 8f07c39db5b953840bdc4ac036150d4b, type: 2}
   - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
+  - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
+  - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
   baseStats: {fileID: 11400000, guid: f1d7c6db20df76d45a6a0104e25d7911, type: 2}
   level: 0
   Xp: 0

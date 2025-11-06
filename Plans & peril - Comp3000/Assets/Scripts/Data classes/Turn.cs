@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Turn
 {
-    public PartyMember Attacker;
-    public CombatMember Target { get; set; }
-    public AbilityData Action { get; set; }
+    public CombatMember Attacker;
+    public List<CombatMember> Target { get; set; }
+    public Ability Action { get; set; }
 
-    public Turn(CombatMember target, AbilityData action, PartyMember attacker)
+    public Turn(List<CombatMember> target, Ability action, CombatMember attacker)
     {
         Target = target;
         Action = action;

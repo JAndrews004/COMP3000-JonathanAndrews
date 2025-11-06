@@ -18,6 +18,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private Transform activeUnitUIParent;
 
     private TurnManager turnManager;
+    public  EnemyTurnManager enemyTurnManager;
     public GameObject currentActiveView;
     public PartyMemberViewModel viewModel;
 
@@ -29,8 +30,9 @@ public class CombatManager : MonoBehaviour
         GameManager.Instance.RefreshEnemyMembers();
         PartyMembers = GameManager.Instance.PartyMembers;
         turnManager = GetComponentInChildren<TurnManager>();
-
-        for(int i =0; i < GameManager.Instance.EnemyMembers.Count;i++)
+        enemyTurnManager = GetComponentInChildren<EnemyTurnManager>();
+        enemyTurnManager.tm = turnManager;
+        for (int i =0; i < GameManager.Instance.EnemyMembers.Count;i++)
         {
             if (i >= 6)
             {
@@ -207,7 +209,7 @@ public class CombatManager : MonoBehaviour
 
     public void ShowTargetButtons()
     {
-        AbilityData currentAbility = turnManager.SelectedAction;
+        AbilityData currentAbility = turnManager.SelectedAction.AbilityData;
 
         if (currentAbility == null)
         {
@@ -239,7 +241,7 @@ public class CombatManager : MonoBehaviour
 
             case TargetType.None:
                 //Debug.Log("Showing None Buttons");
-                turnManager.SelectedTarget = turnManager.SelectedCharacter;
+                turnManager.SelectedTarget = new List<CombatMember> { turnManager.SelectedCharacter };
                     break;
 
             };
@@ -265,7 +267,7 @@ public class CombatManager : MonoBehaviour
                 {
                     turnManager.PlayerSelectedTarget(capturedEnemy);
                     // Optionally show confirm button for current character
-                    currentActiveView.GetComponent<PartyMemberView>().ShowConfirmButton();
+                    //currentActiveView.GetComponent<PartyMemberView>().ShowConfirmButton();
                 });
             }
         }
@@ -294,7 +296,7 @@ public class CombatManager : MonoBehaviour
                 {
                     turnManager.PlayerSelectedTarget(capturedAlly);
                     // Optionally show confirm button for current character
-                    currentActiveView.GetComponent<PartyMemberView>().ShowConfirmButton();
+                    //currentActiveView.GetComponent<PartyMemberView>().ShowConfirmButton();
                 });
             }
         }
@@ -317,14 +319,14 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void ConfirmRequired(PartyMember attacker, CombatMember target)
+    public void ConfirmRequired(PartyMember attacker, List<CombatMember> target)
     {
         //Debug.Log("Waiting for player to confirm attack.");
         currentActiveView?.GetComponent<PartyMemberView>().ShowConfirmButton();
         
     }
 
-    public void ActionResolved(PartyMember attacker, AbilityData action, CombatMember target)
+    public void ActionResolved(PartyMember attacker, Ability action, List<CombatMember> target)
     {
         //Debug.Log($"Action {action.abilityName} by {attacker.name} on {target.name} resolved.");
         HideActiveUnitUI();
@@ -341,12 +343,6 @@ public class CombatManager : MonoBehaviour
     {
         Debug.Log("Enemy Phase Started!");
         HideActiveUnitUI();
-        StartCoroutine(ExecuteEnemyPhase());
-    }
-
-    private IEnumerator ExecuteEnemyPhase()
-    {
-        yield return new WaitForSeconds(1f);
         turnManager.ExecuteEnemyActions();
     }
 
