@@ -75,6 +75,7 @@ public class CombatManager : MonoBehaviour
 
     public void StartCombat()
     {
+        InitializePassives();
         for (int i = 0; i < PartyMembers.Count; i++)
         {
             CharacterPositions[i].GetComponent<PartySlot>().CurrentPartyMember = PartyMembers[i];
@@ -210,7 +211,7 @@ public class CombatManager : MonoBehaviour
     public void ShowTargetButtons()
     {
         AbilityData currentAbility = turnManager.SelectedAction.AbilityData;
-
+        turnManager.TurnOffAllHighlights();
         if (currentAbility == null)
         {
             return;
@@ -228,6 +229,10 @@ public class CombatManager : MonoBehaviour
                 //Debug.Log("Showing MultipleEnemy Buttons");
                 ShowEnemyTargetButtons();
                     break;
+            case TargetType.AllEnemies:
+                SelectAllEnemies();
+                ConfirmRequired(turnManager.SelectedCharacter, turnManager.SelectedTarget);
+                break;
 
             case TargetType.SingleAlly:
                 //Debug.Log("Showing SingleAlly Buttons");
@@ -239,16 +244,68 @@ public class CombatManager : MonoBehaviour
                 ShowCharacterTargetButtons();
                     break;
 
+            case TargetType.AllAllies:
+                SelectAllAllies();
+                ConfirmRequired(turnManager.SelectedCharacter, turnManager.SelectedTarget);
+                break;
             case TargetType.None:
                 //Debug.Log("Showing None Buttons");
                 turnManager.SelectedTarget = new List<CombatMember> { turnManager.SelectedCharacter };
+                ConfirmRequired(turnManager.SelectedCharacter, turnManager.SelectedTarget);
                     break;
+            case TargetType.DeadAlly:
+                ShowDeadAllyButtons();
+                break;
 
             };
         
        
     }
 
+    void ShowDeadAllyButtons()
+    {
+        foreach (var btn in CharacterButtons)
+            btn.SetActive(false);
+
+        //DisableAllCharacterSelections();
+        foreach (var button in CharacterTargetButtons)
+        {
+            var slot = button.GetComponentInParent<PartySlot>();
+            var partyMember = slot.CurrentPartyMember;
+            bool canSelect = partyMember != null && !partyMember.Alive;
+            button.SetActive(canSelect);
+            slot.TargetHighlight.SetActive(canSelect);
+            if (canSelect)
+            {
+                var btnComp = button.GetComponent<Button>();
+                //Debug.Log("Selected: " + btnComp.name);
+                btnComp.onClick.RemoveAllListeners();
+                PartyMember capturedAlly = partyMember;
+                btnComp.onClick.AddListener(() =>
+                {
+                    turnManager.PlayerSelectedTarget(capturedAlly);
+                    // Optionally show confirm button for current character
+                    //currentActiveView.GetComponent<PartyMemberView>().ShowConfirmButton();
+                });
+            }
+        }
+    }
+    void SelectAllEnemies()
+    {
+        turnManager.SelectedTarget.Clear();
+        foreach(EnemyMember member in turnManager.EnemyMembers)
+        {
+            turnManager.SelectedTarget.Add(member); 
+        }
+    }
+    void SelectAllAllies()
+    {
+        turnManager.SelectedTarget.Clear();
+        foreach (PartyMember member in turnManager.PartyMembers)
+        {
+            turnManager.SelectedTarget.Add(member);
+        }
+    }
     void ShowEnemyTargetButtons()
     {
         foreach (var button in EnemyTargetButtons)
@@ -257,7 +314,7 @@ public class CombatManager : MonoBehaviour
             var enemy = slot.CurrentEnemyMember;
             bool canSelect = enemy != null && enemy.Alive;
             button.SetActive(canSelect);
-
+            slot.TargetHighlight.SetActive(canSelect);
             if (canSelect)
             {
                 var btnComp = button.GetComponent<Button>();
@@ -285,7 +342,7 @@ public class CombatManager : MonoBehaviour
             var partyMember = slot.CurrentPartyMember;
             bool canSelect = partyMember != null && partyMember.Alive;
             button.SetActive(canSelect);
-
+            slot.TargetHighlight.SetActive(canSelect);
             if (canSelect)
             {
                 var btnComp = button.GetComponent<Button>();
@@ -348,18 +405,23 @@ public class CombatManager : MonoBehaviour
 
     public void OnConfirmButtonPressed()
     {
+        turnManager.TurnOffAllHighlights();
+        turnManager.TurnOffAllCharacterSelecArrows();
+        turnManager.TurnOffAllTargetSelecArrows();
         turnManager.ConfirmAction();
         currentActiveView?.GetComponent<PartyMemberView>().HideConfirmButton();
 
         // Hide all target buttons after confirmation
         foreach (var btn in EnemyTargetButtons) btn.SetActive(false);
         foreach (var btn in CharacterTargetButtons) btn.SetActive(false);
+        
     }
 
 
 
     public void EndCombat()
     {
+        RemoveAllPassives();
         // Hide any active UI
         HideActiveUnitUI();
 
@@ -374,5 +436,36 @@ public class CombatManager : MonoBehaviour
         // Any other cleanup, like resetting state or notifying GameManager
         Debug.Log("Combat ended!");
     }
+
+    private void InitializePassives()
+    {
+        foreach (PartyMember member in GameManager.Instance.PartyMembers)
+        {
+            if (member != null)
+                member.InitializePassives();
+        }
+
+        foreach (EnemyMember enemy in GameManager.Instance.EnemyMembers)
+        {
+            if (enemy != null)
+                enemy.InitializePassives();
+        }
+    }
+
+    private void RemoveAllPassives()
+    {
+        foreach (PartyMember member in GameManager.Instance.PartyMembers)
+        {
+            if (member != null)
+                member.RemoveAllPassives();
+        }
+
+        foreach (EnemyMember enemy in GameManager.Instance.EnemyMembers)
+        {
+            if (enemy != null)
+                enemy.RemoveAllPassives();
+        }
+    }
+
 
 }

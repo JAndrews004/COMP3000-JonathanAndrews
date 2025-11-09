@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class EnemyAI : MonoBehaviour 
 {
-    public abstract List<Turn> ChooseAction(EnemyMember enemy);
+    public abstract Turn ChooseAction(EnemyMember enemy);
 
     public List<CombatMember> GetAliveEnemies()
     {

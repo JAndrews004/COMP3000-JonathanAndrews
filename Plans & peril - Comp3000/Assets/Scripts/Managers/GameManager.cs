@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
         populateAbilities();
         InCombat = true;
+        
     }
 
     public void EndCombat()
@@ -116,9 +117,18 @@ public class GameManager : MonoBehaviour
             {
                 if (data != null)
                 {
-                    Ability ability = new Ability(data);
-                    Debug.Log(ability.AbilityData.abilityName + " added to Ability list");
-                    member.abilities.Add(ability);
+                    if(data.abilityCategory == AbilityData.AbilityCategory.Active)
+                    {
+                        Ability ability = new Ability(data);
+                        Debug.Log(ability.AbilityData.abilityName + " added to active ability list");
+                        member.activeAbilities.Add(ability);
+                    }
+                    else
+                    {
+                        Ability ability = new Ability(data);
+                        Debug.Log(ability.AbilityData.abilityName + " added to passive ability list");
+                        member.passiveAbilities.Add(ability);
+                    }
 
                 }
 
@@ -134,8 +144,8 @@ public class GameManager : MonoBehaviour
                 continue;
             }
 
-            if (member.abilities == null)
-                member.abilities = new List<Ability>();
+            if (member.activeAbilities == null)
+                member.activeAbilities = new List<Ability>();
 
             if (member.abilityDatas == null)
                 member.abilityDatas = new List<AbilityData>();
@@ -144,9 +154,18 @@ public class GameManager : MonoBehaviour
             {
                 if (data == null) continue;
 
-                Ability ability = new Ability(data);
-                member.abilities.Add(ability);
-                Debug.Log($"{member.name} learned {ability.AbilityData.abilityName}");
+                if (data.abilityCategory == AbilityData.AbilityCategory.Active)
+                {
+                    Ability ability = new Ability(data);
+                    Debug.Log(ability.AbilityData.abilityName + " added to active ability list");
+                    member.activeAbilities.Add(ability);
+                }
+                else
+                {
+                    Ability ability = new Ability(data);
+                    Debug.Log(ability.AbilityData.abilityName + " added to passive ability list");
+                    member.passiveAbilities.Add(ability);
+                }
             }
         }
 

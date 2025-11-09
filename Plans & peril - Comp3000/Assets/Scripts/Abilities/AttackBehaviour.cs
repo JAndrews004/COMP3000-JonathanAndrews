@@ -5,14 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Behaviours/Attack")]
 public class AttackBehaviour : AbilityBehaviour
 {
-    public int baseDamage;
-
-    public override void Execute(CombatMember user, List<CombatMember> targets)
+    public override void Execute(CombatMember user, List<CombatMember> targets, AbilityData ability)
     {
         foreach (var target in targets)
         {
-            int totalDamage = baseDamage + user.CurrentAttack;
-            target.TakeDamage(totalDamage);
+            float totalDamage = target.CalculateAbilityDamage(user, target, ability);
+            if(totalDamage <0)
+            {
+                totalDamage = 0;
+            }
+            Debug.Log($"{user.name} calculated damager as {totalDamage}");
+            target.TakeDamage(user,Mathf.RoundToInt(totalDamage));
         }
     }
 }

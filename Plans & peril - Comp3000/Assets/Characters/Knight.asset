@@ -17,3 +17,6 @@ MonoBehaviour:
   maxHealth: 200
   attack: 50
   defense: 20
+  intelligence: 2
+  magicDefence: 2
+  Luck: 10

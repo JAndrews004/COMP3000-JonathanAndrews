@@ -77,7 +77,12 @@ public class PartyMemberViewModel
 
         //Debug.Log("Diabled selection Buttons");
         // Execute all chosen actions and end the phase
-        turnManager.ExecutePlayerActions();
+        foreach(PartyMember member in turnManager.PartyMembers)
+        {
+            member.HasTurn = false;
+        }
+
+        turnManager.ConfirmAction();
     }
 
     public void clearButtonPressed()

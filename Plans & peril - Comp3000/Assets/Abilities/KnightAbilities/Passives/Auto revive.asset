@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: Auto revive
+  m_EditorClassIdentifier: 
+  abilityName: Auto revive
+  description: 
+  icon: {fileID: 0}
+  abilityCategory: 1
+  powerType: 2
+  abilityType: 2
+  maxUsage: 0
+  cooldown: 0
+  targetType: 0
+  numberOfTargets: 0
+  PhysicalBehaviour: {fileID: 0}
+  EffectBehaviour: {fileID: 0}
+  passiveBehaviour: {fileID: 11400000, guid: dccc13ff012a88e4e98d3d9defd3852c, type: 2}
+  guaranteedEffectHit: 1
+  EffectChanceScaling: 0

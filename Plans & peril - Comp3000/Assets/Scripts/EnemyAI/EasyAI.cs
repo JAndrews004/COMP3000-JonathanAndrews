@@ -5,13 +5,14 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EasyAI : EnemyAI
 {
-    public override List<Turn> ChooseAction(EnemyMember enemy)
+    public override Turn ChooseAction(EnemyMember enemy)
     {
         Debug.Log(enemy.baseStats.characterName + " is choosing action");
-        List<Turn> turns = new List<Turn>();
+
+        Turn turn = new Turn(new List<CombatMember>(), null, null);
         List<CombatMember> validTargets = new List<CombatMember>();
         List<Ability> usableAbilities = new List<Ability>();
-        foreach (Ability ability in enemy.abilities)
+        foreach (Ability ability in enemy.activeAbilities)
         {
             if(ability.cooldownLeft == 0 && ability.usesLeft > 0)
             {
@@ -21,7 +22,7 @@ public class EasyAI : EnemyAI
 
         if (usableAbilities.Count == 0)
         {
-            return turns;
+            return turn;
         }
 
         Ability chosenAbility = usableAbilities[Random.Range(0,usableAbilities.Count)];
@@ -38,25 +39,35 @@ public class EasyAI : EnemyAI
 
         if(chosenAbility.AbilityData.targetType == AbilityData.TargetType.SingleEnemy || chosenAbility.AbilityData.targetType == AbilityData.TargetType.SingleAlly)
         {
-            CombatMember target = validTargets[Random.Range(0,validTargets.Count)];
-            turns.Add(new Turn(new List<CombatMember> { target }, chosenAbility,enemy));
+            if(validTargets.Count > 0)
+            {
+                CombatMember target = validTargets[Random.Range(0,validTargets.Count)];
+                turn = new Turn(new List<CombatMember> { target }, chosenAbility,enemy);
+            }
+            
         }
         else
         {
             List<CombatMember> targets = new List<CombatMember>();
-            for(int i =0;i< chosenAbility.AbilityData.numberOfTargets; i++)
+            if(chosenAbility.AbilityData.numberOfTargets > validTargets.Count)
             {
-                CombatMember target = validTargets[Random.Range(0, validTargets.Count)];
-                targets.Add(target);
-                validTargets.Remove(target);
-                if(validTargets.Count == 0)
-                {
-                    break;
-                }
+                targets = validTargets;
             }
-            turns.Add(new Turn(targets, chosenAbility, enemy));
+            else {
+                for(int i =0;i< chosenAbility.AbilityData.numberOfTargets; i++)
+                {
+                    CombatMember target = validTargets[Random.Range(0, validTargets.Count)];
+                    targets.Add(target);
+                    validTargets.Remove(target);
+                    if(validTargets.Count == 0)
+                    {
+                        break;
+                    }
+                } 
+            }
+            turn = new Turn(targets, chosenAbility, enemy);
         }
         Debug.Log(enemy.baseStats.characterName + " has selected an action");
-        return turns;
+        return turn;
     }
 }

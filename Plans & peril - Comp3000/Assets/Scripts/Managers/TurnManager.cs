@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
     public List<PartyMember> PartyMembers;
-    public List<EnemyMember> EnemyMembers = new List<EnemyMember>();
+    public List<EnemyMember> EnemyMembers = new List<EnemyMember>() { };
     public List<Turn> turns = new List<Turn>();
 
     public CombatManager combatManager;
@@ -38,36 +39,40 @@ public class TurnManager : MonoBehaviour
             EnemyMembers.Add(Enemyslot.CurrentEnemyMember);
         }
         combatManager.enemyTurnManager.RegisterEnemies(EnemyMembers);
+        GameManager.Instance.EnemyMembers = EnemyMembers;
         StartPlayerPhase();
     }
 
     public void SetSelectedCharacter(PartyMember member)
     {
+        SelectedTarget.Clear();
 
-        //go through enemy members and see if curentPartyMember = SelectedCharacter
+        TurnOffAllCharacterSelecArrows();
 
         if (SelectedCharacter != null)
         {
-            FindPartyMemberSlot(member).GetComponent<PartySlot>().TargetHighlight.SetActive(false);
+            
+            FindPartyMemberSlot(member).GetComponent<PartySlot>().TurnCharacterArrowOn();
+
         }
         
         SelectedCharacter = member;
 
-        FindPartyMemberSlot(member).GetComponent<PartySlot>().TargetHighlight.SetActive(true);
+        
 
         OnCharacterSelected?.Invoke(member);
         OnChoosingAction?.Invoke();
     }
 
-    public GameObject FindPartyMemberSlot(PartyMember member)
+    public GameObject FindPartyMemberSlot(CombatMember member)
     {
         GameObject selectedSlot = null;
 
-        if (SelectedCharacter != null)
+        if (member != null)
         {
             for (int i = 0; i < combatManager.CharacterPositions.Count; i++)
             {
-                if (PartyMembers[i] == SelectedCharacter)
+                if (PartyMembers[i] == member)
                 {
                     selectedSlot = combatManager.CharacterPositions[i];
                 }
@@ -86,7 +91,7 @@ public class TurnManager : MonoBehaviour
         OnSelectingTarget?.Invoke();
     }
 
-    public EnemySlot FindEnemyMemberSlot(EnemyMember member)
+    public EnemySlot FindEnemyMemberSlot(CombatMember member)
     {
         EnemySlot selectedSlot = null;
 
@@ -111,26 +116,35 @@ public class TurnManager : MonoBehaviour
             SelectedTarget = new List<CombatMember>();
         }
 
-        
-        Debug.Log("Before click: " + SelectedTarget.Count());
-        
-
         if (SelectedTarget.Contains(target))
         {
             SelectedTarget.Remove(target);
+            if(target is PartyMember)
+            {
+                FindPartyMemberSlot(target).GetComponent<PartySlot>().TurnTargetArrowOff();
+            }
+            else
+            {
+                FindEnemyMemberSlot(target).GetComponent<EnemySlot>().TurnTargetArrowOff();
+            }
         }
         else if (SelectedTarget.Count() < SelectedAction.AbilityData.numberOfTargets)
         {
             SelectedTarget.Add(target);
+            if (target is PartyMember)
+            {
+                FindPartyMemberSlot(target).GetComponent<PartySlot>().TurnTargetArrowOn();
+            }
+            else
+            {
+                FindEnemyMemberSlot(target).GetComponent<EnemySlot>().TurnTargetArrowOn();
+            }
         }
 
-        Debug.Log("Adding " + target.name);
-        Debug.Log("After click: " + SelectedTarget.Count());
-
-       // FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(true);
+       
         
 
-        if(SelectedAction.AbilityData.numberOfTargets == SelectedTarget.Count)
+        if(SelectedAction.AbilityData.numberOfTargets >= SelectedTarget.Count)
         {
             OnConfirmRequired?.Invoke(SelectedCharacter, SelectedTarget);
 
@@ -150,17 +164,19 @@ public class TurnManager : MonoBehaviour
 
     public void ConfirmAction()
     {
+   
         if (SelectedCharacter != null && SelectedCharacter.HasTurn &&
             SelectedAction != null && SelectedTarget != null && SelectedTarget.Count() >0)
         {
-            turns.Add(new Turn(SelectedTarget, SelectedAction, SelectedCharacter));
+            
+            Turn newturn = new Turn(SelectedTarget, SelectedAction, SelectedCharacter);
+            turns.Add(newturn);
             SelectedCharacter.HasTurn = false;
-
-            FindPartyMemberSlot(SelectedCharacter).GetComponent<PartySlot>().TargetHighlight.SetActive(false);
-            //FindEnemyMemberSlot(SelectedTarget).GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
-
+           
+       
+            
             OnActionResolved?.Invoke(SelectedCharacter, SelectedAction, SelectedTarget);
-
+            
             var vm = combatManager.FindPartyMemberViewModel(SelectedCharacter);
             vm?.DisableSelection();
         }
@@ -171,7 +187,24 @@ public class TurnManager : MonoBehaviour
             if (mem != null && mem.Alive) { AlivePartyMembers.Add(mem); }
         }
         if (AlivePartyMembers.All(m => !m.HasTurn))
-            ExecutePlayerActions();
+        {
+            bool extraTurns = false;
+            foreach(PartyMember mem in AlivePartyMembers)
+            {
+                if (mem.gainExtraTurnNextRound)
+                {
+                    mem.HasTurn = true;
+                    mem.gainExtraTurnNextRound = false;
+                    extraTurns = true;
+                }
+            }
+            if (!extraTurns)
+            {
+                ExecutePlayerActions();
+            }
+            
+        }
+            
         else
         {
             foreach (var button in combatManager.CharacterButtons)
@@ -181,29 +214,72 @@ public class TurnManager : MonoBehaviour
 
             }
         }
+        
     }
 
     public void ExecutePlayerActions()
     {
+        Debug.Log("Turns in list: " + turns.Count);
         foreach (var t in turns)
         {
-            t.Action.AbilityData.behaviour.Execute(t.Attacker, t.Target );
-            t.Action.DecreaseUses();
-
+            if(t.Target.Count >=0)
+            {
+                Debug.Log("Targets for turn " + t.Target.Count);
+            }
+            if(t.Action.AbilityData.PhysicalBehaviour != null)
+            {
+                
+                t.Action.AbilityData.PhysicalBehaviour.Execute(t.Attacker, t.Target, t.Action.AbilityData);
+                
+            }
+            if (t.Action.AbilityData.EffectBehaviour != null)
+            {
+                t.Action.AbilityData.EffectBehaviour.Execute(t.Attacker, t.Target, t.Action.AbilityData);
+                
+            }
+            if(t.Action.AbilityData.PhysicalBehaviour != null|| t.Action.AbilityData.EffectBehaviour != null)
+            {
+                t.Action.DecreaseUses();
+            }
             t.Action.cooldownLeft = t.Action.AbilityData.cooldown;
            
         }
-        EndPlayerPhase();
+        bool hasImmediateExtras = false;
+        foreach (PartyMember mem in PartyMembers)
+        {
+            if (mem.gainImmediateExtraTurn)
+            {
+                mem.HasTurn = true;
+                mem.gainImmediateExtraTurn = false;
+                hasImmediateExtras = true;
+            }
+            else
+            {
+                mem.gainImmediateExtraTurn = false;
+                mem.HasTurn = false;
+            }
+        }
+
+        if (hasImmediateExtras)
+        {
+            turns.Clear();
+            StartCoroutine(DelayedPlayerPhaseStart());
+        }
+        else
+        {
+            EndPlayerPhase();
+        }
+
     }
 
     public void StartPlayerPhase()
     {
         SelectedCharacter = null;
         SelectedAction = null;
-        SelectedTarget = null;
+        SelectedTarget = new List<CombatMember>() { };
         turns.Clear();
 
-        foreach (var member in PartyMembers)
+        foreach (PartyMember member in PartyMembers)
         {
             if (!member.IsStunned)
             {
@@ -212,7 +288,7 @@ public class TurnManager : MonoBehaviour
 
 
             //Go through all skills for all partymembers and decrease cooldown by 1
-            foreach (var ability in member.abilities)
+            foreach (var ability in member.activeAbilities)
             {
                 if (ability != null)
                 {
@@ -234,14 +310,9 @@ public class TurnManager : MonoBehaviour
 
     public void EndPlayerPhase()
     {
-        foreach(var slot in combatManager.CharacterPositions)
-        {
-            slot.GetComponent<PartySlot>().TargetHighlight.SetActive(false);
-        }
-        foreach (var slot in combatManager.EnemyPositions)
-        {
-            slot.GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
-        }
+        TurnOffAllHighlights();
+        TurnOffAllCharacterSelecArrows();
+        TurnOffAllTargetSelecArrows();
         CheckWinLoss();
         foreach (var member in PartyMembers)
         {
@@ -264,17 +335,7 @@ public class TurnManager : MonoBehaviour
 
     public void ExecuteEnemyActions()
     {
-        /*
-        foreach (var enemy in EnemyMembers.Where(e => e.Alive))
-        {
-            var target = PartyMembers.FirstOrDefault(p => p.Alive);
-            if (target != null) enemy.BasicAttack(target);
-
-            Debug.Log($"{enemy.baseStats.characterName} attacked {target.baseStats.characterName} for {enemy.CurrentAttack} damage");
-        }*/
-
         combatManager.enemyTurnManager.StartEnemyPhase();
-        EndEnemyPhase();
     }
 
     public void EndEnemyPhase()
@@ -315,5 +376,34 @@ public class TurnManager : MonoBehaviour
     {
         OnSelectingTarget?.Invoke();
     }
+    public void TurnOffAllHighlights()
+    {
+        foreach (var slot in combatManager.CharacterPositions)
+        {
+            slot.GetComponent<PartySlot>().TargetHighlight.SetActive(false);
+        }
+        foreach (var slot in combatManager.EnemyPositions)
+        {
+            slot.GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
+        }
+    }
 
+    public void TurnOffAllCharacterSelecArrows()
+    {
+        foreach (PartyMember mem in PartyMembers)
+        {
+            FindPartyMemberSlot(mem).GetComponent<PartySlot>().TurnCharacterArrowOff();
+        }
+    }
+    public void TurnOffAllTargetSelecArrows()
+    {
+        foreach (PartyMember mem in PartyMembers)
+        {
+            FindPartyMemberSlot(mem).GetComponent<PartySlot>().TurnTargetArrowOff();
+        }
+        foreach (EnemyMember mem in EnemyMembers)
+        {
+            FindEnemyMemberSlot(mem).GetComponent<EnemySlot>().TurnTargetArrowOff();
+        }
+    }
 }

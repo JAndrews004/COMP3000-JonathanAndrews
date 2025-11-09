@@ -14,6 +14,7 @@ public class Enemy : ScriptableObject
     public int attack;
     public int defense;
     public int intelligence;
+    public int magicDefence;
+    public int Luck;
 
-    
 }

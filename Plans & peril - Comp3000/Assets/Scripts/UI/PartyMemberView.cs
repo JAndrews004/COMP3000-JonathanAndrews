@@ -30,30 +30,30 @@ public class PartyMemberView : MonoBehaviour
         hpSlider.maxValue = vm.model.CurrentMaxHealth;
         hpSlider.value = vm.model.CurrentHealth;
 
-        for(int i = 0;i< vm.model.abilities.Count; i++)
+        for(int i = 0;i< vm.model.activeAbilities.Count; i++)
         {
-            if (vm.model.abilities[i].AbilityData != null)
+            if (vm.model.activeAbilities[i].AbilityData != null)
             {
-                abilityButtonsText[i].text = vm.model.abilities[i].AbilityData.abilityName ?? null;
+                abilityButtonsText[i].text = vm.model.activeAbilities[i].AbilityData.abilityName ?? null;
                 abilityButtons[i].interactable = true;
             }
          
         }
 
-        for (int i = 0; i < vm.model.abilities.Count; i++)
+        for (int i = 0; i < vm.model.activeAbilities.Count; i++)
         {
-            if (vm.model.abilities[i] != null)
+            if (vm.model.activeAbilities[i] != null)
             {
-                usagesText[i].text = $"{vm.model.abilities[i].usesLeft}/{vm.model.abilities[i].AbilityData.maxUsage}";
+                usagesText[i].text = $"{vm.model.activeAbilities[i].usesLeft}/{vm.model.activeAbilities[i].AbilityData.maxUsage}";
             }
             
         }
 
         healthText.text = $"{ vm.model.CurrentHealth.ToString()}/{vm.model.CurrentMaxHealth.ToString()}";
 
-        for (int i = 0; i < vm.model.abilities.Count && i < abilityButtons.Length; i++)
+        for (int i = 0; i < vm.model.activeAbilities.Count && i < abilityButtons.Length; i++)
         {
-            Ability ability = vm.model.abilities[i];
+            Ability ability = vm.model.activeAbilities[i];
 
             // Hook up ability click
             abilityButtons[i].onClick.RemoveAllListeners();
@@ -63,18 +63,26 @@ public class PartyMemberView : MonoBehaviour
                 
             });
         }
-
-        for(int i = 0; i < vm.model.abilities.Count; i++)
+        for(int i= 0; i< vm.model.passiveAbilities.Count; i++)
         {
-            if (vm.model.abilities[i] != null && vm.model.abilities[i].usesLeft <= 0)
+            Ability ability = vm.model.passiveAbilities[i];
+            abilityButtonsText[i+ vm.model.activeAbilities.Count].text = vm.model.passiveAbilities[i].AbilityData.abilityName ?? null;
+            abilityButtons[i+ vm.model.activeAbilities.Count].interactable = false;
+
+            usagesText[i+vm.model.activeAbilities.Count].text = "";
+        }
+
+        for(int i = 0; i < vm.model.activeAbilities.Count; i++)
+        {
+            if (vm.model.activeAbilities[i] != null && vm.model.activeAbilities[i].usesLeft <= 0 )
             {
                 //Debug.Log("Setting interactability to false for button " + i);
                 abilityButtons[i].interactable = false;
             }
         }
-        for (int i = 0; i < vm.model.abilities.Count; i++)
+        for (int i = 0; i < vm.model.activeAbilities.Count; i++)
         {
-            if (vm.model.abilities[i] != null && vm.model.abilities[i].cooldownLeft > 0 )
+            if (vm.model.activeAbilities[i] != null && vm.model.activeAbilities[i].cooldownLeft > 0 )
             {
                 Debug.Log("On Cooldown: button " + i);
                 abilityButtons[i].interactable = false;

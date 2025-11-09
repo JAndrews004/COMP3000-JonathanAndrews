@@ -10,7 +10,7 @@ public class PartyMember : CombatMember
     public int Xp;
     public int XpToLevelUp;
     public bool HasTurn { get; set; } = true;
-    public bool Alive => CurrentHealth > 0;
+   
 
    
     //List<ActiveEffect> activeEffectsTurns;
@@ -22,6 +22,16 @@ public class PartyMember : CombatMember
             Destroy(gameObject);
             return;
         }
+        if (activeAbilities == null)
+            activeAbilities = new List<Ability>();
+        if (passiveAbilities == null)
+            passiveAbilities = new List<Ability>();
+
+        if (abilityDatas == null)
+            abilityDatas = new List<AbilityData>();
+
+        if (activeEffects == null)
+            activeEffects = new List<Effect>();
 
         DontDestroyOnLoad(gameObject);
     }

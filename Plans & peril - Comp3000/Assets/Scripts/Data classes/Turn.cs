@@ -10,7 +10,7 @@ public class Turn
 
     public Turn(List<CombatMember> target, Ability action, CombatMember attacker)
     {
-        Target = target;
+        Target = new List<CombatMember>(target);
         Action = action;
         Attacker = attacker;
     }

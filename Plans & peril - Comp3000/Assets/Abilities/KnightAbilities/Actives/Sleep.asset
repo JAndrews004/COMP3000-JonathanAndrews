@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: Sleep
+  m_EditorClassIdentifier: 
+  abilityName: Sleep
+  description: 
+  icon: {fileID: 0}
+  isPassive: 0
+  powerType: 2
+  abilityType: 3
+  maxUsage: 10
+  cooldown: 5
+  targetType: 0
+  numberOfTargets: 1
+  PhysicalBehaviour: {fileID: 0}
+  EffectBehaviour: {fileID: 11400000, guid: 4f75ca9bd26a1b04aa8db58d929349ad, type: 2}
+  guaranteedEffectHit: 1
+  EffectChanceScaling: 0

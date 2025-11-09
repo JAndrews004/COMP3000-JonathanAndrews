@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using Random = UnityEngine.Random;
+
 
 public abstract class CombatMember : MonoBehaviour
 {
@@ -10,6 +13,10 @@ public abstract class CombatMember : MonoBehaviour
     public int CurrentAttack;
     public int CurrentDefense;
     public int CurrentIntelligence;
+    public int CurrentMagicDefense;
+    public int CurrentLuck;
+
+    public int shieldValue;
 
     public bool gainImmediateExtraTurn = false;
     public bool gainExtraTurnNextRound = false;
@@ -17,21 +24,18 @@ public abstract class CombatMember : MonoBehaviour
 
     public List<AbilityData> abilityDatas;
 
-    public List<Ability> abilities = new List<Ability>();
-    public List<Effect> activeEffects = new List<Effect>();
+    public List<Ability> activeAbilities = new List<Ability>() { };
+    public List<Ability> passiveAbilities = new List<Ability>();
 
+    public List<Effect> activeEffects = new List<Effect>() { };
 
-    protected virtual void Awake()
-    {
-        if (abilities == null)
-            abilities = new List<Ability>();
+    public event Action<CombatMember> OnDeath;
+    public event Action<CombatMember, int> OnDamageTaken;
+    public event Action<CombatMember> OnHealthChanged;
+    public event Action<CombatMember, Ability> OnCastAbility;
 
-        if (abilityDatas == null)
-            abilityDatas = new List<AbilityData>();
-
-        if (activeEffects == null)
-            activeEffects = new List<Effect>();
-    }
+    public bool Alive => CurrentHealth > 0;
+    
 
 
     public void ApplyEffect(Effect effect)
@@ -63,25 +67,83 @@ public abstract class CombatMember : MonoBehaviour
             }
         }
     }
-    public void TakeDamage(int AttackPower)
+    public void TakeDamage(CombatMember attacker,int AttackPower)
     {
-        if (CurrentHealth - AttackPower <= 0)
+        if (activeEffects == null)
         {
-            CurrentHealth = 0;
+            activeEffects = new List<Effect>() { };
+        }
+        foreach (Effect effect in activeEffects)
+        {
+            if(effect is SleepEffect)
+            {
+                effect.Remove(this);
+            }
+        }
+
+        float dodgeChance = CurrentLuck * 0.2f;
+
+        if(Random.Range(0,100)<= dodgeChance)
+        {
+            Debug.Log($"{name} dodged the attack");
+            return;
+        }
+
+        int critChance = attacker.CurrentLuck;
+        if (critChance>= 50)
+        {
+            critChance = 50;
+        }
+        if(Random.Range(0,100)<= critChance)
+        {
+            AttackPower = Mathf.RoundToInt(AttackPower * 1.5f);
+        }
+
+
+        if (AttackPower > shieldValue)
+        {
+            shieldValue = 0;
+            AttackPower -= shieldValue;
         }
         else
         {
+            shieldValue -= AttackPower;
+            return;
+        }
+
+
+        if (CurrentHealth - AttackPower <= 0)
+        {
+            CurrentHealth = 0;
+            OnDeath?.Invoke(this);
+            OnHealthChanged?.Invoke(this);
+            activeEffects.Clear();
+        }
+        else
+        {
+            Debug.Log($"{name} is taking {AttackPower} damage");
             CurrentHealth -= AttackPower;
+            OnDamageTaken?.Invoke(this, AttackPower);
+            OnHealthChanged?.Invoke(this);
         }
     }
     public void Heal(int amount)
     {
-
-        CurrentHealth += amount;
-        if (CurrentHealth > CurrentMaxHealth)
+        if (Alive)
         {
-            CurrentHealth = CurrentMaxHealth;
+            CurrentHealth += amount;
+            if (CurrentHealth > CurrentMaxHealth)
+            {
+                CurrentHealth = CurrentMaxHealth;
+            }
+            OnHealthChanged?.Invoke(this);
         }
+        
+    }
+    public void Revive(float healthRestored)
+    {
+        CurrentHealth = Mathf.RoundToInt(CurrentMaxHealth * healthRestored);
+        OnHealthChanged?.Invoke(this);
     }
     public void ModifyStat(StatType stat, int amount)
     {
@@ -89,169 +151,92 @@ public abstract class CombatMember : MonoBehaviour
         else if (stat == StatType.Defense) CurrentDefense += amount;
         else if (stat == StatType.Intelligence) CurrentIntelligence += amount;
         else if (stat == StatType.MaxHealth) CurrentMaxHealth += amount;
+        else if (stat == StatType.MagicDefense) CurrentMagicDefense += amount;
+        else if (stat == StatType.Luck) CurrentLuck += amount;
+    }
+
+    public void ModifyStat(StatType stat, float percentage)
+    {
+        
+        if (stat == StatType.Attack) CurrentAttack += Mathf.RoundToInt(percentage * CurrentAttack);
+        else if (stat == StatType.Defense) CurrentDefense += Mathf.RoundToInt(percentage * CurrentDefense);
+        else if (stat == StatType.Intelligence) CurrentIntelligence += Mathf.RoundToInt(percentage * CurrentIntelligence);
+        else if (stat == StatType.MaxHealth) CurrentMaxHealth += Mathf.RoundToInt(percentage * CurrentMaxHealth);
+        else if (stat == StatType.MagicDefense) CurrentMagicDefense += Mathf.RoundToInt(percentage * CurrentMagicDefense);
+        else if (stat == StatType.Luck) CurrentLuck += Mathf.RoundToInt(percentage * CurrentLuck);
     }
 
     public void AddShield(int amount)
     {
-        // Add temporary shield value to absorb damage
+        shieldValue += amount;
     }
 
     public void RemoveShield(int amount)
     {
-        // Remove shield value when expired
-    }
-}
-public abstract class Effect
-{
-    public int duration; // in turns
-    public abstract void Apply(CombatMember target);
-    public abstract void Remove(CombatMember target);
-    public virtual void Tick(CombatMember target) { duration--; }
-}
-public enum StatType
-{
-    Attack,
-    Defense,
-    Intelligence,
-    MaxHealth,
-}
-public class BuffEffect : Effect
-{
-    private StatType stat;
-    private float percentage; // 0.10 = +10%
-    private int flatAmount;   // Optional for flat buffs
-    private int appliedAmount; // The actual number added to reset later
-
-    // Constructor for percentage-based buffs
-    public BuffEffect(StatType stat, float percentage, int duration)
-    {
-        this.stat = stat;
-        this.percentage = percentage;
-        this.duration = duration;
+        shieldValue -= amount;
     }
 
-    // Constructor for flat buffs
-    public BuffEffect(StatType stat, int flatAmount, int duration)
+    public float CalculateAbilityDamage(CombatMember user, CombatMember target, AbilityData ability)
     {
-        this.stat = stat;
-        this.flatAmount = flatAmount;
-        this.duration = duration;
-    }
-
-    public override void Apply(CombatMember target)
-    {
-        int baseValue = GetStatValue(target, stat);
-        appliedAmount = flatAmount > 0
-            ? flatAmount
-            : Mathf.RoundToInt(baseValue * percentage);
-
-        target.ModifyStat(stat, appliedAmount);
-    }
-
-    public override void Remove(CombatMember target)
-    {
-        target.ModifyStat(stat, -appliedAmount);
-    }
-
-    private int GetStatValue(CombatMember target, StatType stat)
-    {
-        return stat switch
+        int baseDamage = ability.PhysicalBehaviour.baseDamage;
+        float damage = 0;
+        if(ability.powerType == AbilityPowerType.Physical)
         {
-            StatType.Attack => target.CurrentAttack,
-            StatType.Defense => target.CurrentDefense,
-            StatType.Intelligence => target.CurrentIntelligence,
-            StatType.MaxHealth => target.CurrentMaxHealth,
-            _ => 0
-        };
-    }
-}
-
-public class DebuffEffect : Effect
-{
-    private StatType stat;
-    private float percentage;
-    private int flatAmount;
-    private int appliedAmount;
-
-    public DebuffEffect(StatType stat, float percentage, int duration)
-    {
-        this.stat = stat;
-        this.percentage = percentage;
-        this.duration = duration;
-    }
-
-    public DebuffEffect(StatType stat, int flatAmount, int duration)
-    {
-        this.stat = stat;
-        this.flatAmount = flatAmount;
-        this.duration = duration;
-    }
-
-    public override void Apply(CombatMember target)
-    {
-        int baseValue = GetStatValue(target, stat);
-        appliedAmount = flatAmount > 0
-            ? flatAmount
-            : Mathf.RoundToInt(baseValue * percentage);
-
-        target.ModifyStat(stat, -appliedAmount);
-    }
-
-    public override void Remove(CombatMember target)
-    {
-        target.ModifyStat(stat, appliedAmount);
-    }
-
-    private int GetStatValue(CombatMember target, StatType stat)
-    {
-        return stat switch
+            damage = baseDamage * (1 + (user.CurrentAttack / 100)) - target.CurrentDefense;
+        }
+        else if(ability.powerType == AbilityPowerType.Magical)
         {
-            StatType.Attack => target.CurrentAttack,
-            StatType.Defense => target.CurrentDefense,
-            StatType.Intelligence => target.CurrentIntelligence,
-            StatType.MaxHealth => target.CurrentMaxHealth,
-            _ => 0
-        };
+            damage = baseDamage * (1 + (user.CurrentIntelligence / 100)) - target.CurrentMagicDefense;
+        }
+        else if(ability.powerType == AbilityPowerType.True)
+        {
+            damage = baseDamage;
+        }
+
+        return damage;
     }
+
+    public int GetEffectApplyChance(CombatMember user, AbilityData ability)
+    {
+        if (ability.guaranteedEffectHit)
+        {
+            return 100;
+        }
+        else
+        {
+            return Mathf.RoundToInt(user.CurrentIntelligence * ability.EffectChanceScaling);
+        }
+       
+    }
+
+    public void InitializePassives()
+    {
+        if (passiveAbilities == null || passiveAbilities.Count == 0)
+            return;
+
+        foreach (Ability passive in passiveAbilities)
+        {
+            if (passive.AbilityData.passiveBehaviour != null)
+            {
+                passive.AbilityData.passiveBehaviour.Apply(this);
+                Debug.Log($"Activated passive: {passive.AbilityData.abilityName}");
+            }
+        }
+    }
+    public void RemoveAllPassives()
+    {
+        if (passiveAbilities == null) return;
+
+        foreach (Ability passive in passiveAbilities)
+        {
+            if (passive.AbilityData.passiveBehaviour != null)
+            {
+                passive.AbilityData.passiveBehaviour.Remove(this);
+            }
+        }
+    }
+
+
 }
 
-public class ShieldEffect : Effect
-{
-    private int shieldAmount;
-
-    public ShieldEffect(int shieldAmount, int duration)
-    {
-        this.shieldAmount = shieldAmount;
-        this.duration = duration;
-    }
-
-    public override void Apply(CombatMember target)
-    {
-        target.AddShield(shieldAmount);
-    }
-
-    public override void Remove(CombatMember target)
-    {
-        target.RemoveShield(shieldAmount);
-    }
-}
-
-public class StunEffect : Effect
-{
-
-    public StunEffect(int duration)
-    {
-        this.duration = duration;
-    }
-
-    public override void Apply(CombatMember target)
-    {
-        target.IsStunned = true;
-    }
-
-    public override void Remove(CombatMember target)
-    {
-        target.IsStunned = false;
-    }
-}
 

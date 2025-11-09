@@ -12,17 +12,27 @@ public class EnemyMember : CombatMember
 
     public int Level;
     public int XPGiven;
-    public bool Alive => CurrentHealth > 0;
+    
 
 
     private void Awake()
     {
         // Prevent duplicates when reloading scenes
-        if (FindObjectsOfType<EnemyMember>().Length > 6) // if you want exactly 4 members
+        if (FindObjectsOfType<EnemyMember>().Length > 6) 
         {
             Destroy(gameObject);
             return;
         }
+        if (activeAbilities == null)
+            activeAbilities = new List<Ability>();
+        if (passiveAbilities == null)
+            passiveAbilities = new List<Ability>();
+
+        if (abilityDatas == null)
+            abilityDatas = new List<AbilityData>();
+
+        if (activeEffects == null)
+            activeEffects = new List<Effect>();
 
         DontDestroyOnLoad(gameObject);
     }
@@ -49,12 +59,6 @@ public class EnemyMember : CombatMember
 
     }
 
-    public void BasicAttack(PartyMember target) 
-    {
-        target.TakeDamage(CurrentAttack);
-    
-    }
-
     public IEnumerator TakeTurn()
     {
         if (!Alive)
@@ -65,24 +69,32 @@ public class EnemyMember : CombatMember
         //yield until action is complete
     }
 
-    public IEnumerator ExecuteAction(List<Turn> actions)
+    public IEnumerator ExecuteAction(Turn action)
     {
-        foreach (Turn action in actions)
+        if (action.Action != null && action.Target != null && action.Attacker != null)
         {
             Ability ability = action.Action;
             List<CombatMember> target = action.Target;
 
             if (ability.usesLeft > 0 && ability.cooldownLeft == 0)
             {
-                ability.AbilityData.behaviour.Execute(this, target);
+                if (ability.AbilityData.PhysicalBehaviour != null)
+                {
+                    ability.AbilityData.PhysicalBehaviour.Execute(this, target, ability.AbilityData);
+                }
+                if (ability.AbilityData.EffectBehaviour != null)
+                {
+                    ability.AbilityData.EffectBehaviour.Execute(this, target, ability.AbilityData);
+                }
             }
+
+            
+            
+                action.Action.DecreaseUses();
+                action.Action.cooldownLeft = action.Action.AbilityData.cooldown;
+                Debug.Log(baseStats.characterName + " has executed an action of " + action.Action.AbilityData.abilityName);
+            
         }
-        if (actions.Count >=1 && actions[0] != null)
-        {
-            actions[0].Action.DecreaseUses();
-            actions[0].Action.cooldownLeft = actions[0].Action.AbilityData.cooldown;
-        }
-        Debug.Log(baseStats.characterName + " has executed an action");
         yield return null;
     }
     

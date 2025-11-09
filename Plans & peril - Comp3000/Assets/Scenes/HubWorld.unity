@@ -173,11 +173,15 @@ MonoBehaviour:
   CurrentAttack: 10
   CurrentDefense: 15
   CurrentIntelligence: 1
+  CurrentMagicDefense: 0
+  CurrentLuck: 0
+  shieldValue: 0
   gainImmediateExtraTurn: 0
   gainExtraTurnNextRound: 0
   IsStunned: 0
   abilityDatas:
   - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
   baseStats: {fileID: 11400000, guid: 0ebf3159b08ad304e9f0d0ad75c06362, type: 2}
   aiController: {fileID: 34028274}
   Level: 3
@@ -345,16 +349,19 @@ MonoBehaviour:
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
+  CurrentMagicDefense: 0
+  CurrentLuck: 0
+  shieldValue: 0
   gainImmediateExtraTurn: 0
   gainExtraTurnNextRound: 0
   IsStunned: 0
   abilityDatas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 20f607fd02976c543a207ce6ec078752, type: 2}
+  - {fileID: 11400000, guid: bc6e6ef735531ba49b15c05e2f3f9bee, type: 2}
+  - {fileID: 11400000, guid: f062f4250c37c2f46939111ac03a7a32, type: 2}
+  - {fileID: 11400000, guid: 8e443d2e76e2fe1489e0c70b6f984361, type: 2}
+  - {fileID: 11400000, guid: 69578b355fecd3a4588e3bbacc5b6345, type: 2}
+  - {fileID: 11400000, guid: c4ebcbc5c283b8a4c88284aa652695de, type: 2}
   baseStats: {fileID: 11400000, guid: 55d8eca0c360b874f811986bd9837c3a, type: 2}
   level: 0
   Xp: 0
@@ -611,6 +618,9 @@ MonoBehaviour:
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
+  CurrentMagicDefense: 0
+  CurrentLuck: 0
+  shieldValue: 0
   gainImmediateExtraTurn: 0
   gainExtraTurnNextRound: 0
   IsStunned: 0
@@ -620,7 +630,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
   - {fileID: 11400000, guid: ea83db238500f234c91b8176671c2200, type: 2}
   - {fileID: 11400000, guid: f50ba7b9efa391c4eb038a8881d985fd, type: 2}
-  - {fileID: 11400000, guid: 8f07c39db5b953840bdc4ac036150d4b, type: 2}
+  - {fileID: 11400000, guid: 330f6411560614e4d9addb7bb1b56100, type: 2}
   baseStats: {fileID: 11400000, guid: b3dc66d016058a14c9577b5b5072d837, type: 2}
   level: 0
   Xp: 0
@@ -689,16 +699,19 @@ MonoBehaviour:
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
+  CurrentMagicDefense: 0
+  CurrentLuck: 0
+  shieldValue: 0
   gainImmediateExtraTurn: 0
   gainExtraTurnNextRound: 0
   IsStunned: 0
   abilityDatas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: be8ba0c6a1c9878489a0ad4ed357fd98, type: 2}
+  - {fileID: 11400000, guid: 59c07c62cdc50924e8711b4b75d77d1f, type: 2}
+  - {fileID: 11400000, guid: 365c1827c1bab4f4cb0144e3748320bd, type: 2}
+  - {fileID: 11400000, guid: 54dc62350646a7841abbcd3c9e4c23a4, type: 2}
+  - {fileID: 11400000, guid: 6a30a2367ee23ef46a0cc9ba5b138cc6, type: 2}
+  - {fileID: 11400000, guid: a1bee7f176d8eed4d8fe43151116f700, type: 2}
   baseStats: {fileID: 11400000, guid: 0953b6917d58d224f9d1b767cdb52e33, type: 2}
   level: 0
   Xp: 0
@@ -738,12 +751,15 @@ MonoBehaviour:
   CurrentAttack: 50
   CurrentDefense: 10
   CurrentIntelligence: 0
+  CurrentMagicDefense: 0
+  CurrentLuck: 0
+  shieldValue: 0
   gainImmediateExtraTurn: 0
   gainExtraTurnNextRound: 0
   IsStunned: 0
   abilityDatas:
   - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
-  - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
+  - {fileID: 11400000, guid: ea83db238500f234c91b8176671c2200, type: 2}
   baseStats: {fileID: 11400000, guid: f387dd313ccf343479409da158c2cff1, type: 2}
   aiController: {fileID: 1333242757}
   Level: 1
@@ -959,6 +975,9 @@ MonoBehaviour:
   CurrentAttack: 0
   CurrentDefense: 0
   CurrentIntelligence: 0
+  CurrentMagicDefense: 0
+  CurrentLuck: 0
+  shieldValue: 0
   gainImmediateExtraTurn: 0
   gainExtraTurnNextRound: 0
   IsStunned: 0
@@ -968,7 +987,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f07c39db5b953840bdc4ac036150d4b, type: 2}
   - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
   - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
-  - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
+  - {fileID: 11400000, guid: 59c07c62cdc50924e8711b4b75d77d1f, type: 2}
   baseStats: {fileID: 11400000, guid: f1d7c6db20df76d45a6a0104e25d7911, type: 2}
   level: 0
   Xp: 0
@@ -1748,8 +1767,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PartyMembers:
   - {fileID: 796863948}
+  - {fileID: 1533349078}
+  - {fileID: 1237639829}
+  - {fileID: 373294726}
   EnemyMembers:
   - {fileID: 1333242755}
+  - {fileID: 34028273}
   InCombat: 0
 --- !u!4 &2070275927
 Transform:

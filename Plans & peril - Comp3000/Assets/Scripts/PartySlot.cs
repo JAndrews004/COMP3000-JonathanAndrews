@@ -10,8 +10,10 @@ public class PartySlot : MonoBehaviour
     public TextMeshPro NameText;
     public GameObject TargetHighlight;
     public Slider HPBar;
+    public Slider ShieldBar;
     private bool HasAssignedSprite = false;
-
+    public GameObject CharacterArrow;
+    public GameObject TargetArrow;
     private void Start()
     {
         NameText = GetComponentInChildren<TextMeshPro>();
@@ -28,6 +30,8 @@ public class PartySlot : MonoBehaviour
             NameText.text = CurrentPartyMember.baseStats.characterName;
             HPBar.maxValue = CurrentPartyMember.CurrentMaxHealth;
             HPBar.value = CurrentPartyMember.CurrentHealth;
+            ShieldBar.maxValue = CurrentPartyMember.CurrentMaxHealth;
+            ShieldBar.value = CurrentPartyMember.shieldValue;
             if (!HasAssignedSprite)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = CurrentPartyMember.baseStats.characterSprite;
@@ -35,4 +39,22 @@ public class PartySlot : MonoBehaviour
             }
         }
     }
+
+    public void TurnCharacterArrowOn()
+    {
+        CharacterArrow.SetActive(true);
+    }
+    public void TurnCharacterArrowOff()
+    {
+        CharacterArrow.SetActive(false);
+    }
+    public void TurnTargetArrowOn()
+    {
+        TargetArrow.SetActive(true);
+    }
+    public void TurnTargetArrowOff()
+    {
+        TargetArrow.SetActive(false);
+    }
+
 }

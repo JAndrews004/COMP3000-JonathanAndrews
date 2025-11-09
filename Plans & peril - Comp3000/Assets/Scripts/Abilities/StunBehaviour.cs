@@ -6,15 +6,16 @@ using UnityEngine;
 
 public class StunBehaviour : AbilityBehaviour
 {
-    public int damage;
     public int turnsStunnedFor;
 
-    public override void Execute(CombatMember user, List<CombatMember> targets)
+    public override void Execute(CombatMember user, List<CombatMember> targets, AbilityData ability)
     {
         foreach (var target in targets)
         {
-            target.TakeDamage(damage);
-            target.ApplyEffect(new StunEffect(turnsStunnedFor));
+            if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
+            {
+                target.ApplyEffect(new StunEffect(turnsStunnedFor));
+            }
         }
     }
 
