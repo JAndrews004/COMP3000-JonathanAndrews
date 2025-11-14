@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Burn
   m_EditorClassIdentifier: 
   abilityName: Burn
-  description: 
-  icon: {fileID: 0}
-  isPassive: 0
-  powerType: 0
+  description: Damages target every round and reduces defense by 20%
+  icon: {fileID: 21300000, guid: b14ce82c3900b9c4ea2ea2016f9c2229, type: 3}
+  abilityCategory: 0
+  powerType: 2
   abilityType: 0
   maxUsage: 5
   cooldown: 3
@@ -24,5 +24,6 @@ MonoBehaviour:
   numberOfTargets: 1
   PhysicalBehaviour: {fileID: 0}
   EffectBehaviour: {fileID: 11400000, guid: 6cac99d7076f71e44bdb79f6044e782d, type: 2}
+  passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0

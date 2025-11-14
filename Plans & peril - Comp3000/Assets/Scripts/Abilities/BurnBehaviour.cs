@@ -15,7 +15,13 @@ public class BurnBehaviour : AbilityBehaviour
         {
             if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
             {
-                target.ApplyEffect(new BurnEffect(duration, damage, defenseReduction, user));
+                BurnEffect effectToAdd = new BurnEffect(duration, damage, defenseReduction, user);
+                effectToAdd.name = ability.abilityName;
+                effectToAdd.description = ability.description;
+                effectToAdd.icon = ability.icon;
+                effectToAdd.colorType = colorType.Negative;
+                target.ApplyEffect(effectToAdd);
+                
             }
 
         }

@@ -7,7 +7,8 @@ using Random = UnityEngine.Random;
 
 public abstract class CombatMember : MonoBehaviour
 {
-    
+    public Characters baseStats;
+    public CombatManager combatManager;
     public int CurrentHealth;
     public int CurrentMaxHealth;
     public int CurrentAttack;
@@ -57,13 +58,22 @@ public abstract class CombatMember : MonoBehaviour
             Debug.LogWarning($"{name}: activeEffects was null — initializing manually");
             activeEffects = new List<Effect>();
         }
-        for (int i = activeEffects.Count - 1; i >= 0; i--)
+        if (activeEffects.Count > 0)
         {
-            activeEffects[i].Tick(this);
-            if (activeEffects[i].duration <= 0)
+            for (int i = activeEffects.Count - 1; i >= 0; i--)
             {
-                activeEffects[i].Remove(this);
-                activeEffects.RemoveAt(i);
+
+
+                if (activeEffects[i].duration <= 0)
+                {
+                    activeEffects[i].Remove(this);
+                    activeEffects.RemoveAt(i);
+                }
+                else
+                {
+                    activeEffects[i].Tick(this);
+                }
+
             }
         }
     }
@@ -88,7 +98,6 @@ public abstract class CombatMember : MonoBehaviour
             Debug.Log($"{name} dodged the attack");
             return;
         }
-
         int critChance = attacker.CurrentLuck;
         if (critChance>= 50)
         {

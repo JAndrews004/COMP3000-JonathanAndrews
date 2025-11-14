@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
+using Random = UnityEngine.Random;
 
 public class EnemyMember : CombatMember
 {
 
-    public Enemy baseStats;
     public EnemyAI aiController;
 
     public int Level;
@@ -71,7 +73,7 @@ public class EnemyMember : CombatMember
 
     public IEnumerator ExecuteAction(Turn action)
     {
-        if (action.Action != null && action.Target != null && action.Attacker != null)
+        if (action.Action != null && action.Target != null && action.Attacker != null && action!=null)
         {
             Ability ability = action.Action;
             List<CombatMember> target = action.Target;
@@ -90,12 +92,28 @@ public class EnemyMember : CombatMember
 
             
             
-                action.Action.DecreaseUses();
-                action.Action.cooldownLeft = action.Action.AbilityData.cooldown;
-                Debug.Log(baseStats.characterName + " has executed an action of " + action.Action.AbilityData.abilityName);
-            
+            action.Action.DecreaseUses();
+            action.Action.cooldownLeft = action.Action.AbilityData.cooldown;
+            string targetNames = string.Join(", ", action.Target.Select(t => $"<color=#00FF00>{t.baseStats.characterName}</color>"));
+
+            if (action.Target != null)
+            {
+                if (action.Target[0] is EnemyMember)
+                {
+                    targetNames = string.Join(", ", action.Target.Select(t => $"<color=#00FF00>{t.baseStats.characterName}</color>"));
+                }
+            }
+
+            combatManager.battleLogManager.AddMessage(
+                $"<color=#FF0000>{action.Attacker.baseStats.characterName}</color> " +
+                $"used <color=#0000FF>{action.Action.AbilityData.abilityName}</color> on {targetNames}"
+            );
+
+
+
+
         }
-        yield return null;
+        yield return new WaitForSeconds(Random.Range(2,4));
     }
     
 }

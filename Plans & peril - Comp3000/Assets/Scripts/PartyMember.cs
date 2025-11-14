@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PartyMember : CombatMember
 {
-    public Characters baseStats;
+    
 
     public int level;
     public int Xp;

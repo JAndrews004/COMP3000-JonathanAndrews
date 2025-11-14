@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Poison
   m_EditorClassIdentifier: 
   abilityName: Poison
-  description: 
-  icon: {fileID: 0}
-  isPassive: 0
+  description: Damages target every round
+  icon: {fileID: 21300000, guid: f1c5604b5f1f2e84c9fe2a94291ae04d, type: 3}
+  abilityCategory: 0
   powerType: 0
   abilityType: 0
   maxUsage: 15
@@ -24,5 +24,6 @@ MonoBehaviour:
   numberOfTargets: 1
   PhysicalBehaviour: {fileID: 0}
   EffectBehaviour: {fileID: 11400000, guid: b2927b5c1c41d484aba9da0be7558939, type: 2}
+  passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0

@@ -7,6 +7,10 @@ public abstract class Effect
 {
     public int duration; // in turns
     public CombatMember User;
+    public string name;
+    public string description;
+    public Sprite icon;
+    public colorType colorType;
     public abstract void Apply(CombatMember target);
     public abstract void Remove(CombatMember target);
     public virtual void Tick(CombatMember target) { duration--; }
@@ -19,6 +23,12 @@ public enum StatType
     MaxHealth,
     MagicDefense,
     Luck,
+}
+public enum colorType
+{
+    Positive,
+    Negative,
+    Neutral,
 }
 public class BuffEffect : Effect
 {
@@ -211,16 +221,18 @@ public class BurnEffect : Effect
 {
     int damagePerTick;
     float DefenseReduction;
+    
 
     public BurnEffect(int duration, int damagePerTick, float defenseReduction, CombatMember user)
     {
         this.duration = duration;
         this.damagePerTick = damagePerTick;
         this.DefenseReduction = defenseReduction;
+        User = user;
     }
     public override void Apply(CombatMember target)
     {
-        target.TakeDamage(User,damagePerTick);
+        target.TakeDamage(User, damagePerTick);
         target.ApplyEffect(new DebuffEffect(StatType.Defense, DefenseReduction, duration));
     }
 
@@ -231,7 +243,7 @@ public class BurnEffect : Effect
 
     public override void Tick(CombatMember target)
     {
-        target.TakeDamage(User,damagePerTick);
+        target.TakeDamage(User, damagePerTick);
         duration--;
     }
 }

@@ -6,7 +6,7 @@ using static AbilityData;
 
 public class CombatManager : MonoBehaviour
 {
-    public List<GameObject> CharacterPositions;
+    public List<PartySlot> CharacterPositions;
     public List<EnemySlot> EnemyPositions;
     public List<PartyMember> PartyMembers;
 
@@ -21,6 +21,10 @@ public class CombatManager : MonoBehaviour
     public  EnemyTurnManager enemyTurnManager;
     public GameObject currentActiveView;
     public PartyMemberViewModel viewModel;
+
+    public BattleLogManager battleLogManager;
+    public StatusTooltip statusTooltip;
+
 
     private Dictionary<PartyMember, PartyMemberViewModel> partyMemberViewModels = new Dictionary<PartyMember, PartyMemberViewModel>();
     public List<PartyMemberViewModel> PartyMemberViewModels = new List<PartyMemberViewModel>();
@@ -81,7 +85,7 @@ public class CombatManager : MonoBehaviour
             CharacterPositions[i].GetComponent<PartySlot>().CurrentPartyMember = PartyMembers[i];
         }
 
-        GameManager.Instance.EnemyMembers = new List<EnemyMember> { EnemyPositions[0].GetComponent<EnemyMember>() };
+        //GameManager.Instance.EnemyMembers = new List<EnemyMember> { EnemyPositions[0].GetComponent<EnemyMember>() };
 
         
         turnManager.StartCombat();
@@ -467,5 +471,13 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    public void RefreshAllStatusEffects()
+    {
+        foreach (var slot in CharacterPositions)
+            slot.RefreshStatusEffects();
+
+        foreach (var slot in EnemyPositions)
+            slot.RefreshStatusEffects();
+    }
 
 }

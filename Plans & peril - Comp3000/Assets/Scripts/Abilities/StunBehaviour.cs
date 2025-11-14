@@ -14,7 +14,13 @@ public class StunBehaviour : AbilityBehaviour
         {
             if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
             {
-                target.ApplyEffect(new StunEffect(turnsStunnedFor));
+                StunEffect effectToAdd = new StunEffect(turnsStunnedFor);
+                effectToAdd.name = ability.abilityName;
+                effectToAdd.description = ability.description;
+                effectToAdd.icon = ability.icon;
+                effectToAdd.colorType = colorType.Neutral;
+                target.ApplyEffect(effectToAdd);
+                
             }
         }
     }

@@ -20,7 +20,7 @@ public class EnemyTurnManager : MonoBehaviour
         {
             if (enemy.Alive && !enemy.IsStunned)
             {
-                Debug.Log(enemy.baseStats.characterName + " is taking a turn through ETM");
+                
                 yield return enemy.TakeTurn();
             }
         }

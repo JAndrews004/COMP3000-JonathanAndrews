@@ -33,10 +33,14 @@ public class TurnManager : MonoBehaviour
         //Debug.Log("Starting Combat from TM");
         combatManager = GetComponentInParent<CombatManager>();
         PartyMembers = GameManager.Instance.PartyMembers;
-        
+        foreach (PartyMember p in PartyMembers)
+        {
+            p.combatManager = combatManager;
+        }
         foreach(var Enemyslot in combatManager.EnemyPositions)
         {
             EnemyMembers.Add(Enemyslot.CurrentEnemyMember);
+            Enemyslot.CurrentEnemyMember.combatManager = combatManager;
         }
         combatManager.enemyTurnManager.RegisterEnemies(EnemyMembers);
         GameManager.Instance.EnemyMembers = EnemyMembers;
@@ -64,9 +68,9 @@ public class TurnManager : MonoBehaviour
         OnChoosingAction?.Invoke();
     }
 
-    public GameObject FindPartyMemberSlot(CombatMember member)
+    public PartySlot FindPartyMemberSlot(CombatMember member)
     {
-        GameObject selectedSlot = null;
+        PartySlot selectedSlot = null;
 
         if (member != null)
         {
@@ -176,7 +180,20 @@ public class TurnManager : MonoBehaviour
        
             
             OnActionResolved?.Invoke(SelectedCharacter, SelectedAction, SelectedTarget);
-            
+
+            string targetNames = string.Join(", ", newturn.Target.Select(t => $"<color=#FF0000>{t.baseStats.characterName}</color>"));
+
+            if(newturn.Target != null)
+            {
+                if (newturn.Target[0] is PartyMember)
+                {
+                    targetNames = string.Join(", ", newturn.Target.Select(t => $"<color=#00FF00>{t.baseStats.characterName}</color>"));
+                }
+            }
+            combatManager.battleLogManager.AddMessage(
+                $"<color=#00FF00>{newturn.Attacker.baseStats.characterName}</color> " +
+                $"used <color=#0000FF>{newturn.Action.AbilityData.abilityName}</color> on {targetNames}"
+            );
             var vm = combatManager.FindPartyMemberViewModel(SelectedCharacter);
             vm?.DisableSelection();
         }
@@ -318,6 +335,7 @@ public class TurnManager : MonoBehaviour
         {
             member.TickEffects();
         }
+        combatManager.RefreshAllStatusEffects();
         StartEnemyPhase();
     }
 
@@ -345,6 +363,7 @@ public class TurnManager : MonoBehaviour
         {
             member.TickEffects();
         }
+        combatManager.RefreshAllStatusEffects();
         StartPlayerPhase();
     }
 

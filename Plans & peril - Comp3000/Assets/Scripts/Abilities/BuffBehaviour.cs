@@ -22,14 +22,28 @@ public class BuffBehaviour : AbilityBehaviour
             {
                 if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
                 {
-                    target.ApplyEffect(new BuffEffect(statToBuff, maxPercent, durationTurns));
+                    BuffEffect effectToAdd = new BuffEffect(statToBuff, maxPercent, durationTurns);
+                    effectToAdd.name = ability.abilityName;
+                    effectToAdd.description = ability.description;
+                    effectToAdd.icon = ability.icon;
+                    effectToAdd.colorType = colorType.Positive;
+                    target.ApplyEffect(effectToAdd);
+
+                    
                 }
             }
             else
             {
                 if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
                 {
-                    target.ApplyEffect(new BuffEffect(statToBuff, scaledPercentage, durationTurns));
+                    BuffEffect effectToAdd = new BuffEffect(statToBuff, scaledPercentage, durationTurns);
+                    effectToAdd.name = ability.abilityName;
+                    effectToAdd.description = ability.description;
+                    effectToAdd.icon = ability.icon;
+                    effectToAdd.colorType = colorType.Positive;
+                    target.ApplyEffect(effectToAdd);
+
+                    
                 }
             }
 

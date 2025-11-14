@@ -17,7 +17,12 @@ public class PoisonBehaviour : AbilityBehaviour
             {
                 if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
                 {
-                    target.ApplyEffect(new PoisonEffect(duration, damage, user));
+                    PoisonEffect effectToAdd = new PoisonEffect(duration, damage, user);
+                    effectToAdd.name = ability.abilityName;
+                    effectToAdd.description = ability.description;
+                    effectToAdd.icon = ability.icon;
+                    effectToAdd.colorType = colorType.Negative;
+                    target.ApplyEffect(effectToAdd);
                 }
             }
             else
@@ -32,7 +37,12 @@ public class PoisonBehaviour : AbilityBehaviour
                             return;
                         }
                     }
-                    target.ApplyEffect(new PoisonEffect(duration, damage, user));
+                    PoisonEffect effectToAdd = new PoisonEffect(duration, damage, user);
+                    effectToAdd.name = ability.abilityName;
+                    effectToAdd.description = ability.description;
+                    effectToAdd.icon = ability.icon;
+                    effectToAdd.colorType = colorType.Negative;
+                    target.ApplyEffect(effectToAdd);
                 }
             }
             

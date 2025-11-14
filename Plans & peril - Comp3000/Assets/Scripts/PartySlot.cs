@@ -14,6 +14,10 @@ public class PartySlot : MonoBehaviour
     private bool HasAssignedSprite = false;
     public GameObject CharacterArrow;
     public GameObject TargetArrow;
+
+    public Transform StatusEffectContainer;
+    public GameObject StatusIconPrefab;     
+    private Dictionary<Effect, GameObject> ActiveIcons = new Dictionary<Effect, GameObject>();
     private void Start()
     {
         NameText = GetComponentInChildren<TextMeshPro>();
@@ -55,6 +59,25 @@ public class PartySlot : MonoBehaviour
     public void TurnTargetArrowOff()
     {
         TargetArrow.SetActive(false);
+    }
+
+    public void RefreshStatusEffects()
+    {
+        if (CurrentPartyMember == null) return;
+
+        // Clear existing icons
+        foreach (Transform child in StatusEffectContainer)
+            Destroy(child.gameObject);
+        ActiveIcons.Clear();
+
+        // Rebuild list
+        foreach (Effect effect in CurrentPartyMember.activeEffects)
+        {
+            GameObject iconObj = Instantiate(StatusIconPrefab, StatusEffectContainer);
+            StatusIconUI icon = iconObj.GetComponent<StatusIconUI>();
+            icon.Setup(effect);
+            ActiveIcons[effect] = iconObj;
+        }
     }
 
 }

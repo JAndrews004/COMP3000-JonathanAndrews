@@ -22,7 +22,14 @@ public class DebuffBehaviour : AbilityBehaviour
             {
                 if(Random.Range(0,100) <= target.GetEffectApplyChance(user, ability))
                 {
-                    target.ApplyEffect(new DebuffEffect(statToDebuff, maxPercent, durationTurns));
+                    DebuffEffect effectToAdd = new DebuffEffect(statToDebuff, maxPercent, durationTurns);
+                    effectToAdd.name = ability.abilityName;
+                    effectToAdd.description = ability.description;
+                    effectToAdd.icon = ability.icon;
+                    effectToAdd.colorType = colorType.Negative;
+                    target.ApplyEffect(effectToAdd);
+
+                    
                 }
                 
             }
@@ -30,7 +37,14 @@ public class DebuffBehaviour : AbilityBehaviour
             {
                 if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
                 {
-                    target.ApplyEffect(new DebuffEffect(statToDebuff, scaledPercentage, durationTurns));
+                    DebuffEffect effectToAdd = new DebuffEffect(statToDebuff, scaledPercentage, durationTurns);
+                    effectToAdd.name = ability.abilityName;
+                    effectToAdd.description = ability.description;
+                    effectToAdd.icon = ability.icon;
+                    effectToAdd.colorType = colorType.Negative;
+                    target.ApplyEffect(effectToAdd);
+
+                   
                 }
 
             }

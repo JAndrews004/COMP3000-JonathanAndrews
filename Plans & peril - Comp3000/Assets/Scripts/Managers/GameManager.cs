@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public List<PartyMember> PartyMembers;
     public List<EnemyMember> EnemyMembers;
 
+    public List<GameObject> EasyEnemyPrefabs;
+    
+
     public bool InCombat = false;
     private void Awake()
     {
@@ -85,7 +88,12 @@ public class GameManager : MonoBehaviour
 
     public void StartCombat()
     {
-        
+        for(int i =0; i< 6; i++)
+        {
+            GameObject newEnemy = Instantiate(EasyEnemyPrefabs[Random.Range(0, EasyEnemyPrefabs.Count)]);
+            newEnemy.transform.parent = transform;
+        }
+        RefreshEnemyMembers();
         SceneManager.LoadScene(1);
         populateAbilities();
         InCombat = true;

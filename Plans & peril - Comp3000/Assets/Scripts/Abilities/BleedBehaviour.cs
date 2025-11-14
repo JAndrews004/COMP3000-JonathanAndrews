@@ -15,7 +15,13 @@ public class BleedBehaviour : AbilityBehaviour
         {
             if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
             {
-                target.ApplyEffect(new BleedEffect(duration, damageMult, user));
+                BleedEffect effectToAdd = new BleedEffect(duration, damageMult, user);
+                effectToAdd.name = ability.abilityName;
+                effectToAdd.description = ability.description;
+                effectToAdd.icon = ability.icon;
+                effectToAdd.colorType = colorType.Negative;
+                target.ApplyEffect(effectToAdd);
+                
             }
         }
     }

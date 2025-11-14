@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bleed Strike
   m_EditorClassIdentifier: 
   abilityName: Bleed Strike
-  description: 
-  icon: {fileID: 0}
-  isPassive: 0
+  description: Damages the target every round
+  icon: {fileID: 21300000, guid: 012a978ce83face4a882ffadc7bb3b35, type: 3}
+  abilityCategory: 0
   powerType: 0
   abilityType: 0
   maxUsage: 15
@@ -24,5 +24,6 @@ MonoBehaviour:
   numberOfTargets: 1
   PhysicalBehaviour: {fileID: 11400000, guid: 6a051eb55a153fa49bec04b3ab30506d, type: 2}
   EffectBehaviour: {fileID: 11400000, guid: c62f30edcbd464b4e95722a963052b48, type: 2}
+  passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 0
   EffectChanceScaling: 0.2

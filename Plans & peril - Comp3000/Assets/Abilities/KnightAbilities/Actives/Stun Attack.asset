@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Stun Attack
   description: 
-  icon: {fileID: 0}
-  isPassive: 0
+  icon: {fileID: 21300000, guid: 271d9ea1ca3cec641a3e6c18dca329dc, type: 3}
+  abilityCategory: 0
   powerType: 0
   abilityType: 0
   maxUsage: 5
@@ -24,5 +24,6 @@ MonoBehaviour:
   numberOfTargets: 1
   PhysicalBehaviour: {fileID: 11400000, guid: 6a051eb55a153fa49bec04b3ab30506d, type: 2}
   EffectBehaviour: {fileID: 11400000, guid: 6717143d7ca2939468f82bd924516be6, type: 2}
+  passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 0
   EffectChanceScaling: 0.3

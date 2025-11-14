@@ -14,6 +14,9 @@ public class EnemySlot : MonoBehaviour
     public GameObject TargetArrow;
     private bool HasAssignedSprite = false;
 
+    public Transform StatusEffectContainer;
+    public GameObject StatusIconPrefab;
+    private Dictionary<Effect, GameObject> ActiveIcons = new Dictionary<Effect, GameObject>();
     private void Start()
     {
         NameText = GetComponentInChildren<TextMeshPro>();
@@ -47,5 +50,24 @@ public class EnemySlot : MonoBehaviour
     public void TurnTargetArrowOff()
     {
         TargetArrow.SetActive(false);
+    }
+
+    public void RefreshStatusEffects()
+    {
+        if (CurrentEnemyMember == null) return;
+
+        // Clear existing icons
+        foreach (Transform child in StatusEffectContainer)
+            Destroy(child.gameObject);
+        ActiveIcons.Clear();
+
+        // Rebuild list
+        foreach (Effect effect in CurrentEnemyMember.activeEffects)
+        {
+            GameObject iconObj = Instantiate(StatusIconPrefab, StatusEffectContainer);
+            StatusIconUI icon = iconObj.GetComponent<StatusIconUI>();
+            icon.Setup(effect);
+            ActiveIcons[effect] = iconObj;
+        }
     }
 }

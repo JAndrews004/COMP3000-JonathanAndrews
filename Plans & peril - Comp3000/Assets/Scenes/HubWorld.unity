@@ -123,81 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &34028271
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 34028272}
-  - component: {fileID: 34028273}
-  - component: {fileID: 34028274}
-  m_Layer: 0
-  m_Name: Slime1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &34028272
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34028271}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.42618492, y: 1.8320773, z: 0.021061493}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2070275927}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &34028273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34028271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe08a0f24a8c1614697e8170f2f37fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentHealth: 75
-  CurrentMaxHealth: 75
-  CurrentAttack: 10
-  CurrentDefense: 15
-  CurrentIntelligence: 1
-  CurrentMagicDefense: 0
-  CurrentLuck: 0
-  shieldValue: 0
-  gainImmediateExtraTurn: 0
-  gainExtraTurnNextRound: 0
-  IsStunned: 0
-  abilityDatas:
-  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
-  - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
-  baseStats: {fileID: 11400000, guid: 0ebf3159b08ad304e9f0d0ad75c06362, type: 2}
-  aiController: {fileID: 34028274}
-  Level: 3
-  XPGiven: 20
---- !u!114 &34028274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34028271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc099ce1f7f07e24292b15a42a1e567f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &257712760
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249cec09c3676ed499d8e0eb323dc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: 55d8eca0c360b874f811986bd9837c3a, type: 2}
+  combatManager: {fileID: 0}
   CurrentHealth: 0
   CurrentMaxHealth: 0
   CurrentAttack: 0
@@ -356,13 +283,12 @@ MonoBehaviour:
   gainExtraTurnNextRound: 0
   IsStunned: 0
   abilityDatas:
-  - {fileID: 11400000, guid: 20f607fd02976c543a207ce6ec078752, type: 2}
-  - {fileID: 11400000, guid: bc6e6ef735531ba49b15c05e2f3f9bee, type: 2}
-  - {fileID: 11400000, guid: f062f4250c37c2f46939111ac03a7a32, type: 2}
+  - {fileID: 11400000, guid: 9f70ed7f97033394f8f82fb869c04e91, type: 2}
+  - {fileID: 11400000, guid: babb12f93f35d5f4995db8b111cfa27c, type: 2}
+  - {fileID: 11400000, guid: 3d8b4b5bea6a68246823338a3e1fa8b4, type: 2}
   - {fileID: 11400000, guid: 8e443d2e76e2fe1489e0c70b6f984361, type: 2}
   - {fileID: 11400000, guid: 69578b355fecd3a4588e3bbacc5b6345, type: 2}
   - {fileID: 11400000, guid: c4ebcbc5c283b8a4c88284aa652695de, type: 2}
-  baseStats: {fileID: 11400000, guid: 55d8eca0c360b874f811986bd9837c3a, type: 2}
   level: 0
   Xp: 0
   XpToLevelUp: 0
@@ -613,6 +539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249cec09c3676ed499d8e0eb323dc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: b3dc66d016058a14c9577b5b5072d837, type: 2}
+  combatManager: {fileID: 0}
   CurrentHealth: 0
   CurrentMaxHealth: 0
   CurrentAttack: 0
@@ -631,7 +559,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea83db238500f234c91b8176671c2200, type: 2}
   - {fileID: 11400000, guid: f50ba7b9efa391c4eb038a8881d985fd, type: 2}
   - {fileID: 11400000, guid: 330f6411560614e4d9addb7bb1b56100, type: 2}
-  baseStats: {fileID: 11400000, guid: b3dc66d016058a14c9577b5b5072d837, type: 2}
   level: 0
   Xp: 0
   XpToLevelUp: 0
@@ -694,6 +621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249cec09c3676ed499d8e0eb323dc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: 0953b6917d58d224f9d1b767cdb52e33, type: 2}
+  combatManager: {fileID: 0}
   CurrentHealth: 0
   CurrentMaxHealth: 0
   CurrentAttack: 0
@@ -712,85 +641,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54dc62350646a7841abbcd3c9e4c23a4, type: 2}
   - {fileID: 11400000, guid: 6a30a2367ee23ef46a0cc9ba5b138cc6, type: 2}
   - {fileID: 11400000, guid: a1bee7f176d8eed4d8fe43151116f700, type: 2}
-  baseStats: {fileID: 11400000, guid: 0953b6917d58d224f9d1b767cdb52e33, type: 2}
   level: 0
   Xp: 0
   XpToLevelUp: 0
---- !u!1 &1333242754
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1333242756}
-  - component: {fileID: 1333242755}
-  - component: {fileID: 1333242757}
-  m_Layer: 0
-  m_Name: Goblin1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1333242755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333242754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe08a0f24a8c1614697e8170f2f37fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentHealth: 100
-  CurrentMaxHealth: 100
-  CurrentAttack: 50
-  CurrentDefense: 10
-  CurrentIntelligence: 0
-  CurrentMagicDefense: 0
-  CurrentLuck: 0
-  shieldValue: 0
-  gainImmediateExtraTurn: 0
-  gainExtraTurnNextRound: 0
-  IsStunned: 0
-  abilityDatas:
-  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
-  - {fileID: 11400000, guid: ea83db238500f234c91b8176671c2200, type: 2}
-  baseStats: {fileID: 11400000, guid: f387dd313ccf343479409da158c2cff1, type: 2}
-  aiController: {fileID: 1333242757}
-  Level: 1
-  XPGiven: 10
---- !u!4 &1333242756
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333242754}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.42618492, y: 1.8320773, z: 0.021061493}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2070275927}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1333242757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333242754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc099ce1f7f07e24292b15a42a1e567f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1432472539
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,6 +823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249cec09c3676ed499d8e0eb323dc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: f1d7c6db20df76d45a6a0104e25d7911, type: 2}
+  combatManager: {fileID: 0}
   CurrentHealth: 0
   CurrentMaxHealth: 0
   CurrentAttack: 0
@@ -988,7 +843,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
   - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
   - {fileID: 11400000, guid: 59c07c62cdc50924e8711b4b75d77d1f, type: 2}
-  baseStats: {fileID: 11400000, guid: f1d7c6db20df76d45a6a0104e25d7911, type: 2}
   level: 0
   Xp: 0
   XpToLevelUp: 0
@@ -1771,8 +1625,12 @@ MonoBehaviour:
   - {fileID: 1237639829}
   - {fileID: 373294726}
   EnemyMembers:
-  - {fileID: 1333242755}
-  - {fileID: 34028273}
+  - {fileID: 0}
+  - {fileID: 0}
+  EasyEnemyPrefabs:
+  - {fileID: 1319745972453201213, guid: a6de0adef9db4e64ea00614e32862983, type: 3}
+  - {fileID: 3802745477803689390, guid: 9227a7e8b53779247a9714520b3c624f, type: 3}
+  - {fileID: 2502826012427696894, guid: 54545b38b18f8a3468a5a57be397740d, type: 3}
   InCombat: 0
 --- !u!4 &2070275927
 Transform:
@@ -1790,8 +1648,6 @@ Transform:
   - {fileID: 1533349077}
   - {fileID: 1237639828}
   - {fileID: 373294725}
-  - {fileID: 1333242756}
-  - {fileID: 34028272}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
