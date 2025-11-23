@@ -14,6 +14,7 @@ public class ExtraTurnNextBehaviour : AbilityBehaviour
             if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
             {
                 target.gainExtraTurnNextRound = true;
+                user.ContributionPoints += 1f;
             }
         }
     }

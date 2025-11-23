@@ -13,6 +13,7 @@ public class ExtraTurnImmediateBehaviour : AbilityBehaviour
             if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
             {
                 target.gainImmediateExtraTurn = true;
+                user.ContributionPoints += 1f;
             }
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -106,6 +107,7 @@ public class PartyMemberView : MonoBehaviour
         vm.OnUIStateChanged += UpdateUIState;
         vm.OnHealthChanged += UpdateHealthBar;
         vm.OnTurnStateChanged += UpdateButtons;
+        
     }
 
     private void UpdateHealthBar(int newHealth)
@@ -144,5 +146,7 @@ public class PartyMemberView : MonoBehaviour
         viewModel.OnHealthChanged -= UpdateHealthBar;
         viewModel.OnTurnStateChanged -= UpdateButtons;
     }
+
+   
 
 }

@@ -27,3 +27,4 @@ MonoBehaviour:
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 0
   EffectChanceScaling: 0.3
+  IsTauntable: 1

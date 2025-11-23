@@ -289,9 +289,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e443d2e76e2fe1489e0c70b6f984361, type: 2}
   - {fileID: 11400000, guid: 69578b355fecd3a4588e3bbacc5b6345, type: 2}
   - {fileID: 11400000, guid: c4ebcbc5c283b8a4c88284aa652695de, type: 2}
-  level: 0
+  PlayerKilledBy: {fileID: 0}
+  ContributionPoints: 0
+  level: 1
   Xp: 0
-  XpToLevelUp: 0
+  XpToLevelUp: 100
+  availableStatPoints: 0
+  Class: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +496,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 82d68600fa0db03489ce0ad88d8704d2, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -559,9 +563,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea83db238500f234c91b8176671c2200, type: 2}
   - {fileID: 11400000, guid: f50ba7b9efa391c4eb038a8881d985fd, type: 2}
   - {fileID: 11400000, guid: 330f6411560614e4d9addb7bb1b56100, type: 2}
-  level: 0
+  PlayerKilledBy: {fileID: 0}
+  ContributionPoints: 0
+  level: 1
   Xp: 0
-  XpToLevelUp: 0
+  XpToLevelUp: 100
+  availableStatPoints: 0
+  Class: 0
 --- !u!4 &796863949
 Transform:
   m_ObjectHideFlags: 0
@@ -641,9 +649,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54dc62350646a7841abbcd3c9e4c23a4, type: 2}
   - {fileID: 11400000, guid: 6a30a2367ee23ef46a0cc9ba5b138cc6, type: 2}
   - {fileID: 11400000, guid: a1bee7f176d8eed4d8fe43151116f700, type: 2}
-  level: 0
+  PlayerKilledBy: {fileID: 0}
+  ContributionPoints: 0
+  level: 1
   Xp: 0
-  XpToLevelUp: 0
+  XpToLevelUp: 100
+  availableStatPoints: 0
+  Class: 0
 --- !u!1 &1432472539
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,10 +854,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f07c39db5b953840bdc4ac036150d4b, type: 2}
   - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
   - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
-  - {fileID: 11400000, guid: 59c07c62cdc50924e8711b4b75d77d1f, type: 2}
-  level: 0
+  - {fileID: 11400000, guid: 8a744864d921c294b83e42a27b75d691, type: 2}
+  PlayerKilledBy: {fileID: 0}
+  ContributionPoints: 0
+  level: 1
   Xp: 0
-  XpToLevelUp: 0
+  XpToLevelUp: 100
+  availableStatPoints: 0
+  Class: 0
 --- !u!1 &1668612068
 GameObject:
   m_ObjectHideFlags: 0

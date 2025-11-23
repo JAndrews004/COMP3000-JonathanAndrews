@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Heavy Attack
   description: 
   icon: {fileID: 0}
-  isPassive: 0
+  abilityCategory: 0
   powerType: 0
   abilityType: 0
   maxUsage: 20
@@ -24,5 +24,7 @@ MonoBehaviour:
   numberOfTargets: 1
   PhysicalBehaviour: {fileID: 11400000, guid: 2d0f709f91c411c4cb2ee02c02132e6a, type: 2}
   EffectBehaviour: {fileID: 0}
+  passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 0
   EffectChanceScaling: 0
+  IsTauntable: 1

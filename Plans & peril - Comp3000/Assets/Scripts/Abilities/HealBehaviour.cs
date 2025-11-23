@@ -11,6 +11,7 @@ public class HealBehaviour : AbilityBehaviour
 
     public override void Execute(CombatMember user, List<CombatMember> targets, AbilityData ability)
     {
+        user.ContributionPoints += 0.8f;
         foreach (var target in targets)
         {
             float baseHeal = target.CurrentMaxHealth * basePercent;

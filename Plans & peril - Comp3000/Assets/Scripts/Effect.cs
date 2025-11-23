@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class Effect
@@ -201,7 +202,7 @@ public class PoisonEffect : Effect
     }
     public override void Apply(CombatMember target)
     {
-        target.TakeDamage(User,damagePerTick);
+        target.TakeDamage(User,damagePerTick,true,true);
     }
 
     public override void Remove(CombatMember target)
@@ -210,7 +211,7 @@ public class PoisonEffect : Effect
     }
     public override void Tick(CombatMember target)
     {
-        target.TakeDamage(User, damagePerTick);
+        target.TakeDamage(User, damagePerTick, true, true);
         duration--;
     }
 
@@ -232,8 +233,8 @@ public class BurnEffect : Effect
     }
     public override void Apply(CombatMember target)
     {
-        target.TakeDamage(User, damagePerTick);
-        target.ApplyEffect(new DebuffEffect(StatType.Defense, DefenseReduction, duration));
+        target.TakeDamage(User, damagePerTick, true, true);
+        target.ApplyEffect(new DebuffEffect(StatType.Defense, DefenseReduction, duration),true);
     }
 
     public override void Remove(CombatMember target)
@@ -243,7 +244,7 @@ public class BurnEffect : Effect
 
     public override void Tick(CombatMember target)
     {
-        target.TakeDamage(User, damagePerTick);
+        target.TakeDamage(User, damagePerTick,true,true);
         duration--;
     }
 }
@@ -263,7 +264,7 @@ public class BleedEffect : Effect
     }
     public override void Apply(CombatMember target)
     {
-        target.TakeDamage(User,Mathf.RoundToInt(this.User.CurrentAttack*attackMult));
+        target.TakeDamage(User,Mathf.RoundToInt(this.User.CurrentAttack*attackMult),true,true);
         
     }
 
@@ -274,7 +275,53 @@ public class BleedEffect : Effect
 
     public override void Tick(CombatMember target)
     {
-        target.TakeDamage(User,Mathf.RoundToInt(this.User.CurrentAttack * attackMult));
+        target.TakeDamage(User,Mathf.RoundToInt(this.User.CurrentAttack * attackMult), true, true);
         duration--;
+    }
+}
+
+public class TauntEffect : Effect
+{
+    public TauntEffect(int duration, CombatMember user)
+    {
+        this.duration = duration;
+        this.User = user;
+        
+
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+}
+
+public class ReflectEffect : Effect
+{
+    public bool reflectDamage;
+    public bool refelctEffects;
+    public float damageRefelctionPercent;
+    public float chanceOfEffectReflect;
+
+    public ReflectEffect(int duration, CombatMember user ,bool reflectDamage, bool refelctEffects, float damageRefelctionPercent, float chanceOfEffectReflect)
+    {
+        this.duration = duration;
+        this.User = user;
+        this.reflectDamage = reflectDamage;
+        this.refelctEffects = refelctEffects;
+        this.damageRefelctionPercent = damageRefelctionPercent;
+        this.chanceOfEffectReflect = chanceOfEffectReflect;
+
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
     }
 }

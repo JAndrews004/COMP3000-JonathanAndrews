@@ -61,8 +61,10 @@ MonoBehaviour:
   abilityDatas:
   - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
   - {fileID: 11400000, guid: ea83db238500f234c91b8176671c2200, type: 2}
+  PlayerKilledBy: {fileID: 0}
+  ContributionPoints: 0
   aiController: {fileID: 1319745972453201210}
-  Level: 1
+  Level: 3
   XPGiven: 10
 --- !u!114 &1319745972453201210
 MonoBehaviour:

@@ -8,6 +8,8 @@ public class Characters : ScriptableObject
     [Header("Basic Info")]
     public string characterName;
     public Sprite characterSprite;
+    public int level;
+    public int xp;
 
     [Header("Stats")]
     public int maxHealth;

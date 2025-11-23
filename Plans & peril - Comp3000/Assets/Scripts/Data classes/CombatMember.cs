@@ -36,15 +36,36 @@ public abstract class CombatMember : MonoBehaviour
     public event Action<CombatMember, Ability> OnCastAbility;
 
     public bool Alive => CurrentHealth > 0;
-    
+    [HideInInspector]
+    public CombatMember PlayerKilledBy;
+    [HideInInspector]
+    public float ContributionPoints = 0;
 
 
-    public void ApplyEffect(Effect effect)
+    public void ApplyEffect(Effect effect,bool reflectable)
     {
         if(activeEffects == null)
         {
             Debug.LogWarning($"{name}: activeEffects was null — initializing manually");
             activeEffects = new List<Effect>();
+        }
+        if (reflectable)
+        {
+            foreach (ReflectEffect Effect in activeEffects)
+            {
+                if (Effect.refelctEffects)
+                {
+                    float reflectChance = Effect.chanceOfEffectReflect + this.CurrentLuck * 0.002f;
+
+                    reflectChance = Mathf.RoundToInt(reflectChance * 100);
+
+                    if (Random.Range(0, 100) <= reflectChance)
+                    {
+                        effect.User.ApplyEffect(effect, false);
+                        return;
+                    }
+                }
+            }
         }
         effect.Apply(this);
         activeEffects.Add(effect);
@@ -77,7 +98,7 @@ public abstract class CombatMember : MonoBehaviour
             }
         }
     }
-    public void TakeDamage(CombatMember attacker,int AttackPower)
+    public void TakeDamage(CombatMember attacker,int AttackPower,bool physical,bool reflectable)
     {
         if (activeEffects == null)
         {
@@ -90,25 +111,54 @@ public abstract class CombatMember : MonoBehaviour
                 effect.Remove(this);
             }
         }
+        float damagePercentage = 1.0f;
+        int maxDodgeChance = 60;
+        double Kd = 50.0;
+        double dodgeChance = maxDodgeChance * (1 - Math.Exp(-((double)CurrentLuck / Kd)));
 
-        float dodgeChance = CurrentLuck * 0.2f;
-
-        if(Random.Range(0,100)<= dodgeChance)
+        if (Random.Range(0,100)<= dodgeChance)
         {
+            damagePercentage *= 0.5f;
             Debug.Log($"{name} dodged the attack");
             return;
         }
-        int critChance = attacker.CurrentLuck;
+        int maxCritChance = 50;
+        double Kc = 35.0;
+        double critChance = maxCritChance * (1- Math.Exp(-((double)attacker.CurrentLuck / Kc)));
         if (critChance>= 50)
         {
             critChance = 50;
         }
         if(Random.Range(0,100)<= critChance)
         {
-            AttackPower = Mathf.RoundToInt(AttackPower * 1.5f);
+            damagePercentage *= 1.5f;
         }
 
+        AttackPower = Mathf.RoundToInt(AttackPower * damagePercentage);
+        if (reflectable)
+        {
+            foreach (ReflectEffect effect in activeEffects)
+            {
+                float reflectDamage = 0;
+                if (effect is ReflectEffect)
+                {
 
+                    if (effect.reflectDamage)
+                    {
+                        if (physical)
+                        {
+                            reflectDamage = effect.damageRefelctionPercent + this.CurrentDefense * 0.003f;
+                        }
+                        else
+                        {
+                            reflectDamage = effect.damageRefelctionPercent + this.CurrentMagicDefense * 0.003f;
+                        }
+                    }
+                }
+
+                attacker.TakeDamage(this, Mathf.RoundToInt(AttackPower * Mathf.Clamp(reflectDamage, 0, 1)), true,false);
+            }
+        }
         if (AttackPower > shieldValue)
         {
             shieldValue = 0;
@@ -120,10 +170,11 @@ public abstract class CombatMember : MonoBehaviour
             return;
         }
 
-
+        
         if (CurrentHealth - AttackPower <= 0)
         {
             CurrentHealth = 0;
+            PlayerKilledBy = attacker;
             OnDeath?.Invoke(this);
             OnHealthChanged?.Invoke(this);
             activeEffects.Clear();
@@ -187,15 +238,17 @@ public abstract class CombatMember : MonoBehaviour
 
     public float CalculateAbilityDamage(CombatMember user, CombatMember target, AbilityData ability)
     {
+        float maxDR = 0.70f;
+        int kd = 80;
         int baseDamage = ability.PhysicalBehaviour.baseDamage;
         float damage = 0;
         if(ability.powerType == AbilityPowerType.Physical)
         {
-            damage = baseDamage * (1 + (user.CurrentAttack / 100)) - target.CurrentDefense;
+            damage = baseDamage * (1 + (user.CurrentAttack / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentDefense / kd))));
         }
         else if(ability.powerType == AbilityPowerType.Magical)
         {
-            damage = baseDamage * (1 + (user.CurrentIntelligence / 100)) - target.CurrentMagicDefense;
+            damage = baseDamage * (1 + (user.CurrentIntelligence / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentMagicDefense / kd))));
         }
         else if(ability.powerType == AbilityPowerType.True)
         {

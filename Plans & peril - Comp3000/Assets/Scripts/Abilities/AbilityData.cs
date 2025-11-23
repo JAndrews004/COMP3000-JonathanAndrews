@@ -47,7 +47,7 @@ public class AbilityData : ScriptableObject
     public PassiveBehaviour passiveBehaviour;
     public bool guaranteedEffectHit;
     public float EffectChanceScaling;
-
+    public bool IsTauntable;
 
 
 }

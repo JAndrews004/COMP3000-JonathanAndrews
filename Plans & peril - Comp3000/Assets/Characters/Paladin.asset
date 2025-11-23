@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Paladin
   characterSprite: {fileID: 0}
+  level: 1
   maxHealth: 175
   attack: 60
   defense: 30

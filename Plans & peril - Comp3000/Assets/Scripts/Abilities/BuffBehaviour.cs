@@ -27,7 +27,8 @@ public class BuffBehaviour : AbilityBehaviour
                     effectToAdd.description = ability.description;
                     effectToAdd.icon = ability.icon;
                     effectToAdd.colorType = colorType.Positive;
-                    target.ApplyEffect(effectToAdd);
+                    user.ContributionPoints += 0.5f;
+                    target.ApplyEffect(effectToAdd, false);
 
                     
                 }
@@ -41,7 +42,8 @@ public class BuffBehaviour : AbilityBehaviour
                     effectToAdd.description = ability.description;
                     effectToAdd.icon = ability.icon;
                     effectToAdd.colorType = colorType.Positive;
-                    target.ApplyEffect(effectToAdd);
+                    user.ContributionPoints += 0.5f;
+                    target.ApplyEffect(effectToAdd, false);
 
                     
                 }

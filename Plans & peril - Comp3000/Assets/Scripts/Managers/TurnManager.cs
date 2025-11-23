@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class TurnManager : MonoBehaviour
 {
@@ -239,11 +240,46 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Turns in list: " + turns.Count);
         foreach (var t in turns)
         {
-            if(t.Target.Count >=0)
+            if (t.Action.AbilityData.IsTauntable)
             {
-                Debug.Log("Targets for turn " + t.Target.Count);
+                List<CombatMember> newTargets = new List<CombatMember>();
+                List<CombatMember> Taunters = new List<CombatMember>();
+
+                foreach (Effect effect in t.Attacker.activeEffects)
+                {
+                    if (effect is TauntEffect)
+                    {
+                 
+                        Taunters.Add(effect.User);
+                    }
+                }
+                foreach (CombatMember Taunt in Taunters)
+                {
+                    if (newTargets.Count == t.Target.Count)
+                    {
+                        break;
+                    }
+                    newTargets.Add(Taunt);
+                }
+
+                foreach (CombatMember Taunt in t.Target)
+                {
+                    if (newTargets.Count == t.Target.Count)
+                    {
+                        break;
+                    }
+                    if (!newTargets.Contains(Taunt))
+                    {
+                        newTargets.Add(Taunt);
+                    }
+                }
+                combatManager.battleLogManager.AddMessage(
+                $"<color=#00FF00>{t.Attacker.baseStats.characterName}</color> " +
+                $"was prevoked by {string.Join(", ", Taunters.Select(t => $"<color=#00FF00>{t.baseStats.characterName}</color>"))} and used <color=#0000FF>{t.Action.AbilityData.abilityName}</color>"
+            );
+                t.Target = newTargets;
             }
-            if(t.Action.AbilityData.PhysicalBehaviour != null)
+            if (t.Action.AbilityData.PhysicalBehaviour != null)
             {
                 
                 t.Action.AbilityData.PhysicalBehaviour.Execute(t.Attacker, t.Target, t.Action.AbilityData);
@@ -330,13 +366,18 @@ public class TurnManager : MonoBehaviour
         TurnOffAllHighlights();
         TurnOffAllCharacterSelecArrows();
         TurnOffAllTargetSelecArrows();
-        CheckWinLoss();
+        
         foreach (var member in PartyMembers)
         {
             member.TickEffects();
         }
         combatManager.RefreshAllStatusEffects();
-        StartEnemyPhase();
+
+        if (!CheckWinLoss())
+        {
+            StartEnemyPhase();
+        }
+        
     }
 
     private void StartEnemyPhase()
@@ -358,29 +399,37 @@ public class TurnManager : MonoBehaviour
 
     public void EndEnemyPhase()
     {
-        CheckWinLoss();
+        
         foreach (var member in EnemyMembers)
         {
             member.TickEffects();
         }
         combatManager.RefreshAllStatusEffects();
-        StartPlayerPhase();
+        if (!CheckWinLoss())
+        {
+            StartPlayerPhase();
+        }
+       
+        
     }
 
-    private void CheckWinLoss()
+    private bool CheckWinLoss()
     {
         if (EnemyMembers.All(e => !e.Alive))
         {
             Debug.Log("All enemies defeated! You win!");
+            combatManager.win = true;
             combatManager.EndCombat();
-            GameManager.Instance.EndCombat();
+            
+            return true;
         }
         else if (PartyMembers.All(p => !p.Alive))
         {
             Debug.Log("All players defeated! Game over!");
             combatManager.EndCombat();
-            GameManager.Instance.EndCombat();
+            return true;
         }
+        return false;
     }
 
     public void StartCharacterSelection()

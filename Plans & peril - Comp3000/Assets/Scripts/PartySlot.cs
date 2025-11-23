@@ -19,7 +19,7 @@ public class PartySlot : MonoBehaviour
     public GameObject StatusIconPrefab;     
     private Dictionary<Effect, GameObject> ActiveIcons = new Dictionary<Effect, GameObject>();
     private void Start()
-    {
+    { 
         NameText = GetComponentInChildren<TextMeshPro>();
         if (TargetHighlight != null)
         {

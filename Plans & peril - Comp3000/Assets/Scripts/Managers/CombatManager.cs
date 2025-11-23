@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static AbilityData;
+using static UnityEngine.GraphicsBuffer;
 
 public class CombatManager : MonoBehaviour
 {
@@ -25,9 +28,13 @@ public class CombatManager : MonoBehaviour
     public BattleLogManager battleLogManager;
     public StatusTooltip statusTooltip;
 
+    public LevelUpManager levelUpManager;
+    public CombatEndScreen combatEndScreen;
 
     private Dictionary<PartyMember, PartyMemberViewModel> partyMemberViewModels = new Dictionary<PartyMember, PartyMemberViewModel>();
     public List<PartyMemberViewModel> PartyMemberViewModels = new List<PartyMemberViewModel>();
+
+    [HideInInspector] public bool win = false;
     void Start()
     {
         GameManager.Instance.RefreshPartyMembers();
@@ -214,6 +221,14 @@ public class CombatManager : MonoBehaviour
 
     public void ShowTargetButtons()
     {
+        foreach(PartyMember pm in turnManager.PartyMembers)
+        {
+            turnManager.FindPartyMemberSlot(pm).GetComponent<PartySlot>().TurnTargetArrowOff();
+        }
+        foreach (EnemyMember em in turnManager.EnemyMembers)
+        {
+            turnManager.FindEnemyMemberSlot(em).GetComponent<EnemySlot>().TurnTargetArrowOff();
+        }
         AbilityData currentAbility = turnManager.SelectedAction.AbilityData;
         turnManager.TurnOffAllHighlights();
         if (currentAbility == null)
@@ -268,6 +283,8 @@ public class CombatManager : MonoBehaviour
 
     void ShowDeadAllyButtons()
     {
+        currentActiveView?.GetComponent<PartyMemberView>().HideConfirmButton();
+        turnManager.SelectedTarget.Clear();
         foreach (var btn in CharacterButtons)
             btn.SetActive(false);
 
@@ -296,6 +313,7 @@ public class CombatManager : MonoBehaviour
     }
     void SelectAllEnemies()
     {
+        currentActiveView?.GetComponent<PartyMemberView>().HideConfirmButton();
         turnManager.SelectedTarget.Clear();
         foreach(EnemyMember member in turnManager.EnemyMembers)
         {
@@ -304,6 +322,7 @@ public class CombatManager : MonoBehaviour
     }
     void SelectAllAllies()
     {
+        currentActiveView?.GetComponent<PartyMemberView>().HideConfirmButton();
         turnManager.SelectedTarget.Clear();
         foreach (PartyMember member in turnManager.PartyMembers)
         {
@@ -312,6 +331,8 @@ public class CombatManager : MonoBehaviour
     }
     void ShowEnemyTargetButtons()
     {
+        currentActiveView?.GetComponent<PartyMemberView>().HideConfirmButton();
+        turnManager.SelectedTarget.Clear();
         foreach (var button in EnemyTargetButtons)
         {
             var slot = button.GetComponentInParent<EnemySlot>();
@@ -336,6 +357,8 @@ public class CombatManager : MonoBehaviour
 
     void ShowCharacterTargetButtons()
     {
+        currentActiveView?.GetComponent<PartyMemberView>().HideConfirmButton();
+        turnManager.SelectedTarget.Clear();
         foreach (var btn in CharacterButtons)
             btn.SetActive(false);
 
@@ -439,6 +462,62 @@ public class CombatManager : MonoBehaviour
             btn.SetActive(false);
         // Any other cleanup, like resetting state or notifying GameManager
         Debug.Log("Combat ended!");
+
+        
+        combatEndScreen.Bind(PartyMembers, win);
+        //Giving out XP to characters
+        int xpchar1 = 0;
+        int xpchar2 = 0;
+        int xpchar3 = 0;
+        int xpchar4 = 0;
+
+        for (int i =0; i<turnManager.EnemyMembers.Count; i++)
+        {
+            var enemy = turnManager.EnemyMembers[i];
+            int totalXp = enemy.XPGiven;
+            int KillerBonus = Mathf.RoundToInt(totalXp * 0.3f);
+            int remainingXp = totalXp - KillerBonus;
+            float totalContributionPoints = 0;
+            for (int j = 0; j < turnManager.PartyMembers.Count; j++)
+            {
+                totalContributionPoints += turnManager.PartyMembers[j].ContributionPoints;
+            }
+
+            for (int j=0; j < turnManager.PartyMembers.Count; j++)
+            {
+                float contributionPoints = turnManager.PartyMembers[j].ContributionPoints;
+
+                int XpAward = Mathf.RoundToInt(contributionPoints / totalContributionPoints * remainingXp);
+                if(enemy.PlayerKilledBy == turnManager.PartyMembers[j])
+                {
+                    XpAward += KillerBonus;
+                }
+                switch (j)
+                {
+                    case 0:
+                        xpchar1 += XpAward;
+                        break;
+                    case 1:
+                        xpchar2 += XpAward;
+                        break;
+                    case 2:
+                        xpchar3 += XpAward;
+                        break;
+                    case 3:
+                        xpchar4 += XpAward;
+                        break;
+                }
+                turnManager.PartyMembers[j].AddXP(XpAward);
+            }
+        }
+       
+        StartCoroutine(AnimateXPBarsOnEnd(xpchar1, xpchar2, xpchar3, xpchar4));
+
+        levelUpManager.StartLevelUpSequence();
+        foreach(PartyMember mem in PartyMembers)
+        {
+            mem.baseStats.xp = mem.Xp;
+        }
     }
 
     private void InitializePassives()
@@ -480,4 +559,11 @@ public class CombatManager : MonoBehaviour
             slot.RefreshStatusEffects();
     }
 
+    public IEnumerator AnimateXPBarsOnEnd(int x1, int x2, int x3, int x4 )
+    {
+        yield return combatEndScreen.UpdateXPChar1(PartyMembers[0], x1);
+        yield return combatEndScreen.UpdateXPChar2(PartyMembers[1], x2);
+        yield return combatEndScreen.UpdateXPChar3(PartyMembers[2], x3);
+        yield return combatEndScreen.UpdateXPChar4(PartyMembers[3], x4);
+    }
 }

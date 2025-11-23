@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/Behaviours/Attack")]
@@ -15,8 +16,15 @@ public class AttackBehaviour : AbilityBehaviour
                 totalDamage = 0;
             }
             Debug.Log($"{user.name} calculated damager as {totalDamage}");
-            target.TakeDamage(user,Mathf.RoundToInt(totalDamage));
+
+            bool physical = ability.powerType == AbilityPowerType.Physical
+                || ability.powerType == AbilityPowerType.True;
+
+
+
+            target.TakeDamage(user,Mathf.RoundToInt(totalDamage), physical, true);
         }
+        user.ContributionPoints += 1;
     }
 }
 

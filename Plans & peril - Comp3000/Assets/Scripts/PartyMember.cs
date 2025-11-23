@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,15 @@ public class PartyMember : CombatMember
 
     public int level;
     public int Xp;
-    public int XpToLevelUp;
+    public int XpToLevelUp = 100;
     public bool HasTurn { get; set; } = true;
-   
 
-   
+    public int availableStatPoints = 0;
+    public event Action<PartyMember> levelUp;
+
+    public CharacterClass Class;
+
+    
     //List<ActiveEffect> activeEffectsTurns;
     private void Awake()
     {
@@ -33,18 +38,45 @@ public class PartyMember : CombatMember
         if (activeEffects == null)
             activeEffects = new List<Effect>();
 
+        level = baseStats.level;
+        Xp = baseStats.xp;
+        if (level < 10)
+        {
+            Class = CharacterClass.F;
+        }
+        else if (level < 20)
+        {
+            Class = CharacterClass.E;
+        }
+        else if (level < 30)
+        {
+            Class = CharacterClass.D;
+        }
+        else if (level < 40)
+        {
+            Class = CharacterClass.C;
+        }
+        else if (level < 50)
+        {
+            Class = CharacterClass.B;
+        }
+        else if (level < 60)
+        {
+            Class = CharacterClass.A;
+        }
+        else if (level < 70)
+        {
+            Class = CharacterClass.S;
+        }
+
         DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
-        
-        CurrentMaxHealth = baseStats.maxHealth;
-        CurrentHealth = CurrentMaxHealth;
-        CurrentAttack = baseStats.attack;
-        CurrentDefense = baseStats.defense;
-        CurrentIntelligence = baseStats.intelligence;
 
         UpdateStats();
+
+        UpdateXpRequired();
 
     }
 
@@ -53,20 +85,70 @@ public class PartyMember : CombatMember
     {
         
     }
-
-    void UpdateStats()
+    public void UpdateStats()
     {
-
+        CurrentMaxHealth = baseStats.maxHealth;
+        CurrentHealth = CurrentMaxHealth;
+        CurrentAttack = baseStats.attack;
+        CurrentDefense = baseStats.defense;
+        CurrentIntelligence = baseStats.intelligence;
+        CurrentLuck = baseStats.Luck;
+        CurrentMagicDefense = baseStats.magicDefence;
     }
 
-    
-   
+    void UpdateXpRequired()
+    {
+        XpToLevelUp = 100 * level * level;
+    }
+    public void AddXP(int xp)
+    {
+        Xp += xp;                
+        UpdateXpRequired();    
+
+        
+        while (Xp >= XpToLevelUp)
+        {
+            Xp -= XpToLevelUp;   
+            level++;
+
+            //Give stat points based on new level
+            if (level <= 10)
+            {
+                availableStatPoints += 3;
+            }
+            else if (level <= 20)
+            {
+                availableStatPoints += 2;
+            }
+            else if (level <= 40)
+            {
+                availableStatPoints += 4;
+            }
+            else
+            {
+                availableStatPoints += 2;
+            }
+            levelUp?.Invoke(this);
+            UpdateXpRequired();  //Recalculate for next level
+        }
+        baseStats.level = level;
+    }
+
+    class ActiveEffect
+    {
+        AbilityData source;
+        StatType statModified;
+        float modifier;
+        int remainingTurns;
+    }
 }
-class ActiveEffect
+public enum CharacterClass
 {
-    AbilityData source;
-    StatType statModified;
-    float modifier;
-    int remainingTurns;
+    S,
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
 }
-    

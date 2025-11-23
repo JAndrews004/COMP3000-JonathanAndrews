@@ -15,14 +15,16 @@ MonoBehaviour:
   abilityName: Basic Attack
   description: 
   icon: {fileID: 0}
-  isPassive: 0
+  abilityCategory: 0
   powerType: 0
   abilityType: 0
   maxUsage: 50
   cooldown: 0
-  targetType: 0
-  numberOfTargets: 1
+  targetType: 1
+  numberOfTargets: 2
   PhysicalBehaviour: {fileID: 11400000, guid: 6a051eb55a153fa49bec04b3ab30506d, type: 2}
   EffectBehaviour: {fileID: 0}
+  passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0
+  IsTauntable: 1

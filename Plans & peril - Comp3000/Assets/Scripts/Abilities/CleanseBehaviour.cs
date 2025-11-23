@@ -25,6 +25,7 @@ public class CleanseBehaviour : AbilityBehaviour
                     effect.Remove(target);
                     target.activeEffects.Remove(effect);
                 }
+                user.ContributionPoints += 0.8f;
                 effectsToRemove.Clear();
             }
         }

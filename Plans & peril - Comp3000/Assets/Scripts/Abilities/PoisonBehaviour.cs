@@ -22,7 +22,8 @@ public class PoisonBehaviour : AbilityBehaviour
                     effectToAdd.description = ability.description;
                     effectToAdd.icon = ability.icon;
                     effectToAdd.colorType = colorType.Negative;
-                    target.ApplyEffect(effectToAdd);
+                    user.ContributionPoints += 0.5f;
+                    target.ApplyEffect(effectToAdd, true);
                 }
             }
             else
@@ -42,7 +43,8 @@ public class PoisonBehaviour : AbilityBehaviour
                     effectToAdd.description = ability.description;
                     effectToAdd.icon = ability.icon;
                     effectToAdd.colorType = colorType.Negative;
-                    target.ApplyEffect(effectToAdd);
+                    user.ContributionPoints += 0.5f;
+                    target.ApplyEffect(effectToAdd,true);
                 }
             }
             

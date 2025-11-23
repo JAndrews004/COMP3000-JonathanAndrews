@@ -17,6 +17,7 @@ public class UnStunBehaviour : AbilityBehaviour
             {
                 if (effect is StunEffect)
                 {
+                    user.ContributionPoints += 0.5f;
                     effect.Remove(target);
                 }
             }

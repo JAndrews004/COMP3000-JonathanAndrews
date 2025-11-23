@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Goblin
   characterSprite: {fileID: 0}
+  level: 1
   maxHealth: 200
   attack: 40
   defense: 10
