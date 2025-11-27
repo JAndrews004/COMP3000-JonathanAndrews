@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using Random = UnityEngine.Random;
@@ -49,6 +50,14 @@ public abstract class CombatMember : MonoBehaviour
             Debug.LogWarning($"{name}: activeEffects was null — initializing manually");
             activeEffects = new List<Effect>();
         }
+        foreach (ImmunityEffect Effect in activeEffects.OfType<ImmunityEffect>())
+        {
+            if(effect is DebuffEffect or TauntEffect or SleepEffect or InterferenceEffect)
+            {
+                return;
+            }
+        }
+
         if (reflectable)
         {
             foreach (ReflectEffect Effect in activeEffects)
@@ -137,7 +146,7 @@ public abstract class CombatMember : MonoBehaviour
         AttackPower = Mathf.RoundToInt(AttackPower * damagePercentage);
         if (reflectable)
         {
-            foreach (ReflectEffect effect in activeEffects)
+            foreach (ReflectEffect effect in activeEffects.OfType<ReflectEffect>())
             {
                 float reflectDamage = 0;
                 if (effect is ReflectEffect)
@@ -159,6 +168,17 @@ public abstract class CombatMember : MonoBehaviour
                 attacker.TakeDamage(this, Mathf.RoundToInt(AttackPower * Mathf.Clamp(reflectDamage, 0, 1)), true,false);
             }
         }
+        foreach (VulnerabilityEffect effect in activeEffects.OfType<VulnerabilityEffect>())
+        {
+            AttackPower =Mathf.RoundToInt( AttackPower*(1 + effect.percentageIncrease));
+        }
+        foreach (GuardEffect effect in activeEffects.OfType<GuardEffect>())
+        {
+            int GuardPower = Mathf.RoundToInt(AttackPower * (effect.percentage));
+            effect.User.TakeDamage(attacker,GuardPower,true,false);
+            AttackPower -= GuardPower;
+        }
+
         if (AttackPower > shieldValue)
         {
             shieldValue = 0;

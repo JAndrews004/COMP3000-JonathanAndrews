@@ -325,3 +325,105 @@ public class ReflectEffect : Effect
 
     }
 }
+
+public class InterferenceEffect : Effect
+{
+    public int newUses;
+    public InterferenceEffect(int duration, CombatMember user, int newUses)
+    {
+        this.duration = duration;
+        this.User = user;
+        this.newUses = newUses;
+
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+}
+
+public class RegenEffect : Effect
+{
+    public int hpAdded;
+    public RegenEffect(int duration, CombatMember user, int healthAdded)
+    {
+        this.duration = duration;
+        this.User = user;
+        this.hpAdded = healthAdded;
+
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+    public override void Tick(CombatMember target)
+    {
+        target.Heal(hpAdded);
+    }
+}
+
+public class VulnerabilityEffect : Effect
+{
+    public float percentageIncrease;
+    public VulnerabilityEffect(int duration, CombatMember user, float percentageIncrease)
+    {
+        this.duration = duration;
+        this.User = user;
+        this.percentageIncrease = percentageIncrease;
+
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+}
+
+public class GuardEffect : Effect
+{
+    public float percentage;
+    public GuardEffect(int duration, CombatMember user, float percentage)
+    {
+        this.duration = duration;
+        this.User = user;
+        this.percentage = percentage;
+
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+}
+
+public class ImmunityEffect : Effect
+{
+
+    public ImmunityEffect(int duration, CombatMember user)
+    {
+        this.duration = duration;
+        this.User = user;
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+}

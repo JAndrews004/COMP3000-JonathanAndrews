@@ -23,8 +23,9 @@ public class AttackBehaviour : AbilityBehaviour
 
 
             target.TakeDamage(user,Mathf.RoundToInt(totalDamage), physical, true);
+            user.ContributionPoints += 1;
         }
-        user.ContributionPoints += 1;
+       
     }
 }
 

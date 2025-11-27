@@ -283,12 +283,12 @@ MonoBehaviour:
   gainExtraTurnNextRound: 0
   IsStunned: 0
   abilityDatas:
-  - {fileID: 11400000, guid: 9f70ed7f97033394f8f82fb869c04e91, type: 2}
-  - {fileID: 11400000, guid: babb12f93f35d5f4995db8b111cfa27c, type: 2}
-  - {fileID: 11400000, guid: 3d8b4b5bea6a68246823338a3e1fa8b4, type: 2}
-  - {fileID: 11400000, guid: 8e443d2e76e2fe1489e0c70b6f984361, type: 2}
+  - {fileID: 11400000, guid: 8a744864d921c294b83e42a27b75d691, type: 2}
+  - {fileID: 11400000, guid: 6f28077f484a58a4f8a165c53bf53d75, type: 2}
+  - {fileID: 11400000, guid: 0b665bf8e8ea9c34db0dee4079534532, type: 2}
+  - {fileID: 11400000, guid: 11b6be3f188651245b37523a8e5e4bd4, type: 2}
   - {fileID: 11400000, guid: 69578b355fecd3a4588e3bbacc5b6345, type: 2}
-  - {fileID: 11400000, guid: c4ebcbc5c283b8a4c88284aa652695de, type: 2}
+  - {fileID: 11400000, guid: c2e298a804a9c9e4ea0953f162c2792d, type: 2}
   PlayerKilledBy: {fileID: 0}
   ContributionPoints: 0
   level: 1
@@ -853,8 +853,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f50ba7b9efa391c4eb038a8881d985fd, type: 2}
   - {fileID: 11400000, guid: 8f07c39db5b953840bdc4ac036150d4b, type: 2}
   - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
-  - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
-  - {fileID: 11400000, guid: 8a744864d921c294b83e42a27b75d691, type: 2}
+  - {fileID: 11400000, guid: d1b32ec47e3a2dc40b83cb491952c814, type: 2}
+  - {fileID: 11400000, guid: 67337951be78bdf4ab14dd19a3ea9ca7, type: 2}
   PlayerKilledBy: {fileID: 0}
   ContributionPoints: 0
   level: 1

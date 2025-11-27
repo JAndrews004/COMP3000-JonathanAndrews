@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Ability
@@ -19,8 +20,12 @@ public class Ability
         }
         
     }
-    public void DecreaseUses()
+    public void DecreaseUses(CombatMember user)
     {
+        foreach (InterferenceEffect effect in user.activeEffects.OfType<InterferenceEffect>())
+        {
+           usesLeft -= effect.newUses-1;
+        }
         usesLeft--;
 
         if (usesLeft <= 0)

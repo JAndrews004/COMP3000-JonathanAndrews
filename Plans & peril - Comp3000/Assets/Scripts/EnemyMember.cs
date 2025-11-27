@@ -204,7 +204,7 @@ public class EnemyMember : CombatMember
 
             
             
-            action.Action.DecreaseUses();
+            action.Action.DecreaseUses(this);
             action.Action.cooldownLeft = action.Action.AbilityData.cooldown;
             string targetNames = string.Join(", ", action.Target.Select(t => $"<color=#00FF00>{t.baseStats.characterName}</color>"));
 
@@ -232,7 +232,7 @@ public class EnemyMember : CombatMember
 
 
         }
-        yield return new WaitForSeconds(Random.Range(2,4));
+        yield return new WaitForSeconds(Random.Range(1,4));
     }
     public enum Tier
     {

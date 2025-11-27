@@ -292,7 +292,7 @@ public class TurnManager : MonoBehaviour
             }
             if(t.Action.AbilityData.PhysicalBehaviour != null|| t.Action.AbilityData.EffectBehaviour != null)
             {
-                t.Action.DecreaseUses();
+                t.Action.DecreaseUses(t.Attacker);
             }
             t.Action.cooldownLeft = t.Action.AbilityData.cooldown;
            
