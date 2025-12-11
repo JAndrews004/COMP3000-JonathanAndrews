@@ -68,7 +68,7 @@ public class PartyMember : CombatMember
         {
             Class = CharacterClass.S;
         }
-
+        availableStatPoints = baseStats.avaliableStatPoints;
         DontDestroyOnLoad(gameObject);
     }
     void Start()
@@ -132,6 +132,7 @@ public class PartyMember : CombatMember
             UpdateXpRequired();  //Recalculate for next level
         }
         baseStats.level = level;
+        baseStats.avaliableStatPoints = availableStatPoints;
     }
 
     class ActiveEffect

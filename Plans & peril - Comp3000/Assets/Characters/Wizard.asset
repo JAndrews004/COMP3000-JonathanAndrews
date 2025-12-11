@@ -15,9 +15,11 @@ MonoBehaviour:
   characterName: Wizard
   characterSprite: {fileID: 0}
   level: 1
-  maxHealth: 100
-  attack: 75
-  defense: 40
-  intelligence: 15
-  magicDefence: 20
-  Luck: 5
+  xp: 6
+  maxHealth: 110
+  attack: 6
+  defense: 6
+  intelligence: 19
+  magicDefence: 11
+  Luck: 11
+  avaliableStatPoints: 0

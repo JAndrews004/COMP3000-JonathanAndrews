@@ -730,8 +730,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Attack:\r\n  Increases physical damage output. Scales linearly with base
-    attack.\r\n\r\nDefense:\r\n  Reduces incoming physical damage with diminishing
+  m_text: "Strength:\r\n  Increases physical damage output. Scales linearly with
+    base attack.\r\n\r\nDefense:\r\n  Reduces incoming physical damage with diminishing
     returns (soft cap ~70%).\r\n\r\nMagicDefense:\r\n  Reduces incoming magical damage
     with diminishing returns (soft cap ~70%).\r\n\r\nIntelligence:\r\n  Increases
     magical damage output. Scales linearly with base INT.\r\n\r\nVitality:\r\n  Increases
@@ -6503,7 +6503,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Damage
+  m_text: Strength
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

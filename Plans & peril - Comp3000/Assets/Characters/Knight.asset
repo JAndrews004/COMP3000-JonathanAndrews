@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Knight
   characterSprite: {fileID: 21300000, guid: b0ade4dc4a796a041b6aeeed2f60ad40, type: 3}
-  level: 1
+  level: 0
   xp: 0
-  maxHealth: 250
-  attack: 50
-  defense: 20
-  intelligence: 2
-  magicDefence: 2
+  maxHealth: 120
+  attack: 15
+  defense: 10
+  intelligence: 5
+  magicDefence: 6
   Luck: 10
+  avaliableStatPoints: 0

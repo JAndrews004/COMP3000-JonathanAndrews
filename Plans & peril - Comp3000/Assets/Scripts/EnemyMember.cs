@@ -17,7 +17,7 @@ public class EnemyMember : CombatMember
     public int Level;
     public int XPGiven;
     
-    Tier tier;
+    public Tier tier;
 
 
     private void Awake()

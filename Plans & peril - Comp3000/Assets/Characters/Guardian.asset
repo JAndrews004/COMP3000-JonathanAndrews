@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Guardian
   characterSprite: {fileID: 0}
-  level: 1
-  maxHealth: 400
+  level: 0
+  xp: 0
+  maxHealth: 150
   attack: 10
-  defense: 60
-  intelligence: 2
-  magicDefence: 10
+  defense: 15
+  intelligence: 4
+  magicDefence: 8
   Luck: 10
+  avaliableStatPoints: 0

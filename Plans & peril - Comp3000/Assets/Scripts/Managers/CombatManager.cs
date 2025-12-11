@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static AbilityData;
+using static EnemyMember;
 using static UnityEngine.GraphicsBuffer;
 
 public class CombatManager : MonoBehaviour
@@ -517,6 +518,28 @@ public class CombatManager : MonoBehaviour
         foreach(PartyMember mem in PartyMembers)
         {
             mem.baseStats.xp = mem.Xp;
+        }
+        if (win)
+        {
+            foreach(EnemyMember mem in turnManager.EnemyMembers)
+            {
+                int goldToAdd = 300 + mem.baseStats.level * 200 + UnityEngine.Random.Range(0, mem.baseStats.level * 50);
+                switch (mem.tier)
+                {
+                    case Tier.Easy:
+                        break;
+                    case Tier.Medium:
+                        goldToAdd = Mathf.RoundToInt(goldToAdd*1.25f);
+                        break;
+                    case Tier.Hard:
+                        goldToAdd = Mathf.RoundToInt(goldToAdd * 2);
+                        break;
+                    case Tier.Boss:
+                        goldToAdd = Mathf.RoundToInt(goldToAdd * 3);
+                        break;
+                }
+                GameManager.Instance.AddGold(goldToAdd);
+            }
         }
     }
 

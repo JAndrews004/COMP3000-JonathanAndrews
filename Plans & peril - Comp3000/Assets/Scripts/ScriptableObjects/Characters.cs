@@ -18,5 +18,6 @@ public class Characters : ScriptableObject
     public int intelligence;
     public int magicDefence;
     public int Luck;
+    public int avaliableStatPoints;
 
 }

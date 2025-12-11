@@ -47,7 +47,7 @@ public abstract class CombatMember : MonoBehaviour
     {
         if(activeEffects == null)
         {
-            Debug.LogWarning($"{name}: activeEffects was null — initializing manually");
+            Debug.LogWarning($"{name}: activeEffects was null - initializing manually");
             activeEffects = new List<Effect>();
         }
         foreach (ImmunityEffect Effect in activeEffects.OfType<ImmunityEffect>())
@@ -60,7 +60,7 @@ public abstract class CombatMember : MonoBehaviour
 
         if (reflectable)
         {
-            foreach (ReflectEffect Effect in activeEffects)
+            foreach (ReflectEffect Effect in activeEffects.OfType<ReflectEffect>())
             {
                 if (Effect.refelctEffects)
                 {
@@ -113,12 +113,9 @@ public abstract class CombatMember : MonoBehaviour
         {
             activeEffects = new List<Effect>() { };
         }
-        foreach (Effect effect in activeEffects)
+        foreach (SleepEffect effect in activeEffects.OfType<SleepEffect>())
         {
-            if(effect is SleepEffect)
-            {
-                effect.Remove(this);
-            }
+            effect.Remove(this);
         }
         float damagePercentage = 1.0f;
         int maxDodgeChance = 60;
@@ -129,7 +126,6 @@ public abstract class CombatMember : MonoBehaviour
         {
             damagePercentage *= 0.5f;
             Debug.Log($"{name} dodged the attack");
-            return;
         }
         int maxCritChance = 50;
         double Kc = 35.0;
@@ -181,8 +177,9 @@ public abstract class CombatMember : MonoBehaviour
 
         if (AttackPower > shieldValue)
         {
-            shieldValue = 0;
             AttackPower -= shieldValue;
+            shieldValue = 0;
+            
         }
         else
         {

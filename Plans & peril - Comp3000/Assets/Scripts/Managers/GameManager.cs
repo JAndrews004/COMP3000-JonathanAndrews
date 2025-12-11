@@ -11,7 +11,10 @@ public class GameManager : MonoBehaviour
     public List<EnemyMember> EnemyMembers;
 
     public List<GameObject> EasyEnemyPrefabs;
-    
+    public GameStats Stats;
+
+    private int gold;
+    private int passLevel;
 
     public bool InCombat = false;
     private void Awake()
@@ -23,8 +26,11 @@ public class GameManager : MonoBehaviour
         else 
         { 
             Instance = this;
+            gold = Stats.Gold;
+            passLevel = Stats.passLevel;
             DontDestroyOnLoad(gameObject);
         }
+ 
     }
 
     private void Start()
@@ -59,19 +65,33 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    void AddGold(int points)
+    public void AddGold(int points)
     {
-
+        gold += points;
+        Stats.Gold = gold;
     }
 
-    void RemoveGold(int points) 
-    { 
-    
+    public void RemoveGold(int points) 
+    {
+        gold -= points;
+        if(gold< 0)
+        {
+            gold = 0;
+        }
+        Stats.Gold = gold;
+    }
+    public int GetGold()
+    {
+        return gold;
     }
 
-    void AddXP(int xp)
+    public int GetPassLevel()
     {
-
+        return passLevel;
+    }
+    public void increasePassLevel()
+    {
+        passLevel++;
     }
     void LoadLevel(int levelIndex)
     {

@@ -84,11 +84,13 @@ public class LevelUpView : MonoBehaviour
         CloseButton.onClick.AddListener(() =>
         {
             vm.OnClosePressed();
+            vm.character.baseStats.avaliableStatPoints = vm.character.availableStatPoints;
 
         });
         SaveButton.onClick.RemoveAllListeners();
         SaveButton.onClick.AddListener(() =>
         {
+            vm.character.baseStats.avaliableStatPoints = vm.character.availableStatPoints;
             vm.ApplyStatPoints();
             
         });

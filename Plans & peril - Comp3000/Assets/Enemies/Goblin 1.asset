@@ -15,9 +15,11 @@ MonoBehaviour:
   characterName: Goblin
   characterSprite: {fileID: 0}
   level: 1
-  maxHealth: 200
-  attack: 40
-  defense: 10
-  intelligence: 5
-  magicDefence: 3
-  Luck: 5
+  xp: 0
+  maxHealth: 65
+  attack: 12
+  defense: 5
+  intelligence: 4
+  magicDefence: 4
+  Luck: 10
+  avaliableStatPoints: 0

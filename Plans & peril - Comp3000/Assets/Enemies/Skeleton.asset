@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Skeleton
   characterSprite: {fileID: 0}
-  level: 1
-  maxHealth: 250
-  attack: 40
-  defense: 5
-  intelligence: 0
-  magicDefence: 0
+  level: 0
+  xp: 0
+  maxHealth: 70
+  attack: 10
+  defense: 6
+  intelligence: 5
+  magicDefence: 4
   Luck: 10
+  avaliableStatPoints: 0

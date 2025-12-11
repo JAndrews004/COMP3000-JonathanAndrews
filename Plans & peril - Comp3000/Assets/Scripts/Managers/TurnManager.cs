@@ -426,6 +426,7 @@ public class TurnManager : MonoBehaviour
         else if (PartyMembers.All(p => !p.Alive))
         {
             Debug.Log("All players defeated! Game over!");
+            combatManager.win = false;
             combatManager.EndCombat();
             return true;
         }

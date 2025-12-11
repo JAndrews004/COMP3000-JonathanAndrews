@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Paladin
   characterSprite: {fileID: 0}
-  level: 1
-  maxHealth: 175
-  attack: 60
-  defense: 30
+  level: 0
+  xp: 0
+  maxHealth: 135
+  attack: 12
+  defense: 12
   intelligence: 10
-  magicDefence: 10
-  Luck: 6
+  magicDefence: 12
+  Luck: 10
+  avaliableStatPoints: 0

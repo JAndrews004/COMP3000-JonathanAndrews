@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Slime
   characterSprite: {fileID: 21300000, guid: c09425be759857c41a351d59e7f1ece6, type: 3}
-  level: 1
+  level: 0
   xp: 0
-  maxHealth: 100
-  attack: 10
-  defense: 16
-  intelligence: 3
-  magicDefence: 2
-  Luck: 7
+  maxHealth: 60
+  attack: 6
+  defense: 4
+  intelligence: 4
+  magicDefence: 3
+  Luck: 10
+  avaliableStatPoints: 0
