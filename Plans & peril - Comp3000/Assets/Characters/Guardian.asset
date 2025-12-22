@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Guardian
   m_EditorClassIdentifier: 
   characterName: Guardian
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: 9396af5efab1b9b46b943001dec2b1ec, type: 3}
   level: 0
   xp: 0
   maxHealth: 150

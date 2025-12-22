@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   characterName: Skeleton
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: c464b4eb64fee2340a5c683f0af13d63, type: 3}
   level: 0
   xp: 0
   maxHealth: 70
