@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0908e5e35d06db54a99836c792a8c315, type: 3}
   m_Name: DefenseIncrease
   m_EditorClassIdentifier: 
-  statToBuff: 1
-  percentageIncrease: 0.35
+  baseDamage: 0
+  statsToBuff: 01000000
   durationTurns: 4
+  basePercent: 0
+  maxPercent: 0
+  intelligenceScaling: 0

@@ -11,21 +11,21 @@ public class PartySlot : MonoBehaviour
     public GameObject TargetHighlight;
     public Slider HPBar;
     public Slider ShieldBar;
-    private bool HasAssignedSprite = false;
     public GameObject CharacterArrow;
     public GameObject TargetArrow;
 
     public Transform StatusEffectContainer;
     public GameObject StatusIconPrefab;     
     private Dictionary<Effect, GameObject> ActiveIcons = new Dictionary<Effect, GameObject>();
+    [HideInInspector] public Material mat;
     private void Start()
     { 
-        NameText = GetComponentInChildren<TextMeshPro>();
+        //NameText = GetComponentInChildren<TextMeshPro>();
         if (TargetHighlight != null)
         {
             TargetHighlight.SetActive(false);
         }
-        
+        mat = GetComponent<SpriteRenderer>().material;
     }
     private void Update()
     {
@@ -36,10 +36,15 @@ public class PartySlot : MonoBehaviour
             HPBar.value = CurrentPartyMember.CurrentHealth;
             ShieldBar.maxValue = CurrentPartyMember.CurrentMaxHealth;
             ShieldBar.value = CurrentPartyMember.shieldValue;
-            if (!HasAssignedSprite)
+            if (!gameObject.GetComponent<Animator>()|| CurrentPartyMember.baseStats.controller==null)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = CurrentPartyMember.baseStats.characterSprite;
-                HasAssignedSprite = true;
+                
+            }
+            if (!gameObject.GetComponent<Animator>().runtimeAnimatorController)
+            {
+                gameObject.GetComponent<Animator>().runtimeAnimatorController = CurrentPartyMember.baseStats.controller;
+                gameObject.GetComponent<Animator>().speed = Random.RandomRange(0.25f, 0.4f);
             }
         }
     }

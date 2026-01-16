@@ -18,6 +18,7 @@ public class regenBehaviour : AbilityBehaviour
             effectToAdd.colorType = colorType.Positive;
             user.ContributionPoints += 0.5f;
             target.ApplyEffect(effectToAdd, false);
+            target.SpawnHealEffect();
         }
 
     }

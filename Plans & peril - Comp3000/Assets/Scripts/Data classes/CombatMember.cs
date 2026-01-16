@@ -42,7 +42,11 @@ public abstract class CombatMember : MonoBehaviour
     [HideInInspector]
     public float ContributionPoints = 0;
 
-
+    public abstract void SpawnBuffEffect();
+    public abstract void SpawnDebuffEffect();
+    public abstract void SpawnHealEffect();
+    public abstract void SpawnReviveEffect();
+    public abstract void SpawnStunEffect();
     public void ApplyEffect(Effect effect,bool reflectable)
     {
         if(activeEffects == null)
@@ -195,6 +199,7 @@ public abstract class CombatMember : MonoBehaviour
             OnDeath?.Invoke(this);
             OnHealthChanged?.Invoke(this);
             activeEffects.Clear();
+            //death animation
         }
         else
         {
@@ -202,8 +207,41 @@ public abstract class CombatMember : MonoBehaviour
             CurrentHealth -= AttackPower;
             OnDamageTaken?.Invoke(this, AttackPower);
             OnHealthChanged?.Invoke(this);
+            if (this is PartyMember pm)
+            {
+                foreach (PartySlot slot in combatManager.CharacterPositions)
+                {
+                    if (slot.CurrentPartyMember == pm)
+                    {
+                        StartCoroutine(GameManager.Instance.fXManager.SpriteFlash(slot));
+
+                        Debug.Log($"{baseStats.characterName} is {Alive}");
+
+                        float a = Alive ? 1f : 0.5f;
+                        GameManager.Instance.fXManager.SetAlpha(slot, a);
+                        break;
+                       
+                    }
+                }
+            }
+
+            else if (this is EnemyMember em)
+            {
+                foreach (EnemySlot slot in combatManager.EnemyPositions)
+                {
+                    if (slot.CurrentEnemyMember == em)
+                    {
+                        StartCoroutine(GameManager.Instance.fXManager.SpriteFlash(slot));
+                        float a = Alive ? 1f : 0.5f;
+                        GameManager.Instance.fXManager.SetAlpha(slot, a);
+                        break;
+                    }
+                }
+            }
+            
         }
     }
+    
     public void Heal(int amount)
     {
         if (Alive)
@@ -221,6 +259,7 @@ public abstract class CombatMember : MonoBehaviour
     {
         CurrentHealth = Mathf.RoundToInt(CurrentMaxHealth * healthRestored);
         OnHealthChanged?.Invoke(this);
+        
     }
     public void ModifyStat(StatType stat, int amount)
     {

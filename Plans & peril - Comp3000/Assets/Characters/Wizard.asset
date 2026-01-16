@@ -23,3 +23,4 @@ MonoBehaviour:
   magicDefence: 11
   Luck: 11
   avaliableStatPoints: 0
+  controller: {fileID: 9100000, guid: db5a817588a97994b8f9a60857a8a90d, type: 2}

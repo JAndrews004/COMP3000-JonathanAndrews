@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class PartyMember : CombatMember
@@ -17,10 +19,18 @@ public class PartyMember : CombatMember
 
     public CharacterClass Class;
 
-    
+    public List<AbilityData> ALLUNLOCKABLEABILITIES;
+    public CharacterSkillTree characterSkillTree;
     //List<ActiveEffect> activeEffectsTurns;
     private void Awake()
     {
+        foreach(AbilityData ability in ALLUNLOCKABLEABILITIES)
+        {
+            if (ability.unlocked)
+            {
+                characterSkillTree.unlockedAbilities.Add(ability);
+            }
+        }
         // Prevent duplicates when reloading scenes
         if (FindObjectsOfType<PartyMember>().Length > 4) // if you want exactly 4 members
         {
@@ -81,10 +91,96 @@ public class PartyMember : CombatMember
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        if(combatManager != null)
+        {
+            foreach (PartySlot slot in combatManager.CharacterPositions)
+            {
+                if (slot.CurrentPartyMember == this)
+                {
+                    float a = Alive ? 1f : 0.5f;
+                    GameManager.Instance.fXManager.SetAlpha(slot, a);
+                    break;
+
+                }
+            }
+        }
         
     }
+    public override void SpawnBuffEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (PartySlot slot in combatManager.CharacterPositions)
+            {
+                if (slot.CurrentPartyMember == this)
+                {
+                    GameManager.Instance.fXManager.SpawnBuffEffect(slot.transform,false);
+                    break;
+
+                }
+            }
+        }
+    }
+    public override void SpawnDebuffEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (PartySlot slot in combatManager.CharacterPositions)
+            {
+                if (slot.CurrentPartyMember == this)
+                {
+                    GameManager.Instance.fXManager.SpawnDebuffEffect(slot.transform, false);
+                    break;
+
+                }
+            }
+        }
+    }
+    public override void SpawnHealEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (PartySlot slot in combatManager.CharacterPositions)
+            {
+                if (slot.CurrentPartyMember == this)
+                {
+                    GameManager.Instance.fXManager.spawnHealEffect(slot.transform, false);
+                    break;
+                }
+            }
+        }
+    }
+    public override void SpawnReviveEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (PartySlot slot in combatManager.CharacterPositions)
+            {
+                if (slot.CurrentPartyMember == this)
+                {
+                    GameManager.Instance.fXManager.spawnReviveEffect(slot.transform, false);
+                    break;
+                }
+            }
+        }
+    }
+    public override void SpawnStunEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (PartySlot slot in combatManager.CharacterPositions)
+            {
+                if (slot.CurrentPartyMember == this)
+                {
+                    GameManager.Instance.fXManager.spawnStunEffect(slot.transform, false);
+                    break;
+                }
+            }
+        }
+    }
+
     public void UpdateStats()
     {
         CurrentMaxHealth = baseStats.maxHealth;
@@ -133,6 +229,88 @@ public class PartyMember : CombatMember
         }
         baseStats.level = level;
         baseStats.avaliableStatPoints = availableStatPoints;
+    }
+
+    public bool equipSkill(AbilityData ability, int slot)
+    {
+        if (abilityDatas.Contains(ability) && abilityDatas[slot - 1] == null && ability.abilityCategory != AbilityData.AbilityCategory.Passive)
+        {
+            
+            int index = abilityDatas.IndexOf(ability);
+            abilityDatas[slot - 1] = ability;
+            abilityDatas[index] = null;
+
+        }
+        else if (abilityDatas.Contains(ability) && abilityDatas[slot - 1] == null && ability.abilityCategory == AbilityData.AbilityCategory.Passive)
+        {
+            if(slot >= 5)
+            {
+                int index = abilityDatas.IndexOf(ability);
+                abilityDatas[slot - 1] = ability;
+                abilityDatas[index] = null;
+            }
+        }
+        else if (slot <=4 && ability.abilityCategory != AbilityData.AbilityCategory.Passive)
+        {
+            if (abilityDatas.Contains(ability))
+            {
+                
+                int index = abilityDatas.IndexOf(ability);
+                if(index < 4){
+                    AbilityData temp = abilityDatas[slot-1];
+                    abilityDatas[slot - 1] = ability;
+                    abilityDatas[index] = temp;
+                }
+                else if (ability.abilityCategory != AbilityData.AbilityCategory.Passive && abilityDatas[slot - 1].abilityCategory != AbilityData.AbilityCategory.Passive)
+                {
+                    AbilityData temp = abilityDatas[slot - 1];
+                    abilityDatas[slot - 1] = ability;
+                    abilityDatas[index] = temp;
+                }
+                
+
+            }
+            else
+            {
+                abilityDatas[slot-1] = ability;
+            }
+            
+            return true;
+        }
+        else if (slot<=6)
+        {
+            
+            if (abilityDatas.Contains(ability))
+            {
+
+                int index = abilityDatas.IndexOf(ability);
+                if(index <4 && ability.abilityCategory != AbilityData.AbilityCategory.Passive && abilityDatas[slot - 1].abilityCategory != AbilityData.AbilityCategory.Passive)
+                {
+                    AbilityData temp = abilityDatas[slot - 1];
+                    abilityDatas[slot - 1] = ability;
+                    abilityDatas[index] = temp;
+                }
+                else if(index >=4 && slot > 4)
+                {
+                    AbilityData temp = abilityDatas[slot - 1];
+                    abilityDatas[slot - 1] = ability;
+                    abilityDatas[index] = temp;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                abilityDatas[slot - 1] = ability;
+            }
+            
+            return true;
+        }
+
+        return false;
     }
 
     class ActiveEffect

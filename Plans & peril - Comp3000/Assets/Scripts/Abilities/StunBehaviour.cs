@@ -21,7 +21,7 @@ public class StunBehaviour : AbilityBehaviour
                 effectToAdd.colorType = colorType.Neutral;
                 user.ContributionPoints += 0.5f;
                 target.ApplyEffect(effectToAdd, false);
-                
+                target.SpawnStunEffect();
             }
         }
     }

@@ -68,7 +68,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
@@ -90,7 +90,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cbe1a6c5d7e87545b6dee1654ee7207
-      internalID: 291777272
+      spriteID: 5e9c5c30b65ad024ea03a45ae01ca86e
+      internalID: -2128713870
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 864f87057b1002d46a14fa65caf034fd
-      internalID: 566968317
+      spriteID: d09a248c02560534bbb6c7fdfbc9dba9
+      internalID: 162696777
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac0f40ab79cfd38429c3770f394a17d1
-      internalID: -1139913228
+      spriteID: c08e353ef34b6d9448fc25d650fee19b
+      internalID: -1635561502
       vertices: []
       indices: 
       edges: []
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1c75209686436345bac6ccd4c662c7f
-      internalID: -1396938166
+      spriteID: 4e1c9aadd797d29408f7bfcf909a0481
+      internalID: -649605032
       vertices: []
       indices: 
       edges: []
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 177ae325edc2af948a37748529bb1481
-      internalID: -1252658191
+      spriteID: 9fe40f4ce8e2d5b4ab22884607c38a48
+      internalID: -442968991
       vertices: []
       indices: 
       edges: []
@@ -220,11 +220,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Slime-Sheet_0: 291777272
-      Slime-Sheet_1: 566968317
-      Slime-Sheet_2: -1139913228
-      Slime-Sheet_3: -1396938166
-      Slime-Sheet_4: -1252658191
+      Slime-Sheet_0: -2128713870
+      Slime-Sheet_1: 162696777
+      Slime-Sheet_2: -1635561502
+      Slime-Sheet_3: -649605032
+      Slime-Sheet_4: -442968991
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

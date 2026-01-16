@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Behaviours/Buff")]
 public class BuffBehaviour : AbilityBehaviour
 {
-    public StatType statToBuff;
+    public List<StatType> statsToBuff;
     public int durationTurns;
 
     public float basePercent;
@@ -22,30 +22,35 @@ public class BuffBehaviour : AbilityBehaviour
             {
                 if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
                 {
-                    BuffEffect effectToAdd = new BuffEffect(statToBuff, maxPercent, durationTurns);
-                    effectToAdd.name = ability.abilityName;
-                    effectToAdd.description = ability.description;
-                    effectToAdd.icon = ability.icon;
-                    effectToAdd.colorType = colorType.Positive;
-                    user.ContributionPoints += 0.5f;
-                    target.ApplyEffect(effectToAdd, false);
+                    foreach(StatType statToBuff in statsToBuff)
+                    {
+                        BuffEffect effectToAdd = new BuffEffect(statToBuff, maxPercent, durationTurns);
+                        effectToAdd.name = ability.abilityName;
+                        effectToAdd.description = ability.description;
+                        effectToAdd.icon = ability.icon;
+                        effectToAdd.colorType = colorType.Positive;
+                        user.ContributionPoints += 0.5f;
+                        target.ApplyEffect(effectToAdd, false);
 
-                    
+                    }
+                    target.SpawnBuffEffect();
                 }
             }
             else
             {
                 if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
                 {
-                    BuffEffect effectToAdd = new BuffEffect(statToBuff, scaledPercentage, durationTurns);
-                    effectToAdd.name = ability.abilityName;
-                    effectToAdd.description = ability.description;
-                    effectToAdd.icon = ability.icon;
-                    effectToAdd.colorType = colorType.Positive;
-                    user.ContributionPoints += 0.5f;
-                    target.ApplyEffect(effectToAdd, false);
-
-                    
+                    foreach (StatType statToBuff in statsToBuff)
+                    {
+                        BuffEffect effectToAdd = new BuffEffect(statToBuff, scaledPercentage, durationTurns);
+                        effectToAdd.name = ability.abilityName;
+                        effectToAdd.description = ability.description;
+                        effectToAdd.icon = ability.icon;
+                        effectToAdd.colorType = colorType.Positive;
+                        user.ContributionPoints += 0.5f;
+                        target.ApplyEffect(effectToAdd, false);
+                    }
+                    target.SpawnBuffEffect();
                 }
             }
 

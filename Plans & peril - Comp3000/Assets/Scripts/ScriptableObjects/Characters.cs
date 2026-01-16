@@ -20,4 +20,7 @@ public class Characters : ScriptableObject
     public int Luck;
     public int avaliableStatPoints;
 
+    [Header("Extras")]
+    public RuntimeAnimatorController controller;
+
 }

@@ -64,7 +64,92 @@ public class EnemyMember : CombatMember
         XPGiven = Mathf.RoundToInt(XPGiven*Random.Range(0.95f, 1.05f));
         DontDestroyOnLoad(gameObject);
     }
-
+    public void Update()
+    {
+        if (combatManager != null)
+        {
+            foreach (EnemySlot slot in combatManager.EnemyPositions)
+            {
+                if (slot.CurrentEnemyMember == this)
+                {
+                    float a = Alive ? 1f : 0.5f;
+                    GameManager.Instance.fXManager.SetAlpha(slot, a);
+                    break;
+                }
+            }
+        }
+        
+    }
+    public override void SpawnBuffEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (EnemySlot slot in combatManager.EnemyPositions)
+            {
+                if (slot.CurrentEnemyMember == this)
+                {
+                    GameManager.Instance.fXManager.SpawnBuffEffect(slot.transform,true);
+                    break;
+                }
+            }
+        }
+    }
+    public override void SpawnDebuffEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (EnemySlot slot in combatManager.EnemyPositions)
+            {
+                if (slot.CurrentEnemyMember == this)
+                {
+                    GameManager.Instance.fXManager.SpawnDebuffEffect(slot.transform, true);
+                    break;
+                }
+            }
+        }
+    }
+    public override void SpawnHealEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (EnemySlot slot in combatManager.EnemyPositions)
+            {
+                if (slot.CurrentEnemyMember == this)
+                {
+                    GameManager.Instance.fXManager.spawnHealEffect(slot.transform, true);
+                    break;
+                }
+            }
+        }
+    }
+    public override void SpawnReviveEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (EnemySlot slot in combatManager.EnemyPositions)
+            {
+                if (slot.CurrentEnemyMember == this)
+                {
+                    GameManager.Instance.fXManager.spawnReviveEffect(slot.transform, true);
+                    break;
+                }
+            }
+        }
+    }
+    public override void SpawnStunEffect()
+    {
+        if (combatManager != null)
+        {
+            foreach (EnemySlot slot in combatManager.EnemyPositions)
+            {
+                if (slot.CurrentEnemyMember == this)
+                {
+                    GameManager.Instance.fXManager.spawnStunEffect(slot.transform, true);
+                    break;
+                }
+            }
+        }
+    }
     public EnemyMember(int level,int XP)
     {
         Level = level;

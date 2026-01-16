@@ -12,18 +12,19 @@ public class EnemySlot : MonoBehaviour
     public Slider HPBar;
     public Slider ShieldBar;
     public GameObject TargetArrow;
-    private bool HasAssignedSprite = false;
 
     public Transform StatusEffectContainer;
     public GameObject StatusIconPrefab;
     private Dictionary<Effect, GameObject> ActiveIcons = new Dictionary<Effect, GameObject>();
+    [HideInInspector] public Material mat;
     private void Start()
     {
-        NameText = GetComponentInChildren<TextMeshPro>();
+        //NameText = GetComponentInChildren<TextMeshPro>();
         if (TargetHighlight != null)
         {
             TargetHighlight.SetActive(false);
         }
+        mat = GetComponent<SpriteRenderer>().material;
     }
     private void Update()
     {
@@ -35,14 +36,20 @@ public class EnemySlot : MonoBehaviour
             ShieldBar.maxValue = CurrentEnemyMember.CurrentMaxHealth;
             ShieldBar.value = CurrentEnemyMember.shieldValue;
 
-            if (!HasAssignedSprite)
+            if (!gameObject.GetComponent<Animator>() || CurrentEnemyMember.baseStats.controller == null)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = CurrentEnemyMember.baseStats.characterSprite;
-                HasAssignedSprite = true;
+
+            }
+            if (!gameObject.GetComponent<Animator>().runtimeAnimatorController)
+            {
+                gameObject.GetComponent<Animator>().runtimeAnimatorController = CurrentEnemyMember.baseStats.controller;
+                gameObject.GetComponent<Animator>().speed = Random.RandomRange(0.25f, 0.3f);
             }
         }
     }
 
+    
     public void TurnTargetArrowOn()
     {
         TargetArrow.SetActive(true);

@@ -49,7 +49,18 @@ public class AbilityData : ScriptableObject
     public float EffectChanceScaling;
     public bool IsTauntable;
 
-
+    [Header("Ability tree data")]
+    public bool unlocked;
+    public List<AbilityData> prerequisiteAbilities;
+    public int strengthRequired;
+    public int defenseRequired;
+    public int intelligenceRequired;
+    public int magicDefenseRequired;
+    public int luckRequired;
+    public int vitalityRequired;
+    public int goldCost;
+    public int treeCol;
+    public int treeRow;
 }
 public enum AbilityPowerType
 {

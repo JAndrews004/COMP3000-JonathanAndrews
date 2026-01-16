@@ -12,6 +12,8 @@ public class ReviveBehaviour : AbilityBehaviour
         foreach (var target in targets)
         {
             target.Revive(percentageOfHpRestored);
+            target.SpawnReviveEffect();
         }
+        
     }
 }

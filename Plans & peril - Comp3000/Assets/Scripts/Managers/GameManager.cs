@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
-
+    public FXManager fXManager;
     public List<PartyMember> PartyMembers;
     public List<EnemyMember> EnemyMembers;
 

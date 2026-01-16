@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Cleanse
   description: 
   icon: {fileID: 0}
-  isPassive: 0
+  abilityCategory: 0
   powerType: 0
   abilityType: 0
   maxUsage: 10
@@ -24,5 +24,19 @@ MonoBehaviour:
   numberOfTargets: 1
   PhysicalBehaviour: {fileID: 0}
   EffectBehaviour: {fileID: 11400000, guid: 286d8a9471801574a977544410fcf22c, type: 2}
+  passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0
+  IsTauntable: 0
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: 54dc62350646a7841abbcd3c9e4c23a4, type: 2}
+  strengthRequired: 0
+  defenseRequired: 0
+  intelligenceRequired: 0
+  magicDefenseRequired: 0
+  luckRequired: 0
+  vitalityRequired: 0
+  goldCost: 0
+  treeCol: 2
+  treeRow: 1

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Behaviours/Debuff")]
 public class DebuffBehaviour : AbilityBehaviour
 {
-    public StatType statToDebuff;
+    public List<StatType> statsToDebuff;
     public int durationTurns;
 
     public float basePercent;
@@ -22,16 +22,20 @@ public class DebuffBehaviour : AbilityBehaviour
             {
                 if(Random.Range(0,100) <= target.GetEffectApplyChance(user, ability))
                 {
-                    DebuffEffect effectToAdd = new DebuffEffect(statToDebuff, maxPercent, durationTurns);
-                    effectToAdd.name = ability.abilityName;
-                    effectToAdd.description = ability.description;
-                    effectToAdd.icon = ability.icon;
-                    effectToAdd.colorType = colorType.Negative;
+                    foreach (StatType statToDebuff in statsToDebuff)
+                    {
+                        DebuffEffect effectToAdd = new DebuffEffect(statToDebuff, maxPercent, durationTurns);
+                        effectToAdd.name = ability.abilityName;
+                        effectToAdd.description = ability.description;
+                        effectToAdd.icon = ability.icon;
+                        effectToAdd.colorType = colorType.Negative;
 
-                    user.ContributionPoints += 0.5f;
-                    target.ApplyEffect(effectToAdd, true);
+                        user.ContributionPoints += 0.5f;
+                        target.ApplyEffect(effectToAdd, true);
+                    }
+                    target.SpawnDebuffEffect();
 
-                    
+
                 }
                 
             }
@@ -39,15 +43,18 @@ public class DebuffBehaviour : AbilityBehaviour
             {
                 if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
                 {
-                    DebuffEffect effectToAdd = new DebuffEffect(statToDebuff, scaledPercentage, durationTurns);
-                    effectToAdd.name = ability.abilityName;
-                    effectToAdd.description = ability.description;
-                    effectToAdd.icon = ability.icon;
-                    effectToAdd.colorType = colorType.Negative;
-                    user.ContributionPoints += 0.5f;
-                    target.ApplyEffect(effectToAdd,true);
+                    foreach (StatType statToDebuff in statsToDebuff)
+                    {
+                        DebuffEffect effectToAdd = new DebuffEffect(statToDebuff, scaledPercentage, durationTurns);
+                        effectToAdd.name = ability.abilityName;
+                        effectToAdd.description = ability.description;
+                        effectToAdd.icon = ability.icon;
+                        effectToAdd.colorType = colorType.Negative;
+                        user.ContributionPoints += 0.5f;
+                        target.ApplyEffect(effectToAdd, true);
+                    }
+                    target.SpawnDebuffEffect();
 
-                   
                 }
 
             }

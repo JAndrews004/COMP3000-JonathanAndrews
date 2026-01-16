@@ -24,7 +24,7 @@ public class HealBehaviour : AbilityBehaviour
             {
                 target.Heal(Mathf.RoundToInt(baseHeal + scaledHeal));
             }
-            
+            target.SpawnHealEffect();
         }
     }
 }

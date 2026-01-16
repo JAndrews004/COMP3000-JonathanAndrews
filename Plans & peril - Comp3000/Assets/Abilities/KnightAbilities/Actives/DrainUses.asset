@@ -28,3 +28,16 @@ MonoBehaviour:
   guaranteedEffectHit: 1
   EffectChanceScaling: 0
   IsTauntable: 0
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: ea83db238500f234c91b8176671c2200, type: 2}
+  - {fileID: 11400000, guid: 52d52344ab23614448b1e1a928df810d, type: 2}
+  strengthRequired: 0
+  defenseRequired: 0
+  intelligenceRequired: 0
+  magicDefenseRequired: 0
+  luckRequired: 0
+  vitalityRequired: 0
+  goldCost: 0
+  treeCol: 4
+  treeRow: 1

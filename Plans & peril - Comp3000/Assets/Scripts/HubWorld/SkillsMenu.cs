@@ -29,7 +29,7 @@ public class SkillsMenu : MonoBehaviour
     public TextMeshProUGUI MagicDefenseStat;
     public TextMeshProUGUI LuckStat;
     public TextMeshProUGUI HpStat;
-
+    public SkillTreeUIContoller skillTreeUIContoller;
     
 
     // Start is called before the first frame update
@@ -48,7 +48,7 @@ public class SkillsMenu : MonoBehaviour
         {
             chosenCharacter = GameManager.Instance.PartyMembers[0];
             newCharacterSelected();
-
+            skillTreeUIContoller.generateSkillTree(chosenCharacter);
 
         });
         Character2.onClick.RemoveAllListeners();
@@ -56,7 +56,7 @@ public class SkillsMenu : MonoBehaviour
         {
             chosenCharacter = GameManager.Instance.PartyMembers[1];
             newCharacterSelected();
-
+            skillTreeUIContoller.generateSkillTree(chosenCharacter);
 
         });
         Character3.onClick.RemoveAllListeners();
@@ -64,7 +64,7 @@ public class SkillsMenu : MonoBehaviour
         {
             chosenCharacter = GameManager.Instance.PartyMembers[2];
             newCharacterSelected();
-
+            skillTreeUIContoller.generateSkillTree(chosenCharacter);
 
 
         });
@@ -73,7 +73,7 @@ public class SkillsMenu : MonoBehaviour
         {
             chosenCharacter = GameManager.Instance.PartyMembers[3];
             newCharacterSelected();
-
+            skillTreeUIContoller.generateSkillTree(chosenCharacter);
 
         });
         statPointAllocation.onClick.RemoveAllListeners();
@@ -103,6 +103,7 @@ public class SkillsMenu : MonoBehaviour
     void newCharacterSelected()
     {
         updateStats();
+        skillTreeUIContoller.generateSkillTree(chosenCharacter);
         characterLevel.text = $"Level: {chosenCharacter.level}";
         characterName.text = chosenCharacter.baseStats.name;
 

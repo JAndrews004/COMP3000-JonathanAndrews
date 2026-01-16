@@ -218,9 +218,10 @@ public class TurnManager : MonoBehaviour
             }
             if (!extraTurns)
             {
-                ExecutePlayerActions();
+                StartCoroutine(ExecutePlayerActionsRoutine());
+
             }
-            
+
         }
             
         else
@@ -235,13 +236,14 @@ public class TurnManager : MonoBehaviour
         
     }
 
-    public void ExecutePlayerActions()
+    public IEnumerator ExecutePlayerActionsRoutine()
     {
         Debug.Log("Turns in list: " + turns.Count);
         foreach (var t in turns)
         {
             if (t.Action.AbilityData.IsTauntable)
             {
+                yield return new WaitForSeconds(0.5f);
                 List<CombatMember> newTargets = new List<CombatMember>();
                 List<CombatMember> Taunters = new List<CombatMember>();
 
@@ -295,7 +297,7 @@ public class TurnManager : MonoBehaviour
                 t.Action.DecreaseUses(t.Attacker);
             }
             t.Action.cooldownLeft = t.Action.AbilityData.cooldown;
-           
+            yield return new WaitForSeconds(0.5f);
         }
         bool hasImmediateExtras = false;
         foreach (PartyMember mem in PartyMembers)

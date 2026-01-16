@@ -28,3 +28,14 @@ MonoBehaviour:
   guaranteedEffectHit: 0
   EffectChanceScaling: 0
   IsTauntable: 0
+  unlocked: 0
+  prerequisiteAbilities: []
+  strengthRequired: 0
+  defenseRequired: 0
+  intelligenceRequired: 0
+  magicDefenseRequired: 0
+  luckRequired: 0
+  vitalityRequired: 0
+  goldCost: 0
+  treeCol: 3
+  treeRow: 0
