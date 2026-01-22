@@ -54,16 +54,16 @@ public class CombatEndScreen : MonoBehaviour
         {
             
             character1Name.text = $"{members[0].baseStats.characterName} - level {members[0].baseStats.level}";
-            character1Image.sprite = members[0].baseStats.characterSprite;
+            character1Image.sprite = members[0].baseStats.HeadShot;
             
             character2Name.text = $"{members[1].baseStats.characterName} - level {members[1].baseStats.level}";
-            character2Image.sprite = members[1].baseStats.characterSprite;
+            character2Image.sprite = members[1].baseStats.HeadShot;
             
             character3Name.text = $"{members[2].baseStats.characterName} - level {members[2].baseStats.level}";
-            character3Image.sprite = members[2].baseStats.characterSprite;
+            character3Image.sprite = members[2].baseStats.HeadShot;
             
             character4Name.text = $"{members[3].baseStats.characterName} - level {members[3].baseStats.level}";
-            character4Image.sprite = members[3].baseStats.characterSprite;
+            character4Image.sprite = members[3].baseStats.HeadShot;
             
 
 

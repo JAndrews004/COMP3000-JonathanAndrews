@@ -42,11 +42,13 @@ public abstract class CombatMember : MonoBehaviour
     [HideInInspector]
     public float ContributionPoints = 0;
 
+    public Element element;
     public abstract void SpawnBuffEffect();
     public abstract void SpawnDebuffEffect();
     public abstract void SpawnHealEffect();
     public abstract void SpawnReviveEffect();
     public abstract void SpawnStunEffect();
+    
     public void ApplyEffect(Effect effect,bool reflectable)
     {
         if(activeEffects == null)
@@ -144,6 +146,54 @@ public abstract class CombatMember : MonoBehaviour
         }
 
         AttackPower = Mathf.RoundToInt(AttackPower * damagePercentage);
+        if (attacker.element == Element.Fire)
+        {
+            AttackPower = Mathf.RoundToInt(AttackPower * 1.15f);
+        }
+
+        switch (attacker.element)
+        {
+            case Element.Fire:
+                if (element == Element.Air)
+                {
+                    AttackPower = Mathf.RoundToInt(AttackPower * 1.2f);
+                }
+                else if( element == Element.Water)
+                {
+                    AttackPower = Mathf.RoundToInt(AttackPower * 0.8f);
+                }
+                break;
+            case Element.Air:
+                if (element == Element.Earth)
+                {
+                    AttackPower = Mathf.RoundToInt(AttackPower * 1.2f);
+                }
+                else if (element == Element.Fire)
+                {
+                    AttackPower = Mathf.RoundToInt(AttackPower * 0.8f);
+                }
+                break;
+            case Element.Earth:
+                if (element == Element.Water)
+                {
+                    AttackPower = Mathf.RoundToInt(AttackPower * 1.2f);
+                }
+                else if (element == Element.Air)
+                {
+                    AttackPower = Mathf.RoundToInt(AttackPower * 0.8f);
+                }
+                break;
+            case Element.Water:
+                if (element == Element.Fire)
+                {
+                    AttackPower = Mathf.RoundToInt(AttackPower * 1.2f);
+                }
+                else if (element == Element.Earth)
+                {
+                    AttackPower = Mathf.RoundToInt(AttackPower * 0.8f);
+                }
+                break;
+        }
         if (reflectable)
         {
             foreach (ReflectEffect effect in activeEffects.OfType<ReflectEffect>())
@@ -178,6 +228,8 @@ public abstract class CombatMember : MonoBehaviour
             effect.User.TakeDamage(attacker,GuardPower,true,false);
             AttackPower -= GuardPower;
         }
+
+        
 
         if (AttackPower > shieldValue)
         {
@@ -246,6 +298,10 @@ public abstract class CombatMember : MonoBehaviour
     {
         if (Alive)
         {
+            if(element == Element.Water)
+            {
+                amount = Mathf.RoundToInt(amount*1.15f);
+            }
             CurrentHealth += amount;
             if (CurrentHealth > CurrentMaxHealth)
             {
@@ -285,6 +341,30 @@ public abstract class CombatMember : MonoBehaviour
     public void AddShield(int amount)
     {
         shieldValue += amount;
+        if (this is PartyMember pm)
+        {
+            foreach (PartySlot slot in combatManager.CharacterPositions)
+            {
+                if (slot.CurrentPartyMember == pm)
+                {
+                    StartCoroutine(GameManager.Instance.fXManager.ShieldFlashEffect(slot));
+                    break;
+
+                }
+            }
+        }
+
+        else if (this is EnemyMember em)
+        {
+            foreach (EnemySlot slot in combatManager.EnemyPositions)
+            {
+                if (slot.CurrentEnemyMember == em)
+                {
+                    StartCoroutine(GameManager.Instance.fXManager.ShieldFlashEffect(slot));
+                    break;
+                }
+            }
+        }
     }
 
     public void RemoveShield(int amount)
@@ -300,11 +380,26 @@ public abstract class CombatMember : MonoBehaviour
         float damage = 0;
         if(ability.powerType == AbilityPowerType.Physical)
         {
-            damage = baseDamage * (1 + (user.CurrentAttack / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentDefense / kd))));
+            if(target.element == Element.Earth)
+            {
+                damage = baseDamage * (1 + (user.CurrentAttack / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentDefense*1.15f / kd))));
+            }
+            else
+            {
+                damage = baseDamage * (1 + (user.CurrentAttack / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentDefense / kd))));
+            }
+            
         }
         else if(ability.powerType == AbilityPowerType.Magical)
         {
-            damage = baseDamage * (1 + (user.CurrentIntelligence / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentMagicDefense / kd))));
+            if (target.element == Element.Earth)
+            {
+                damage = baseDamage * (1 + (user.CurrentIntelligence / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentMagicDefense *1.15f / kd))));
+            }
+            else
+            {
+                damage = baseDamage * (1 + (user.CurrentIntelligence / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentMagicDefense / kd))));
+            }
         }
         else if(ability.powerType == AbilityPowerType.True)
         {

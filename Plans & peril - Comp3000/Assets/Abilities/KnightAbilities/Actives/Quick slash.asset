@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: Quick slash
+  m_EditorClassIdentifier: 
+  abilityName: Quick slash
+  description: 
+  icon: {fileID: 21300000, guid: ed93d27beb5d7c74995614c9e604872f, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 0
+  maxUsage: 40
+  cooldown: 4
+  targetType: 1
+  numberOfTargets: 2
+  PhysicalBehaviour: {fileID: 11400000, guid: 29c29ef929b3a03429abe82ec84c035f, type: 2}
+  EffectBehaviour: {fileID: 0}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 0
+  EffectChanceScaling: 0
+  IsTauntable: 1
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 1
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: 0e6da31eadf0e7044b425543c2b246cf, type: 2}
+  - {fileID: 11400000, guid: 6f0a047246e90684ea45fa0570dc9f15, type: 2}
+  strengthRequired: 12
+  defenseRequired: 5
+  intelligenceRequired: 5
+  magicDefenseRequired: 5
+  luckRequired: 7
+  vitalityRequired: 5
+  goldCost: 0
+  treeCol: 2
+  treeRow: 0

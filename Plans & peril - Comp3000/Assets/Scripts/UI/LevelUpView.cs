@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LevelUpView : MonoBehaviour
 {
     public LevelUpViewModel vm;
-
+    public Image CharacterIcon;
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI characterLevel;
     public TextMeshProUGUI characterClass;
@@ -45,7 +45,7 @@ public class LevelUpView : MonoBehaviour
         characterName.text = vm.character.baseStats.characterName;
 
         characterLevel.text = $"Level: {vm.character.level-1} -> <color=#00FF00>{vm.character.level}</color>";
-
+        CharacterIcon.sprite = vm.character.baseStats.HeadShot;
         switch (vm.character.Class)
         {
             case CharacterClass.F:

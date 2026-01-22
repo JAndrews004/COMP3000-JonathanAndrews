@@ -24,10 +24,18 @@ public class BuffBehaviour : AbilityBehaviour
                 {
                     foreach(StatType statToBuff in statsToBuff)
                     {
-                        BuffEffect effectToAdd = new BuffEffect(statToBuff, maxPercent, durationTurns);
+                        BuffEffect effectToAdd;
+                        if (user.element == ability.elementTag && ability.elementTag != Element.None && ability.boost != null)
+                        {
+                            effectToAdd = new BuffEffect(statToBuff, maxPercent * ability.boost.multipliedPotency, durationTurns + ability.boost.addedDuration);
+                        }
+                        else
+                        {
+                            effectToAdd = new BuffEffect(statToBuff, maxPercent, durationTurns);
+                        }
                         effectToAdd.name = ability.abilityName;
                         effectToAdd.description = ability.description;
-                        effectToAdd.icon = ability.icon;
+                        effectToAdd.icon = ability.EffectIcon;
                         effectToAdd.colorType = colorType.Positive;
                         user.ContributionPoints += 0.5f;
                         target.ApplyEffect(effectToAdd, false);
@@ -42,10 +50,18 @@ public class BuffBehaviour : AbilityBehaviour
                 {
                     foreach (StatType statToBuff in statsToBuff)
                     {
-                        BuffEffect effectToAdd = new BuffEffect(statToBuff, scaledPercentage, durationTurns);
+                        BuffEffect effectToAdd;
+                        if (user.element == ability.elementTag && ability.elementTag != Element.None && ability.boost != null)
+                        {
+                            effectToAdd = new BuffEffect(statToBuff, scaledPercentage * ability.boost.multipliedPotency, durationTurns + ability.boost.addedDuration);
+                        }
+                        else
+                        {
+                            effectToAdd = new BuffEffect(statToBuff, scaledPercentage, durationTurns);
+                        }
                         effectToAdd.name = ability.abilityName;
                         effectToAdd.description = ability.description;
-                        effectToAdd.icon = ability.icon;
+                        effectToAdd.icon = ability.EffectIcon;
                         effectToAdd.colorType = colorType.Positive;
                         user.ContributionPoints += 0.5f;
                         target.ApplyEffect(effectToAdd, false);

@@ -9,6 +9,7 @@ public class PartyMemberView : MonoBehaviour
     public TextMeshProUGUI nameText;
     public Slider hpSlider;
     public TextMeshProUGUI healthText;
+    public Image element;
 
     public Button[] abilityButtons;
 
@@ -30,8 +31,8 @@ public class PartyMemberView : MonoBehaviour
         nameText.text = vm.model.baseStats.characterName;
         hpSlider.maxValue = vm.model.CurrentMaxHealth;
         hpSlider.value = vm.model.CurrentHealth;
-
-        for(int i = 0;i< vm.model.activeAbilities.Count; i++)
+        element.sprite = vm.model.baseStats.EquippedElement.icon;
+        for (int i = 0;i< vm.model.activeAbilities.Count; i++)
         {
             if (vm.model.activeAbilities[i].AbilityData != null)
             {

@@ -14,7 +14,7 @@ public class regenBehaviour : AbilityBehaviour
             RegenEffect effectToAdd = new RegenEffect(duration, user, healthAdded);
             effectToAdd.name = ability.abilityName;
             effectToAdd.description = ability.description;
-            effectToAdd.icon = ability.icon;
+            effectToAdd.icon = ability.EffectIcon;
             effectToAdd.colorType = colorType.Positive;
             user.ContributionPoints += 0.5f;
             target.ApplyEffect(effectToAdd, false);

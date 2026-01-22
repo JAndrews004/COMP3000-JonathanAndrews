@@ -20,7 +20,24 @@ public class Characters : ScriptableObject
     public int Luck;
     public int avaliableStatPoints;
 
+    [Header("Skills")]
+    public List<AbilityData> unlockableAbilities;
+    public List<AbilityData> equippedAbilities;
+
+    [Header("Element")]
+    public Element element;
+    public AbilityData EquippedElement;
+
     [Header("Extras")]
     public RuntimeAnimatorController controller;
+    public Sprite HeadShot;
+}
 
+public enum Element
+{
+    None,
+    Fire,
+    Water,
+    Earth,
+    Air,
 }

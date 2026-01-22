@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: PommelBash+
+  m_EditorClassIdentifier: 
+  abilityName: Pommel bash +
+  description: 
+  icon: {fileID: 21300000, guid: 285fb6222ee361a4eb0bba4e9935df74, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 0
+  maxUsage: 35
+  cooldown: 3
+  targetType: 0
+  numberOfTargets: 1
+  PhysicalBehaviour: {fileID: 11400000, guid: 73e37dc9f007bd74b86fbaacb43bc3a7, type: 2}
+  EffectBehaviour: {fileID: 11400000, guid: a7545982422d95b419de5ac6d6eea571, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 0
+  EffectChanceScaling: 0.9
+  EffectIcon: {fileID: 21300000, guid: 271d9ea1ca3cec641a3e6c18dca329dc, type: 3}
+  IsTauntable: 1
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: f4399519937a8e242bfb8d2488c61bc2, type: 2}
+  strengthRequired: 33
+  defenseRequired: 17
+  intelligenceRequired: 15
+  magicDefenseRequired: 15
+  luckRequired: 15
+  vitalityRequired: 15
+  goldCost: 0
+  treeCol: 5
+  treeRow: 2

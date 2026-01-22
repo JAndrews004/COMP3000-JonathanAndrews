@@ -120,7 +120,11 @@ public class TurnManager : MonoBehaviour
         if (SelectedTarget == null) { 
             SelectedTarget = new List<CombatMember>();
         }
-
+        int addedTargets = 0;
+        if ((SelectedCharacter.element == SelectedAction.AbilityData.elementTag && SelectedAction.AbilityData.elementTag != Element.None && SelectedAction.AbilityData.boost != null))
+        {
+            addedTargets = SelectedAction.AbilityData.boost.additionalTargets;
+        }
         if (SelectedTarget.Contains(target))
         {
             SelectedTarget.Remove(target);
@@ -133,7 +137,8 @@ public class TurnManager : MonoBehaviour
                 FindEnemyMemberSlot(target).GetComponent<EnemySlot>().TurnTargetArrowOff();
             }
         }
-        else if (SelectedTarget.Count() < SelectedAction.AbilityData.numberOfTargets)
+        
+        else if (SelectedTarget.Count() < SelectedAction.AbilityData.numberOfTargets+ addedTargets)
         {
             SelectedTarget.Add(target);
             if (target is PartyMember)

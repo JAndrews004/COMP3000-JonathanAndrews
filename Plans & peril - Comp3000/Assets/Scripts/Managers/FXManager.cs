@@ -25,6 +25,24 @@ public class FXManager : MonoBehaviour
 
     public IEnumerator SpriteFlash(EnemySlot slot)
     {
+        slot.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", Color.blue);
+        slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 1f);
+        yield return new WaitForSeconds(flashDuration);
+        slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 0f);
+        slot.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", Color.white);
+    }
+
+    public IEnumerator ShieldFlashEffect(PartySlot slot)
+    {
+        slot.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", Color.blue);
+        slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 1f);
+        yield return new WaitForSeconds(shieldFlashDuration);
+        slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 0f);
+        slot.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", Color.white);
+    }
+
+    public IEnumerator ShieldFlashEffect(EnemySlot slot)
+    {
         slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 1f);
         yield return new WaitForSeconds(flashDuration);
         slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 0f);
@@ -34,7 +52,7 @@ public class FXManager : MonoBehaviour
         Color tint = slot.mat.GetColor("_Color");
         tint.a = alpha;
         slot.mat.SetColor("_Color", tint);
-        Debug.Log($"{slot.CurrentPartyMember.baseStats.characterName} alpha changed");
+        
     }
     public void SetAlpha(EnemySlot slot, float alpha)
     {

@@ -14,7 +14,7 @@ public class InterferenceBehaviour : AbilityBehaviour
             InterferenceEffect effectToAdd = new InterferenceEffect(duration,user, newUses);
             effectToAdd.name = ability.abilityName;
             effectToAdd.description = ability.description;
-            effectToAdd.icon = ability.icon;
+            effectToAdd.icon = ability.EffectIcon;
             effectToAdd.colorType = colorType.Negative;
             user.ContributionPoints += 0.5f;
             target.ApplyEffect(effectToAdd, false);

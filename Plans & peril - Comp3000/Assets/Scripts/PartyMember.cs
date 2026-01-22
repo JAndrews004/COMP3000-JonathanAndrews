@@ -21,10 +21,14 @@ public class PartyMember : CombatMember
 
     public List<AbilityData> ALLUNLOCKABLEABILITIES;
     public CharacterSkillTree characterSkillTree;
-    //List<ActiveEffect> activeEffectsTurns;
+    
+    
     private void Awake()
     {
-        foreach(AbilityData ability in ALLUNLOCKABLEABILITIES)
+        ALLUNLOCKABLEABILITIES = baseStats.unlockableAbilities;
+        abilityDatas = baseStats.equippedAbilities;
+       
+        foreach (AbilityData ability in ALLUNLOCKABLEABILITIES)
         {
             if (ability.unlocked)
             {
@@ -106,6 +110,7 @@ public class PartyMember : CombatMember
                 }
             }
         }
+        baseStats.equippedAbilities = abilityDatas;
         
     }
     public override void SpawnBuffEffect()
@@ -180,7 +185,7 @@ public class PartyMember : CombatMember
             }
         }
     }
-
+   
     public void UpdateStats()
     {
         CurrentMaxHealth = baseStats.maxHealth;
@@ -311,6 +316,17 @@ public class PartyMember : CombatMember
         }
 
         return false;
+    }
+
+    public void EquipElement(AbilityData Elmnt)
+    {
+        if (Elmnt.isElement)
+        {
+            Debug.Log("equipping element");
+            element = Elmnt.elementTag;
+            baseStats.element = Elmnt.elementTag;
+            baseStats.EquippedElement = Elmnt;
+        }
     }
 
     class ActiveEffect

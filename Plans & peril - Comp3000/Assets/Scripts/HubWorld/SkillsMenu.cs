@@ -31,7 +31,8 @@ public class SkillsMenu : MonoBehaviour
     public TextMeshProUGUI HpStat;
     public SkillTreeUIContoller skillTreeUIContoller;
     
-
+    public StatAllocationViewModel StatAllocationViewModel;
+    public GameObject StatAllocationPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +81,9 @@ public class SkillsMenu : MonoBehaviour
         statPointAllocation.onClick.AddListener(() =>
         {
             
+            GameObject levelUpPrefab = Instantiate(StatAllocationPrefab, this.transform);
+            StatAllocationViewModel = new StatAllocationViewModel(chosenCharacter, levelUpPrefab);
+            levelUpPrefab.GetComponent<StatAllocationView>().Bind(StatAllocationViewModel);
         });
     }
 

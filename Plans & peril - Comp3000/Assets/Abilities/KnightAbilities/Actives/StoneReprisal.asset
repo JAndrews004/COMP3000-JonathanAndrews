@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: StoneReprisal
+  m_EditorClassIdentifier: 
+  abilityName: Stone reprisal
+  description: 
+  icon: {fileID: 21300000, guid: 82252ccd64ddcc9468fe1da30fa8f5dd, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 2
+  maxUsage: 20
+  cooldown: 5
+  targetType: 1
+  numberOfTargets: 2
+  PhysicalBehaviour: {fileID: 0}
+  EffectBehaviour: {fileID: 11400000, guid: d06fa6e7f82456445a74ddf4684915a7, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 1
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 21300000, guid: 983afe90507913b4da35ba5be51cfa29, type: 3}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 3
+  boost: {fileID: 11400000, guid: 704c6552e4a72a64fa444c90389af16b, type: 2}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: 58c197632da85e14087c3085f3dbcb34, type: 2}
+  strengthRequired: 30
+  defenseRequired: 45
+  intelligenceRequired: 30
+  magicDefenseRequired: 30
+  luckRequired: 30
+  vitalityRequired: 37
+  goldCost: 0
+  treeCol: 15
+  treeRow: 1

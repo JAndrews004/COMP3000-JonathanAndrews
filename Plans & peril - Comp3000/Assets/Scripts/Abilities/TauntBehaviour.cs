@@ -30,7 +30,7 @@ public class TauntBehaviour : AbilityBehaviour
                 TauntEffect effectToAdd = new TauntEffect(duration, user);
                 effectToAdd.name = ability.abilityName;
                 effectToAdd.description = ability.description;
-                effectToAdd.icon = ability.icon;
+                effectToAdd.icon = ability.EffectIcon;
                 effectToAdd.colorType = colorType.Negative;
                 user.ContributionPoints += 1f;
                 target.ApplyEffect(effectToAdd,false);

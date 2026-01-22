@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: FireSlash
+  m_EditorClassIdentifier: 
+  abilityName: Fire slash
+  description: 
+  icon: {fileID: 21300000, guid: b7c2e7d262c67c9409f12b14101ab399, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 0
+  maxUsage: 25
+  cooldown: 3
+  targetType: 1
+  numberOfTargets: 3
+  PhysicalBehaviour: {fileID: 11400000, guid: cc6e15383e175ac48bbe5d86ea451bda, type: 2}
+  EffectBehaviour: {fileID: 11400000, guid: f9e87036c5c64c74884759d35a7943a2, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 0
+  EffectChanceScaling: 1.2
+  EffectIcon: {fileID: 21300000, guid: b14ce82c3900b9c4ea2ea2016f9c2229, type: 3}
+  IsTauntable: 1
+  isElement: 0
+  elementTag: 1
+  boost: {fileID: 11400000, guid: 704c6552e4a72a64fa444c90389af16b, type: 2}
+  unlocked: 1
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: 8a0b6db7cd88b6a4297055f9282e459f, type: 2}
+  strengthRequired: 43
+  defenseRequired: 30
+  intelligenceRequired: 36
+  magicDefenseRequired: 30
+  luckRequired: 30
+  vitalityRequired: 30
+  goldCost: 0
+  treeCol: 11
+  treeRow: 0

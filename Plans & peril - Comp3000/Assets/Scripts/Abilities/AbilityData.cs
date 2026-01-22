@@ -47,7 +47,13 @@ public class AbilityData : ScriptableObject
     public PassiveBehaviour passiveBehaviour;
     public bool guaranteedEffectHit;
     public float EffectChanceScaling;
+    public Sprite EffectIcon;
     public bool IsTauntable;
+
+    [Header("Element")]
+    public bool isElement;
+    public Element elementTag;
+    public Element_boost boost;
 
     [Header("Ability tree data")]
     public bool unlocked;

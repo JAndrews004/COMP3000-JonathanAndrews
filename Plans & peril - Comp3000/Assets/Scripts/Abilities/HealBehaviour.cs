@@ -14,16 +14,33 @@ public class HealBehaviour : AbilityBehaviour
         user.ContributionPoints += 0.8f;
         foreach (var target in targets)
         {
+            
             float baseHeal = target.CurrentMaxHealth * basePercent;
             float scaledHeal = target.CurrentMaxHealth * (user.CurrentIntelligence*intelligenceScaling);
-
-            if (baseHeal + scaledHeal >= target.CurrentHealth * maxPercent) { 
-                target.Heal(Mathf.RoundToInt(target.CurrentHealth * maxPercent));
+            
+            if (user.element == ability.elementTag && ability.elementTag != Element.None && ability.boost != null)
+            {
+                if ((baseHeal + scaledHeal) * ability.boost.multipliedPotency >= target.CurrentHealth * maxPercent)
+                {
+                    target.Heal(Mathf.RoundToInt(target.CurrentHealth * maxPercent));
+                }
+                else
+                {
+                    target.Heal(Mathf.RoundToInt((baseHeal + scaledHeal) * ability.boost.multipliedPotency));
+                }
             }
             else
             {
-                target.Heal(Mathf.RoundToInt(baseHeal + scaledHeal));
+                if (baseHeal + scaledHeal >= target.CurrentHealth * maxPercent)
+                {
+                    target.Heal(Mathf.RoundToInt(target.CurrentHealth * maxPercent));
+                }
+                else
+                {
+                    target.Heal(Mathf.RoundToInt(baseHeal + scaledHeal));
+                }
             }
+            
             target.SpawnHealEffect();
         }
     }

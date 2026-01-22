@@ -14,7 +14,7 @@ public class ImmunityBehaviour : AbilityBehaviour
             ImmunityEffect effectToAdd = new ImmunityEffect(duration, user);
             effectToAdd.name = ability.abilityName;
             effectToAdd.description = ability.description;
-            effectToAdd.icon = ability.icon;
+            effectToAdd.icon = ability.EffectIcon;
             effectToAdd.colorType = colorType.Neutral;
             user.ContributionPoints += 0.5f;
             target.ApplyEffect(effectToAdd, false);

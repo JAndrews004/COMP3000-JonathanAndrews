@@ -10,7 +10,15 @@ public class ShieldBehaviour : AbilityBehaviour
     {
         foreach (var target in targets)
         {
-            target.AddShield(ShieldValue);
+            if (user.element == ability.elementTag && ability.elementTag != Element.None && ability.boost != null)
+            {
+                target.AddShield(Mathf.RoundToInt(ShieldValue*ability.boost.multipliedPotency));
+            }
+            else
+            {
+                target.AddShield(ShieldValue);
+            }
+            
         }
     }
 }

@@ -16,13 +16,14 @@ public class EquipSlot : MonoBehaviour, IDropHandler
     public GameObject floatingIcon;
     public GameObject canvas;
     public SkillButton skillButtonOnSlot;
+
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag.GetComponent<SkillButton>())
         {
             SkillButton skillButton = eventData.pointerDrag.GetComponent<SkillButton>();
             PartyMember member = characterSkillTree.pm;
-            if (skillButton.ability != null)
+            if (skillButton.ability != null && !skillButton.ability.isElement)
             {
                 if (skillButton.ability.unlocked)
                 {
@@ -31,6 +32,7 @@ public class EquipSlot : MonoBehaviour, IDropHandler
 
                 }
             }
+            
             
         }
     }

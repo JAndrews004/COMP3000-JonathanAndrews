@@ -23,4 +23,53 @@ MonoBehaviour:
   magicDefence: 6
   Luck: 10
   avaliableStatPoints: 0
+  unlockableAbilities:
+  - {fileID: 11400000, guid: 716b7339f095dda4786750965b6291bc, type: 2}
+  - {fileID: 11400000, guid: bf5bbbb151f43ec4bacbfda335ffe841, type: 2}
+  - {fileID: 11400000, guid: e6faf5f3c64254340ab994a56c767a5c, type: 2}
+  - {fileID: 11400000, guid: 0e6da31eadf0e7044b425543c2b246cf, type: 2}
+  - {fileID: 11400000, guid: 6f0a047246e90684ea45fa0570dc9f15, type: 2}
+  - {fileID: 11400000, guid: 584bbb3746d7ae54eb467843e03984d4, type: 2}
+  - {fileID: 11400000, guid: 5b1fdd5e1957b2a4f95001ebee8faa2e, type: 2}
+  - {fileID: 11400000, guid: 82860a5922a1d5e4093a716a9d7ab005, type: 2}
+  - {fileID: 11400000, guid: 4b8434fdc7aa2074ab5d26d9e501a835, type: 2}
+  - {fileID: 11400000, guid: 38520ba382c1e3447be0b9f477c7aeac, type: 2}
+  - {fileID: 11400000, guid: e94af169444a30b43827426fd1082deb, type: 2}
+  - {fileID: 11400000, guid: c13a67b39b966914aa553277c03cca45, type: 2}
+  - {fileID: 11400000, guid: f4399519937a8e242bfb8d2488c61bc2, type: 2}
+  - {fileID: 11400000, guid: 46acda4b903107a44a9b5af99e3c2a1c, type: 2}
+  - {fileID: 11400000, guid: 8d67ece5bb017ce4c892f2578470898d, type: 2}
+  - {fileID: 11400000, guid: 53540bfff3785de4aa938f09501365b6, type: 2}
+  - {fileID: 11400000, guid: a408fa0863cc400499ed05cce0109aba, type: 2}
+  - {fileID: 11400000, guid: 3e3b8c4c17d38234fb21e5f3a52496a2, type: 2}
+  - {fileID: 11400000, guid: 067cde3d77b3808448ea18a2322ea926, type: 2}
+  - {fileID: 11400000, guid: fa2687d8feb0d704b897b9e706c5f014, type: 2}
+  - {fileID: 11400000, guid: facf293866ae04145bf03d84f7da2303, type: 2}
+  - {fileID: 11400000, guid: 3584bbeea7612c2449c071f626184620, type: 2}
+  - {fileID: 11400000, guid: f0781fe39f3a3ac408c62db0069fd176, type: 2}
+  - {fileID: 11400000, guid: 8a0b6db7cd88b6a4297055f9282e459f, type: 2}
+  - {fileID: 11400000, guid: 35202263aaf177c4aa785e7ec77f4e19, type: 2}
+  - {fileID: 11400000, guid: 801cd609866ae784e86a424e69172608, type: 2}
+  - {fileID: 11400000, guid: 280642db0e50d5e4ca396348d3726581, type: 2}
+  - {fileID: 11400000, guid: c04ba6b1e14457e469ce449398a74d7f, type: 2}
+  - {fileID: 11400000, guid: 7006c7d062defe3448b6601bc29898ef, type: 2}
+  - {fileID: 11400000, guid: 58c197632da85e14087c3085f3dbcb34, type: 2}
+  - {fileID: 11400000, guid: b051119d59273154e81f0da65b8c9098, type: 2}
+  - {fileID: 11400000, guid: 7ded64247fe78c545a846f6bacbc4bad, type: 2}
+  - {fileID: 11400000, guid: a9cd9c715872fce42b00d503cd2931e5, type: 2}
+  - {fileID: 11400000, guid: 4023edb3f9ff3d14f8649bf0170789ae, type: 2}
+  - {fileID: 11400000, guid: 0a19d364e4c5f9846917b26d60077649, type: 2}
+  - {fileID: 11400000, guid: 9348fc80befc42742bdb7bad28fd1c65, type: 2}
+  - {fileID: 11400000, guid: bfed641d420e8934f90b68701ca1c180, type: 2}
+  - {fileID: 11400000, guid: eaaa20d2f8f0aa949965d20d3631e0fe, type: 2}
+  equippedAbilities:
+  - {fileID: 11400000, guid: 716b7339f095dda4786750965b6291bc, type: 2}
+  - {fileID: 11400000, guid: bf5bbbb151f43ec4bacbfda335ffe841, type: 2}
+  - {fileID: 11400000, guid: e6faf5f3c64254340ab994a56c767a5c, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  element: 0
+  EquippedElement: {fileID: 11400000, guid: eaaa20d2f8f0aa949965d20d3631e0fe, type: 2}
   controller: {fileID: 9100000, guid: 421f79fe3e986374aa0f7d48558f1dbd, type: 2}
+  HeadShot: {fileID: 21300000, guid: 20275e826ad5e8943889a29c93ac4b06, type: 3}

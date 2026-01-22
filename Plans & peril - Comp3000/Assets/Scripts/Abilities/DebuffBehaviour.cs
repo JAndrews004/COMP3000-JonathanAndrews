@@ -16,6 +16,7 @@ public class DebuffBehaviour : AbilityBehaviour
     {
         foreach (var target in targets)
         {
+            
             float scaledPercentage = target.CurrentIntelligence * intelligenceScaling + basePercent;
 
             if (scaledPercentage >= maxPercent)
@@ -24,10 +25,18 @@ public class DebuffBehaviour : AbilityBehaviour
                 {
                     foreach (StatType statToDebuff in statsToDebuff)
                     {
-                        DebuffEffect effectToAdd = new DebuffEffect(statToDebuff, maxPercent, durationTurns);
+                        DebuffEffect effectToAdd;
+                        if (target.element == Element.Earth)
+                        {
+                            effectToAdd = new DebuffEffect(statToDebuff, maxPercent, durationTurns-1);
+                        }
+                        else
+                        {
+                            effectToAdd = new DebuffEffect(statToDebuff, maxPercent, durationTurns);
+                        }
                         effectToAdd.name = ability.abilityName;
                         effectToAdd.description = ability.description;
-                        effectToAdd.icon = ability.icon;
+                        effectToAdd.icon = ability.EffectIcon;
                         effectToAdd.colorType = colorType.Negative;
 
                         user.ContributionPoints += 0.5f;
@@ -48,7 +57,7 @@ public class DebuffBehaviour : AbilityBehaviour
                         DebuffEffect effectToAdd = new DebuffEffect(statToDebuff, scaledPercentage, durationTurns);
                         effectToAdd.name = ability.abilityName;
                         effectToAdd.description = ability.description;
-                        effectToAdd.icon = ability.icon;
+                        effectToAdd.icon = ability.EffectIcon;
                         effectToAdd.colorType = colorType.Negative;
                         user.ContributionPoints += 0.5f;
                         target.ApplyEffect(effectToAdd, true);

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+    public AbilityData Neutral;
     public Button closeButton;
     public Button resetStatPointsChar1;
     public Button resetStatPointsChar2;
@@ -144,6 +146,30 @@ public class Shop : MonoBehaviour
             currentBaseStats.avaliableStatPoints += 130;
             currentBaseStats.avaliableStatPoints += 2 * currentBaseStats.level;
         }
+        int skills = 0;
+        foreach(AbilityData ability in currentBaseStats.unlockableAbilities)
+        {
+            if (ability.unlocked)
+            {
+                skills++;
+            }
+            ability.unlocked = false;
+
+        }
+        for (int i = 0; i < currentBaseStats.equippedAbilities.Count; i++)
+        {
+            currentBaseStats.equippedAbilities[i] = null;
+        }
+       
+        currentBaseStats.element = Element.None;
+        currentBaseStats.EquippedElement = Neutral;
+
+        GameManager.Instance.AddGold(skills * 1000);
+        for(int i =0; i<3; i++)
+        {
+            currentBaseStats.unlockableAbilities[i].unlocked = true;
+            currentBaseStats.equippedAbilities[i] = currentBaseStats.unlockableAbilities[i];
+        }
     }
     void resetGuardianStats()
     {
@@ -175,6 +201,30 @@ public class Shop : MonoBehaviour
         {
             currentBaseStats.avaliableStatPoints += 130;
             currentBaseStats.avaliableStatPoints += 2 * currentBaseStats.level;
+        }
+        int skills = 0;
+        foreach (AbilityData ability in currentBaseStats.unlockableAbilities)
+        {
+            if (ability.unlocked)
+            {
+                skills++;
+            }
+            ability.unlocked = false;
+
+        }
+        for (int i = 0; i < currentBaseStats.equippedAbilities.Count; i++)
+        {
+            currentBaseStats.equippedAbilities[i] = null;
+        }
+
+        currentBaseStats.element = Element.None;
+        currentBaseStats.EquippedElement = Neutral;
+
+        GameManager.Instance.AddGold(skills * 1000);
+        for (int i = 0; i < 3; i++)
+        {
+            currentBaseStats.unlockableAbilities[i].unlocked = true;
+            currentBaseStats.equippedAbilities[i] = currentBaseStats.unlockableAbilities[i];
         }
     }
     void resetPaladinStats()
@@ -208,6 +258,30 @@ public class Shop : MonoBehaviour
             currentBaseStats.avaliableStatPoints += 130;
             currentBaseStats.avaliableStatPoints += 2 * currentBaseStats.level;
         }
+        int skills = 0;
+        foreach (AbilityData ability in currentBaseStats.unlockableAbilities)
+        {
+            if (ability.unlocked)
+            {
+                skills++;
+            }
+            ability.unlocked = false;
+
+        }
+        for (int i = 0; i < currentBaseStats.equippedAbilities.Count; i++)
+        {
+            currentBaseStats.equippedAbilities[i] = null;
+        }
+
+        currentBaseStats.element = Element.None;
+        currentBaseStats.EquippedElement = Neutral;
+
+        GameManager.Instance.AddGold(skills * 1000);
+        for (int i = 0; i < 3; i++)
+        {
+            currentBaseStats.unlockableAbilities[i].unlocked = true;
+            currentBaseStats.equippedAbilities[i] = currentBaseStats.unlockableAbilities[i];
+        }
     }
     void resetWizardStats()
     {
@@ -239,6 +313,30 @@ public class Shop : MonoBehaviour
         {
             currentBaseStats.avaliableStatPoints += 130;
             currentBaseStats.avaliableStatPoints += 2 * currentBaseStats.level;
+        }
+        int skills = 0;
+        foreach (AbilityData ability in currentBaseStats.unlockableAbilities)
+        {
+            if (ability.unlocked)
+            {
+                skills++;
+            }
+            ability.unlocked = false;
+
+        }
+        for (int i = 0; i < currentBaseStats.equippedAbilities.Count; i++)
+        {
+            currentBaseStats.equippedAbilities[i] = null;
+        }
+
+        currentBaseStats.element = Element.None;
+        currentBaseStats.EquippedElement = Neutral;
+
+        GameManager.Instance.AddGold(skills * 1000);
+        for (int i = 0; i < 3; i++)
+        {
+            currentBaseStats.unlockableAbilities[i].unlocked = true;
+            currentBaseStats.equippedAbilities[i] = currentBaseStats.unlockableAbilities[i];
         }
     }
     void calculateGoldPrice(PartyMember member)

@@ -16,6 +16,7 @@ public class AbilityUnlockManager : MonoBehaviour
     public TextMeshProUGUI LuckStat;
     public TextMeshProUGUI HpStat;
 
+    public TextMeshProUGUI Description;
     public TextMeshProUGUI Price;
 
     public Button buyButton;
@@ -74,6 +75,7 @@ public class AbilityUnlockManager : MonoBehaviour
 
         });
         Debug.Log("Finished");
+        Description.text = abilityData.description;
     }
     void SetStat(TextMeshProUGUI statText, string label, int required, int current)
     {

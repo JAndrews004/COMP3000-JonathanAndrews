@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: KeenEdge
+  m_EditorClassIdentifier: 
+  abilityName: Keen edge
+  description: 
+  icon: {fileID: 21300000, guid: 779d48bc053f0634d8f65c1125f40df4, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 2
+  maxUsage: 20
+  cooldown: 5
+  targetType: 6
+  numberOfTargets: 0
+  PhysicalBehaviour: {fileID: 0}
+  EffectBehaviour: {fileID: 11400000, guid: d3ad934f723d73c43a01b5cb3004ca64, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 1
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 21300000, guid: de3e481c48be8aa468c4b2a0cf4ff141, type: 3}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 4
+  boost: {fileID: 11400000, guid: e7ffba511cbf54a4d8e739eba23cc1ce, type: 2}
+  unlocked: 0
+  prerequisiteAbilities: []
+  strengthRequired: 42
+  defenseRequired: 30
+  intelligenceRequired: 36
+  magicDefenseRequired: 30
+  luckRequired: 30
+  vitalityRequired: 30
+  goldCost: 0
+  treeCol: 11
+  treeRow: 1
