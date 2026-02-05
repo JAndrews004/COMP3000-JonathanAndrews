@@ -91,7 +91,7 @@ public class CombatEndScreen : MonoBehaviour
         ExitButton.onClick.RemoveAllListeners();
         ExitButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.EndCombat();
+            GameManager.Instance.loadHubWorld();
         });
     }
 

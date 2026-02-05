@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e9c5c30b65ad024ea03a45ae01ca86e
-      internalID: -2128713870
+      spriteID: c4aa0ce2d7417de4da5eace1e932052c
+      internalID: 1548034718
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d09a248c02560534bbb6c7fdfbc9dba9
-      internalID: 162696777
+      spriteID: f705ffff26664214e8847ea7f5577bc3
+      internalID: 932761576
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c08e353ef34b6d9448fc25d650fee19b
-      internalID: -1635561502
+      spriteID: 3914f35298ea6e34fba6722341c82c6c
+      internalID: -486335599
       vertices: []
       indices: 
       edges: []
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e1c9aadd797d29408f7bfcf909a0481
-      internalID: -649605032
+      spriteID: 6b92bf233ff692d48a1f1d4a578ec3e0
+      internalID: -266016584
       vertices: []
       indices: 
       edges: []
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fe40f4ce8e2d5b4ab22884607c38a48
-      internalID: -442968991
+      spriteID: 4b446a4992e8bf54eb4ae92186b3a79c
+      internalID: 507124803
       vertices: []
       indices: 
       edges: []
@@ -220,11 +220,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Slime-Sheet_0: -2128713870
-      Slime-Sheet_1: 162696777
-      Slime-Sheet_2: -1635561502
-      Slime-Sheet_3: -649605032
-      Slime-Sheet_4: -442968991
+      Slime-Sheet_0: 1548034718
+      Slime-Sheet_1: 932761576
+      Slime-Sheet_2: -486335599
+      Slime-Sheet_3: -266016584
+      Slime-Sheet_4: 507124803
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -49,10 +49,14 @@ public class HubWorldManager : MonoBehaviour
 
     public void OnStartDungeon()
     {
-        foreach (var character in GameManager.Instance.PartyMembers)
+        if(GameManager.Instance.selectedDungeon != null)
         {
-            character.CurrentHealth = character.CurrentMaxHealth;
+            foreach (var character in GameManager.Instance.PartyMembers)
+            {
+                character.CurrentHealth = character.CurrentMaxHealth;
+            }
+            GameManager.Instance.LoadDungeonScene();
         }
-        GameManager.Instance.StartCombat();
+        
     }
 }

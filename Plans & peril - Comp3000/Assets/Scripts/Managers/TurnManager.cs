@@ -40,8 +40,11 @@ public class TurnManager : MonoBehaviour
         }
         foreach(var Enemyslot in combatManager.EnemyPositions)
         {
-            EnemyMembers.Add(Enemyslot.CurrentEnemyMember);
-            Enemyslot.CurrentEnemyMember.combatManager = combatManager;
+            if (Enemyslot.CurrentEnemyMember != null)
+            {
+                EnemyMembers.Add(Enemyslot.CurrentEnemyMember);
+                Enemyslot.CurrentEnemyMember.combatManager = combatManager;
+            }
         }
         combatManager.enemyTurnManager.RegisterEnemies(EnemyMembers);
         GameManager.Instance.EnemyMembers = EnemyMembers;
@@ -196,6 +199,7 @@ public class TurnManager : MonoBehaviour
                     targetNames = string.Join(", ", newturn.Target.Select(t => $"<color=#00FF00>{t.baseStats.characterName}</color>"));
                 }
             }
+            if(combatManager.battleLogManager != null)
             combatManager.battleLogManager.AddMessage(
                 $"<color=#00FF00>{newturn.Attacker.baseStats.characterName}</color> " +
                 $"used <color=#0000FF>{newturn.Action.AbilityData.abilityName}</color> on {targetNames}"
@@ -420,7 +424,7 @@ public class TurnManager : MonoBehaviour
         
     }
 
-    private bool CheckWinLoss()
+    public bool CheckWinLoss()
     {
         if (EnemyMembers.All(e => !e.Alive))
         {
@@ -456,11 +460,13 @@ public class TurnManager : MonoBehaviour
     {
         foreach (var slot in combatManager.CharacterPositions)
         {
+            if(slot.GetComponent<PartySlot>().TargetHighlight!=null)
             slot.GetComponent<PartySlot>().TargetHighlight.SetActive(false);
         }
         foreach (var slot in combatManager.EnemyPositions)
         {
-            slot.GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
+            if (slot.GetComponent<EnemySlot>().TargetHighlight != null)
+                slot.GetComponent<EnemySlot>().TargetHighlight.SetActive(false);
         }
     }
 

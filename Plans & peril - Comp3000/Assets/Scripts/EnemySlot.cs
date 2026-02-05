@@ -24,10 +24,21 @@ public class EnemySlot : MonoBehaviour
         {
             TargetHighlight.SetActive(false);
         }
-        mat = GetComponent<SpriteRenderer>().material;
+        if (GetComponent<SpriteRenderer>())
+        {
+            mat = GetComponent<SpriteRenderer>().material;
+        }
     }
     private void Update()
     {
+        if (CurrentEnemyMember == null ||
+        CurrentEnemyMember.baseStats == null ||
+        NameText == null || HPBar == null || ShieldBar == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+           
         if (CurrentEnemyMember != null)
         {
             NameText.text = CurrentEnemyMember.baseStats.characterName;
@@ -52,10 +63,12 @@ public class EnemySlot : MonoBehaviour
     
     public void TurnTargetArrowOn()
     {
+        if(TargetArrow!=null)
         TargetArrow.SetActive(true);
     }
     public void TurnTargetArrowOff()
     {
+        if(TargetArrow!=null) 
         TargetArrow.SetActive(false);
     }
 
@@ -63,11 +76,14 @@ public class EnemySlot : MonoBehaviour
     {
         if (CurrentEnemyMember == null) return;
 
-        // Clear existing icons
-        foreach (Transform child in StatusEffectContainer)
-            Destroy(child.gameObject);
-        ActiveIcons.Clear();
-
+        if (StatusEffectContainer != null)
+        {
+            // Clear existing icons
+            foreach (Transform child in StatusEffectContainer)
+                Destroy(child.gameObject);
+            ActiveIcons.Clear();
+        }
+        
         // Rebuild list
         foreach (Effect effect in CurrentEnemyMember.activeEffects)
         {

@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combat.unity
     guid: 40576c43f9178a94caab4dc8e67e9de8
+  - enabled: 1
+    path: Assets/Scenes/Test.unity
+    guid: f160ee3daec4eee4eb2660ffdea3ad95
+  - enabled: 1
+    path: Assets/Scenes/DungeonTraversal.unity
+    guid: 4c1329e36d569d94991d52c1af73e75a
   m_configObjects: {}

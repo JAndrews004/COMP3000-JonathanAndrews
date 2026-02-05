@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource DeathSound;
     public AudioSource UIClickSound;
 
-
+    public List<AudioClip> hitSoundVariations;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayAttackSound()
     {
+        AttackSound.clip = hitSoundVariations[Random.RandomRange(0,hitSoundVariations.Count)];
         AttackSound.Play();
     }
     public void PlayBuffSound()

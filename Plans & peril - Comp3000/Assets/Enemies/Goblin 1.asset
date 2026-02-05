@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Goblin 1
   m_EditorClassIdentifier: 
   characterName: Goblin
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: -61834332, guid: 8f961ba9b4562584d81658271a1d9c83, type: 3}
   level: 1
   xp: 0
   maxHealth: 65
@@ -23,3 +23,10 @@ MonoBehaviour:
   magicDefence: 4
   Luck: 10
   avaliableStatPoints: 0
+  unlockableAbilities:
+  - {fileID: 0}
+  equippedAbilities: []
+  element: 0
+  EquippedElement: {fileID: 0}
+  controller: {fileID: 9100000, guid: 1a24db65604e39d40b8cb8e6094a43cf, type: 2}
+  HeadShot: {fileID: 0}

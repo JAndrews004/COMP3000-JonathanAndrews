@@ -23,6 +23,11 @@ public class EnemyTurnManager : MonoBehaviour
                 
                 yield return enemy.TakeTurn();
             }
+            if (tm.CheckWinLoss())
+            {
+                yield return null;
+            }
+          
         }
         isEnemyPhase = false;
         tm.EndEnemyPhase();

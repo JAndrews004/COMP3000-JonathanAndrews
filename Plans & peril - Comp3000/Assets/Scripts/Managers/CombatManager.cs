@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static AbilityData;
 using static EnemyMember;
-using static UnityEngine.GraphicsBuffer;
 
 public class CombatManager : MonoBehaviour
 {
@@ -105,10 +102,11 @@ public class CombatManager : MonoBehaviour
 
         if (currentActiveView != null)
             Destroy(currentActiveView);
-
+        if(partyMemberViewPrefab !=null)
         currentActiveView = Instantiate(partyMemberViewPrefab, activeUnitUIParent);
 
         var vm = new PartyMemberViewModel(partyMember, turnManager);
+        if(currentActiveView != null) 
         currentActiveView.GetComponent<PartyMemberView>().Bind(vm);
 
         // Keep track of all ViewModels
@@ -337,21 +335,27 @@ public class CombatManager : MonoBehaviour
         foreach (var button in EnemyTargetButtons)
         {
             var slot = button.GetComponentInParent<EnemySlot>();
-            var enemy = slot.CurrentEnemyMember;
-            bool canSelect = enemy != null && enemy.Alive;
-            button.SetActive(canSelect);
-            slot.TargetHighlight.SetActive(canSelect);
-            if (canSelect)
+            if (slot !=null)
             {
-                var btnComp = button.GetComponent<Button>();
-                btnComp.onClick.RemoveAllListeners();
-                EnemyMember capturedEnemy = enemy;
-                btnComp.onClick.AddListener(() =>
+                if (slot.CurrentEnemyMember != null)
                 {
-                    turnManager.PlayerSelectedTarget(capturedEnemy);
-                    // Optionally show confirm button for current character
-                    //currentActiveView.GetComponent<PartyMemberView>().ShowConfirmButton();
-                });
+                    var enemy = slot.CurrentEnemyMember;
+                    bool canSelect = enemy != null && enemy.Alive;
+                    button.SetActive(canSelect);
+                    slot.TargetHighlight.SetActive(canSelect);
+                    if (canSelect)
+                    {
+                        var btnComp = button.GetComponent<Button>();
+                        btnComp.onClick.RemoveAllListeners();
+                        EnemyMember capturedEnemy = enemy;
+                        btnComp.onClick.AddListener(() =>
+                        {
+                            turnManager.PlayerSelectedTarget(capturedEnemy);
+                            // Optionally show confirm button for current character
+                            //currentActiveView.GetComponent<PartyMemberView>().ShowConfirmButton();
+                        });
+                    }
+                }
             }
         }
     }
@@ -464,7 +468,7 @@ public class CombatManager : MonoBehaviour
         // Any other cleanup, like resetting state or notifying GameManager
         Debug.Log("Combat ended!");
 
-        
+        if(combatEndScreen != null)
         combatEndScreen.Bind(PartyMembers, win);
         //Giving out XP to characters
         int xpchar1 = 0;
@@ -508,12 +512,13 @@ public class CombatManager : MonoBehaviour
                         xpchar4 += XpAward;
                         break;
                 }
-                turnManager.PartyMembers[j].AddXP(XpAward);
+                turnManager.PartyMembers[j].AddXP(XpAward * GameManager.Instance.selectedDungeon.expectedRewardXP-1 / 5);
             }
         }
        
         StartCoroutine(AnimateXPBarsOnEnd(xpchar1, xpchar2, xpchar3, xpchar4));
 
+        if(levelUpManager != null)
         levelUpManager.StartLevelUpSequence();
         foreach(PartyMember mem in PartyMembers)
         {
@@ -584,9 +589,13 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator AnimateXPBarsOnEnd(int x1, int x2, int x3, int x4 )
     {
-        yield return combatEndScreen.UpdateXPChar1(PartyMembers[0], x1);
-        yield return combatEndScreen.UpdateXPChar2(PartyMembers[1], x2);
-        yield return combatEndScreen.UpdateXPChar3(PartyMembers[2], x3);
-        yield return combatEndScreen.UpdateXPChar4(PartyMembers[3], x4);
+        if (combatEndScreen != null)
+        {
+            yield return combatEndScreen.UpdateXPChar1(PartyMembers[0], x1);
+            yield return combatEndScreen.UpdateXPChar2(PartyMembers[1], x2);
+            yield return combatEndScreen.UpdateXPChar3(PartyMembers[2], x3);
+            yield return combatEndScreen.UpdateXPChar4(PartyMembers[3], x4);
+        }
+        yield return null;
     }
 }

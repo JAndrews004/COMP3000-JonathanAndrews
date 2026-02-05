@@ -23,4 +23,10 @@ MonoBehaviour:
   magicDefence: 4
   Luck: 10
   avaliableStatPoints: 0
+  unlockableAbilities:
+  - {fileID: 0}
+  equippedAbilities: []
+  element: 0
+  EquippedElement: {fileID: 0}
   controller: {fileID: 9100000, guid: 50870c858cfa1664e97208146dfa2c61, type: 2}
+  HeadShot: {fileID: 0}

@@ -25,10 +25,18 @@ public class PartySlot : MonoBehaviour
         {
             TargetHighlight.SetActive(false);
         }
-        mat = GetComponent<SpriteRenderer>().material;
+        if (GetComponent<SpriteRenderer>())
+        {
+            mat = GetComponent<SpriteRenderer>().material;
+        }
+        
     }
     private void Update()
     {
+        if (CurrentPartyMember == null ||
+        CurrentPartyMember.baseStats == null ||
+        NameText == null || HPBar == null || ShieldBar == null)
+            return;
         if (CurrentPartyMember != null)
         {
             NameText.text = CurrentPartyMember.baseStats.characterName;
@@ -51,18 +59,22 @@ public class PartySlot : MonoBehaviour
 
     public void TurnCharacterArrowOn()
     {
+        if(CharacterArrow!=null)
         CharacterArrow.SetActive(true);
     }
     public void TurnCharacterArrowOff()
     {
+        if (CharacterArrow != null) 
         CharacterArrow.SetActive(false);
     }
     public void TurnTargetArrowOn()
     {
+        if (TargetArrow != null)
         TargetArrow.SetActive(true);
     }
     public void TurnTargetArrowOff()
     {
+        if(TargetArrow != null)
         TargetArrow.SetActive(false);
     }
 
@@ -70,10 +82,14 @@ public class PartySlot : MonoBehaviour
     {
         if (CurrentPartyMember == null) return;
 
-        // Clear existing icons
-        foreach (Transform child in StatusEffectContainer)
-            Destroy(child.gameObject);
-        ActiveIcons.Clear();
+        if (StatusEffectContainer != null)
+        {
+            // Clear existing icons
+            foreach (Transform child in StatusEffectContainer)
+                Destroy(child.gameObject);
+            ActiveIcons.Clear();
+        }
+        
 
         // Rebuild list
         foreach (Effect effect in CurrentPartyMember.activeEffects)

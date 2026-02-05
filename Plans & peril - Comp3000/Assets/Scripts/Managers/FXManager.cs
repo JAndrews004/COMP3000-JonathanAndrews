@@ -20,16 +20,18 @@ public class FXManager : MonoBehaviour
     {
         slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 1f);
         yield return new WaitForSeconds(flashDuration);
+        AudioManager.Instance.PlayAttackSound();
         slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 0f);
     }
 
     public IEnumerator SpriteFlash(EnemySlot slot)
     {
-        slot.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", Color.blue);
+        
         slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 1f);
         yield return new WaitForSeconds(flashDuration);
+        AudioManager.Instance.PlayAttackSound();
         slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 0f);
-        slot.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", Color.white);
+        
     }
 
     public IEnumerator ShieldFlashEffect(PartySlot slot)
@@ -43,9 +45,11 @@ public class FXManager : MonoBehaviour
 
     public IEnumerator ShieldFlashEffect(EnemySlot slot)
     {
+        slot.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", Color.blue);
         slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 1f);
         yield return new WaitForSeconds(flashDuration);
         slot.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 0f);
+        slot.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", Color.white);
     }
     public void SetAlpha(PartySlot slot,float alpha)
     {

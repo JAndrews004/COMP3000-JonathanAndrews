@@ -66,11 +66,11 @@ public class EnemyMember : CombatMember
     }
     public void Update()
     {
-        if (combatManager != null)
+        if (combatManager != null && GameManager.Instance.fXManager)
         {
             foreach (EnemySlot slot in combatManager.EnemyPositions)
             {
-                if (slot.CurrentEnemyMember == this)
+                if (slot.CurrentEnemyMember == this && slot.GetComponent<SpriteRenderer>())
                 {
                     float a = Alive ? 1f : 0.5f;
                     GameManager.Instance.fXManager.SetAlpha(slot, a);
@@ -82,11 +82,11 @@ public class EnemyMember : CombatMember
     }
     public override void SpawnBuffEffect()
     {
-        if (combatManager != null)
+        if (combatManager != null && GameManager.Instance.fXManager)
         {
             foreach (EnemySlot slot in combatManager.EnemyPositions)
             {
-                if (slot.CurrentEnemyMember == this)
+                if (slot.CurrentEnemyMember == this && slot.GetComponent<SpriteRenderer>())
                 {
                     GameManager.Instance.fXManager.SpawnBuffEffect(slot.transform,true);
                     break;
@@ -150,7 +150,7 @@ public class EnemyMember : CombatMember
             }
         }
     }
-    public EnemyMember(int level,int XP)
+    public void Init_Enemy(int level,int XP)
     {
         Level = level;
         XPGiven = XP;
@@ -161,14 +161,15 @@ public class EnemyMember : CombatMember
         CurrentDefense = baseStats.defense;
         CurrentIntelligence = baseStats.intelligence;
 
-  
 
+        
         UpdateStats(Level,tier,GameManager.Instance.EnemyMembers.Count);
     }
 
 
-    void UpdateStats(int Level, Tier tier ,int numOfEnemies)
+    public void UpdateStats(int Level, Tier tier ,int numOfEnemies)
     {
+        UnityEngine.Debug.Log("updating Enemy stats");
         float k_hp = 0.06f;
         float hp_exp = 1.02f;
         float k_atk = 0.045f;
@@ -302,6 +303,7 @@ public class EnemyMember : CombatMember
             }
             if (!taunted)
             {
+                if(combatManager != null && combatManager.battleLogManager != null)
                 combatManager.battleLogManager.AddMessage(
                 $"<color=#FF0000>{action.Attacker.baseStats.characterName}</color> " +
                 $"used <color=#0000FF>{action.Action.AbilityData.abilityName}</color> on {targetNames}"
@@ -309,7 +311,8 @@ public class EnemyMember : CombatMember
             }
             else
             {
-                combatManager.battleLogManager.AddMessage($"{baseMessage} and used <color=#0000FF>{action.Action.AbilityData.abilityName}</color>");
+                if (combatManager != null && combatManager.battleLogManager != null)
+                    combatManager.battleLogManager.AddMessage($"{baseMessage} and used <color=#0000FF>{action.Action.AbilityData.abilityName}</color>");
             }
             
 

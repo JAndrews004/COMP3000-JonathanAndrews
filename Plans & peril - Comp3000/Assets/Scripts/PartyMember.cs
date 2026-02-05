@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class PartyMember : CombatMember
@@ -19,12 +18,16 @@ public class PartyMember : CombatMember
 
     public CharacterClass Class;
 
-    public List<AbilityData> ALLUNLOCKABLEABILITIES;
+    public List<AbilityData> ALLUNLOCKABLEABILITIES= new List<AbilityData> { };
     public CharacterSkillTree characterSkillTree;
     
     
     private void Awake()
     {
+        if (baseStats == null)
+        { 
+            return;
+        }
         ALLUNLOCKABLEABILITIES = baseStats.unlockableAbilities;
         abilityDatas = baseStats.equippedAbilities;
        
@@ -97,11 +100,11 @@ public class PartyMember : CombatMember
     // Update is called once per frame
     public void Update()
     {
-        if(combatManager != null)
+        if(combatManager != null && GameManager.Instance.fXManager)
         {
             foreach (PartySlot slot in combatManager.CharacterPositions)
             {
-                if (slot.CurrentPartyMember == this)
+                if (slot.CurrentPartyMember == this && slot.GetComponent<SpriteRenderer>())
                 {
                     float a = Alive ? 1f : 0.5f;
                     GameManager.Instance.fXManager.SetAlpha(slot, a);
