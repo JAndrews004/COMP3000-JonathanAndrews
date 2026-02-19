@@ -6,7 +6,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639051258171285078
+      ticks: 639060706761642070
     m_Hash: 2584136541
   m_LockFileStatus:
     m_FilePath: C:/Users/ja990/OneDrive/Documents/GitHub/COMP3000/Plans & peril -
@@ -15,7 +15,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639051258171379288
+      ticks: 639060706761734375
     m_Hash: 831752159
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -466,12 +466,14 @@ m_ResolvedPackages:
     - 2.0.23
     - 2.0.25
     - 2.0.26
+    - 2.0.27
     compatible:
     - 2.0.22
     - 2.0.23
     - 2.0.25
     - 2.0.26
-    verified: 2.0.26
+    - 2.0.27
+    verified: 2.0.27
   dependencies:
   - name: com.unity.test-framework
     version: 1.1.9
@@ -3535,6 +3537,7 @@ m_ResolvedPackages:
     - 1.8.25
     - 1.8.26
     - 1.8.27
+    - 1.8.28
     compatible:
     - 1.8.14
     - 1.8.15
@@ -4095,6 +4098,7 @@ m_ResolvedPackages:
     - 14.0.1
     - 14.0.2
     - 15.0.0
+    - 15.0.1
     compatible:
     - 7.1.0
     - 7.1.1

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using Random = UnityEngine.Random;
@@ -115,6 +116,14 @@ public abstract class CombatMember : MonoBehaviour
     }
     public void TakeDamage(CombatMember attacker,int AttackPower,bool physical,bool reflectable)
     {
+        combatManager.turnManager.DebugCombatLog.attacker = attacker;
+        combatManager.turnManager.DebugCombatLog.rawDamages.Add(this, Mathf.RoundToInt(AttackPower * (1 + (attacker.CurrentAttack / 100.0f))));
+        if (combatManager.turnManager.DebugCombatLog.targets == null)
+        {
+            combatManager.turnManager.DebugCombatLog.targets = new List<CombatMember>();
+        }
+
+        combatManager.turnManager.DebugCombatLog.targets.Add(this);
         if (activeEffects == null)
         {
             activeEffects = new List<Effect>() { };
@@ -149,6 +158,7 @@ public abstract class CombatMember : MonoBehaviour
         if (attacker.element == Element.Fire)
         {
             AttackPower = Mathf.RoundToInt(AttackPower * 1.15f);
+            Debug.Log($"{attacker.baseStats.characterName} landed a crit");
         }
 
         switch (attacker.element)
@@ -242,8 +252,8 @@ public abstract class CombatMember : MonoBehaviour
             shieldValue -= AttackPower;
             return;
         }
-
         
+
         if (CurrentHealth - AttackPower <= 0)
         {
             CurrentHealth = 0;
@@ -251,12 +261,13 @@ public abstract class CombatMember : MonoBehaviour
             OnDeath?.Invoke(this);
             OnHealthChanged?.Invoke(this);
             activeEffects.Clear();
-            //death animation
+            combatManager.turnManager.DebugCombatLog.damageReceived.Add(this, AttackPower);
         }
         else
         {
             Debug.Log($"{name} is taking {AttackPower} damage");
             CurrentHealth -= AttackPower;
+            combatManager.turnManager.DebugCombatLog.damageReceived.Add(this, AttackPower);
             OnDamageTaken?.Invoke(this, AttackPower);
             OnHealthChanged?.Invoke(this);
             if (this is PartyMember pm)
@@ -374,19 +385,20 @@ public abstract class CombatMember : MonoBehaviour
 
     public float CalculateAbilityDamage(CombatMember user, CombatMember target, AbilityData ability)
     {
+        
         float maxDR = 0.70f;
-        int kd = 80;
-        int baseDamage = ability.PhysicalBehaviour.baseDamage;
+        float kd = 80f;
+        float baseDamage = ability.PhysicalBehaviour.baseDamage;
         float damage = 0;
         if(ability.powerType == AbilityPowerType.Physical)
         {
             if(target.element == Element.Earth)
             {
-                damage = baseDamage * (1 + (user.CurrentAttack / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentDefense*1.15f / kd))));
+                damage = baseDamage * (1 + ((float)user.CurrentAttack / 100.0f)) * (1 - maxDR * (1 - Mathf.Exp(-((float)target.CurrentDefense*1.15f / kd))));
             }
             else
             {
-                damage = baseDamage * (1 + (user.CurrentAttack / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentDefense / kd))));
+                damage = baseDamage * (1 + ((float)user.CurrentAttack / 100.0f)) * (1 - maxDR * (1 - Mathf.Exp(-((float)target.CurrentDefense / kd))));
             }
             
         }
@@ -394,18 +406,18 @@ public abstract class CombatMember : MonoBehaviour
         {
             if (target.element == Element.Earth)
             {
-                damage = baseDamage * (1 + (user.CurrentIntelligence / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentMagicDefense *1.15f / kd))));
+                damage = baseDamage * (1 + ((float)user.CurrentIntelligence / 100.0f)) * (1 - maxDR * (1 - Mathf.Exp(-((float)target.CurrentMagicDefense *1.15f / kd))));
             }
             else
             {
-                damage = baseDamage * (1 + (user.CurrentIntelligence / 100)) * (1 - maxDR * (1 - Mathf.Exp(-(target.CurrentMagicDefense / kd))));
+                damage = baseDamage * (1 + ((float)user.CurrentIntelligence / 100.0f)) * (1 - maxDR * (1 - Mathf.Exp(-((float)target.CurrentMagicDefense / kd))));
             }
         }
         else if(ability.powerType == AbilityPowerType.True)
         {
             damage = baseDamage;
         }
-
+        
         return damage;
     }
 

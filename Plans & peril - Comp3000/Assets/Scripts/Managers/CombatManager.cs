@@ -18,7 +18,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject partyMemberViewPrefab;
     [SerializeField] private Transform activeUnitUIParent;
 
-    private TurnManager turnManager;
+    public TurnManager turnManager;
     public  EnemyTurnManager enemyTurnManager;
     public GameObject currentActiveView;
     public PartyMemberViewModel viewModel;

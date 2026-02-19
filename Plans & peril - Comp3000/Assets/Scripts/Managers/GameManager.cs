@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public DungeonData selectedDungeon;
     public DungeonRuntimeState dungeonRuntimeState;
     public bool InCombat = false;
+
+    public GameObject breakReminderPanel;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
             }
             gold = Stats.Gold;
             passLevel = Stats.passLevel;
-            
+            StartCoroutine(showBreakPanel());
         }
  
     }
@@ -242,7 +244,7 @@ public class GameManager : MonoBehaviour
     public void LoadCombatScene()
     {
         dungeonRuntimeState.destroyRooms();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
     public void EndCombat()
     {
@@ -269,12 +271,13 @@ public class GameManager : MonoBehaviour
     public void loadHubWorld()
     {
         dungeonRuntimeState.destroyRooms();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         dungeonRuntimeState.ResetDungeonLayout();
         foreach (GameObject obj in enemyObjects)
         {
             Destroy(obj);
         }
+        selectedDungeon = null;
         InCombat = false;
     }
 
@@ -393,7 +396,14 @@ public class GameManager : MonoBehaviour
         {
             dungeonRuntimeState.GenerateRooms();
         }
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
         dungeonRuntimeState.DrawRooms();
+    }
+
+    public IEnumerator showBreakPanel()
+    {
+        yield return new WaitForSeconds(18000f);
+        Instantiate(breakReminderPanel);
+        StartCoroutine(showBreakPanel());
     }
 }

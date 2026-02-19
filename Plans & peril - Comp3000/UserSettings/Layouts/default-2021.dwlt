@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 418
-    y: 260
-    width: 641
-    height: 603
-  m_ShowMode: 0
-  m_Title: Build Settings
-  m_RootView: {fileID: 4}
-  m_MinSize: {x: 640, y: 601}
-  m_MaxSize: {x: 4000, y: 4021}
-  m_Maximized: 0
+    x: 0
+    y: 43
+    width: 2560
+    height: 1349
+  m_ShowMode: 4
+  m_Title: Game
+  m_RootView: {fileID: 6}
+  m_MinSize: {x: 875, y: 300}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_Maximized: 1
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -32,22 +32,23 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12004, guid: 0000000000000000e000000000000000, type: 0}
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PixelRect:
+  m_Children:
+  - {fileID: 9}
+  - {fileID: 3}
+  m_Position:
     serializedVersion: 2
-    x: 8
-    y: 51
-    width: 2544
-    height: 1333
-  m_ShowMode: 4
-  m_Title: Console
-  m_RootView: {fileID: 9}
-  m_MinSize: {x: 875, y: 300}
-  m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 0
+    x: 0
+    y: 30
+    width: 2560
+    height: 1299
+  m_MinSize: {x: 300, y: 200}
+  m_MaxSize: {x: 24288, y: 16192}
+  vertical: 0
+  controlID: 101
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -56,22 +57,22 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: BuildPlayerWindow
+  m_Name: 
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 0
+    x: 1975
     y: 0
-    width: 641
-    height: 603
-  m_MinSize: {x: 640, y: 580}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 15}
+    width: 585
+    height: 1299
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 16}
   m_Panes:
-  - {fileID: 15}
+  - {fileID: 16}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &4
@@ -82,22 +83,24 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 3}
+  m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 641
-    height: 603
-  m_MinSize: {x: 640, y: 601}
-  m_MaxSize: {x: 4000, y: 4021}
-  vertical: 0
-  controlID: 130
+    width: 278
+    height: 905
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 17}
+  m_Panes:
+  - {fileID: 17}
+  m_Selected: 0
+  m_LastSelected: 0
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -107,103 +110,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 12}
-  - {fileID: 6}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 30
-    width: 2544
-    height: 1283
-  m_MinSize: {x: 300, y: 200}
-  m_MaxSize: {x: 24288, y: 16192}
-  vertical: 0
-  controlID: 24
---- !u!114 &6
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 2080
-    y: 0
-    width: 464
-    height: 1283
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 20}
+    x: 0
+    y: 905
+    width: 1975
+    height: 394
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 15}
   m_Panes:
+  - {fileID: 15}
   - {fileID: 20}
+  - {fileID: 13}
   m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &7
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 303
-    height: 992
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 21}
-  m_Panes:
-  - {fileID: 21}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &8
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 992
-    width: 2080
-    height: 291
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 24}
-  m_Panes:
-  - {fileID: 19}
-  - {fileID: 24}
-  - {fileID: 17}
-  m_Selected: 1
-  m_LastSelected: 0
---- !u!114 &9
+  m_LastSelected: 1
+--- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,22 +142,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 10}
-  - {fileID: 5}
-  - {fileID: 11}
+  - {fileID: 7}
+  - {fileID: 2}
+  - {fileID: 8}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2544
-    height: 1333
+    width: 2560
+    height: 1349
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
   m_UseBottomView: 1
   m_BottomViewHeight: 20
---- !u!114 &10
+--- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,12 +174,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2544
+    width: 2560
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
   m_LastLoadedLayoutName: 
---- !u!114 &11
+--- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,12 +195,12 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 1313
-    width: 2544
+    y: 1329
+    width: 2560
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
---- !u!114 &12
+--- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -287,19 +213,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 13}
-  - {fileID: 8}
+  - {fileID: 10}
+  - {fileID: 5}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2080
-    height: 1283
+    width: 1975
+    height: 1299
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 56
---- !u!114 &13
+  controlID: 58
+--- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,19 +238,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 7}
-  - {fileID: 14}
+  - {fileID: 4}
+  - {fileID: 11}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2080
-    height: 992
+    width: 1975
+    height: 905
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 57
---- !u!114 &14
+  controlID: 59
+--- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -339,72 +265,21 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 303
+    x: 278
     y: 0
-    width: 1777
-    height: 992
+    width: 1697
+    height: 905
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 22}
+  m_ActualView: {fileID: 18}
   m_Panes:
-  - {fileID: 22}
-  - {fileID: 23}
   - {fileID: 18}
-  - {fileID: 16}
+  - {fileID: 19}
+  - {fileID: 14}
+  - {fileID: 12}
   m_Selected: 0
   m_LastSelected: 1
---- !u!114 &15
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12043, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 640, y: 580}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Build Settings
-    m_Image: {fileID: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 418
-    y: 260
-    width: 641
-    height: 582
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-    m_OverlaysVisible: 1
-  m_TreeViewState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
-      m_EditFieldRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      m_UserData: 0
-      m_IsWaitingForDelay: 0
-      m_IsRenaming: 0
-      m_OriginalEventType: 11
-      m_IsRenamingFilename: 0
-      m_ClientGUIView: {fileID: 0}
-    m_SearchString: 
---- !u!114 &16
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -424,22 +299,22 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 355
-    y: 73
-    width: 1526
-    height: 965
+    x: 140
+    y: 81
+    width: 845
+    height: 878
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 2043
+    ID: 2123
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
-    - 671
-    - 224
+    - 606
+    - 202
     relativeSizes:
     - 0.75
     - 0.25
@@ -449,7 +324,7 @@ MonoBehaviour:
     maxSizes:
     - 0
     - 0
-    lastTotalSize: 895
+    lastTotalSize: 808
     splitSize: 6
     xOffset: 0
     m_Version: 1
@@ -459,14 +334,14 @@ MonoBehaviour:
     oldSplitSize: 0
   m_TestTypeToolbarIndex: 0
   m_PlayModeTestListGUI:
-    m_Window: {fileID: 16}
+    m_Window: {fileID: 12}
     m_NewResultList:
     - id: 1004
       uniqueId: '[Plans & peril - Comp3000][suite]'
       name: Plans & peril - Comp3000
       fullName: Plans & peril - Comp3000
       resultStatus: 1
-      duration: 0.3782791
+      duration: 0.0614933
       messages: 
       output: 
       stacktrace: 
@@ -484,7 +359,7 @@ MonoBehaviour:
       fullName: C:/Users/ja990/OneDrive/Documents/GitHub/COMP3000/Plans & peril -
         Comp3000/Library/ScriptAssemblies/Tests.dll
       resultStatus: 1
-      duration: 0.3605353
+      duration: 0.042173
       messages: 
       output: 
       stacktrace: 
@@ -673,142 +548,114 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: Tests.dll/[Tests][CombatSystemTest1][suite]
-    m_ResultText: 'CombatSystemTest_1WithEnumeratorPasses (0.339s)
-
-      ---
-
-      DontDestroyOnLoad
-      only works for root GameObjects or components on root GameObjects.
-
-      updating
-      Enemy stats
-
-      You are trying to create a MonoBehaviour using the ''new''
-      keyword.  This is not allowed.  MonoBehaviours can only be added using AddComponent().
-      Alternatively, your script can inherit from ScriptableObject or no base class
-      at all
-
-      DontDestroyOnLoad only works for root GameObjects or components
-      on root GameObjects.
-
-      updating Enemy stats
-
-      You are trying to create
-      a MonoBehaviour using the ''new'' keyword.  This is not allowed.  MonoBehaviours
-      can only be added using AddComponent(). Alternatively, your script can inherit
-      from ScriptableObject or no base class at all
-
-      DontDestroyOnLoad only
-      works for root GameObjects or components on root GameObjects.
-
-      updating
-      Enemy stats
-
-      You are trying to create a MonoBehaviour using the ''new''
-      keyword.  This is not allowed.  MonoBehaviours can only be added using AddComponent().
-      Alternatively, your script can inherit from ScriptableObject or no base class
-      at all
-
-      DontDestroyOnLoad only works for root GameObjects or components
-      on root GameObjects.
-
-      updating Enemy stats
-
-      You are trying to create
-      a MonoBehaviour using the ''new'' keyword.  This is not allowed.  MonoBehaviours
-      can only be added using AddComponent(). Alternatively, your script can inherit
-      from ScriptableObject or no base class at all
-
-      DontDestroyOnLoad only
-      works for root GameObjects or components on root GameObjects.
-
-      updating
-      Enemy stats
-
-      You are trying to create a MonoBehaviour using the ''new''
-      keyword.  This is not allowed.  MonoBehaviours can only be added using AddComponent().
-      Alternatively, your script can inherit from ScriptableObject or no base class
-      at all
-
-      No EasyEnemyPrefabs assigned!
-
-      Basic Attack added to active
-      ability list
-
-      Basic Attack added to active ability list
-
-      Basic
-      Attack added to active ability list
-
-      Basic Attack added to active ability
-      list
-
-      Basic Attack added to active ability list
-
-      Basic Attack added
-      to active ability list
-
-      Basic Attack added to active ability list
-
-      Basic
-      Attack added to active ability list
-
-      Turns in list: 3
-
-      PartyMember_0
-      calculated damager as 0
-
-      0 is choosing action
-
-      0 has selected an
-      action
-
-      EnemyMember_0 calculated damager as 0
-
-      PartyMember_1 dodged
-      the attack
-
-      Enemy EnemyMember_0 | HP: 159 | Alive: True
-
-      Enemy
-      EnemyMember_1 | HP: 159 | Alive: True
-
-      Enemy EnemyMember_2 | HP: 159
-      | Alive: True
-
-      Enemy EnemyMember_3 | HP: 159 | Alive: True
-
-      Enemy
-      EnemyMember_4 | HP: 159 | Alive: True
-
-      Enemy EnemyMember_0 | HP: 159
-      | Alive: True
-
-      Enemy EnemyMember_1 | HP: 159 | Alive: True
-
-      Enemy
-      EnemyMember_2 | HP: 159 | Alive: True
-
-      Enemy EnemyMember_3 | HP: 159
-      | Alive: True
-
-      Enemy EnemyMember_4 | HP: 159 | Alive: True
-
-      All
-      enemies defeated! You win!
-
-      Combat ended!
-
-      All players defeated!
-      Game over!
-
-      Combat ended!'
+    - id: 1004
+      uniqueId: Tests.dll/[Tests][DamageCalculationTests][suite]
+      name: DamageCalculationTests
+      fullName: DamageCalculationTests
+      resultStatus: 1
+      duration: 0.0353727
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1007
+      parentUniqueId: '[Tests][C:/Users/ja990/OneDrive/Documents/GitHub/COMP3000/Plans
+        & peril - Comp3000/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1008
+      uniqueId: Tests.dll/DamageCalculationTests/[Tests][DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue][suite]
+      name: CalculateAbilityDamage_ReturnsExpectedValue
+      fullName: DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue
+      resultStatus: 1
+      duration: 0.0232619
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1004
+      parentUniqueId: Tests.dll/[Tests][DamageCalculationTests][suite]
+    - id: 1005
+      uniqueId: Tests.dll/DamageCalculationTests/CalculateAbilityDamage_ReturnsExpectedValue/[Tests][DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue(10,0)]
+      name: CalculateAbilityDamage_ReturnsExpectedValue(10,0)
+      fullName: DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue(10,0)
+      resultStatus: 1
+      duration: 0.0167632
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1008
+      parentUniqueId: Tests.dll/DamageCalculationTests/[Tests][DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue][suite]
+    - id: 1006
+      uniqueId: Tests.dll/DamageCalculationTests/CalculateAbilityDamage_ReturnsExpectedValue/[Tests][DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue(50,50)]
+      name: CalculateAbilityDamage_ReturnsExpectedValue(50,50)
+      fullName: DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue(50,50)
+      resultStatus: 1
+      duration: 0.0001701
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1008
+      parentUniqueId: Tests.dll/DamageCalculationTests/[Tests][DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue][suite]
+    - id: 1007
+      uniqueId: Tests.dll/DamageCalculationTests/CalculateAbilityDamage_ReturnsExpectedValue/[Tests][DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue(100,200)]
+      name: CalculateAbilityDamage_ReturnsExpectedValue(100,200)
+      fullName: DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue(100,200)
+      resultStatus: 1
+      duration: 0.0001015
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1008
+      parentUniqueId: Tests.dll/DamageCalculationTests/[Tests][DamageCalculationTests.CalculateAbilityDamage_ReturnsExpectedValue][suite]
+    - id: 1009
+      uniqueId: Tests.dll/DamageCalculationTests/[Tests][DamageCalculationTests.HigherDefense_ShouldNeverIncreaseDamage]
+      name: HigherDefense_ShouldNeverIncreaseDamage
+      fullName: DamageCalculationTests.HigherDefense_ShouldNeverIncreaseDamage
+      resultStatus: 1
+      duration: 0.0023718
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1004
+      parentUniqueId: Tests.dll/[Tests][DamageCalculationTests][suite]
+    m_ResultText: HigherDefense_ShouldNeverIncreaseDamage (0.002s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: fced124d
-      m_LastClickedID: 1293086204
-      m_ExpandedIDs: a92bc9bc2151e1079ada9175ffffff7f
+      m_SelectedIDs: 60802676
+      m_LastClickedID: 1982234720
+      m_ExpandedIDs: a92bc9bc2151e10758dcec2bca07ea6a9ada9175ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -836,7 +683,7 @@ MonoBehaviour:
       - Uncategorized
     m_SelectedOption: 1
   m_EditModeTestListGUI:
-    m_Window: {fileID: 16}
+    m_Window: {fileID: 12}
     m_NewResultList:
     - id: 1008
       uniqueId: '[Plans & peril - Comp3000][suite]'
@@ -886,7 +733,7 @@ MonoBehaviour:
       selectedCategoryMask: 0
       availableCategories:
       - Uncategorized
---- !u!114 &17
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -907,9 +754,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 1059
-    width: 1882
-    height: 292
+    y: 978
+    width: 2166
+    height: 373
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -922,7 +769,7 @@ MonoBehaviour:
   m_Palette: {fileID: 3842020461316476322, guid: 5b7f5246e073eb9478d4d391652a0c8d, type: 3}
   m_DrawGridGizmo: 1
   m_DrawGizmos: 0
---- !u!114 &18
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -942,10 +789,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 250
-    y: 81
-    width: 655
-    height: 885
+    x: 346
+    y: 73
+    width: 1703
+    height: 984
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1072,7 +919,7 @@ MonoBehaviour:
   m_CurrentEditor: 1
   m_LayerEditor:
     m_SelectedLayerIndex: 0
---- !u!114 &19
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1092,10 +939,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 8
-    y: 1073
-    width: 2079
-    height: 270
+    x: 0
+    y: 978
+    width: 1974
+    height: 373
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1112,24 +959,24 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/DungeonGeneration
+    - Assets/Prefab/Ui
     m_Globs: []
     m_OriginalText: 
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scripts/DungeonGeneration
+  - Assets/Prefab/Ui
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\ja990\OneDrive\Documents\GitHub\COMP3000\Plans & peril
     - Comp3000
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 86}
-    m_SelectedIDs: 887d0000
-    m_LastClickedID: 32136
-    m_ExpandedIDs: 00000000487d00004a7d00004c7d00004e7d0000507d0000527d0000547d0000567d0000587d000000ca9a3b
+    scrollPos: {x: 0, y: 139}
+    m_SelectedIDs: d27d0000
+    m_LastClickedID: 32210
+    m_ExpandedIDs: 00000000c47d0000c67d0000c87d0000ca7d0000cc7d0000ce7d0000d07d0000d27d0000d47d0000d67d0000d87d0000da7d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1145,7 +992,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 8}
+      m_ClientGUIView: {fileID: 5}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -1157,7 +1004,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000487d00004a7d00004c7d00004e7d0000507d0000527d0000547d0000567d0000587d0000
+    m_ExpandedIDs: 00000000c47d0000c67d0000c87d0000ca7d0000cc7d0000ce7d0000d07d0000d27d0000d47d0000d67d0000d87d0000da7d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1184,8 +1031,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000000000005c6900000c4e0000ce9d0000
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c62300005c6900000c4e0000ce9d000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1201,7 +1048,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 8}
+      m_ClientGUIView: {fileID: 5}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1213,7 +1060,7 @@ MonoBehaviour:
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
---- !u!114 &20
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1233,10 +1080,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2088
-    y: 81
-    width: 463
-    height: 1262
+    x: 1975
+    y: 73
+    width: 584
+    height: 1278
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1255,7 +1102,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
---- !u!114 &21
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1275,10 +1122,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 8
-    y: 81
-    width: 302
-    height: 971
+    x: 0
+    y: 73
+    width: 277
+    height: 884
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1287,25 +1134,25 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 84e8ffff2ae9ffff38e9ffff3ce9ffff74e9ffff82e9ffffb4ebffff58ecffffd2eeffffd6eeffff28efffff36efffff2afbffff
+      m_SelectedIDs: 26470100
+      m_LastClickedID: 83750
+      m_ExpandedIDs: 1804ffff3a04fffffa0dffff0c0effff620effff101affffe635ffff884cffff4e50ffffcc50ffffb253ffff6e54ffffec54ffff8857ffffb259ffff305affffec5cffff0c5fffff8a5fffff3a62ffff5664ffffd464ffff6467ffff146bffff926bffff3c6efffff86effff766fffff0272ffffc872ffff4673ffffe675ffffc6e7ffff2afbfffff4ffffffac71000060b70000d641010026470100c6470100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: ShopPanel
+        m_OriginalName: ShopPanel
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 82546
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 4
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 7}
+        m_ClientGUIView: {fileID: 4}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -1313,7 +1160,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &22
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1333,10 +1180,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 311
-    y: 81
-    width: 1775
-    height: 971
+    x: 278
+    y: 73
+    width: 1695
+    height: 884
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1594,9 +1441,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.6440089, y: 7.0417075, z: -0.018600665}
+    m_Target: {x: 867.26385, y: 408.00488, z: -4.89694}
     speed: 2
-    m_Value: {x: 0.6440089, y: 7.0417075, z: -0.018600665}
+    m_Value: {x: 867.26385, y: 408.00488, z: -4.89694}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1647,9 +1494,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 11.859952
+    m_Target: 499.68042
     speed: 2
-    m_Value: 11.859952
+    m_Value: 499.68042
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1674,7 +1521,7 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &23
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1694,10 +1541,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 311
-    y: 81
-    width: 1775
-    height: 971
+    x: 278
+    y: 73
+    width: 1695
+    height: 884
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1709,7 +1556,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1689, y: 950}
+  m_TargetSize: {x: 1534, y: 863}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1724,10 +1571,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -844.5
-    m_HBaseRangeMax: 844.5
-    m_VBaseRangeMin: -475
-    m_VBaseRangeMax: 475
+    m_HBaseRangeMin: -767
+    m_HBaseRangeMax: 767
+    m_VBaseRangeMin: -431.5
+    m_VBaseRangeMax: 431.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -1745,29 +1592,29 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1775
-      height: 950
+      width: 1695
+      height: 863
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 887.5, y: 475}
+    m_Translation: {x: 847.5, y: 431.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -887.5
-      y: -475
-      width: 1775
-      height: 950
+      x: -847.5
+      y: -431.5
+      width: 1695
+      height: 863
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1775, y: 971}
+  m_LastWindowPixelSize: {x: 1695, y: 884}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &24
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1787,10 +1634,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 8
-    y: 1073
-    width: 2079
-    height: 270
+    x: 0
+    y: 978
+    width: 1974
+    height: 373
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default

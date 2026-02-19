@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyTurnManager : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class EnemyTurnManager : MonoBehaviour
     {
         foreach (EnemyMember enemy in enemies)
         {
+            tm.DebugCombatLog = new debugCombatLog();
+            tm.DebugCombatLog.rawDamages = new Dictionary<CombatMember, int> { };
+            tm.DebugCombatLog.damageReceived = new Dictionary<CombatMember, int> { };
+            tm.DebugCombatLog.targets = new List<CombatMember> { };
             if (enemy.Alive && !enemy.IsStunned)
             {
                 

@@ -29,6 +29,9 @@ public class TurnManager : MonoBehaviour
     public event Action<PartyMember, List<CombatMember>> OnConfirmRequired;
     public event Action<PartyMember, Ability, List<CombatMember>> OnActionResolved;
 
+    public bool playerPhase = true;
+    public debugCombatLog DebugCombatLog = new debugCombatLog();
+    public DebugManager debugManager;
     public void StartCombat()
     {
         //Debug.Log("Starting Combat from TM");
@@ -48,7 +51,12 @@ public class TurnManager : MonoBehaviour
         }
         combatManager.enemyTurnManager.RegisterEnemies(EnemyMembers);
         GameManager.Instance.EnemyMembers = EnemyMembers;
-        StartPlayerPhase();
+
+        DebugCombatLog = new debugCombatLog();
+        DebugCombatLog.rawDamages = new Dictionary<CombatMember, int> { };
+        DebugCombatLog.damageReceived = new Dictionary<CombatMember, int> { };
+        DebugCombatLog.targets = new List<CombatMember> { };
+    StartPlayerPhase();
     }
 
     public void SetSelectedCharacter(PartyMember member)
@@ -93,6 +101,7 @@ public class TurnManager : MonoBehaviour
     public void SetChosenAction(Ability action)
     {
         SelectedAction = action;
+        DebugCombatLog.abilityUsed = action;
         OnActionSelected?.Invoke(action);
 
         // Tell the UI / CombatManager to show target buttons
@@ -123,6 +132,7 @@ public class TurnManager : MonoBehaviour
         if (SelectedTarget == null) { 
             SelectedTarget = new List<CombatMember>();
         }
+        
         int addedTargets = 0;
         if ((SelectedCharacter.element == SelectedAction.AbilityData.elementTag && SelectedAction.AbilityData.elementTag != Element.None && SelectedAction.AbilityData.boost != null))
         {
@@ -131,7 +141,7 @@ public class TurnManager : MonoBehaviour
         if (SelectedTarget.Contains(target))
         {
             SelectedTarget.Remove(target);
-            if(target is PartyMember)
+            if (target is PartyMember)
             {
                 FindPartyMemberSlot(target).GetComponent<PartySlot>().TurnTargetArrowOff();
             }
@@ -185,9 +195,8 @@ public class TurnManager : MonoBehaviour
             Turn newturn = new Turn(SelectedTarget, SelectedAction, SelectedCharacter);
             turns.Add(newturn);
             SelectedCharacter.HasTurn = false;
+
            
-       
-            
             OnActionResolved?.Invoke(SelectedCharacter, SelectedAction, SelectedTarget);
 
             string targetNames = string.Join(", ", newturn.Target.Select(t => $"<color=#FF0000>{t.baseStats.characterName}</color>"));
@@ -250,6 +259,7 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Turns in list: " + turns.Count);
         foreach (var t in turns)
         {
+            
             if (t.Action.AbilityData.IsTauntable)
             {
                 yield return new WaitForSeconds(0.5f);
@@ -306,6 +316,7 @@ public class TurnManager : MonoBehaviour
                 t.Action.DecreaseUses(t.Attacker);
             }
             t.Action.cooldownLeft = t.Action.AbilityData.cooldown;
+            debugManager.setDebugLogText(DebugCombatLog);
             yield return new WaitForSeconds(0.5f);
         }
         bool hasImmediateExtras = false;
@@ -338,11 +349,16 @@ public class TurnManager : MonoBehaviour
 
     public void StartPlayerPhase()
     {
+        DebugCombatLog = new debugCombatLog();
+        DebugCombatLog.rawDamages = new Dictionary<CombatMember, int> { };
+        DebugCombatLog.damageReceived = new Dictionary<CombatMember, int> { };
+        DebugCombatLog.targets = new List<CombatMember> { };
+
         SelectedCharacter = null;
         SelectedAction = null;
         SelectedTarget = new List<CombatMember>() { };
         turns.Clear();
-
+        playerPhase = true;
         foreach (PartyMember member in PartyMembers)
         {
             if (!member.IsStunned)
@@ -388,16 +404,26 @@ public class TurnManager : MonoBehaviour
         {
             StartEnemyPhase();
         }
-        
+        DebugCombatLog = new debugCombatLog();
+        DebugCombatLog.rawDamages = new Dictionary<CombatMember, int> { };
+
+        DebugCombatLog.damageReceived = new Dictionary<CombatMember, int> { };
+        DebugCombatLog.targets = new List<CombatMember> { };
     }
 
     private void StartEnemyPhase()
     {
+        DebugCombatLog = new debugCombatLog();
+        DebugCombatLog.rawDamages = new Dictionary<CombatMember, int> { };
+
+        DebugCombatLog.damageReceived = new Dictionary<CombatMember, int> { };
+        DebugCombatLog.targets = new List<CombatMember> { };
+
         SelectedCharacter = null;
         SelectedAction = null;
         SelectedTarget = null;
         turns.Clear();
-
+        playerPhase = false;
         foreach (var member in PartyMembers) member.HasTurn = false;
 
         OnEnemyPhaseStart?.Invoke();
@@ -420,8 +446,11 @@ public class TurnManager : MonoBehaviour
         {
             StartPlayerPhase();
         }
-       
-        
+        DebugCombatLog = new debugCombatLog();
+        DebugCombatLog.rawDamages = new Dictionary<CombatMember, int> { };
+        DebugCombatLog.damageReceived = new Dictionary<CombatMember, int> { };
+        DebugCombatLog.targets = new List<CombatMember> { };
+
     }
 
     public bool CheckWinLoss()
