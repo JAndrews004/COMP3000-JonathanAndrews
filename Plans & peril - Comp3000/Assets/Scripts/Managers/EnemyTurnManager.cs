@@ -25,7 +25,15 @@ public class EnemyTurnManager : MonoBehaviour
             tm.DebugCombatLog.targets = new List<CombatMember> { };
             if (enemy.Alive && !enemy.IsStunned)
             {
-                
+                bool canHaveTurn = true;
+                foreach(Effect effect in enemy.activeEffects)
+                {
+                    if(effect.statusEffectType== StatusEffect.Delay)
+                    {
+                        canHaveTurn = false;
+                    }
+                }
+                if(canHaveTurn)
                 yield return enemy.TakeTurn();
             }
             if (tm.CheckWinLoss())

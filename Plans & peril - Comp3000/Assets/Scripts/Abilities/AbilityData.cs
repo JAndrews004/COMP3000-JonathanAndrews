@@ -72,5 +72,6 @@ public enum AbilityPowerType
 {
     Physical,
     Magical,
+    Mixed,
     True // ignores defenses, e.g., poison or pure effects
 }

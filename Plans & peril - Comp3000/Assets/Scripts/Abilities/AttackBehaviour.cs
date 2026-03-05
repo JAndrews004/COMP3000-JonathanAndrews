@@ -17,7 +17,7 @@ public class AttackBehaviour : AbilityBehaviour
             Debug.Log($"{user.name} calculated damager as {totalDamage}");
 
             bool physical = ability.powerType == AbilityPowerType.Physical
-                || ability.powerType == AbilityPowerType.True;
+                || ability.powerType == AbilityPowerType.True || ability.powerType == AbilityPowerType.Mixed;
 
 
 
@@ -26,6 +26,8 @@ public class AttackBehaviour : AbilityBehaviour
         }
        
     }
+
+    
 }
 
 

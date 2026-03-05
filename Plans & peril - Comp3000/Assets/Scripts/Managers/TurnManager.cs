@@ -364,8 +364,15 @@ public class TurnManager : MonoBehaviour
             if (!member.IsStunned)
             {
                 member.HasTurn = true;
+                foreach(Effect effect in member.activeEffects)
+                {
+                    if(effect.statusEffectType == StatusEffect.Delay)
+                    {
+                        member.HasTurn = false;
+                    }
+                }
+                
             }
-
 
             //Go through all skills for all partymembers and decrease cooldown by 1
             foreach (var ability in member.activeAbilities)

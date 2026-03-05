@@ -35,11 +35,11 @@ public class ReflectBehaviour : AbilityBehaviour
             ReflectEffect effectToAdd;
             if (user.element == ability.elementTag && ability.elementTag != Element.None && ability.boost != null)
             {
-                effectToAdd = new ReflectEffect(duration + ability.boost.addedDuration, user, reflectDamage, refelctEffects, damageRefelctionPercent * ability.boost.multipliedPotency, chanceOfEffectReflect * ability.boost.multipliedPotency);
+                effectToAdd = new ReflectEffect(duration + ability.boost.addedDuration, user, reflectDamage, refelctEffects, damageRefelctionPercent * ability.boost.multipliedPotency, chanceOfEffectReflect * ability.boost.multipliedPotency,false);
             }
             else
             {
-                effectToAdd = new ReflectEffect(duration, user, reflectDamage, refelctEffects, damageRefelctionPercent, chanceOfEffectReflect);
+                effectToAdd = new ReflectEffect(duration, user, reflectDamage, refelctEffects, damageRefelctionPercent, chanceOfEffectReflect,false);
             }
             effectToAdd.name = ability.abilityName;
             effectToAdd.description = ability.description;

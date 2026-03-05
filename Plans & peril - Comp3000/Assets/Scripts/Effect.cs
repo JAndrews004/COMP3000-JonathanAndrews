@@ -12,6 +12,8 @@ public abstract class Effect
     public string description;
     public Sprite icon;
     public colorType colorType;
+
+    public StatusEffect statusEffectType;
     public abstract void Apply(CombatMember target);
     public abstract void Remove(CombatMember target);
     public virtual void Tick(CombatMember target) { duration--; }
@@ -44,6 +46,7 @@ public class BuffEffect : Effect
         this.stat = stat;
         this.percentage = percentage;
         this.duration = duration;
+        statusEffectType = StatusEffect.Buff;
     }
 
     // Constructor for flat buffs
@@ -52,17 +55,32 @@ public class BuffEffect : Effect
         this.stat = stat;
         this.flatAmount = flatAmount;
         this.duration = duration;
+        statusEffectType = StatusEffect.Buff;
     }
 
     public override void Apply(CombatMember target)
     {
-        Debug.Log($"Applying buff {stat} to {target.name}");
-        int baseValue = GetStatValue(target, stat);
-        appliedAmount = flatAmount > 0
-            ? flatAmount
-            : Mathf.RoundToInt(baseValue * percentage);
+        bool canBuff = true;
+        appliedAmount = 0;
+        foreach (Effect effect in target.activeEffects)
+        {
+            if(effect.statusEffectType == StatusEffect.Curse)
+            {
+                canBuff = false; 
+                break;
+            }
+        }
+        if (canBuff)
+        {
+            Debug.Log($"Applying buff {stat} to {target.name}");
+            int baseValue = GetStatValue(target, stat);
+             appliedAmount = flatAmount > 0
+                ? flatAmount
+                : Mathf.RoundToInt(baseValue * percentage);
 
-        target.ModifyStat(stat, appliedAmount);
+            target.ModifyStat(stat, appliedAmount);
+        }
+        
     }
 
     public override void Remove(CombatMember target)
@@ -95,6 +113,7 @@ public class DebuffEffect : Effect
         this.stat = stat;
         this.percentage = percentage;
         this.duration = duration;
+        statusEffectType = StatusEffect.Debuff;
     }
 
     public DebuffEffect(StatType stat, int flatAmount, int duration)
@@ -102,6 +121,7 @@ public class DebuffEffect : Effect
         this.stat = stat;
         this.flatAmount = flatAmount;
         this.duration = duration;
+        statusEffectType = StatusEffect.Debuff;
     }
 
     public override void Apply(CombatMember target)
@@ -140,6 +160,7 @@ public class ShieldEffect : Effect
     {
         this.shieldAmount = shieldAmount;
         this.duration = duration;
+        statusEffectType = StatusEffect.Shield;
     }
 
     public override void Apply(CombatMember target)
@@ -159,6 +180,7 @@ public class StunEffect : Effect
     public StunEffect(int duration)
     {
         this.duration = duration;
+        statusEffectType = StatusEffect.Stun;
     }
 
     public override void Apply(CombatMember target)
@@ -178,6 +200,7 @@ public class SleepEffect : Effect
     public SleepEffect(int duration)
     {
         this.duration = duration;
+        statusEffectType = StatusEffect.Sleep;
     }
 
     public override void Apply(CombatMember target)
@@ -199,6 +222,7 @@ public class PoisonEffect : Effect
         this.duration = duration;
         this.damagePerTick = damagePerTick;
         User = user;
+        statusEffectType = StatusEffect.Poison;
     }
     public override void Apply(CombatMember target)
     {
@@ -230,6 +254,7 @@ public class BurnEffect : Effect
         this.damagePerTick = damagePerTick;
         this.DefenseReduction = defenseReduction;
         User = user;
+        statusEffectType = StatusEffect.Burn;
     }
     public override void Apply(CombatMember target)
     {
@@ -260,7 +285,9 @@ public class BleedEffect : Effect
         this.duration = duration;
         this.User = user;
         this.attackMult = attackMult;
-        
+        statusEffectType = StatusEffect.Bleed;
+
+
     }
     public override void Apply(CombatMember target)
     {
@@ -286,7 +313,7 @@ public class TauntEffect : Effect
     {
         this.duration = duration;
         this.User = user;
-        
+        statusEffectType = StatusEffect.Taunt;
 
     }
     public override void Remove(CombatMember target)
@@ -305,8 +332,9 @@ public class ReflectEffect : Effect
     public bool refelctEffects;
     public float damageRefelctionPercent;
     public float chanceOfEffectReflect;
+    public bool constant;
 
-    public ReflectEffect(int duration, CombatMember user ,bool reflectDamage, bool refelctEffects, float damageRefelctionPercent, float chanceOfEffectReflect)
+    public ReflectEffect(int duration, CombatMember user ,bool reflectDamage, bool refelctEffects, float damageRefelctionPercent, float chanceOfEffectReflect,bool constant)
     {
         this.duration = duration;
         this.User = user;
@@ -314,6 +342,8 @@ public class ReflectEffect : Effect
         this.refelctEffects = refelctEffects;
         this.damageRefelctionPercent = damageRefelctionPercent;
         this.chanceOfEffectReflect = chanceOfEffectReflect;
+        this.constant = constant;
+        statusEffectType = StatusEffect.Reflect;
 
     }
     public override void Remove(CombatMember target)
@@ -323,6 +353,13 @@ public class ReflectEffect : Effect
     public override void Apply(CombatMember target)
     {
 
+    }
+    public override void Tick(CombatMember target)
+    {
+        if (!constant)
+        {
+            duration--;
+        }
     }
 }
 
@@ -334,7 +371,7 @@ public class InterferenceEffect : Effect
         this.duration = duration;
         this.User = user;
         this.newUses = newUses;
-
+        statusEffectType = StatusEffect.Interference;
     }
     public override void Remove(CombatMember target)
     {
@@ -354,6 +391,7 @@ public class RegenEffect : Effect
         this.duration = duration;
         this.User = user;
         this.hpAdded = healthAdded;
+        statusEffectType = StatusEffect.Regen;
 
     }
     public override void Remove(CombatMember target)
@@ -378,6 +416,7 @@ public class VulnerabilityEffect : Effect
         this.duration = duration;
         this.User = user;
         this.percentageIncrease = percentageIncrease;
+        statusEffectType = StatusEffect.Vulnerability;
 
     }
     public override void Remove(CombatMember target)
@@ -398,6 +437,7 @@ public class GuardEffect : Effect
         this.duration = duration;
         this.User = user;
         this.percentage = percentage;
+        statusEffectType = StatusEffect.Guard;
 
     }
     public override void Remove(CombatMember target)
@@ -417,6 +457,7 @@ public class ImmunityEffect : Effect
     {
         this.duration = duration;
         this.User = user;
+        statusEffectType = StatusEffect.Immunity;
     }
     public override void Remove(CombatMember target)
     {
@@ -426,4 +467,131 @@ public class ImmunityEffect : Effect
     {
 
     }
+}
+
+public class DelayEffect : Effect
+{
+    CombatMember target;
+    AbilityData abilityData;
+    AbilityBehaviour ability;
+    public DelayEffect(int duration, CombatMember user, CombatMember targets, AbilityBehaviour ability , AbilityData abilityData)
+    {
+        this.duration=duration;
+        this.User = user;
+        this.target = targets;
+        this.ability = ability;
+        this.abilityData = abilityData;
+        statusEffectType = StatusEffect.Delay;
+    }
+    public override void Remove(CombatMember target)
+    {
+        ability.Execute(User, new List<CombatMember> { target }, abilityData);
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+}
+public class CurseEffect : Effect
+{
+    
+    public CurseEffect(int duration, CombatMember user)
+    {
+        this.duration = duration;
+        this.User = user;
+        statusEffectType = StatusEffect.Curse;
+    }
+    public override void Remove(CombatMember target)
+    {
+        
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+}
+
+public class ResistanceEffect : Effect
+{
+    public AbilityPowerType resistantPowerType;
+    public float damageReduction;
+    public ResistanceEffect(AbilityPowerType resistantPowerType, float damageReduction)
+    {
+        statusEffectType = StatusEffect.Resistance;
+        this.resistantPowerType = resistantPowerType;
+        this.damageReduction = damageReduction;
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+    public override void Tick(CombatMember target)
+    {
+        
+    }
+}
+
+public class ImmunityToEffect : Effect
+{
+    public List<StatusEffect> EffectsResistantTo;
+    public ImmunityToEffect(List<StatusEffect> EffectsResistantTo)
+    {
+        this.EffectsResistantTo = EffectsResistantTo;
+        statusEffectType = StatusEffect.ImmunityToEffect;
+        
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+    public override void Tick(CombatMember target)
+    {
+        List<Effect> effectsToRemove = new List<Effect>();
+        foreach(Effect effect in target.activeEffects)
+        {
+            foreach(StatusEffect statusEffect in EffectsResistantTo)
+            {
+                if(statusEffect == effect.statusEffectType)
+                {
+                    effectsToRemove.Add(effect);
+                }
+            }
+        }
+        foreach(Effect effect in effectsToRemove)
+        {
+            effect.Remove(target);
+        }
+    }
+}
+public enum StatusEffect
+{
+    Buff,
+    Debuff,
+    Shield,
+    Stun,
+    Poison,
+    Burn,
+    Bleed,
+    Sleep,
+    Taunt,
+    Reflect,
+    Interference,
+    Guard,
+    Regen,
+    Immunity,
+    Vulnerability,
+    Delay,
+    Curse,
+    Resistance,
+    ImmunityToEffect,
+    None,
+
 }

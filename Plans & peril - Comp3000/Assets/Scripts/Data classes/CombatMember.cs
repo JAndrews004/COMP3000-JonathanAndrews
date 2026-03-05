@@ -413,11 +413,59 @@ public abstract class CombatMember : MonoBehaviour
                 damage = baseDamage * (1 + ((float)user.CurrentIntelligence / 100.0f)) * (1 - maxDR * (1 - Mathf.Exp(-((float)target.CurrentMagicDefense / kd))));
             }
         }
+        else if(ability.powerType == AbilityPowerType.Mixed)
+        {
+            if (target.element == Element.Earth)
+            {
+                float magicDamage = baseDamage * (1 + ((float)user.CurrentIntelligence / 100.0f)) * (1 - maxDR * (1 - Mathf.Exp(-((float)target.CurrentMagicDefense * 1.15f / kd))));
+                float physicalDamage = baseDamage * (1 + ((float)user.CurrentAttack / 100.0f)) * (1 - maxDR * (1 - Mathf.Exp(-((float)target.CurrentDefense * 1.15f / kd))));
+                damage = magicDamage * 0.3f + physicalDamage * 0.7f;
+            }
+            else
+            {
+                float magicDamage = baseDamage * (1 + ((float)user.CurrentIntelligence / 100.0f)) * (1 - maxDR * (1 - Mathf.Exp(-((float)target.CurrentMagicDefense / kd))));
+                float physicalDamage = baseDamage * (1 + ((float)user.CurrentAttack / 100.0f)) * (1 - maxDR * (1 - Mathf.Exp(-((float)target.CurrentDefense / kd))));
+                damage = magicDamage * 0.3f + physicalDamage * 0.7f;
+            }
+        }
         else if(ability.powerType == AbilityPowerType.True)
         {
             damage = baseDamage;
         }
-        
+
+        foreach (Effect effect in target.activeEffects)
+        {
+            if (effect is ResistanceEffect resistanceEffect)
+            {
+                switch (resistanceEffect.resistantPowerType)
+                {
+                    case AbilityPowerType.Physical:
+                        if(ability.powerType == AbilityPowerType.Physical)
+                        {
+                            damage *= 1 - resistanceEffect.damageReduction;
+                        }
+                        break;
+                    case AbilityPowerType.Magical:
+                        if (ability.powerType == AbilityPowerType.Magical)
+                        {
+                            damage *= 1 - resistanceEffect.damageReduction;
+                        }
+                        break;
+                    case AbilityPowerType.Mixed:
+                        if (ability.powerType == AbilityPowerType.Mixed)
+                        {
+                            damage *= 1 - resistanceEffect.damageReduction;
+                        }
+                        break;
+                    case AbilityPowerType.True:
+                        if (ability.powerType == AbilityPowerType.True)
+                        {
+                            damage *= 1 - resistanceEffect.damageReduction;
+                        }
+                        break;
+                }
+            }
+        }
         return damage;
     }
 
