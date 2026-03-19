@@ -85,6 +85,15 @@ public class SkillsMenu : MonoBehaviour
             StatAllocationViewModel = new StatAllocationViewModel(chosenCharacter, levelUpPrefab);
             levelUpPrefab.GetComponent<StatAllocationView>().Bind(StatAllocationViewModel);
         });
+
+        if (GameManager.Instance.tutorialActive)
+        {
+            Character2.interactable = false;
+            Character3.interactable = false;
+            Character4.interactable = false;
+            statPointAllocation.interactable = false;
+        }
+
     }
 
     // Update is called once per frame

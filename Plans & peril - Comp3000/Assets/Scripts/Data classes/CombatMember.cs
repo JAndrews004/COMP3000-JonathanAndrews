@@ -49,7 +49,8 @@ public abstract class CombatMember : MonoBehaviour
     public abstract void SpawnHealEffect();
     public abstract void SpawnReviveEffect();
     public abstract void SpawnStunEffect();
-    
+
+    [HideInInspector] public int damageReceivedPrieviousRound = 0;
     public void ApplyEffect(Effect effect,bool reflectable)
     {
         if(activeEffects == null)
@@ -95,16 +96,16 @@ public abstract class CombatMember : MonoBehaviour
             Debug.LogWarning($"{name}: activeEffects was null — initializing manually");
             activeEffects = new List<Effect>();
         }
+
+        List<Effect> effectsToRemove = new List<Effect>();
         if (activeEffects.Count > 0)
         {
             for (int i = activeEffects.Count - 1; i >= 0; i--)
             {
 
-
                 if (activeEffects[i].duration <= 0)
                 {
-                    activeEffects[i].Remove(this);
-                    activeEffects.RemoveAt(i);
+                    effectsToRemove.Add(activeEffects[i]);  
                 }
                 else
                 {
@@ -112,12 +113,19 @@ public abstract class CombatMember : MonoBehaviour
                 }
 
             }
+            foreach(Effect effect in effectsToRemove)
+            {
+                activeEffects.Remove(effect);
+            }
         }
     }
-    public void TakeDamage(CombatMember attacker,int AttackPower,bool physical,bool reflectable)
+    public void TakeDamage(CombatMember attacker,int AttackPower,bool physical,bool reflectable,bool guarded)
     {
         combatManager.turnManager.DebugCombatLog.attacker = attacker;
-        combatManager.turnManager.DebugCombatLog.rawDamages.Add(this, Mathf.RoundToInt(AttackPower * (1 + (attacker.CurrentAttack / 100.0f))));
+        if (!combatManager.turnManager.DebugCombatLog.rawDamages.ContainsKey(this))
+        {
+            combatManager.turnManager.DebugCombatLog.rawDamages.Add(this, Mathf.RoundToInt(AttackPower * (1 + (attacker.CurrentAttack / 100.0f))));
+        }
         if (combatManager.turnManager.DebugCombatLog.targets == null)
         {
             combatManager.turnManager.DebugCombatLog.targets = new List<CombatMember>();
@@ -140,7 +148,28 @@ public abstract class CombatMember : MonoBehaviour
         if (Random.Range(0,100)<= dodgeChance)
         {
             damagePercentage *= 0.5f;
-            Debug.Log($"{name} dodged the attack");
+            if(this is PartyMember)
+            {
+                foreach (PartySlot slot in combatManager.CharacterPositions)
+                {
+                    if (slot.CurrentPartyMember == this)
+                    {
+                        slot.SpawnDodgeText();
+                    }
+
+                }
+            }
+            else
+            {
+                foreach (EnemySlot slot in combatManager.EnemyPositions)
+                {
+                    if (slot.CurrentEnemyMember == this)
+                    {
+                        slot.SpawnDodgeText();
+                    }
+
+                }
+            }
         }
         int maxCritChance = 50;
         double Kc = 35.0;
@@ -152,6 +181,29 @@ public abstract class CombatMember : MonoBehaviour
         if(Random.Range(0,100)<= critChance)
         {
             damagePercentage *= 1.5f;
+
+            if (this is PartyMember)
+            {
+                foreach (PartySlot slot in combatManager.CharacterPositions)
+                {
+                    if (slot.CurrentPartyMember == this)
+                    {
+                        slot.SpawnCritText();
+                    }
+
+                }
+            }
+            else
+            {
+                foreach (EnemySlot slot in combatManager.EnemyPositions)
+                {
+                    if (slot.CurrentEnemyMember == this)
+                    {
+                        slot.SpawnCritText();
+                    }
+
+                }
+            }
         }
 
         AttackPower = Mathf.RoundToInt(AttackPower * damagePercentage);
@@ -225,7 +277,7 @@ public abstract class CombatMember : MonoBehaviour
                     }
                 }
 
-                attacker.TakeDamage(this, Mathf.RoundToInt(AttackPower * Mathf.Clamp(reflectDamage, 0, 1)), true,false);
+                attacker.TakeDamage(this, Mathf.RoundToInt(AttackPower * Mathf.Clamp(reflectDamage, 0, 1)), true,false,false);
             }
         }
         foreach (VulnerabilityEffect effect in activeEffects.OfType<VulnerabilityEffect>())
@@ -234,12 +286,25 @@ public abstract class CombatMember : MonoBehaviour
         }
         foreach (GuardEffect effect in activeEffects.OfType<GuardEffect>())
         {
-            int GuardPower = Mathf.RoundToInt(AttackPower * (effect.percentage));
-            effect.User.TakeDamage(attacker,GuardPower,true,false);
-            AttackPower -= GuardPower;
+            if(guarded == false)
+            {
+                int GuardPower = Mathf.RoundToInt(AttackPower * (effect.percentage));
+                effect.User.TakeDamage(attacker, GuardPower, true, false,true);
+                AttackPower -= GuardPower;
+            }
+            
         }
 
-        
+        foreach (AgressionEffect effect in activeEffects.OfType<AgressionEffect>())
+        {
+            AttackPower = Mathf.RoundToInt((effect.multiplier + 1) * AttackPower);
+            break;
+        }
+        foreach (AgressionEffect effect in attacker.activeEffects.OfType<AgressionEffect>())
+        {
+            AttackPower = Mathf.RoundToInt((effect.multiplier + 1) * AttackPower);
+            break;
+        }
 
         if (AttackPower > shieldValue)
         {
@@ -261,13 +326,16 @@ public abstract class CombatMember : MonoBehaviour
             OnDeath?.Invoke(this);
             OnHealthChanged?.Invoke(this);
             activeEffects.Clear();
+            if(!combatManager.turnManager.DebugCombatLog.damageReceived.ContainsKey(this))
             combatManager.turnManager.DebugCombatLog.damageReceived.Add(this, AttackPower);
         }
         else
         {
             Debug.Log($"{name} is taking {AttackPower} damage");
             CurrentHealth -= AttackPower;
-            combatManager.turnManager.DebugCombatLog.damageReceived.Add(this, AttackPower);
+
+            if (!combatManager.turnManager.DebugCombatLog.damageReceived.ContainsKey(this))
+                combatManager.turnManager.DebugCombatLog.damageReceived.Add(this, AttackPower);
             OnDamageTaken?.Invoke(this, AttackPower);
             OnHealthChanged?.Invoke(this);
             if (this is PartyMember pm)
@@ -303,6 +371,7 @@ public abstract class CombatMember : MonoBehaviour
             }
             
         }
+        damageReceivedPrieviousRound += AttackPower;
     }
     
     public void Heal(int amount)
@@ -509,6 +578,17 @@ public abstract class CombatMember : MonoBehaviour
         }
     }
 
+    public bool HasDebuff()
+    {
+        foreach (Effect effect in activeEffects)
+        {
+            if (effect.statusEffectType == StatusEffect.Debuff)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
 

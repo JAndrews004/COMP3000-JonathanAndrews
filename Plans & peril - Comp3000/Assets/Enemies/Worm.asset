@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dede65b957a8564cb4807ccc201d836, type: 3}
+  m_Name: Worm
+  m_EditorClassIdentifier: 
+  characterName: Fire worm
+  characterSprite: {fileID: 344143545, guid: b6640d4a6fae73b42a9062cc35fa5552, type: 3}
+  level: 0
+  xp: 0
+  maxHealth: 75
+  attack: 4
+  defense: 4
+  intelligence: 10
+  magicDefence: 8
+  Luck: 10
+  avaliableStatPoints: 0
+  unlockableAbilities:
+  - {fileID: 0}
+  equippedAbilities: []
+  element: 1
+  EquippedElement: {fileID: 11400000, guid: 4023edb3f9ff3d14f8649bf0170789ae, type: 2}
+  controller: {fileID: 9100000, guid: b1c183fd7723ec543bf032ca0883b9eb, type: 2}
+  HeadShot: {fileID: 0}

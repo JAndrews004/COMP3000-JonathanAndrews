@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: Iron skin
+  m_EditorClassIdentifier: 
+  abilityName: Iron skin
+  description: 
+  icon: {fileID: 21300000, guid: 80ef08f89284c344690172361135bf63, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 2
+  maxUsage: 20
+  cooldown: 3
+  targetType: 6
+  numberOfTargets: 0
+  PhysicalBehaviour: {fileID: 11400000, guid: d06fa6e7f82456445a74ddf4684915a7, type: 2}
+  EffectBehaviour: {fileID: 11400000, guid: 9b4c39de2ab8c8045acb6581d9db1170, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 1
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 21300000, guid: 97d29c186143df342a1bf7bed967acc4, type: 3}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 3
+  boost: {fileID: 11400000, guid: e7ffba511cbf54a4d8e739eba23cc1ce, type: 2}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: 5edf32b4a354e0b45bf88fb1c3e97f77, type: 2}
+  - {fileID: 11400000, guid: f766355298b340845a3903524a91675a, type: 2}
+  strengthRequired: 65
+  defenseRequired: 87
+  intelligenceRequired: 70
+  magicDefenseRequired: 56
+  luckRequired: 60
+  vitalityRequired: 62
+  goldCost: 0
+  treeCol: 17
+  treeRow: 1

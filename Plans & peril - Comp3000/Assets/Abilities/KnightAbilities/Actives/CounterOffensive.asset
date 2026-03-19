@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: CounterOffensive
+  m_EditorClassIdentifier: 
+  abilityName: Counteroffensive
+  description: 
+  icon: {fileID: 21300000, guid: 61310cad758051c41851ea5b7cad03e6, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 0
+  maxUsage: 15
+  cooldown: 3
+  targetType: 0
+  numberOfTargets: 1
+  PhysicalBehaviour: {fileID: 11400000, guid: 73e37dc9f007bd74b86fbaacb43bc3a7, type: 2}
+  EffectBehaviour: {fileID: 11400000, guid: 21664df4670367947a43b1f01ca90fa1, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 1
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: f0781fe39f3a3ac408c62db0069fd176, type: 2}
+  strengthRequired: 59
+  defenseRequired: 40
+  intelligenceRequired: 42
+  magicDefenseRequired: 36
+  luckRequired: 40
+  vitalityRequired: 42
+  goldCost: 0
+  treeCol: 10
+  treeRow: 1

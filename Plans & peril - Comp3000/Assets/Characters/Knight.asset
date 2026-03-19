@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Knight
   characterSprite: {fileID: 21300000, guid: b0ade4dc4a796a041b6aeeed2f60ad40, type: 3}
-  level: 0
-  xp: 0
-  maxHealth: 120
-  attack: 15
-  defense: 10
-  intelligence: 5
-  magicDefence: 6
-  Luck: 10
-  avaliableStatPoints: 0
+  level: 4
+  xp: 1556
+  maxHealth: 150
+  attack: 25
+  defense: 13
+  intelligence: 8
+  magicDefence: 9
+  Luck: 13
+  avaliableStatPoints: 12
   unlockableAbilities:
   - {fileID: 11400000, guid: 716b7339f095dda4786750965b6291bc, type: 2}
   - {fileID: 11400000, guid: bf5bbbb151f43ec4bacbfda335ffe841, type: 2}
@@ -44,9 +44,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3e3b8c4c17d38234fb21e5f3a52496a2, type: 2}
   - {fileID: 11400000, guid: 067cde3d77b3808448ea18a2322ea926, type: 2}
   - {fileID: 11400000, guid: fa2687d8feb0d704b897b9e706c5f014, type: 2}
+  - {fileID: 11400000, guid: 24c27e8127d8785498d1096ff796e584, type: 2}
   - {fileID: 11400000, guid: facf293866ae04145bf03d84f7da2303, type: 2}
   - {fileID: 11400000, guid: 3584bbeea7612c2449c071f626184620, type: 2}
+  - {fileID: 11400000, guid: 00f7e38b0076ef04d83eecaa1531c59f, type: 2}
   - {fileID: 11400000, guid: f0781fe39f3a3ac408c62db0069fd176, type: 2}
+  - {fileID: 11400000, guid: 772c4bcd63db7604584543804b0a88e4, type: 2}
   - {fileID: 11400000, guid: 8a0b6db7cd88b6a4297055f9282e459f, type: 2}
   - {fileID: 11400000, guid: 35202263aaf177c4aa785e7ec77f4e19, type: 2}
   - {fileID: 11400000, guid: 801cd609866ae784e86a424e69172608, type: 2}
@@ -62,11 +65,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9348fc80befc42742bdb7bad28fd1c65, type: 2}
   - {fileID: 11400000, guid: bfed641d420e8934f90b68701ca1c180, type: 2}
   - {fileID: 11400000, guid: eaaa20d2f8f0aa949965d20d3631e0fe, type: 2}
+  - {fileID: 11400000, guid: b42fb35265e1b63428ead590ee452e89, type: 2}
+  - {fileID: 11400000, guid: f766355298b340845a3903524a91675a, type: 2}
+  - {fileID: 11400000, guid: 3805520f5c811b6428f1bf23bddb8fb2, type: 2}
+  - {fileID: 11400000, guid: 5edf32b4a354e0b45bf88fb1c3e97f77, type: 2}
+  - {fileID: 11400000, guid: 97e4b3dd73114d444a538d977edead0b, type: 2}
+  - {fileID: 11400000, guid: e6e40d16bca06c349bb84d32c87d2aff, type: 2}
+  - {fileID: 11400000, guid: 8e8c48af36df83a4ea238444f5c8be2c, type: 2}
+  - {fileID: 11400000, guid: 7cb85cafc207334499b238448754ff7b, type: 2}
+  - {fileID: 11400000, guid: bffc192849626e74a959cfce5ae6a677, type: 2}
+  - {fileID: 11400000, guid: 2dcda43d8e7a6f44b9cc46768e60af4c, type: 2}
+  - {fileID: 11400000, guid: 02ff349877c23c14ca29e1b51edb915c, type: 2}
   equippedAbilities:
   - {fileID: 11400000, guid: 716b7339f095dda4786750965b6291bc, type: 2}
   - {fileID: 11400000, guid: bf5bbbb151f43ec4bacbfda335ffe841, type: 2}
   - {fileID: 11400000, guid: e6faf5f3c64254340ab994a56c767a5c, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 584bbb3746d7ae54eb467843e03984d4, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   element: 0

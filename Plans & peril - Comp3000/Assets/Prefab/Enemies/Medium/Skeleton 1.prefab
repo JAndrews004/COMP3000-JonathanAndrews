@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3802745477803689390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3802745477803689384}
+  - component: {fileID: 3802745477803689391}
+  - component: {fileID: 6856961554130547570}
+  m_Layer: 0
+  m_Name: Skeleton 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3802745477803689384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802745477803689390}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.42618492, y: 1.8320773, z: 0.021061493}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3802745477803689391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802745477803689390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe08a0f24a8c1614697e8170f2f37fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: b63dd7010947703498e9942d90f2fc79, type: 2}
+  combatManager: {fileID: 0}
+  CurrentHealth: 250
+  CurrentMaxHealth: 250
+  CurrentAttack: 40
+  CurrentDefense: 5
+  CurrentIntelligence: 0
+  CurrentMagicDefense: 0
+  CurrentLuck: 10
+  shieldValue: 0
+  gainImmediateExtraTurn: 0
+  gainExtraTurnNextRound: 0
+  IsStunned: 0
+  abilityDatas:
+  - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}
+  - {fileID: 11400000, guid: e0d5e7f4eb6255240b6de9a9813f75d0, type: 2}
+  - {fileID: 11400000, guid: 59c07c62cdc50924e8711b4b75d77d1f, type: 2}
+  PlayerKilledBy: {fileID: 0}
+  ContributionPoints: 0
+  element: 0
+  damageReceivedPrieviousRound: 0
+  aiController: {fileID: 6856961554130547570}
+  Level: 3
+  XPGiven: 10
+  tier: 1
+--- !u!114 &6856961554130547570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802745477803689390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94940ef251f83244daf8b1dd16129d65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

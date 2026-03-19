@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: HealingCloak
+  m_EditorClassIdentifier: 
+  abilityName: Healing cloak
+  description: 
+  icon: {fileID: 21300000, guid: 42decdb8a369dc14290393a29cc29bfb, type: 3}
+  abilityCategory: 1
+  powerType: 0
+  abilityType: 0
+  maxUsage: 0
+  cooldown: 0
+  targetType: 0
+  numberOfTargets: 0
+  PhysicalBehaviour: {fileID: 0}
+  EffectBehaviour: {fileID: 0}
+  passiveBehaviour: {fileID: 11400000, guid: 061bf2cf3b5956f46878deb0f816f3e9, type: 2}
+  guaranteedEffectHit: 0
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: a6759fe3bb65e9a4699ff36743f3fb3f, type: 2}
+  - {fileID: 11400000, guid: bd933b8be18d56646880f29ae9efb841, type: 2}
+  strengthRequired: 21
+  defenseRequired: 21
+  intelligenceRequired: 39
+  magicDefenseRequired: 26
+  luckRequired: 26
+  vitalityRequired: 36
+  goldCost: 0
+  treeCol: 4
+  treeRow: 2

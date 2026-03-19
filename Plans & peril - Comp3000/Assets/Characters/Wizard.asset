@@ -23,11 +23,37 @@ MonoBehaviour:
   magicDefence: 11
   Luck: 11
   avaliableStatPoints: 0
-  unlockableAbilities: []
+  unlockableAbilities:
+  - {fileID: 11400000, guid: 729e6242944bee449afa796f32a625e0, type: 2}
+  - {fileID: 11400000, guid: ba69133172abba14f9a2fba25e2d61b4, type: 2}
+  - {fileID: 11400000, guid: abb7127f8dfaf8c4fb49a7e5c99cb8d8, type: 2}
+  - {fileID: 11400000, guid: e85c0878f2e36b94ba961d92e0315946, type: 2}
+  - {fileID: 11400000, guid: 09c537a9de0fb8c4cabf48b63042d704, type: 2}
+  - {fileID: 11400000, guid: cfd5327f935bbc2438ccaf2fb8524c8d, type: 2}
+  - {fileID: 11400000, guid: a3f4b0600898d3d4281f1eaffd150c2b, type: 2}
+  - {fileID: 11400000, guid: 0db2cc30a3251f74e9d40bf2deded26c, type: 2}
+  - {fileID: 11400000, guid: 33e44aeb1e470c34094fd1436df042c0, type: 2}
+  - {fileID: 11400000, guid: f412249df6b8c5e49ab9459e7b68e3bf, type: 2}
+  - {fileID: 11400000, guid: bd933b8be18d56646880f29ae9efb841, type: 2}
+  - {fileID: 11400000, guid: a6759fe3bb65e9a4699ff36743f3fb3f, type: 2}
+  - {fileID: 11400000, guid: 7b0409a3addb654409606e689f780d35, type: 2}
+  - {fileID: 11400000, guid: 7509afd8629006f409e14a9f0563ed79, type: 2}
+  - {fileID: 11400000, guid: 39ddbcc2456db764d9a77865399d310a, type: 2}
+  - {fileID: 11400000, guid: 4ac38b84cf57744469f569c4d5ae3cd2, type: 2}
+  - {fileID: 11400000, guid: 579cc6f2519afe842adeb4566c21305e, type: 2}
+  - {fileID: 11400000, guid: e2ff343ae0180924084b6653f2c138b1, type: 2}
+  - {fileID: 11400000, guid: 68e924cbeda808949a64af7f4966641a, type: 2}
+  - {fileID: 11400000, guid: dcd2a7fc20f578842b505c88f559ff88, type: 2}
+  - {fileID: 11400000, guid: 8c8931a35d6b5b84e89de8a7f379e15f, type: 2}
+  - {fileID: 11400000, guid: ecd8ebf0d3f85df418b1b8ee21c8f382, type: 2}
+  - {fileID: 11400000, guid: b06d842cdea5a4d4881d81962ec09c3f, type: 2}
+  - {fileID: 11400000, guid: 530ccd898db602549a36cd0def6ae43f, type: 2}
+  - {fileID: 11400000, guid: cdfee634bd5dfb049afadb7fcc81b192, type: 2}
+  - {fileID: 11400000, guid: 1bd623e22553bef4984eef53db418543, type: 2}
   equippedAbilities:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 729e6242944bee449afa796f32a625e0, type: 2}
+  - {fileID: 11400000, guid: ba69133172abba14f9a2fba25e2d61b4, type: 2}
+  - {fileID: 11400000, guid: abb7127f8dfaf8c4fb49a7e5c99cb8d8, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

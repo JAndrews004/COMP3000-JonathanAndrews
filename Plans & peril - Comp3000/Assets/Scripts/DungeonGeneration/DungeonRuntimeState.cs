@@ -16,6 +16,12 @@ public class DungeonRuntimeState : MonoBehaviour
     public List<RoomState> visitableRoom = new List<RoomState>();
     public float roomOffset;
 
+    public Sprite RoomIcon;
+    public Sprite TreasureRoomIcon;
+    public Sprite EliteRoomIcon;
+    public Sprite BossRoomIcon;
+    public Sprite StartRoomIcon;
+
     public GameObject treasurePanel;
     public void Awake()
     {
@@ -29,6 +35,11 @@ public class DungeonRuntimeState : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
+    }
+    public void Update()
+    {
+        if(FindInactiveObject<TreasurePanel>())
+        treasurePanel = FindInactiveObject<TreasurePanel>().gameObject;
     }
     public void OnDestroy()
     {
@@ -112,29 +123,30 @@ public class DungeonRuntimeState : MonoBehaviour
             if (room.Key.roomType == RoomType.Start)
             {
                 currentRoom = room.Key.currentPosition;
-                room.Value.GetComponent<SpriteRenderer>().color = Color.green;
+                room.Value.GetComponent<SpriteRenderer>().sprite = StartRoomIcon;
             }
             else if (room.Key.roomType == RoomType.Boss)
             {
                 SpriteRenderer sr = room.Value.GetComponent<SpriteRenderer>();
-                sr.color = Color.red;
+                sr.sprite = BossRoomIcon;
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.0f);
             }
             else if (room.Key.roomType == RoomType.Treasure)
             {
                 SpriteRenderer sr = room.Value.GetComponent<SpriteRenderer>();
-                sr.color = Color.yellow;
+                sr.sprite = TreasureRoomIcon;
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.0f);
             }
             else if (room.Key.roomType == RoomType.Elite)
             {
                 SpriteRenderer sr = room.Value.GetComponent<SpriteRenderer>();
-                sr.color = Color.blue;
+                sr.sprite = EliteRoomIcon;
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.0f);
             }
             else if (room.Key.roomType == RoomType.Normal)
             {
                 SpriteRenderer sr = room.Value.GetComponent<SpriteRenderer>();
+                sr.sprite = RoomIcon;
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.0f);
             }
             

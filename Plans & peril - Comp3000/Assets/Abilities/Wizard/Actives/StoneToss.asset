@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: StoneToss
+  m_EditorClassIdentifier: 
+  abilityName: Stone toss
+  description: 
+  icon: {fileID: 21300000, guid: cf63bd6355a222e4db5e191868d8737d, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 0
+  tags: 0000000004000000
+  maxUsage: 30
+  cooldown: 2
+  targetType: 0
+  numberOfTargets: 1
+  PhysicalBehaviour: {fileID: 11400000, guid: 6f016080fec019c449470d858d359aa5, type: 2}
+  EffectBehaviour: {fileID: 11400000, guid: a7545982422d95b419de5ac6d6eea571, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 0
+  EffectChanceScaling: 0.9
+  EffectIcon: {fileID: 21300000, guid: 271d9ea1ca3cec641a3e6c18dca329dc, type: 3}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 3
+  boost: {fileID: 11400000, guid: 7351c6e6f99dc424d86f96e30d2b055e, type: 2}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: f412249df6b8c5e49ab9459e7b68e3bf, type: 2}
+  strengthRequired: 21
+  defenseRequired: 21
+  intelligenceRequired: 47
+  magicDefenseRequired: 26
+  luckRequired: 31
+  vitalityRequired: 26
+  goldCost: 0
+  treeCol: 4
+  treeRow: 0

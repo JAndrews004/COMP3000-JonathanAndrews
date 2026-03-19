@@ -38,6 +38,8 @@ public class PartyMemberView : MonoBehaviour
             {
                 abilityButtonsText[i].text = vm.model.activeAbilities[i].AbilityData.abilityName ?? null;
                 abilityButtons[i].interactable = true;
+
+                abilityButtons[i].GetComponent<AbilityDescriptionShower>().linkedAbility = vm.model.activeAbilities[i].AbilityData;
             }
          
         }

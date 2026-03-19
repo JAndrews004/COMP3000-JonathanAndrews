@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: Agression
+  m_EditorClassIdentifier: 
+  abilityName: Agression
+  description: 
+  icon: {fileID: 21300000, guid: fda4161deab6b8240800cbd64268b93b, type: 3}
+  abilityCategory: 1
+  powerType: 0
+  abilityType: 0
+  maxUsage: 0
+  cooldown: 0
+  targetType: 6
+  numberOfTargets: 0
+  PhysicalBehaviour: {fileID: 0}
+  EffectBehaviour: {fileID: 0}
+  passiveBehaviour: {fileID: 11400000, guid: 0c984b4bc1b97a341ad9cecededf090e, type: 2}
+  guaranteedEffectHit: 0
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: 00f7e38b0076ef04d83eecaa1531c59f, type: 2}
+  strengthRequired: 60
+  defenseRequired: 40
+  intelligenceRequired: 35
+  magicDefenseRequired: 36
+  luckRequired: 40
+  vitalityRequired: 51
+  goldCost: 0
+  treeCol: 11
+  treeRow: 2

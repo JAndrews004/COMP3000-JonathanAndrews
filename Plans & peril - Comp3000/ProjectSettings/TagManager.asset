@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: WorldSprites
+    uniqueID: 1875913239
+    locked: 0
+  - name: WorldText
+    uniqueID: 3943040585
+    locked: 0

@@ -47,7 +47,7 @@ public class StatusIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         transform.localScale = Vector3.one * 1.1f;
         Vector3 tooltipPos = Input.mousePosition + new Vector3(10, -10, 0);
-        StatusTooltip.ShowTooltip(linkedEffect.name, linkedEffect.description, Input.mousePosition);
+        StatusTooltip.ShowTooltip(linkedEffect.name, linkedEffect.description, tooltipPos);
 
     }
 

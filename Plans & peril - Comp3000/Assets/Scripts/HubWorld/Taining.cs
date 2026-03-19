@@ -190,6 +190,10 @@ public class Taining : MonoBehaviour
             {
                 if (!characterTrained[indexOfCharacter])
                 {
+                    if (GameManager.Instance.tutorialActive)
+                    {
+                        GameManager.Instance.tutorialManager.UnlockSkill();
+                    }
                     if (specialTrainingCost <= goldCount)
                     {
                         chosenCharacter.baseStats.attack += 1;
@@ -315,6 +319,23 @@ public class Taining : MonoBehaviour
 
             InfoPannel.SetActive(false);
         });
+
+        if (GameManager.Instance.tutorialActive)
+        {
+            chosenCharacter = GameManager.Instance.PartyMembers[0];
+            indexOfCharacter = 0;
+
+            setAllSpecialedButtons(true);
+            strengthTraining.interactable = true;
+            Character1.interactable = false;
+            Character2.interactable = false;
+            Character3.interactable = false;
+            Character4.interactable = false;
+
+            BasicTraining.interactable = false;
+            IntermediateTraining.interactable = false;
+            AdvancedTraining.interactable = false;
+        }
     }
 
     void setAllSpecialedButtons(bool state)
@@ -328,29 +349,34 @@ public class Taining : MonoBehaviour
     }
     void Update()
     {
-       if(chosenCharacter != null)
+        if (!GameManager.Instance.tutorialActive)
         {
-            CharacterSelection.text = chosenCharacter.baseStats.characterName;
+            if (chosenCharacter != null)
+            {
+                CharacterSelection.text = chosenCharacter.baseStats.characterName;
 
-            if(chosenCharacter.baseStats.level < 20)
-            {
-                BasicTraining.interactable = true;
-                IntermediateTraining.interactable = false;
-                AdvancedTraining.interactable = false;
-            }
-            else if (chosenCharacter.baseStats.level < 30)
-            {
-                BasicTraining.interactable = true;
-                IntermediateTraining.interactable = true;
-                AdvancedTraining.interactable = false;
-            }
-            else
-            { 
-                BasicTraining.interactable = true;
-                IntermediateTraining.interactable = true;
-                AdvancedTraining.interactable = true;
+                if (chosenCharacter.baseStats.level < 20)
+                {
+                    BasicTraining.interactable = true;
+                    IntermediateTraining.interactable = false;
+                    AdvancedTraining.interactable = false;
+                }
+                else if (chosenCharacter.baseStats.level < 30)
+                {
+                    BasicTraining.interactable = true;
+                    IntermediateTraining.interactable = true;
+                    AdvancedTraining.interactable = false;
+                }
+                else
+                {
+
+                    BasicTraining.interactable = true;
+                    IntermediateTraining.interactable = true;
+                    AdvancedTraining.interactable = true;
+                }
             }
         }
+       
     }
     void updateSpecialButtons(int i)
     {

@@ -15,14 +15,32 @@ MonoBehaviour:
   abilityName: Shield
   description: 
   icon: {fileID: 0}
-  isPassive: 0
+  abilityCategory: 0
   powerType: 2
   abilityType: 1
+  tags: 12000000
   maxUsage: 10
   cooldown: 4
   targetType: 3
   numberOfTargets: 1
   PhysicalBehaviour: {fileID: 0}
   EffectBehaviour: {fileID: 11400000, guid: 0693f1880177b7f45a57d51b90be43be, type: 2}
+  passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities: []
+  strengthRequired: 0
+  defenseRequired: 0
+  intelligenceRequired: 0
+  magicDefenseRequired: 0
+  luckRequired: 0
+  vitalityRequired: 0
+  goldCost: 0
+  treeCol: 0
+  treeRow: 0

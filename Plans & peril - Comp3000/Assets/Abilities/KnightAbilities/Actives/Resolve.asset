@@ -18,9 +18,10 @@ MonoBehaviour:
   abilityCategory: 0
   powerType: 2
   abilityType: 2
+  tags: 
   maxUsage: 30
   cooldown: 3
-  targetType: 0
+  targetType: 6
   numberOfTargets: 0
   PhysicalBehaviour: {fileID: 0}
   EffectBehaviour: {fileID: 11400000, guid: 889afe220d87b2746a5a28c5b722333b, type: 2}
@@ -32,7 +33,7 @@ MonoBehaviour:
   isElement: 0
   elementTag: 0
   boost: {fileID: 0}
-  unlocked: 0
+  unlocked: 1
   prerequisiteAbilities:
   - {fileID: 11400000, guid: e6faf5f3c64254340ab994a56c767a5c, type: 2}
   strengthRequired: 5

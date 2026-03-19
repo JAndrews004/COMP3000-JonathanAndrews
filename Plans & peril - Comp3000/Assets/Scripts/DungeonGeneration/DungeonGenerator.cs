@@ -12,6 +12,8 @@ public class DungeonGenerator : MonoBehaviour
     public int EliteChance;
     public int TreasureChance;
 
+    
+
     public void GenerateLayout(int rooms)
     {
         int startx = Random.RandomRange(0, gridWidth);

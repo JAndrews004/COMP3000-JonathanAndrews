@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Paladin
   characterSprite: {fileID: 0}
-  level: 0
+  level: 1
   xp: 0
-  maxHealth: 135
-  attack: 12
-  defense: 12
-  intelligence: 10
-  magicDefence: 12
-  Luck: 10
-  avaliableStatPoints: 0
+  maxHealth: 145
+  attack: 13
+  defense: 13
+  intelligence: 11
+  magicDefence: 13
+  Luck: 11
+  avaliableStatPoints: 3
   unlockableAbilities: []
   equippedAbilities:
   - {fileID: 0}

@@ -56,7 +56,20 @@ public class TurnManager : MonoBehaviour
         DebugCombatLog.rawDamages = new Dictionary<CombatMember, int> { };
         DebugCombatLog.damageReceived = new Dictionary<CombatMember, int> { };
         DebugCombatLog.targets = new List<CombatMember> { };
-    StartPlayerPhase();
+
+        foreach (CombatMember member in PartyMembers)
+        {
+            member.IsStunned = false;
+        }
+
+        if (GameManager.Instance.tutorialActive && GameManager.Instance.tutorialManager)
+        {
+            GameManager.Instance.tutorialManager.setUpTutorialData(this);
+        }
+
+        
+
+        StartPlayerPhase();
     }
 
     public void SetSelectedCharacter(PartyMember member)
@@ -129,6 +142,11 @@ public class TurnManager : MonoBehaviour
 
     public void PlayerSelectedTarget(CombatMember target)
     {
+        if (GameManager.Instance.tutorialActive && GameManager.Instance.tutorialManager.currentState != TutorialState.SelectTarget)
+        {
+            return;
+        }
+
         if (SelectedTarget == null) { 
             SelectedTarget = new List<CombatMember>();
         }
@@ -180,14 +198,19 @@ public class TurnManager : MonoBehaviour
             var view = combatManager?.currentActiveView?.GetComponent<PartyMemberView>();
             view?.HideConfirmButton();
         }
-        
+
+        GameManager.Instance.tutorialManager.currentState = TutorialState.EndTurn;
     }
 
 
 
     public void ConfirmAction()
     {
-   
+        if (GameManager.Instance.tutorialActive && GameManager.Instance.tutorialManager.currentState != TutorialState.EndTurn)
+        {
+            return;
+        }
+
         if (SelectedCharacter != null && SelectedCharacter.HasTurn &&
             SelectedAction != null && SelectedTarget != null && SelectedTarget.Count() >0)
         {
@@ -251,7 +274,16 @@ public class TurnManager : MonoBehaviour
 
             }
         }
-        
+
+        GameManager.Instance.tutorialManager.turnCounter++;
+        if(GameManager.Instance.tutorialManager.turnCounter < 3 && GameManager.Instance.tutorialActive)
+        {
+            GameManager.Instance.tutorialManager.currentState = TutorialState.SelectAbility;
+        }
+        else if(GameManager.Instance.tutorialActive)
+        {
+            TriggerForceLoss();
+        }
     }
 
     public IEnumerator ExecutePlayerActionsRoutine()
@@ -294,10 +326,14 @@ public class TurnManager : MonoBehaviour
                         newTargets.Add(Taunt);
                     }
                 }
-                combatManager.battleLogManager.AddMessage(
-                $"<color=#00FF00>{t.Attacker.baseStats.characterName}</color> " +
-                $"was prevoked by {string.Join(", ", Taunters.Select(t => $"<color=#00FF00>{t.baseStats.characterName}</color>"))} and used <color=#0000FF>{t.Action.AbilityData.abilityName}</color>"
-            );
+                if(Taunters.Count >= 1)
+                {
+                    combatManager.battleLogManager.AddMessage(
+                    $"<color=#00FF00>{t.Attacker.baseStats.characterName}</color> " +
+                    $"was prevoked by {string.Join(", ", Taunters.Select(t => $"<color=#00FF00>{t.baseStats.characterName}</color>"))} and used <color=#0000FF>{t.Action.AbilityData.abilityName}</color>"
+                    );
+                }
+                
                 t.Target = newTargets;
             }
             if (t.Action.AbilityData.PhysicalBehaviour != null)
@@ -359,6 +395,7 @@ public class TurnManager : MonoBehaviour
         SelectedTarget = new List<CombatMember>() { };
         turns.Clear();
         playerPhase = true;
+        bool canGo = false;
         foreach (PartyMember member in PartyMembers)
         {
             if (!member.IsStunned)
@@ -382,7 +419,16 @@ public class TurnManager : MonoBehaviour
                     ability.DecreaseCooldown();
                 }
             }
-            
+            if (member.HasTurn && member.Alive)
+            {
+                canGo = true;
+            }
+        }
+
+        if (!canGo)
+        {
+            StartEnemyPhase();
+            return;
         }
  
         StartCoroutine(DelayedPlayerPhaseStart());
@@ -404,6 +450,7 @@ public class TurnManager : MonoBehaviour
         foreach (var member in PartyMembers)
         {
             member.TickEffects();
+            member.damageReceivedPrieviousRound = 0;
         }
         combatManager.RefreshAllStatusEffects();
 
@@ -523,5 +570,14 @@ public class TurnManager : MonoBehaviour
         {
             FindEnemyMemberSlot(mem).GetComponent<EnemySlot>().TurnTargetArrowOff();
         }
+    }
+    public void TriggerForceLoss()
+    {
+        foreach(PartyMember mem in PartyMembers)
+        {
+            mem.CurrentHealth = 0;
+        }
+        GameManager.Instance.tutorialManager.unsubscribeToEvents();
+        CheckWinLoss();
     }
 }

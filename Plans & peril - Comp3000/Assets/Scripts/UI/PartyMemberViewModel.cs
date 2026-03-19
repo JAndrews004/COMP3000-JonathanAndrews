@@ -56,17 +56,30 @@ public class PartyMemberViewModel
     {
         if (!CanAct) return;
 
+        if (GameManager.Instance.tutorialActive && GameManager.Instance.tutorialManager.currentState != TutorialState.SelectAbility)
+        {
+            return;
+        }
+
         turnManager.SetChosenAction(ability);
 
         // Notify CombatManager to show target buttons
         CombatManager cm = GameObject.FindObjectOfType<CombatManager>();
         if (cm != null)
             cm.ShowTargetButtons(); // or SelectingTarget
+
+        GameManager.Instance.tutorialManager.currentState = TutorialState.SelectTarget;
+
+
     }
     
 
     public void EndTurnButtonPressed()
     {
+        if (GameManager.Instance.tutorialActive)
+        {
+            return;
+        }
         if (!CanAct) return;
 
         //Debug.Log($"{model.baseStats.characterName} ended their turn!");

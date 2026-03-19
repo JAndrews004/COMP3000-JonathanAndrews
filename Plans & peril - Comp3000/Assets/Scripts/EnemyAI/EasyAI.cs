@@ -5,6 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EasyAI : EnemyAI
 {
+    bool guard = false;
     public override Turn ChooseAction(EnemyMember enemy)
     {
         Debug.Log(enemy.baseStats.characterName + " is choosing action");
@@ -26,14 +27,35 @@ public class EasyAI : EnemyAI
         }
 
         Ability chosenAbility = usableAbilities[Random.Range(0,usableAbilities.Count)];
+        foreach(AbilityTag tag in chosenAbility.AbilityData.tags)
+        {
+            if(tag == AbilityTag.Guard)
+            {
+                guard = true;
+            }
+        }
 
         if(chosenAbility.AbilityData.targetType == AbilityData.TargetType.SingleEnemy|| chosenAbility.AbilityData.targetType == AbilityData.TargetType.MultipleEnemy|| chosenAbility.AbilityData.targetType == AbilityData.TargetType.AllEnemies)
         {
             validTargets = GetAlivePlayers();
         }
+        else if (chosenAbility.AbilityData.targetType == AbilityData.TargetType.DeadAlly)
+        {
+            foreach (CombatMember target in GameManager.Instance.EnemyMembers)
+            {
+                if (!target.Alive)
+                {
+                    validTargets.Add(target);
+                }
+            }
+        }
         else
         {
             validTargets = GetAliveEnemies();
+            if (guard && validTargets.Contains(enemy))
+            {
+                validTargets.Remove(enemy);
+            }
 
         }
 

@@ -29,6 +29,10 @@ public class EquipSlot : MonoBehaviour, IDropHandler
                 {
                     member.equipSkill(skillButton.ability, slotnumber);
                     equipedAbility = member.abilityDatas[slotnumber - 1];
+                    if (GameManager.Instance.tutorialActive)
+                    {
+                        GameManager.Instance.tutorialManager.EndTutorial();
+                    }
 
                 }
             }
@@ -50,10 +54,6 @@ public class EquipSlot : MonoBehaviour, IDropHandler
         if (equipedAbility != null)
         {
             Icon.sprite = equipedAbility.icon;
-        }
-        else
-        {
-            Icon.sprite = null;
         }
         if(characterSkillTree.pm != null)
         {

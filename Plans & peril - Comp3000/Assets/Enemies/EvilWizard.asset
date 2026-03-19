@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dede65b957a8564cb4807ccc201d836, type: 3}
+  m_Name: EvilWizard
+  m_EditorClassIdentifier: 
+  characterName: Demon wizard
+  characterSprite: {fileID: -415511461, guid: 52692ee12c7e28f40a5ef4d1a84f0e86, type: 3}
+  level: 0
+  xp: 0
+  maxHealth: 60
+  attack: 2
+  defense: 2
+  intelligence: 12
+  magicDefence: 10
+  Luck: 10
+  avaliableStatPoints: 0
+  unlockableAbilities:
+  - {fileID: 0}
+  equippedAbilities: []
+  element: 0
+  EquippedElement: {fileID: 0}
+  controller: {fileID: 9100000, guid: 6cb2a7c4639cc2d4b992e70f77b434b7, type: 2}
+  HeadShot: {fileID: 0}

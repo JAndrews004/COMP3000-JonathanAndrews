@@ -226,7 +226,7 @@ public class PoisonEffect : Effect
     }
     public override void Apply(CombatMember target)
     {
-        target.TakeDamage(User,damagePerTick,true,true);
+        target.TakeDamage(User,damagePerTick,true,true, false);
     }
 
     public override void Remove(CombatMember target)
@@ -235,7 +235,7 @@ public class PoisonEffect : Effect
     }
     public override void Tick(CombatMember target)
     {
-        target.TakeDamage(User, damagePerTick, true, true);
+        target.TakeDamage(User, damagePerTick, true, true, false);
         duration--;
     }
 
@@ -258,7 +258,7 @@ public class BurnEffect : Effect
     }
     public override void Apply(CombatMember target)
     {
-        target.TakeDamage(User, damagePerTick, true, true);
+        target.TakeDamage(User, damagePerTick, true, true, false);
         target.ApplyEffect(new DebuffEffect(StatType.Defense, DefenseReduction, duration),true);
     }
 
@@ -269,7 +269,7 @@ public class BurnEffect : Effect
 
     public override void Tick(CombatMember target)
     {
-        target.TakeDamage(User, damagePerTick,true,true);
+        target.TakeDamage(User, damagePerTick,true,true, false);
         duration--;
     }
 }
@@ -291,7 +291,7 @@ public class BleedEffect : Effect
     }
     public override void Apply(CombatMember target)
     {
-        target.TakeDamage(User,Mathf.RoundToInt(this.User.CurrentAttack*attackMult),true,true);
+        target.TakeDamage(User,Mathf.RoundToInt(this.User.CurrentAttack*attackMult),true,true, false);
         
     }
 
@@ -302,7 +302,7 @@ public class BleedEffect : Effect
 
     public override void Tick(CombatMember target)
     {
-        target.TakeDamage(User,Mathf.RoundToInt(this.User.CurrentAttack * attackMult), true, true);
+        target.TakeDamage(User,Mathf.RoundToInt(this.User.CurrentAttack * attackMult), true, true, false);
         duration--;
     }
 }
@@ -571,6 +571,29 @@ public class ImmunityToEffect : Effect
         }
     }
 }
+
+public class AgressionEffect : Effect
+{
+    public float multiplier;
+    public AgressionEffect(float multiplier)
+    {
+        this.multiplier = multiplier;
+        statusEffectType = StatusEffect.Agression;
+
+    }
+    public override void Remove(CombatMember target)
+    {
+
+    }
+    public override void Apply(CombatMember target)
+    {
+
+    }
+    public override void Tick(CombatMember target)
+    {
+       
+    }
+}
 public enum StatusEffect
 {
     Buff,
@@ -592,6 +615,7 @@ public enum StatusEffect
     Curse,
     Resistance,
     ImmunityToEffect,
+    Agression,
     None,
 
 }

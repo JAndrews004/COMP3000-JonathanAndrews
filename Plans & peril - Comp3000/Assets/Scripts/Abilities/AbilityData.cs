@@ -38,6 +38,7 @@ public class AbilityData : ScriptableObject
     public AbilityCategory abilityCategory;
     public AbilityPowerType powerType;
     public AbilityType abilityType;
+    public List<AbilityTag> tags;
     public int maxUsage;
     public int cooldown;
     public TargetType targetType;
@@ -74,4 +75,30 @@ public enum AbilityPowerType
     Magical,
     Mixed,
     True // ignores defenses, e.g., poison or pure effects
+}
+public enum AbilityTag
+{
+    Damage,
+    Heal,
+    Buff,
+    Debuff,
+    Stun,
+    Unstun,
+    Vulnerability,
+    Cleanse,
+    Bleed,
+    Curse,
+    Dispel,
+    Guard,
+    Immunity,
+    LifeSteal,
+    Poison,
+    Reflect,
+    Regen,
+    Revive,
+    Shield,
+    Sleep,
+    Taunt,
+    Blowback,
+
 }

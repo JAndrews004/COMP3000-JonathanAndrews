@@ -18,6 +18,7 @@ MonoBehaviour:
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 40
   cooldown: 4
   targetType: 1
@@ -27,11 +28,12 @@ MonoBehaviour:
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 0
   EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
   IsTauntable: 1
   isElement: 0
   elementTag: 0
   boost: {fileID: 0}
-  unlocked: 1
+  unlocked: 0
   prerequisiteAbilities:
   - {fileID: 11400000, guid: 0e6da31eadf0e7044b425543c2b246cf, type: 2}
   - {fileID: 11400000, guid: 6f0a047246e90684ea45fa0570dc9f15, type: 2}

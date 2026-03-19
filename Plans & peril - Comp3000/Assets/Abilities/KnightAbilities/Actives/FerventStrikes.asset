@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: FerventStrikes
+  m_EditorClassIdentifier: 
+  abilityName: Fervent strikes
+  description: 
+  icon: {fileID: 21300000, guid: ed93d27beb5d7c74995614c9e604872f, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 0
+  maxUsage: 20
+  cooldown: 4
+  targetType: 0
+  numberOfTargets: 1
+  PhysicalBehaviour: {fileID: 11400000, guid: 73e37dc9f007bd74b86fbaacb43bc3a7, type: 2}
+  EffectBehaviour: {fileID: 11400000, guid: 838c6d08fb43fc84387e79aa6bb230c2, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 1
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 1
+  boost: {fileID: 11400000, guid: e7ffba511cbf54a4d8e739eba23cc1ce, type: 2}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: f766355298b340845a3903524a91675a, type: 2}
+  - {fileID: 11400000, guid: 5edf32b4a354e0b45bf88fb1c3e97f77, type: 2}
+  strengthRequired: 95
+  defenseRequired: 60
+  intelligenceRequired: 55
+  magicDefenseRequired: 56
+  luckRequired: 75
+  vitalityRequired: 62
+  goldCost: 0
+  treeCol: 17
+  treeRow: 0

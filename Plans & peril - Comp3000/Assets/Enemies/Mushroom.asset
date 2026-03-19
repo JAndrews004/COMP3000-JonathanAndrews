@@ -16,14 +16,15 @@ MonoBehaviour:
   characterSprite: {fileID: -75871189, guid: edb2917127aaea641aa9bc04f7aa4b04, type: 3}
   level: 0
   xp: 0
-  maxHealth: 0
-  attack: 0
-  defense: 0
-  intelligence: 0
-  magicDefence: 0
-  Luck: 0
+  maxHealth: 60
+  attack: 4
+  defense: 5
+  intelligence: 10
+  magicDefence: 6
+  Luck: 10
   avaliableStatPoints: 0
-  unlockableAbilities: []
+  unlockableAbilities:
+  - {fileID: 0}
   equippedAbilities: []
   element: 0
   EquippedElement: {fileID: 0}

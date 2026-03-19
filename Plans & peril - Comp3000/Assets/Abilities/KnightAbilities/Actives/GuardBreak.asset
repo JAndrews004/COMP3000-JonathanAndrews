@@ -18,6 +18,7 @@ MonoBehaviour:
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 30
   cooldown: 3
   targetType: 0
@@ -32,7 +33,7 @@ MonoBehaviour:
   isElement: 0
   elementTag: 0
   boost: {fileID: 0}
-  unlocked: 1
+  unlocked: 0
   prerequisiteAbilities:
   - {fileID: 11400000, guid: bf5bbbb151f43ec4bacbfda335ffe841, type: 2}
   strengthRequired: 8

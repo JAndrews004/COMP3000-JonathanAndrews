@@ -453,6 +453,11 @@ public class CombatManager : MonoBehaviour
 
     public void EndCombat()
     {
+        if (GameManager.Instance.tutorialActive)
+        {
+            GameManager.Instance.loadHubWorld();
+            return;
+        }
         RemoveAllPassives();
         // Hide any active UI
         HideActiveUnitUI();

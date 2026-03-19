@@ -33,7 +33,8 @@ MonoBehaviour:
   elementTag: 4
   boost: {fileID: 11400000, guid: e7ffba511cbf54a4d8e739eba23cc1ce, type: 2}
   unlocked: 0
-  prerequisiteAbilities: []
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: 00f7e38b0076ef04d83eecaa1531c59f, type: 2}
   strengthRequired: 42
   defenseRequired: 30
   intelligenceRequired: 36

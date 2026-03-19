@@ -22,9 +22,9 @@ public class LifeStealBeahviour : AbilityBehaviour
 
             int healing = Mathf.RoundToInt(totalDamage * percentageStolen);
 
-            target.TakeDamage(user, Mathf.RoundToInt(totalDamage), physical, true);
+            target.TakeDamage(user, Mathf.RoundToInt(totalDamage), physical, true,false);
 
-            target.TakeDamage(user, Mathf.RoundToInt(healing), physical, false);
+            target.TakeDamage(user, Mathf.RoundToInt(healing), physical, false, false);
             user.Heal(healing);
             user.ContributionPoints += 1;
         }

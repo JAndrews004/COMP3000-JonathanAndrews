@@ -9,6 +9,7 @@ public class RoomNodeUI : MonoBehaviour
     public Button button;
     public RoomState roomState;
     public Action<GameObject> ButtonPressed;
+    public Image icon;
     public void Awake()
     {
         button.onClick.RemoveAllListeners();

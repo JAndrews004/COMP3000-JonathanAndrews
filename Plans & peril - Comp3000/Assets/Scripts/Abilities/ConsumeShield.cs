@@ -33,7 +33,7 @@ public class ConsumeShield : AbilityBehaviour
                 totalDamage *= dmgMult * multiplier;
             }
 
-            target.TakeDamage(user, Mathf.RoundToInt(totalDamage), physical, true);
+            target.TakeDamage(user, Mathf.RoundToInt(totalDamage), physical, true, false);
             user.ContributionPoints += 1;
         }
 

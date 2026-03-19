@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: BattleCry
   m_EditorClassIdentifier: 
   abilityName: Battle cry
-  description: 
+  description: Give yourslef a 10% - 20% STR buff
   icon: {fileID: 21300000, guid: 3a159f38f604c814b8f8d05289f2d5d6, type: 3}
   abilityCategory: 0
   powerType: 2
   abilityType: 2
+  tags: 02000000
   maxUsage: 30
   cooldown: 3
   targetType: 6

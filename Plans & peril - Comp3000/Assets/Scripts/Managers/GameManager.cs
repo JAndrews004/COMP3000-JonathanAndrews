@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public List<EnemyMember> EnemyMembers;
 
     public List<GameObject> EasyEnemyPrefabs = new List<GameObject>() { };
+    public List<GameObject> MediumEnemyPrefabs = new List<GameObject>() { };
+    public List<GameObject> HardEnemyPrefabs = new List<GameObject>() { };
     public GameStats Stats;
 
     private int gold;
@@ -22,11 +24,16 @@ public class GameManager : MonoBehaviour
     public bool InCombat = false;
 
     public GameObject breakReminderPanel;
+
+    public TutorialManager tutorialManager;
+    public bool tutorialActive;
+
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            DestroyImmediate(this);
         }
         else 
         { 
@@ -39,8 +46,19 @@ public class GameManager : MonoBehaviour
             gold = Stats.Gold;
             passLevel = Stats.passLevel;
             StartCoroutine(showBreakPanel());
+            if (tutorialActive && tutorialManager != null)
+            {
+                if (tutorialManager.currentState == TutorialState.Start)
+                {
+                    selectedDungeon = new DungeonData();
+                    selectedDungeon.recommendedLevel = 5;
+                    prepareTutorialCombatData();
+                    LoadCombatScene();
+
+                }
+            }
         }
- 
+       
     }
 
     public static void SetInstanceForTesting(GameManager gm)
@@ -111,6 +129,7 @@ public class GameManager : MonoBehaviour
 
     public void StartCombat()
     {
+        tutorialActive = false;
         PrepareCombatData();
         LoadCombatScene();
     }
@@ -176,12 +195,12 @@ public class GameManager : MonoBehaviour
                             enemyObjects.Add(newEnemy);
                             break;
                         case EnemyMember.Tier.Medium:
-                            newEnemy = Instantiate(EasyEnemyPrefabs[Random.Range(0, EasyEnemyPrefabs.Count)]);//change to medium enemy prefabs
+                            newEnemy = Instantiate(MediumEnemyPrefabs[Random.Range(0, MediumEnemyPrefabs.Count)]);//change to medium enemy prefabs
                             newEnemy.transform.parent = transform;
                             enemyObjects.Add(newEnemy);
                             break;
                         case EnemyMember.Tier.Hard:
-                            newEnemy = Instantiate(EasyEnemyPrefabs[Random.Range(0, EasyEnemyPrefabs.Count)]);
+                            newEnemy = Instantiate(HardEnemyPrefabs[Random.Range(0, HardEnemyPrefabs.Count)]);
                             newEnemy.transform.parent = transform;
                             enemyObjects.Add(newEnemy);
                             break;
@@ -207,12 +226,12 @@ public class GameManager : MonoBehaviour
                                 enemyObjects.Add(newEnemy);
                                 break;
                             case EnemyMember.Tier.Medium:
-                                newEnemy = Instantiate(EasyEnemyPrefabs[Random.Range(0, EasyEnemyPrefabs.Count)]);//change to medium enemy prefabs
+                                newEnemy = Instantiate(MediumEnemyPrefabs[Random.Range(0, MediumEnemyPrefabs.Count)]);//change to medium enemy prefabs
                                 newEnemy.transform.parent = transform;
                                 enemyObjects.Add(newEnemy);
                                 break;
                             case EnemyMember.Tier.Hard:
-                                newEnemy = Instantiate(EasyEnemyPrefabs[Random.Range(0, EasyEnemyPrefabs.Count)]);
+                                newEnemy = Instantiate(HardEnemyPrefabs[Random.Range(0, HardEnemyPrefabs.Count)]);
                                 newEnemy.transform.parent = transform;
                                 enemyObjects.Add(newEnemy);
                                 break;
@@ -245,6 +264,7 @@ public class GameManager : MonoBehaviour
     {
         dungeonRuntimeState.destroyRooms();
         SceneManager.LoadScene(3);
+        
     }
     public void EndCombat()
     {
@@ -270,6 +290,20 @@ public class GameManager : MonoBehaviour
     }
     public void loadHubWorld()
     {
+        if (tutorialActive)
+        {
+            SceneManager.LoadScene(1);
+            foreach (GameObject obj in enemyObjects)
+            {
+                Destroy(obj);
+            }
+            //selectedDungeon = null;
+            InCombat = false;
+
+            tutorialManager.trainingTutorial();
+
+            return;
+        }
         dungeonRuntimeState.destroyRooms();
         SceneManager.LoadScene(1);
         dungeonRuntimeState.ResetDungeonLayout();
@@ -398,6 +432,7 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.LoadScene(2);
         dungeonRuntimeState.DrawRooms();
+        tutorialManager.DungeonTraversalText();
     }
 
     public IEnumerator showBreakPanel()
@@ -406,4 +441,22 @@ public class GameManager : MonoBehaviour
         Instantiate(breakReminderPanel);
         StartCoroutine(showBreakPanel());
     }
+
+    public void prepareTutorialCombatData()
+    {
+
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject newEnemy = Instantiate(MediumEnemyPrefabs[Random.Range(0, MediumEnemyPrefabs.Count)]);
+            newEnemy.transform.parent = transform;
+        }
+
+        RefreshEnemyMembers();
+
+        populateAbilities();
+
+        InCombat = true;
+    }
+    
+
 }

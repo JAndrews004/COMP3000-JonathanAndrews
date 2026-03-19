@@ -17,6 +17,9 @@ public class EnemySlot : MonoBehaviour
     public GameObject StatusIconPrefab;
     private Dictionary<Effect, GameObject> ActiveIcons = new Dictionary<Effect, GameObject>();
     [HideInInspector] public Material mat;
+
+    public GameObject CritText;
+    public GameObject DodgeText;
     private void Start()
     {
         //NameText = GetComponentInChildren<TextMeshPro>();
@@ -92,5 +95,13 @@ public class EnemySlot : MonoBehaviour
             icon.Setup(effect);
             ActiveIcons[effect] = iconObj;
         }
+    }
+    public void SpawnCritText()
+    {
+        Instantiate(CritText, this.transform);
+    }
+    public void SpawnDodgeText()
+    {
+        Instantiate(DodgeText, this.transform);
     }
 }

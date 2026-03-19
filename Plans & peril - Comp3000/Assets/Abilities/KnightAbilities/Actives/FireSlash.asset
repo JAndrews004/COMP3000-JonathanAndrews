@@ -18,6 +18,7 @@ MonoBehaviour:
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 0000000000000000
   maxUsage: 25
   cooldown: 3
   targetType: 1

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: MagicBolt+
+  m_EditorClassIdentifier: 
+  abilityName: Magic bolt +
+  description: 
+  icon: {fileID: 21300000, guid: cc7f66cb80685364cbba1ccb7738f7b8, type: 3}
+  abilityCategory: 0
+  powerType: 1
+  abilityType: 0
+  tags: 00000000
+  maxUsage: 20
+  cooldown: 3
+  targetType: 1
+  numberOfTargets: 2
+  PhysicalBehaviour: {fileID: 11400000, guid: 6f016080fec019c449470d858d359aa5, type: 2}
+  EffectBehaviour: {fileID: 0}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 0
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: b06d842cdea5a4d4881d81962ec09c3f, type: 2}
+  - {fileID: 11400000, guid: 530ccd898db602549a36cd0def6ae43f, type: 2}
+  strengthRequired: 21
+  defenseRequired: 21
+  intelligenceRequired: 49
+  magicDefenseRequired: 26
+  luckRequired: 29
+  vitalityRequired: 26
+  goldCost: 0
+  treeCol: 8
+  treeRow: 1

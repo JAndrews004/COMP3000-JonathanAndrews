@@ -89,6 +89,10 @@ public class CharacterSkillTree : MonoBehaviour
             unlockedAbilities.Add(ability);
             GameManager.Instance.RemoveGold(ability.goldCost);
 
+            if (GameManager.Instance.tutorialActive)
+            {
+                GameManager.Instance.tutorialManager.EquipSkill();
+            }
         }
     }
 }

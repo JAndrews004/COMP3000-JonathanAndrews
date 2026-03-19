@@ -18,9 +18,10 @@ MonoBehaviour:
   abilityCategory: 0
   powerType: 0
   abilityType: 2
+  tags: 0f000000
   maxUsage: 20
   cooldown: 5
-  targetType: 1
+  targetType: 4
   numberOfTargets: 2
   PhysicalBehaviour: {fileID: 0}
   EffectBehaviour: {fileID: 11400000, guid: d06fa6e7f82456445a74ddf4684915a7, type: 2}

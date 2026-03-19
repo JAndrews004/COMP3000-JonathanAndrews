@@ -8,10 +8,10 @@ public class EnemyTurnManager : MonoBehaviour
     public TurnManager tm;
     public List<EnemyMember> enemies;
     bool isEnemyPhase;
-    
     public void StartEnemyPhase()
     {
         isEnemyPhase = true;
+        
         StartCoroutine(RunEnemyTurns());
     }
 

@@ -39,12 +39,21 @@ public class HubWorldManager : MonoBehaviour
         {
             DungeonPanel.SetActive(true);
         });
+
+        GameManager.Instance.tutorialManager.TrainingTutorialComplete += skillTurnOn;
+        GameManager.Instance.tutorialManager.TutorialComplete += DungeonSelecOn;
+        checkTutorial();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.tutorialManager.TrainingTutorialComplete -= skillTurnOn;
+        GameManager.Instance.tutorialManager.TutorialComplete -= DungeonSelecOn;
     }
 
     public void OnStartDungeon()
@@ -57,6 +66,28 @@ public class HubWorldManager : MonoBehaviour
             }
             GameManager.Instance.LoadDungeonScene();
         }
+        
+    }
+    public void checkTutorial()
+    {
+        if (GameManager.Instance.tutorialActive)
+        {
+            SkillsMenu.interactable = false;
+            Shop.interactable = false;
+            DungeonSelection.interactable = false;
+        }
+    }
+    public void skillTurnOn()
+    {
+        if (GameManager.Instance.tutorialActive)
+        {
+            SkillsMenu.interactable = true;
+        }
+    }
+    public void DungeonSelecOn()
+    {
+       
+        DungeonSelection.interactable = true;
         
     }
 }

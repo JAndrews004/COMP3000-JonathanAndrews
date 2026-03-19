@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2502826012427696894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2502826012427696865}
+  - component: {fileID: 2502826012427696864}
+  - component: {fileID: 3016006661818569754}
+  m_Layer: 0
+  m_Name: Evil Wizard 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2502826012427696865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502826012427696894}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.42618492, y: 1.8320773, z: 0.021061493}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2502826012427696864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502826012427696894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe08a0f24a8c1614697e8170f2f37fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: 208d026cce646fa45b3e81cc8ab4cc58, type: 2}
+  combatManager: {fileID: 0}
+  CurrentHealth: 75
+  CurrentMaxHealth: 75
+  CurrentAttack: 10
+  CurrentDefense: 15
+  CurrentIntelligence: 1
+  CurrentMagicDefense: 0
+  CurrentLuck: 0
+  shieldValue: 0
+  gainImmediateExtraTurn: 0
+  gainExtraTurnNextRound: 0
+  IsStunned: 0
+  abilityDatas:
+  - {fileID: 11400000, guid: 1bd623e22553bef4984eef53db418543, type: 2}
+  - {fileID: 11400000, guid: 8c8931a35d6b5b84e89de8a7f379e15f, type: 2}
+  - {fileID: 11400000, guid: 4ac38b84cf57744469f569c4d5ae3cd2, type: 2}
+  - {fileID: 11400000, guid: 68e924cbeda808949a64af7f4966641a, type: 2}
+  - {fileID: 11400000, guid: 609e0d636ecfffc4ba3b3cf1b6828d4f, type: 2}
+  - {fileID: 11400000, guid: dcd2a7fc20f578842b505c88f559ff88, type: 2}
+  PlayerKilledBy: {fileID: 0}
+  ContributionPoints: 0
+  element: 0
+  damageReceivedPrieviousRound: 0
+  aiController: {fileID: 3016006661818569754}
+  Level: 3
+  XPGiven: 20
+  tier: 2
+--- !u!114 &3016006661818569754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502826012427696894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160b8596390c9aa4bbb9de11179bc498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 0}
+  players: []
+  enemies: []

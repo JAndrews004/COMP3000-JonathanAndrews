@@ -39,7 +39,7 @@ public class AdditionalDamageWithEffect : AbilityBehaviour
                 totalDamage *= multiplier;
             }
 
-            target.TakeDamage(user, Mathf.RoundToInt(totalDamage), physical, true);
+            target.TakeDamage(user, Mathf.RoundToInt(totalDamage), physical, true, false);
             user.ContributionPoints += 1;
         }
 
