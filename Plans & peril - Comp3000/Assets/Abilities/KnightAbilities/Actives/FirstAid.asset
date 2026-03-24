@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: FirstAid
   m_EditorClassIdentifier: 
   abilityName: First aid
-  description: 
+  description: "Restores 15% health. \n\n[targets 2][Uses 15][Cooldown 4]\n\nWater
+    affinity increases healing."
   icon: {fileID: 21300000, guid: cac4117f4efb7f74d8e49268d8209d47, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 2
+  tags: 
   maxUsage: 15
   cooldown: 4
   targetType: 4
@@ -27,6 +29,7 @@ MonoBehaviour:
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
   IsTauntable: 0
   isElement: 0
   elementTag: 2

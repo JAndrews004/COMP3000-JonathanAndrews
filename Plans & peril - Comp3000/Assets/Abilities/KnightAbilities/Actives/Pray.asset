@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Pray
   m_EditorClassIdentifier: 
   abilityName: Pray
-  description: 
+  description: Removes all debuffs.
   icon: {fileID: 21300000, guid: d6659538e43f78b468eb04284f54d88b, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 2
+  tags: 
   maxUsage: 15
   cooldown: 4
   targetType: 6

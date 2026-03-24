@@ -358,6 +358,7 @@
 "Assets/Scripts/Abilities/ImmunityBehaviour.cs"
 "Assets/Scripts/Abilities/InterferenceBehaviour.cs"
 "Assets/Scripts/Abilities/LifeStealBeahviour.cs"
+"Assets/Scripts/Abilities/Passives/AddedShieldPassive.cs"
 "Assets/Scripts/Abilities/Passives/AgressionPassive.cs"
 "Assets/Scripts/Abilities/Passives/AutoRevivePassive.cs"
 "Assets/Scripts/Abilities/Passives/ConstantReflect.cs"

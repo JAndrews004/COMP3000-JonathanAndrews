@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Cleave
   m_EditorClassIdentifier: 
   abilityName: Cleave
-  description: 
+  description: " Deals 60 damage. \n\n[targets 3][Uses 25][Cooldown 3]\n\nWind affinity
+    allows it to hit an additional target."
   icon: {fileID: 21300000, guid: ed93d27beb5d7c74995614c9e604872f, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 25
   cooldown: 3
   targetType: 1
@@ -27,6 +29,7 @@ MonoBehaviour:
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 0
   EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
   IsTauntable: 1
   isElement: 0
   elementTag: 4

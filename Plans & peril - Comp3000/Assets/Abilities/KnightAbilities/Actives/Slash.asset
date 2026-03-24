@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: Slash
   m_EditorClassIdentifier: 
   abilityName: Slash
-  description: 
+  description: 'Deals 40 damage.
+
+
+    [targets 1] [Uses 50] [Cooldown 0]'
   icon: {fileID: 21300000, guid: 61310cad758051c41851ea5b7cad03e6, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
   tags: 00000000
   maxUsage: 50
-  cooldown: 1
+  cooldown: 0
   targetType: 0
   numberOfTargets: 1
   PhysicalBehaviour: {fileID: 11400000, guid: 6f016080fec019c449470d858d359aa5, type: 2}

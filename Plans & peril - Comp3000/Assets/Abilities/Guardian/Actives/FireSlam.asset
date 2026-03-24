@@ -18,30 +18,30 @@ MonoBehaviour:
   abilityCategory: 0
   powerType: 0
   abilityType: 0
-  tags: 
-  maxUsage: 0
-  cooldown: 0
-  targetType: 0
-  numberOfTargets: 0
-  PhysicalBehaviour: {fileID: 0}
-  EffectBehaviour: {fileID: 0}
+  tags: 000000000e000000
+  maxUsage: 20
+  cooldown: 3
+  targetType: 1
+  numberOfTargets: 2
+  PhysicalBehaviour: {fileID: 11400000, guid: 13c54f8b9d2e11644aced1d43c9e8c1c, type: 2}
+  EffectBehaviour: {fileID: 11400000, guid: f9e87036c5c64c74884759d35a7943a2, type: 2}
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 0
-  EffectChanceScaling: 0
-  EffectIcon: {fileID: 0}
-  IsTauntable: 0
+  EffectChanceScaling: 1.1
+  EffectIcon: {fileID: 21300000, guid: b14ce82c3900b9c4ea2ea2016f9c2229, type: 3}
+  IsTauntable: 1
   isElement: 0
-  elementTag: 0
-  boost: {fileID: 0}
+  elementTag: 1
+  boost: {fileID: 11400000, guid: 704c6552e4a72a64fa444c90389af16b, type: 2}
   unlocked: 0
   prerequisiteAbilities:
   - {fileID: 11400000, guid: 2f1339e82c166d04e9273999eb7fd55f, type: 2}
-  strengthRequired: 0
-  defenseRequired: 0
-  intelligenceRequired: 0
-  magicDefenseRequired: 0
-  luckRequired: 0
-  vitalityRequired: 0
+  strengthRequired: 55
+  defenseRequired: 45
+  intelligenceRequired: 40
+  magicDefenseRequired: 38
+  luckRequired: 40
+  vitalityRequired: 45
   goldCost: 0
   treeCol: 9
   treeRow: 0

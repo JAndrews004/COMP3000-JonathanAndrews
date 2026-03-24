@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdf57e4a8ba6bf4faedc664f87fb8d5, type: 3}
+  m_Name: Reflect_2_1_1_0.5_0.5
+  m_EditorClassIdentifier: 
+  baseDamage: 0
+  duration: 2
+  reflectDamage: 1
+  refelctEffects: 1
+  damageRefelctionPercent: 0.5
+  chanceOfEffectReflect: 0.5

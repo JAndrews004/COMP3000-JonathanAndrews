@@ -13,23 +13,27 @@ MonoBehaviour:
   m_Name: SweepingBlow
   m_EditorClassIdentifier: 
   abilityName: Sweeping blow
-  description: 
+  description: 'Deals 25 damage to multiple enemies.
+
+
+    [targets 3] [Uses 30]
+    [Cooldown 2]'
   icon: {fileID: 21300000, guid: 779d48bc053f0634d8f65c1125f40df4, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
-  tags: 
-  maxUsage: 0
-  cooldown: 0
-  targetType: 0
-  numberOfTargets: 0
-  PhysicalBehaviour: {fileID: 0}
+  tags: 00000000
+  maxUsage: 30
+  cooldown: 2
+  targetType: 1
+  numberOfTargets: 3
+  PhysicalBehaviour: {fileID: 11400000, guid: 27fccbad9ed8c754183139eb437a2795, type: 2}
   EffectBehaviour: {fileID: 0}
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 0
   EffectChanceScaling: 0
   EffectIcon: {fileID: 0}
-  IsTauntable: 0
+  IsTauntable: 1
   isElement: 0
   elementTag: 0
   boost: {fileID: 0}
@@ -37,12 +41,12 @@ MonoBehaviour:
   prerequisiteAbilities:
   - {fileID: 11400000, guid: 8bd32929f2a63214e92e9a52adc2120b, type: 2}
   - {fileID: 11400000, guid: e1284477da8ca5d4db894511fe0ccdff, type: 2}
-  strengthRequired: 0
-  defenseRequired: 0
-  intelligenceRequired: 0
-  magicDefenseRequired: 0
-  luckRequired: 0
-  vitalityRequired: 0
+  strengthRequired: 22
+  defenseRequired: 20
+  intelligenceRequired: 9
+  magicDefenseRequired: 13
+  luckRequired: 18
+  vitalityRequired: 20
   goldCost: 0
   treeCol: 2
   treeRow: 1

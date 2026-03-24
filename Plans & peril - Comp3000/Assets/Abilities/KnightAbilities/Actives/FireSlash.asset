@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: FireSlash
   m_EditorClassIdentifier: 
   abilityName: Fire slash
-  description: 
+  description: "Deals 55 damage with a high chance to burn. \n\n[targets 3][Uses
+    25][Cooldown 3]\n\nFire affinity increases burn duration."
   icon: {fileID: 21300000, guid: b7c2e7d262c67c9409f12b14101ab399, type: 3}
   abilityCategory: 0
   powerType: 0
@@ -33,7 +34,7 @@ MonoBehaviour:
   isElement: 0
   elementTag: 1
   boost: {fileID: 11400000, guid: 704c6552e4a72a64fa444c90389af16b, type: 2}
-  unlocked: 1
+  unlocked: 0
   prerequisiteAbilities:
   - {fileID: 11400000, guid: 8a0b6db7cd88b6a4297055f9282e459f, type: 2}
   strengthRequired: 43

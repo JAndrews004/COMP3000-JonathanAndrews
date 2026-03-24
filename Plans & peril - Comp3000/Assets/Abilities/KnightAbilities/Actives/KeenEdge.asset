@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: KeenEdge
   m_EditorClassIdentifier: 
   abilityName: Keen edge
-  description: 
+  description: 'Increases damage by 30% - 45%.
+
+
+    Wind affinity enhances this
+    effect.'
   icon: {fileID: 21300000, guid: 779d48bc053f0634d8f65c1125f40df4, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 2
+  tags: 
   maxUsage: 20
   cooldown: 5
   targetType: 6

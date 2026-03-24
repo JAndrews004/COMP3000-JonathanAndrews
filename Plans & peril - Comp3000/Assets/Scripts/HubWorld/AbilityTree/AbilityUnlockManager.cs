@@ -22,8 +22,15 @@ public class AbilityUnlockManager : MonoBehaviour
     public Button buyButton;
 
     public Image AbilityIcon;
+    public Image elementIcon;
+    public Sprite neutralIcon;
+    public Sprite earthIcon;
+    public Sprite fireIcon;
+    public Sprite waterIcon;
+    public Sprite airIcon;
 
     public SkillTreeUIContoller SkillTree;
+    public GameObject InfoPannel;
     public void Start()
     {
         if (GetComponentInParent<SkillsMenu>().chosenCharacter.characterSkillTree.unlockedAbilities != null)
@@ -44,6 +51,26 @@ public class AbilityUnlockManager : MonoBehaviour
         SetStat(MagicDefenseStat, "MDF", abilityData.magicDefenseRequired, member.CurrentMagicDefense);
         SetStat(LuckStat, "LCK", abilityData.luckRequired, member.CurrentLuck);
         SetStat(HpStat, "VIT", abilityData.vitalityRequired, member.CurrentMaxHealth/10);
+
+        switch (abilityData.elementTag)
+        {
+            case Element.None:
+                elementIcon.sprite = neutralIcon;
+                break;
+            case Element.Air:
+                elementIcon.sprite = airIcon;
+                break;
+            case Element.Fire:
+                elementIcon.sprite = fireIcon;
+                break;
+            case Element.Water:
+                elementIcon.sprite = waterIcon;
+                break;
+            case Element.Earth:
+                elementIcon.sprite = earthIcon;
+                break;
+        }
+
 
         int price = 0;
         foreach(AbilityData data in member.characterSkillTree.unlockedAbilities)
@@ -88,4 +115,12 @@ public class AbilityUnlockManager : MonoBehaviour
         statText.color = required <= current ? Color.green : Color.red;
     }
 
+    public void OpenInfoPannel()
+    {
+        InfoPannel.SetActive(true);
+    }
+    public void CloseInfoPannel()
+    {
+        InfoPannel.SetActive(false);
+    }
 }

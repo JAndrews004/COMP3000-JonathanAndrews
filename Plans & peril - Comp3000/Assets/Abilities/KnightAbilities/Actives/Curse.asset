@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: Curse
   m_EditorClassIdentifier: 
   abilityName: Curse
-  description: 
+  description: 'Prevents enemies from gaining buffs for 4 rounds.
+
+
+    [targets
+    3][Uses 5][Cooldown 4]'
   icon: {fileID: 21300000, guid: 7395f6c7855095a4695499baf3ce2e70, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 3
+  tags: 
   maxUsage: 5
   cooldown: 4
   targetType: 1

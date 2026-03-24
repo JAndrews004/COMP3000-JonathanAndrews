@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class EquipSlot : MonoBehaviour, IDropHandler
 {
     public Image Icon;
+    public Sprite baseImage;
     public AbilityData equipedAbility;
     public int slotnumber;
     public CharacterSkillTree characterSkillTree;
@@ -62,7 +63,10 @@ public class EquipSlot : MonoBehaviour, IDropHandler
 
 
         }
-        
+        if(equipedAbility == null)
+        {
+            Icon.sprite = baseImage;
+        }
     }
     /*
     public void OnBeginDrag(PointerEventData eventData)

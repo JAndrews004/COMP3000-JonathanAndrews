@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Iron skin
   m_EditorClassIdentifier: 
   abilityName: Iron skin
-  description: 
+  description: "Grants a moderate chance to reflect damage and increases Defense
+    by 15%. \n\nEarth\r affinity enhances both effects."
   icon: {fileID: 21300000, guid: 80ef08f89284c344690172361135bf63, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 2
+  tags: 
   maxUsage: 20
   cooldown: 3
   targetType: 6

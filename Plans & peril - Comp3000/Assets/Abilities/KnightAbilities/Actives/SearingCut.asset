@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: SearingCut
   m_EditorClassIdentifier: 
   abilityName: Searing cut
-  description: 
+  description: " Deals 25 damage with a medium chance to burn. \n\nFire affinity
+    increases burn duration."
   icon: {fileID: 21300000, guid: 7e67abe18c9d6d647aaa233ed19d70b2, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 25
   cooldown: 4
   targetType: 2

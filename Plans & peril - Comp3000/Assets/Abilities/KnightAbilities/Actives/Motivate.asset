@@ -13,11 +13,18 @@ MonoBehaviour:
   m_Name: Motivate
   m_EditorClassIdentifier: 
   abilityName: Motivate
-  description: 
+  description: ' Increases Strength by 15%. - 25% for 2 rounds.
+
+
+    [targets 1]
+    [Uses 20] [Cooldown 4]
+
+'
   icon: {fileID: 21300000, guid: b459aecf6d296b8449edae3a4fbf252c, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 2
+  tags: 
   maxUsage: 20
   cooldown: 4
   targetType: 3

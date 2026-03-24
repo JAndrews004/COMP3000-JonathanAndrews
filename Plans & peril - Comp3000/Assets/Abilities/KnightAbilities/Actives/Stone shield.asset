@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Stone shield
   m_EditorClassIdentifier: 
   abilityName: Stone shield
-  description: 
+  description: "Increases Defense by 40% - 55%. \n\nEarth affinity increases this
+    effect."
   icon: {fileID: 21300000, guid: 82252ccd64ddcc9468fe1da30fa8f5dd, type: 3}
   abilityCategory: 0
   powerType: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: VitalityBoost
   m_EditorClassIdentifier: 
   abilityName: Vitality boost
-  description: 
+  description: "Increases max health by 25-40%. \n\n[targets 1] [Uses 20] [Cooldown
+    4]\n\nWater affinity increases the effect.\r\n"
   icon: {fileID: 21300000, guid: c9f4c896daf49524ebd146e8564c6bb2, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 2
+  tags: 
   maxUsage: 20
   cooldown: 4
   targetType: 3

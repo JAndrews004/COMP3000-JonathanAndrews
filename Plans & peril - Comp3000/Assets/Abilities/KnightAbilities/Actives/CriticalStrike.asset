@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: CriticalStrike
   m_EditorClassIdentifier: 
   abilityName: Critical strike
-  description: 
+  description: 'Deals 35 damage with a chance to apply vulnerability
+
+
+    [targets
+    2][Uses 35][Cooldown 2]'
   icon: {fileID: 21300000, guid: f78c402dcbe31064fa300db9c327f615, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 35
   cooldown: 2
   targetType: 1

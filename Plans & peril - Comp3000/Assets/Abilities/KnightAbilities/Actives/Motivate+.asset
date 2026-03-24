@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Motivate+
   m_EditorClassIdentifier: 
   abilityName: Motivate +
-  description: 
+  description: ' Increases Strength by 15% and Defense by 10%, and grants minor regeneration.'
   icon: {fileID: 21300000, guid: b459aecf6d296b8449edae3a4fbf252c, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 2
+  tags: 
   maxUsage: 15
   cooldown: 4
   targetType: 4

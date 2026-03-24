@@ -13,11 +13,18 @@ MonoBehaviour:
   m_Name: DelayedStrike
   m_EditorClassIdentifier: 
   abilityName: Delayed attack
-  description: 
+  description: 'Deals 150 damage after a 2-turn delay.
+
+
+    [targets 2][Uses 15][Cooldown
+    4]
+
+'
   icon: {fileID: 21300000, guid: 7806552b3185a344aa4d7dff198568f3, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 15
   cooldown: 4
   targetType: 1

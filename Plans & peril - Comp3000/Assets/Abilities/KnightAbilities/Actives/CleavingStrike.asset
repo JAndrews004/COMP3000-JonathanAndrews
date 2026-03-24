@@ -13,11 +13,18 @@ MonoBehaviour:
   m_Name: CleavingStrike
   m_EditorClassIdentifier: 
   abilityName: Cleaving strike
-  description: 
+  description: 'Deals 40 damage with a moderate chance to inflict bleed.
+
+
+    [targets
+    2][Uses 30][Cooldown 3]
+
+'
   icon: {fileID: 21300000, guid: 8cadee2facd44a54f976ddea847d5e58, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 30
   cooldown: 3
   targetType: 1

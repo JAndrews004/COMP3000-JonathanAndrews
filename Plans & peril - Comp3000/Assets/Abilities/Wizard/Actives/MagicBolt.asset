@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: MagicBolt
   m_EditorClassIdentifier: 
   abilityName: Magic bolt
-  description: 
+  description: 'Deals 35 damage.
+
+
+    [targets 1] [Uses 50] [Cooldown 0]'
   icon: {fileID: 21300000, guid: 58d0dee0551f2684d8816400576f9d5e, type: 3}
   abilityCategory: 0
   powerType: 1
   abilityType: 0
+  tags: 
   maxUsage: 50
-  cooldown: 1
+  cooldown: 0
   targetType: 0
   numberOfTargets: 1
   PhysicalBehaviour: {fileID: 11400000, guid: 41a8d8f6963bda84bb2ff2ff83013319, type: 2}

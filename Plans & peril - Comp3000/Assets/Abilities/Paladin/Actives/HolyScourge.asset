@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: HolyScourge
+  m_EditorClassIdentifier: 
+  abilityName: Holy scourge
+  description: 'Deals damage with a chance to poison.
+
+
+    [targets 1] [Uses 25]
+    [Cooldown 3]'
+  icon: {fileID: 21300000, guid: 9d44c69dc6b06b842b867331ac1116af, type: 3}
+  abilityCategory: 0
+  powerType: 2
+  abilityType: 0
+  tags: 000000000e000000
+  maxUsage: 25
+  cooldown: 3
+  targetType: 0
+  numberOfTargets: 1
+  PhysicalBehaviour: {fileID: 11400000, guid: 1b2763dc9705e664c9a1f9e9849938d6, type: 2}
+  EffectBehaviour: {fileID: 11400000, guid: c39f6d0116645be4fa4bd3cce2071cd3, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 0
+  EffectChanceScaling: 0.6
+  EffectIcon: {fileID: 21300000, guid: f1c5604b5f1f2e84c9fe2a94291ae04d, type: 3}
+  IsTauntable: 1
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: cde02420bb33c7442979fd5909eca28f, type: 2}
+  - {fileID: 11400000, guid: ce9e91cb3e46d6b40b0ada8c2950d36b, type: 2}
+  strengthRequired: 17
+  defenseRequired: 17
+  intelligenceRequired: 15
+  magicDefenseRequired: 17
+  luckRequired: 15
+  vitalityRequired: 19
+  goldCost: 0
+  treeCol: 2
+  treeRow: 1

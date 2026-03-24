@@ -58,9 +58,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 74bf9e1c0aae5d1489c0a212da999580, type: 2}
   - {fileID: 11400000, guid: f7ebef2d9c8bdba42adbc2186653e1d8, type: 2}
   equippedAbilities:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ff37bdbbdf01d7240a90ce946724612f, type: 2}
+  - {fileID: 11400000, guid: a8c0eca755349d94ea2e74de094111c9, type: 2}
+  - {fileID: 11400000, guid: e2917f71ad6d0574ca95fbe1112e29b9, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

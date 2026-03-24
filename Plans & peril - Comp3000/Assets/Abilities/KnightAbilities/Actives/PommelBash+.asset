@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: PommelBash+
   m_EditorClassIdentifier: 
   abilityName: Pommel bash +
-  description: 
+  description: Deals 50 damage with an increased chance to stun.
   icon: {fileID: 21300000, guid: 285fb6222ee361a4eb0bba4e9935df74, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 35
   cooldown: 3
   targetType: 0

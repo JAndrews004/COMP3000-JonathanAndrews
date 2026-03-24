@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Weaken+
   m_EditorClassIdentifier: 
   abilityName: Weaken+
-  description: 
+  description: 'Reduces Strength and Defence by 15-25% for 3 rounds.
+
+
+    [targets
+    1] [Uses 25] [Cooldown 4]'
   icon: {fileID: 21300000, guid: 7e67abe18c9d6d647aaa233ed19d70b2, type: 3}
   abilityCategory: 0
   powerType: 0

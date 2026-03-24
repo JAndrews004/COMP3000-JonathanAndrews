@@ -81,8 +81,15 @@ public class DebugManager : MonoBehaviour
         {
             string targetLines = string.Join("\n", data.targets.Select(t =>
             {
-                int raw = data.rawDamages[t];
-                int received = data.damageReceived[t];
+                int raw = -1;
+                int received = -1;
+                if (data.rawDamages.ContainsKey(t) && data.damageReceived.ContainsKey(t))
+                {
+                    raw = data.rawDamages[t];
+                    received = data.damageReceived[t];
+                }
+                 
+                 
                 return $"<color=#FF0000>{t.baseStats.characterName}</color> - Raw: {raw}, Received: {received}";
             }));
 

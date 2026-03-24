@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WindLance
   m_EditorClassIdentifier: 
   abilityName: Wind lance
-  description: 
+  description: "Deals 35 damage. \n\n[targets 2] [Uses 20] [Cooldown 4]\n\nWind affinity
+    allows it to hit an additional target.\r\n"
   icon: {fileID: 21300000, guid: e5d20a7eb2c38f6499b9cee5fd87a8a4, type: 3}
   abilityCategory: 0
   powerType: 1

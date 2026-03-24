@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Behaviours/LifeSteal")]
 public class LifeStealBeahviour : AbilityBehaviour
 {
-    float percentageStolen;
+    public float percentageStolen;
     public override void Execute(CombatMember user, List<CombatMember> targets, AbilityData ability)
     {
         foreach (var target in targets)

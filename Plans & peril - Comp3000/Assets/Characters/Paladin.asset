@@ -16,18 +16,38 @@ MonoBehaviour:
   characterSprite: {fileID: 0}
   level: 1
   xp: 0
-  maxHealth: 145
+  maxHealth: 150
   attack: 13
   defense: 13
   intelligence: 11
   magicDefence: 13
   Luck: 11
   avaliableStatPoints: 3
-  unlockableAbilities: []
+  unlockableAbilities:
+  - {fileID: 11400000, guid: c9b835fc7c9931c49a98d7433fc6f6cb, type: 2}
+  - {fileID: 11400000, guid: 0f33c9b9d86fd2146b630a4f60bfc702, type: 2}
+  - {fileID: 11400000, guid: fc0eba033176f414c9e2c1fbb3bec8d5, type: 2}
+  - {fileID: 11400000, guid: 175ff31186b3e5645a15500be581e051, type: 2}
+  - {fileID: 11400000, guid: cde02420bb33c7442979fd5909eca28f, type: 2}
+  - {fileID: 11400000, guid: ce9e91cb3e46d6b40b0ada8c2950d36b, type: 2}
+  - {fileID: 11400000, guid: 4b978a7c12a8dfe4f831c2cb262150af, type: 2}
+  - {fileID: 11400000, guid: e6b7b9c99f5e7d548b4443ea0ef39f8a, type: 2}
+  - {fileID: 11400000, guid: 86b7522283c2b0644bbb3f2bb7fd59df, type: 2}
+  - {fileID: 11400000, guid: 8374fd16a6ed1674dbfcfc81ac8c1502, type: 2}
+  - {fileID: 11400000, guid: 55150279d594ea843937084e328c94ec, type: 2}
+  - {fileID: 11400000, guid: e1b1e4220f96ea04e9efdd2ab1f34012, type: 2}
+  - {fileID: 11400000, guid: 660f2723b8bda97488a6fcfabc04cacb, type: 2}
+  - {fileID: 11400000, guid: d220d8d56bc96314bbbd5d08852417e6, type: 2}
+  - {fileID: 11400000, guid: 15df9d2147ec92840b83d587c4e4c125, type: 2}
+  - {fileID: 11400000, guid: 3b6f0cd82cd3f8c40adfc7cbb1873cfd, type: 2}
+  - {fileID: 11400000, guid: 34053e7dca4be03478213a4d4dc6801b, type: 2}
+  - {fileID: 11400000, guid: dc3d13db2271c024097cb416d616cfe6, type: 2}
+  - {fileID: 11400000, guid: f3b49dd30e1917f4bbe9fb1253e9eb29, type: 2}
+  - {fileID: 11400000, guid: d48a8801c45aaa340a9e21e2d6af858e, type: 2}
   equippedAbilities:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: c9b835fc7c9931c49a98d7433fc6f6cb, type: 2}
+  - {fileID: 11400000, guid: 0f33c9b9d86fd2146b630a4f60bfc702, type: 2}
+  - {fileID: 11400000, guid: fc0eba033176f414c9e2c1fbb3bec8d5, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

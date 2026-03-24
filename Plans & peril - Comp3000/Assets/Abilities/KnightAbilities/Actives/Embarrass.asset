@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: Embarrass
   m_EditorClassIdentifier: 
   abilityName: Embarrass
-  description: 
+  description: 'Taunts the target for 3 rounds.
+
+
+    [targets 1] [Uses 20] [Cooldown
+    3]'
   icon: {fileID: 21300000, guid: 9fd9f36af2461c94a817a40b7c16b9ae, type: 3}
   abilityCategory: 0
   powerType: 2
   abilityType: 3
+  tags: 
   maxUsage: 20
   cooldown: 3
   targetType: 0

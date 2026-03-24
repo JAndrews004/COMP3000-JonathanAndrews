@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: Disruption
   m_EditorClassIdentifier: 
   abilityName: Disruption
-  description: 
+  description: 'Applies interference for 3 rounds.
+
+
+    [targets 1] [Uses 15] [Cooldown
+    2]
+
+'
   icon: {fileID: 21300000, guid: 2712f9a9996455c438d1fec9c97bd601, type: 3}
   abilityCategory: 0
   powerType: 0

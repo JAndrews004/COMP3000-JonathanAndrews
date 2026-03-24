@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Rest
   m_EditorClassIdentifier: 
   abilityName: Rest
-  description: 
+  description: Restores some ability uses
   icon: {fileID: 21300000, guid: cbd252ab070f706428a50b6f57824f43, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 2
+  tags: 
   maxUsage: 10
   cooldown: 4
   targetType: 6
@@ -27,6 +28,7 @@ MonoBehaviour:
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
   IsTauntable: 0
   isElement: 0
   elementTag: 0

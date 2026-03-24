@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Invigorate
   m_EditorClassIdentifier: 
   abilityName: Invigorate
-  description: 
+  description: 'Increases strength by 25-45% for 3 rounds.
+
+
+    [targets 2] [Uses
+    30] [Cooldown 3]'
   icon: {fileID: 21300000, guid: 3a159f38f604c814b8f8d05289f2d5d6, type: 3}
   abilityCategory: 0
   powerType: 0

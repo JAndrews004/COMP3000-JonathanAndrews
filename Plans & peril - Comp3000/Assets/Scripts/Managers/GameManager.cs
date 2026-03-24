@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(showBreakPanel());
             if (tutorialActive && tutorialManager != null)
             {
+                ResetCharacters();
                 if (tutorialManager.currentState == TutorialState.Start)
                 {
                     selectedDungeon = new DungeonData();
@@ -456,6 +457,39 @@ public class GameManager : MonoBehaviour
         populateAbilities();
 
         InCombat = true;
+    }
+
+    public void ResetCharacters()
+    {
+        List<List<int>> charactersStats =new List<List<int>>{ new List<int> {15,10,5,6,10,12 }, new List<int> {10,15,4,8,10,15},new List<int>{ 12,12,10,12,10,14 }, new List<int> {6,6,19,11,11,11} };
+        for(int i =0; i< PartyMembers.Count; i++)
+        {
+            PartyMembers[i].baseStats.attack = charactersStats[i][0];
+            PartyMembers[i].baseStats.defense = charactersStats[i][1];
+            PartyMembers[i].baseStats.intelligence = charactersStats[i][2];
+            PartyMembers[i].baseStats.magicDefence = charactersStats[i][3];
+            PartyMembers[i].baseStats.Luck = charactersStats[i][4];
+            PartyMembers[i].baseStats.maxHealth = charactersStats[i][5] *10;
+
+            PartyMembers[i].baseStats.xp = 0;
+            PartyMembers[i].baseStats.level = 0;
+            PartyMembers[i].baseStats.avaliableStatPoints = 0;
+            PartyMembers[i].baseStats.element = Element.None;
+        }
+
+        foreach(CombatMember member in PartyMembers)
+        {
+            foreach(AbilityData ability in member.baseStats.unlockableAbilities)
+            {
+                if(ability.treeCol > 0)
+                {
+                    ability.unlocked = false;
+                }
+            }
+
+            member.baseStats.equippedAbilities = new List<AbilityData> { member.baseStats.unlockableAbilities[0], member.baseStats.unlockableAbilities[1], member.baseStats.unlockableAbilities[2], null, null, null };
+        }
+
     }
     
 

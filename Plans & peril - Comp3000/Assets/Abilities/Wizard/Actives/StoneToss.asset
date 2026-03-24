@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: StoneToss
   m_EditorClassIdentifier: 
   abilityName: Stone toss
-  description: 
+  description: "Deals 40 damage with a chance to apply stun. \n\n[targets 1] [Uses
+    30] [Cooldown 2]\n\nEarth affinity increases\r number of targets by 1."
   icon: {fileID: 21300000, guid: cf63bd6355a222e4db5e191868d8737d, type: 3}
   abilityCategory: 0
   powerType: 0

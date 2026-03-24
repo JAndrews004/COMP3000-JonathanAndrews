@@ -13,22 +13,25 @@ MonoBehaviour:
   m_Name: Provoke
   m_EditorClassIdentifier: 
   abilityName: Provoke
-  description: 
+  description: 'Taunts the target.
+
+
+    [targets 1] [Uses 25] [Cooldown 3]'
   icon: {fileID: 21300000, guid: 6b5b174263431a147a490465da1161fd, type: 3}
   abilityCategory: 0
   powerType: 0
-  abilityType: 0
-  tags: 
-  maxUsage: 0
-  cooldown: 0
+  abilityType: 3
+  tags: 03000000
+  maxUsage: 25
+  cooldown: 3
   targetType: 0
-  numberOfTargets: 0
+  numberOfTargets: 1
   PhysicalBehaviour: {fileID: 0}
-  EffectBehaviour: {fileID: 0}
+  EffectBehaviour: {fileID: 11400000, guid: 7c0b5e54635a75841a99af00216a161b, type: 2}
   passiveBehaviour: {fileID: 0}
-  guaranteedEffectHit: 0
+  guaranteedEffectHit: 1
   EffectChanceScaling: 0
-  EffectIcon: {fileID: 0}
+  EffectIcon: {fileID: 21300000, guid: b6ba05bc4dbf8ae4dbc65295ba4336b2, type: 3}
   IsTauntable: 0
   isElement: 0
   elementTag: 0
@@ -36,12 +39,12 @@ MonoBehaviour:
   unlocked: 0
   prerequisiteAbilities:
   - {fileID: 11400000, guid: ff37bdbbdf01d7240a90ce946724612f, type: 2}
-  strengthRequired: 0
-  defenseRequired: 0
-  intelligenceRequired: 0
-  magicDefenseRequired: 0
-  luckRequired: 0
-  vitalityRequired: 0
+  strengthRequired: 15
+  defenseRequired: 20
+  intelligenceRequired: 12
+  magicDefenseRequired: 13
+  luckRequired: 22
+  vitalityRequired: 20
   goldCost: 0
   treeCol: 1
   treeRow: 0

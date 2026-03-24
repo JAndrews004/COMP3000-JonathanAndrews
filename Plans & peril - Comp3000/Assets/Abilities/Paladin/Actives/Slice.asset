@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: Slice
+  m_EditorClassIdentifier: 
+  abilityName: Slice
+  description: 
+  icon: {fileID: 21300000, guid: 8cadee2facd44a54f976ddea847d5e58, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 0
+  tags: 00000000
+  maxUsage: 20
+  cooldown: 3
+  targetType: 0
+  numberOfTargets: 1
+  PhysicalBehaviour: {fileID: 11400000, guid: 6134e0df4ddb4eb4cb3d82709e48c45d, type: 2}
+  EffectBehaviour: {fileID: 0}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 0
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
+  IsTauntable: 1
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: d220d8d56bc96314bbbd5d08852417e6, type: 2}
+  - {fileID: 11400000, guid: 15df9d2147ec92840b83d587c4e4c125, type: 2}
+  strengthRequired: 27
+  defenseRequired: 27
+  intelligenceRequired: 25
+  magicDefenseRequired: 27
+  luckRequired: 25
+  vitalityRequired: 29
+  goldCost: 0
+  treeCol: 6
+  treeRow: 1

@@ -13,6 +13,11 @@ public class GuardBehaviour : AbilityBehaviour
         foreach (var target in targets)
         {
             GuardEffect effectToAdd = new GuardEffect(duration, user, percentage);
+            if (user.element == ability.elementTag && ability.elementTag != Element.None && ability.boost != null)
+            {
+                effectToAdd.percentage *= ability.boost.multipliedPotency;
+                effectToAdd.duration += ability.boost.addedDuration;
+            }
             effectToAdd.name = ability.abilityName;
             effectToAdd.description = ability.description;
             effectToAdd.icon = ability.EffectIcon;

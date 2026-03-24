@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Stab
   m_EditorClassIdentifier: 
   abilityName: Stab
-  description: 
+  description: 'Deals 30 damage with a chance to inflict bleed.
+
+
+    [targets 1]
+    [Uses 40] [Cooldown 3]'
   icon: {fileID: 21300000, guid: 8cadee2facd44a54f976ddea847d5e58, type: 3}
   abilityCategory: 0
   powerType: 0

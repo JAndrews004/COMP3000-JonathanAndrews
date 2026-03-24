@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
+  m_Name: Ward
+  m_EditorClassIdentifier: 
+  abilityName: Ward
+  description: 
+  icon: {fileID: 21300000, guid: 7395f6c7855095a4695499baf3ce2e70, type: 3}
+  abilityCategory: 0
+  powerType: 0
+  abilityType: 2
+  tags: 0c000000
+  maxUsage: 20
+  cooldown: 3
+  targetType: 6
+  numberOfTargets: 0
+  PhysicalBehaviour: {fileID: 0}
+  EffectBehaviour: {fileID: 11400000, guid: feae3a9228dd98b4d9254ed5a98a719e, type: 2}
+  passiveBehaviour: {fileID: 0}
+  guaranteedEffectHit: 1
+  EffectChanceScaling: 0
+  EffectIcon: {fileID: 21300000, guid: 0e19ee7d97b3648439afbb67b71c8fa0, type: 3}
+  IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities:
+  - {fileID: 11400000, guid: 86b7522283c2b0644bbb3f2bb7fd59df, type: 2}
+  - {fileID: 11400000, guid: 8374fd16a6ed1674dbfcfc81ac8c1502, type: 2}
+  strengthRequired: 27
+  defenseRequired: 27
+  intelligenceRequired: 25
+  magicDefenseRequired: 27
+  luckRequired: 25
+  vitalityRequired: 29
+  goldCost: 0
+  treeCol: 4
+  treeRow: 1

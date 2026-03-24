@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: GuardBreak
   m_EditorClassIdentifier: 
   abilityName: Guard break
-  description: 
+  description: ' Deals 30 damage with a chance to apply vulnerability.
+
+
+    [targets
+    1] [Uses 30] [Cooldown 3]
+
+'
   icon: {fileID: 21300000, guid: 8970accfef1fe7d4abe23ed280209035, type: 3}
   abilityCategory: 0
   powerType: 0

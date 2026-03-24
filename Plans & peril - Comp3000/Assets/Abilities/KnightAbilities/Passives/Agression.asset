@@ -13,11 +13,17 @@ MonoBehaviour:
   m_Name: Agression
   m_EditorClassIdentifier: 
   abilityName: Agression
-  description: 
+  description: 'Increases damage by 30% but also increases damage taken by 30%.
+
+
+    [Passive]
+
+'
   icon: {fileID: 21300000, guid: fda4161deab6b8240800cbd64268b93b, type: 3}
   abilityCategory: 1
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 0
   cooldown: 0
   targetType: 6

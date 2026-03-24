@@ -100,7 +100,7 @@ public abstract class CombatMember : MonoBehaviour
         List<Effect> effectsToRemove = new List<Effect>();
         if (activeEffects.Count > 0)
         {
-            for (int i = activeEffects.Count - 1; i >= 0; i--)
+            for (int i = 0; i < activeEffects.Count; i++)
             {
 
                 if (activeEffects[i].duration <= 0)
@@ -145,7 +145,12 @@ public abstract class CombatMember : MonoBehaviour
         double Kd = 50.0;
         double dodgeChance = maxDodgeChance * (1 - Math.Exp(-((double)CurrentLuck / Kd)));
 
-        if (Random.Range(0,100)<= dodgeChance)
+        if (this.element == Element.Air)
+        {
+            dodgeChance += 1.15;
+        }
+
+            if (Random.Range(0,100)<= dodgeChance)
         {
             damagePercentage *= 0.5f;
             if(this is PartyMember)

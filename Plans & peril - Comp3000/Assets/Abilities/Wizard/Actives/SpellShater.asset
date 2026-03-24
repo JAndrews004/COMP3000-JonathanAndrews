@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: SpellShater
   m_EditorClassIdentifier: 
   abilityName: Spell shatter
-  description: 
+  description: 'Decreases magic defence of target by 20-30% for 3 rounds.
+
+
+    [targets
+    2] [Uses 30] [Cooldown 3]'
   icon: {fileID: 21300000, guid: 1b427f920c097574b9111d8f43eea8f7, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 3
+  tags: 
   maxUsage: 30
   cooldown: 3
   targetType: 1
