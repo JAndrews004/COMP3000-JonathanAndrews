@@ -59,11 +59,20 @@ public class PartyMemberView : MonoBehaviour
         {
             Ability ability = vm.model.activeAbilities[i];
 
+            var button = abilityButtons[i];
+
             // Hook up ability click
-            abilityButtons[i].onClick.RemoveAllListeners();
-            abilityButtons[i].onClick.AddListener(() =>
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() =>
             {
+                Animator anim = button.GetComponent<Animator>();
+                if (anim != null)
+                {
+                    anim.enabled = false;
+                }
+
                 vm.AbilityButtonPressed(ability);
+                
                 
             });
         }
@@ -111,6 +120,16 @@ public class PartyMemberView : MonoBehaviour
         vm.OnHealthChanged += UpdateHealthBar;
         vm.OnTurnStateChanged += UpdateButtons;
         
+        if(GameManager.Instance.tutorialActive && GameManager.Instance.tutorialManager.firstRound)
+        {
+            confirmButton.gameObject.GetComponent<Animator>().enabled = true;
+            abilityButtons[0].gameObject.GetComponent<Animator>().enabled = true;
+        }
+        else
+        {
+            confirmButton.gameObject.GetComponent<Animator>().enabled = false;
+            abilityButtons[0].gameObject.GetComponent<Animator>().enabled = false;
+        }
     }
 
     private void UpdateHealthBar(int newHealth)

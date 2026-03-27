@@ -168,9 +168,29 @@ public class TurnManager : MonoBehaviour
                 FindEnemyMemberSlot(target).GetComponent<EnemySlot>().TurnTargetArrowOff();
             }
         }
-        
         else if (SelectedTarget.Count() < SelectedAction.AbilityData.numberOfTargets+ addedTargets)
         {
+            SelectedTarget.Add(target);
+            if (target is PartyMember)
+            {
+                FindPartyMemberSlot(target).GetComponent<PartySlot>().TurnTargetArrowOn();
+            }
+            else
+            {
+                FindEnemyMemberSlot(target).GetComponent<EnemySlot>().TurnTargetArrowOn();
+            }
+        }
+        else if(SelectedTarget.Count() == SelectedAction.AbilityData.numberOfTargets + addedTargets)
+        {
+            if (SelectedTarget[0] is PartyMember)
+            {
+                FindPartyMemberSlot(SelectedTarget[0]).GetComponent<PartySlot>().TurnTargetArrowOff();
+            }
+            else
+            {
+                FindEnemyMemberSlot(SelectedTarget[0]).GetComponent<EnemySlot>().TurnTargetArrowOff();
+            }
+            SelectedTarget.Remove(SelectedTarget[0]);
             SelectedTarget.Add(target);
             if (target is PartyMember)
             {
@@ -276,7 +296,7 @@ public class TurnManager : MonoBehaviour
         }
 
         GameManager.Instance.tutorialManager.turnCounter++;
-        if(GameManager.Instance.tutorialManager.turnCounter < 3 && GameManager.Instance.tutorialActive)
+        if(GameManager.Instance.tutorialManager.turnCounter < 5 && GameManager.Instance.tutorialActive)
         {
             GameManager.Instance.tutorialManager.currentState = TutorialState.SelectAbility;
         }

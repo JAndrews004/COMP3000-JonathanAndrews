@@ -92,7 +92,7 @@ public class LevelUpView : MonoBehaviour
         {
             vm.character.baseStats.avaliableStatPoints = vm.character.availableStatPoints;
             vm.ApplyStatPoints();
-            
+            Bind(vm);
         });
 
         InfoButton.onClick.RemoveAllListeners();

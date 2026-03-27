@@ -22,7 +22,7 @@ public class AbilityDescriptionShower : MonoBehaviour, IPointerEnterHandler, IPo
 
     public IEnumerator showDesc()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         AbilityToolTip.ShowTooltip(linkedAbility.abilityName, linkedAbility.description, Input.mousePosition - new Vector3(0,-100,0));
 
     }

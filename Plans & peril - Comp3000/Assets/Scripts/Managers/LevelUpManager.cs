@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
@@ -18,10 +19,6 @@ public class LevelUpManager : MonoBehaviour
         {
             mem.levelUp += OnLevelUp;
         }
-
-        
-
-
     }
     void OnDisable()
     {
@@ -32,7 +29,7 @@ public class LevelUpManager : MonoBehaviour
     }
     public void StartLevelUpSequence()
     {
-
+        leveledUpCharacters = leveledUpCharacters.Distinct().ToList();
         foreach (PartyMember mem in leveledUpCharacters)
         {
             GameObject levelUpPrefab = Instantiate(LevelUpPrefab, this.transform);

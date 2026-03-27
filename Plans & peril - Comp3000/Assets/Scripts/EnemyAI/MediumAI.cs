@@ -338,7 +338,7 @@ public class MediumAI : EnemyAI
                 case AbilityTag.Regen:
                 case AbilityTag.Heal:
                     currentTarget = null;
-                    foreach (CombatMember target in GetAliveEnemies())
+                    foreach (CombatMember target in targets)
                     {
                         if (currentTarget == null)
                         {
@@ -359,7 +359,7 @@ public class MediumAI : EnemyAI
                 case AbilityTag.Buff:
                 case AbilityTag.Immunity:
                     currentTarget = null;
-                    foreach (CombatMember target in GetAliveEnemies())
+                    foreach (CombatMember target in targets)
                     {
                         if (currentTarget == null)
                         {
@@ -381,7 +381,7 @@ public class MediumAI : EnemyAI
                 case AbilityTag.Vulnerability:
                 case AbilityTag.Taunt:
                     currentTarget = null;
-                    foreach (CombatMember target in GetAlivePlayers())
+                    foreach (CombatMember target in targets)
                     {
                         if (currentTarget == null)
                         {
@@ -400,7 +400,8 @@ public class MediumAI : EnemyAI
                     currentTarget = null;
                     int currentMaxDebuffs = 0;
                     int currentDebuffs = 0;
-                    foreach (CombatMember target in GetAliveEnemies()){
+                    foreach (CombatMember target in targets)
+                    {
                         if(currentTarget == null)
                         {
                             currentTarget = target;
@@ -435,7 +436,7 @@ public class MediumAI : EnemyAI
                 case AbilityTag.Unstun:
                     currentTarget = null;
                     
-                    foreach (CombatMember target in GetAliveEnemies())
+                    foreach (CombatMember target in targets)
                     {
                         if (target.IsStunned)
                         {
@@ -448,7 +449,7 @@ public class MediumAI : EnemyAI
                     currentTarget = null;
                     int currentMaxBuffs = 0;
                     int currentBuffs = 0;
-                    foreach (CombatMember target in GetAlivePlayers())
+                    foreach (CombatMember target in targets)
                     {
                         if (currentTarget == null)
                         {

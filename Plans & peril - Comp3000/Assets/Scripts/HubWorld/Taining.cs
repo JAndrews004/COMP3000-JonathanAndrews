@@ -327,6 +327,9 @@ public class Taining : MonoBehaviour
 
             setAllSpecialedButtons(true);
             strengthTraining.interactable = true;
+
+            strengthTraining.gameObject.GetComponent<Animator>().enabled = true;
+
             Character1.interactable = false;
             Character2.interactable = false;
             Character3.interactable = false;
@@ -376,7 +379,20 @@ public class Taining : MonoBehaviour
                 }
             }
         }
-       
+
+        if (!GameManager.Instance.tutorialActive || GameManager.Instance.tutorialManager.currentState!= TutorialState.TrainingIntro)
+        {
+            strengthTraining.gameObject.GetComponent<Animator>().enabled = false;
+        }
+        if (!GameManager.Instance.tutorialActive || GameManager.Instance.tutorialManager.currentState != TutorialState.UnlockSkill)
+        {
+            closeButton.gameObject.GetComponent<Animator>().enabled = false;
+        }
+        if (!GameManager.Instance.tutorialActive || GameManager.Instance.tutorialManager.currentState == TutorialState.UnlockSkill)
+        {
+            closeButton.gameObject.GetComponent<Animator>().enabled = true;
+        }
+
     }
     void updateSpecialButtons(int i)
     {

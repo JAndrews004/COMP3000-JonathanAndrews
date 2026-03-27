@@ -19,7 +19,7 @@ public class TutorialManager : MonoBehaviour
     public Action TrainingTutorialComplete;
     public Action TutorialComplete;
 
-    private bool firstRound = true;
+    public bool firstRound = true;
     void Start()
     {
         textToShow = "";
@@ -69,6 +69,7 @@ public class TutorialManager : MonoBehaviour
             StartCoroutine(ChangeTextAfterTime(5.0f, "After all characters have had their turn planned they execute them."));
             StartCoroutine(ChangeTextAfterTime(10.0f, "You can also click end turn to finish a round."));
             StartCoroutine(ChangeTextAfterTime(15.0f, "Keep fighting and try to win."));
+            firstRound = false;
         }
             
     }
@@ -118,7 +119,7 @@ public class TutorialManager : MonoBehaviour
                     if (i != 0)
                     {
 
-                        StunEffect effect = new StunEffect(2);
+                        StunEffect effect = new StunEffect(1);
                         effect.name = "Stunned";
                         effect.description = "Target is knocked unconcious and cannot move.";
                         effect.icon = stunicon;
@@ -169,11 +170,21 @@ public class TutorialManager : MonoBehaviour
     }
     public void EndTutorial()
     {
-        currentState = TutorialState.TutorialEnd;
+        currentState = TutorialState.SelectDungeon;
         
         StopAllCoroutines();
-        textToShow = "Now click the dungeon selection board and select one listed and click the start dungeon button.";
+        textToShow = "Now click the dungeon selection board and select one listed.";
         TutorialComplete?.Invoke();
+    }
+
+    public void StartDungeonTut()
+    {
+        currentState = TutorialState.StartDungeon;
+
+        StopAllCoroutines();
+        textToShow = "Now Enter the dungeon by clicking the Start Dungeon button.";
+
+        
     }
 
     public void DungeonTraversalText()
@@ -207,5 +218,7 @@ public enum TutorialState
     TrainingIntro,
     UnlockSkill,
     EquipSkill,
+    SelectDungeon,
+    StartDungeon,
     TutorialEnd,
 }

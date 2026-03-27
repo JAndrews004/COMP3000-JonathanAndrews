@@ -41,6 +41,9 @@ public class LevelUpViewModel
         LuckIncrease = 0;
         HpIncrease = 0;
 
+        character.UpdateStats();
+
+
     }
 public void OnClosePressed()
     {

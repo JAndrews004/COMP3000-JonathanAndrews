@@ -426,6 +426,7 @@
 "Assets/Scripts/TargetSelectButton.cs"
 "Assets/Scripts/UI/AbilityDescriptionShower.cs"
 "Assets/Scripts/UI/AbilityToolTip.cs"
+"Assets/Scripts/UI/ActionOrderQueue.cs"
 "Assets/Scripts/UI/BattleLogManager.cs"
 "Assets/Scripts/UI/BreakReminderClose.cs"
 "Assets/Scripts/UI/CombatEndScreen.cs"

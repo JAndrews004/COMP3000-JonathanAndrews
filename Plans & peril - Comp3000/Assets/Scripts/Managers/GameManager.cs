@@ -298,7 +298,7 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(obj);
             }
-            //selectedDungeon = null;
+            selectedDungeon = null;
             InCombat = false;
 
             tutorialManager.trainingTutorial();

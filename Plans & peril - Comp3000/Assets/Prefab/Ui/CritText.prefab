@@ -149,6 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 2933637003823897165}
-  speed: 0.001
+  speed: 100
   scaleSpeed: 1.001
-  opacitySpeed: 0.004
+  opacitySpeed: 0.9

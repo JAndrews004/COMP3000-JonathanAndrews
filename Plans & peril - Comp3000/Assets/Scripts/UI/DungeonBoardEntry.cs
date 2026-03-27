@@ -114,7 +114,51 @@ public class DungeonBoardEntry : MonoBehaviour
         Select.onClick.RemoveAllListeners();
         Select.onClick.AddListener(() => {
             selectedDungeon();
+            if (GameManager.Instance.tutorialActive)
+            {
+                GameManager.Instance.tutorialManager.StartDungeonTut();
+            }
         });
+
+        // set element icons
+
+        switch (data.mainElement)
+        {
+            case Element.None:
+                mainElement.sprite = sprites[0];
+                break;
+            case Element.Fire:
+                mainElement.sprite = sprites[1];
+                break;
+            case Element.Earth:
+                mainElement.sprite = sprites[2];
+                break;
+            case Element.Air:
+                mainElement.sprite = sprites[3];
+                break;
+            case Element.Water:
+                mainElement.sprite = sprites[3];
+                break;
+        }
+
+        switch (data.secondaryElement)
+        {
+            case Element.None:
+                secondaryElement.sprite = sprites[0];
+                break;
+            case Element.Fire:
+                secondaryElement.sprite = sprites[1];
+                break;
+            case Element.Earth:
+                secondaryElement.sprite = sprites[2];
+                break;
+            case Element.Air:
+                secondaryElement.sprite = sprites[3];
+                break;
+            case Element.Water:
+                secondaryElement.sprite = sprites[3];
+                break;
+        }
 
     }
     public void selectedDungeon()

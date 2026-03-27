@@ -11,6 +11,8 @@ public class HubWorldManager : MonoBehaviour
     public Button Training;
     public Button DungeonSelection;
 
+    public Button StartDungeon;
+
     public GameObject SkillsPanel;
     public GameObject ShopPanel;
     public GameObject TrainingPanel;
@@ -38,6 +40,7 @@ public class HubWorldManager : MonoBehaviour
         DungeonSelection.onClick.AddListener(() =>
         {
             DungeonPanel.SetActive(true);
+            
         });
 
         GameManager.Instance.tutorialManager.TrainingTutorialComplete += skillTurnOn;
@@ -48,7 +51,51 @@ public class HubWorldManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.Instance.selectedDungeon == null)
+        {
+            StartDungeon.interactable = false;
+        }
+        else
+        {
+            StartDungeon.interactable = true;
+        }
+        if (!GameManager.Instance.tutorialActive || GameManager.Instance.tutorialManager.currentState != TutorialState.SelectDungeon)
+        {
+            DungeonSelection.gameObject.GetComponent<Animator>().enabled = false;
+        }
+        if (GameManager.Instance.tutorialActive && GameManager.Instance.tutorialManager.currentState == TutorialState.SelectDungeon)
+        {
+            DungeonSelection.gameObject.GetComponent<Animator>().enabled = true;
+        }
+
+        if (!GameManager.Instance.tutorialActive || GameManager.Instance.tutorialManager.currentState != TutorialState.UnlockSkill)
+        {
+            SkillsMenu.gameObject.GetComponent<Animator>().enabled = false;
+        }
+        if (GameManager.Instance.tutorialActive && GameManager.Instance.tutorialManager.currentState == TutorialState.UnlockSkill)
+        {
+            SkillsMenu.gameObject.GetComponent<Animator>().enabled = true;
+        }
+
         
+        if (!GameManager.Instance.tutorialActive || GameManager.Instance.tutorialManager.currentState != TutorialState.StartDungeon)
+        {
+            StartDungeon.gameObject.GetComponent<Animator>().enabled = false;
+        }
+        if (GameManager.Instance.tutorialActive && GameManager.Instance.tutorialManager.currentState == TutorialState.StartDungeon && GameManager.Instance.selectedDungeon != null)
+        {
+            StartDungeon.gameObject.GetComponent<Animator>().enabled = true;
+        }
+
+        if (!GameManager.Instance.tutorialActive || GameManager.Instance.tutorialManager.currentState != TutorialState.TrainingIntro)
+        {
+            Training.gameObject.GetComponent<Animator>().enabled = false;
+        }
+        if (GameManager.Instance.tutorialActive && GameManager.Instance.tutorialManager.currentState == TutorialState.TrainingIntro)
+        {
+            Training.gameObject.GetComponent<Animator>().enabled = true;
+        }
+
     }
     private void OnDisable()
     {
