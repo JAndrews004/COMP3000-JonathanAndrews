@@ -2,26 +2,43 @@ ScriptsOnlyBuild:
   usedScripts:
     PlansAndPerils.dll:
     - AbilityData
+    - AbilityDescriptionShower
+    - AbilityToolTip
     - AbilityUnlockManager
+    - ActionOrderQueue
     - AddUsesBehaviour
+    - AddedShieldPassive
+    - AdditionalDamageWithEffect
+    - AgressionPassive
     - AttackBehaviour
     - AudioManager
     - AutoRevivePassive
     - BattleLogManager
     - BleedBehaviour
+    - BlowBackBehaviour
+    - BreakReminderClose
     - BuffBehaviour
     - BurnBehaviour
     - CameraMover
+    - ChanceOfAdditionalHitsBehaviour
     - CharacterSelectButton
     - CharacterSkillTree
     - Characters
     - CleanseBehaviour
     - CombatEndScreen
     - CombatManager
+    - ConstantRegen
+    - ConsumeShield
     - CooldownResetBehaviour
+    - CritDodgeText
+    - CurseBehaviour
+    - DamageTypeResistance
     - DebuffBehaviour
+    - DebugManager
+    - DelayedAttack
     - DungeonBoardEntry
     - DungeonGenerator
+    - DungeonMenu
     - DungeonRuntimeState
     - DungeonSelection
     - EasyAI
@@ -33,14 +50,22 @@ ScriptsOnlyBuild:
     - EquipSlot
     - ExtraTurnImmediateBehaviour
     - FXManager
+    - FlatStatBoost
     - GameManager
     - GameStats
     - GuardBehaviour
+    - HardAI
     - HealBehaviour
     - HubWorldManager
+    - HubWorldMenu
+    - ImmunityBehaviour
+    - ImmunityToEffects
     - InterferenceBehaviour
     - LevelUpManager
     - LevelUpView
+    - LifeStealBeahviour
+    - MainMenu
+    - MediumAI
     - PartyMember
     - PartyMemberView
     - PartySlot
@@ -54,6 +79,7 @@ ScriptsOnlyBuild:
     - SkillButton
     - SkillTreeUIContoller
     - SkillsMenu
+    - SleepBehaviour
     - StatAllocationView
     - StatusIconUI
     - StatusTooltip
@@ -63,6 +89,9 @@ ScriptsOnlyBuild:
     - TauntBehaviour
     - TreasurePanel
     - TurnManager
+    - TutorialManager
+    - TutorialUIManager
+    - UnStunBehaviour
     - VulnerabilityBehaviour
     - regenBehaviour
     Unity.2D.Animation.Editor.dll:
@@ -71,6 +100,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -212,11 +242,11 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle/ToggleEvent
   methodsToPreserve:
   - assembly: PlansAndPerils
-    fullTypeName: SkillButton
-    methodName: OnClick
+    fullTypeName: MainMenu
+    methodName: start
   - assembly: PlansAndPerils
-    fullTypeName: HubWorldManager
-    methodName: OnStartDungeon
+    fullTypeName: MainMenu
+    methodName: quit
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerButton
     methodName: OnAction
@@ -254,6 +284,21 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: ResetDebugManager
   - assembly: PlansAndPerils
+    fullTypeName: SkillButton
+    methodName: OnClick
+  - assembly: PlansAndPerils
+    fullTypeName: BreakReminderClose
+    methodName: CloseReminder
+  - assembly: PlansAndPerils
+    fullTypeName: AbilityUnlockManager
+    methodName: CloseInfoPannel
+  - assembly: PlansAndPerils
+    fullTypeName: HubWorldManager
+    methodName: OnStartDungeon
+  - assembly: PlansAndPerils
+    fullTypeName: AbilityUnlockManager
+    methodName: OpenInfoPannel
+  - assembly: PlansAndPerils
     fullTypeName: CharacterSelectButton
     methodName: OnClick
   - assembly: PlansAndPerils
@@ -285,7 +330,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
@@ -304,45 +353,61 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1828}
     - Class: 114
-      Script: {instanceID: 2422}
+      Script: {instanceID: 2346}
     - Class: 114
-      Script: {instanceID: 3498}
+      Script: {instanceID: 2428}
     - Class: 114
-      Script: {instanceID: 3506}
+      Script: {instanceID: 3508}
     - Class: 114
-      Script: {instanceID: 3846}
+      Script: {instanceID: 3516}
     - Class: 114
-      Script: {instanceID: 4412}
+      Script: {instanceID: 3856}
     - Class: 114
-      Script: {instanceID: 5056}
+      Script: {instanceID: 4424}
     - Class: 114
-      Script: {instanceID: 5266}
+      Script: {instanceID: 4470}
     - Class: 114
-      Script: {instanceID: 6604}
+      Script: {instanceID: 4910}
     - Class: 114
-      Script: {instanceID: 6826}
+      Script: {instanceID: 5070}
     - Class: 114
-      Script: {instanceID: 6902}
+      Script: {instanceID: 5280}
     - Class: 114
-      Script: {instanceID: 7506}
+      Script: {instanceID: 6624}
     - Class: 114
-      Script: {instanceID: 7634}
+      Script: {instanceID: 6846}
     - Class: 114
-      Script: {instanceID: 8878}
+      Script: {instanceID: 6924}
     - Class: 114
-      Script: {instanceID: 9418}
+      Script: {instanceID: 7528}
     - Class: 114
-      Script: {instanceID: 9952}
+      Script: {instanceID: 7658}
     - Class: 114
-      Script: {instanceID: 10294}
+      Script: {instanceID: 8750}
     - Class: 114
-      Script: {instanceID: 10430}
+      Script: {instanceID: 8912}
     - Class: 114
-      Script: {instanceID: 10694}
+      Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 11048}
+      Script: {instanceID: 9936}
     - Class: 114
-      Script: {instanceID: 12338}
+      Script: {instanceID: 9992}
+    - Class: 114
+      Script: {instanceID: 10336}
+    - Class: 114
+      Script: {instanceID: 10472}
+    - Class: 114
+      Script: {instanceID: 10736}
+    - Class: 114
+      Script: {instanceID: 11090}
+    - Class: 114
+      Script: {instanceID: 11094}
+    - Class: 114
+      Script: {instanceID: 11534}
+    - Class: 114
+      Script: {instanceID: 11760}
+    - Class: 114
+      Script: {instanceID: 12392}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -393,21 +458,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1746}
     - Class: 114
-      Script: {instanceID: 3498}
+      Script: {instanceID: 3508}
     - Class: 114
-      Script: {instanceID: 3846}
+      Script: {instanceID: 3856}
     - Class: 114
-      Script: {instanceID: 4458}
+      Script: {instanceID: 4470}
     - Class: 114
-      Script: {instanceID: 7634}
+      Script: {instanceID: 7658}
     - Class: 114
-      Script: {instanceID: 8832}
+      Script: {instanceID: 8750}
     - Class: 114
-      Script: {instanceID: 8878}
+      Script: {instanceID: 8866}
     - Class: 114
-      Script: {instanceID: 9234}
+      Script: {instanceID: 8912}
     - Class: 114
-      Script: {instanceID: 9418}
+      Script: {instanceID: 9270}
+    - Class: 114
+      Script: {instanceID: 9454}
+    - Class: 114
+      Script: {instanceID: 11760}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -439,8 +508,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
@@ -450,6 +517,229 @@ ScriptsOnlyBuild:
     - Class: 83
       Script: {instanceID: 0}
     - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 848}
+    - Class: 114
+      Script: {instanceID: 1734}
+    - Class: 114
+      Script: {instanceID: 1736}
+    - Class: 114
+      Script: {instanceID: 1738}
+    - Class: 114
+      Script: {instanceID: 1742}
+    - Class: 114
+      Script: {instanceID: 1744}
+    - Class: 114
+      Script: {instanceID: 1746}
+    - Class: 114
+      Script: {instanceID: 1748}
+    - Class: 114
+      Script: {instanceID: 1886}
+    - Class: 114
+      Script: {instanceID: 1920}
+    - Class: 114
+      Script: {instanceID: 1978}
+    - Class: 114
+      Script: {instanceID: 2114}
+    - Class: 114
+      Script: {instanceID: 2852}
+    - Class: 114
+      Script: {instanceID: 3100}
+    - Class: 114
+      Script: {instanceID: 3156}
+    - Class: 114
+      Script: {instanceID: 3342}
+    - Class: 114
+      Script: {instanceID: 3366}
+    - Class: 114
+      Script: {instanceID: 3508}
+    - Class: 114
+      Script: {instanceID: 3784}
+    - Class: 114
+      Script: {instanceID: 3800}
+    - Class: 114
+      Script: {instanceID: 3856}
+    - Class: 114
+      Script: {instanceID: 3878}
+    - Class: 114
+      Script: {instanceID: 4046}
+    - Class: 114
+      Script: {instanceID: 4396}
+    - Class: 114
+      Script: {instanceID: 4414}
+    - Class: 114
+      Script: {instanceID: 4470}
+    - Class: 114
+      Script: {instanceID: 4808}
+    - Class: 114
+      Script: {instanceID: 5006}
+    - Class: 114
+      Script: {instanceID: 5228}
+    - Class: 114
+      Script: {instanceID: 5396}
+    - Class: 114
+      Script: {instanceID: 5402}
+    - Class: 114
+      Script: {instanceID: 5528}
+    - Class: 114
+      Script: {instanceID: 5638}
+    - Class: 114
+      Script: {instanceID: 5966}
+    - Class: 114
+      Script: {instanceID: 6092}
+    - Class: 114
+      Script: {instanceID: 6188}
+    - Class: 114
+      Script: {instanceID: 6292}
+    - Class: 114
+      Script: {instanceID: 6508}
+    - Class: 114
+      Script: {instanceID: 6624}
+    - Class: 114
+      Script: {instanceID: 6644}
+    - Class: 114
+      Script: {instanceID: 6912}
+    - Class: 114
+      Script: {instanceID: 6922}
+    - Class: 114
+      Script: {instanceID: 7150}
+    - Class: 114
+      Script: {instanceID: 7160}
+    - Class: 114
+      Script: {instanceID: 7532}
+    - Class: 114
+      Script: {instanceID: 7568}
+    - Class: 114
+      Script: {instanceID: 7648}
+    - Class: 114
+      Script: {instanceID: 7658}
+    - Class: 114
+      Script: {instanceID: 7736}
+    - Class: 114
+      Script: {instanceID: 7770}
+    - Class: 114
+      Script: {instanceID: 7812}
+    - Class: 114
+      Script: {instanceID: 8028}
+    - Class: 114
+      Script: {instanceID: 8060}
+    - Class: 114
+      Script: {instanceID: 8116}
+    - Class: 114
+      Script: {instanceID: 8230}
+    - Class: 114
+      Script: {instanceID: 8352}
+    - Class: 114
+      Script: {instanceID: 8406}
+    - Class: 114
+      Script: {instanceID: 8478}
+    - Class: 114
+      Script: {instanceID: 8584}
+    - Class: 114
+      Script: {instanceID: 8586}
+    - Class: 114
+      Script: {instanceID: 8698}
+    - Class: 114
+      Script: {instanceID: 8750}
+    - Class: 114
+      Script: {instanceID: 8764}
+    - Class: 114
+      Script: {instanceID: 8912}
+    - Class: 114
+      Script: {instanceID: 8952}
+    - Class: 114
+      Script: {instanceID: 9024}
+    - Class: 114
+      Script: {instanceID: 9438}
+    - Class: 114
+      Script: {instanceID: 9454}
+    - Class: 114
+      Script: {instanceID: 9464}
+    - Class: 114
+      Script: {instanceID: 9470}
+    - Class: 114
+      Script: {instanceID: 9580}
+    - Class: 114
+      Script: {instanceID: 9762}
+    - Class: 114
+      Script: {instanceID: 9828}
+    - Class: 114
+      Script: {instanceID: 9946}
+    - Class: 114
+      Script: {instanceID: 10062}
+    - Class: 114
+      Script: {instanceID: 10080}
+    - Class: 114
+      Script: {instanceID: 10150}
+    - Class: 114
+      Script: {instanceID: 10250}
+    - Class: 114
+      Script: {instanceID: 10506}
+    - Class: 114
+      Script: {instanceID: 11130}
+    - Class: 114
+      Script: {instanceID: 11226}
+    - Class: 114
+      Script: {instanceID: 11278}
+    - Class: 114
+      Script: {instanceID: 11510}
+    - Class: 114
+      Script: {instanceID: 11828}
+    - Class: 114
+      Script: {instanceID: 12248}
+    - Class: 114
+      Script: {instanceID: 12318}
+    - Class: 114
+      Script: {instanceID: 12390}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 156049354
+      Script: {instanceID: 0}
+    - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 1839735485
+      Script: {instanceID: 0}
+    Assets/Scenes/MainMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 81
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -474,185 +764,89 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1754}
     - Class: 114
-      Script: {instanceID: 1886}
+      Script: {instanceID: 2012}
     - Class: 114
-      Script: {instanceID: 1976}
+      Script: {instanceID: 2754}
     - Class: 114
-      Script: {instanceID: 2010}
+      Script: {instanceID: 2860}
     - Class: 114
-      Script: {instanceID: 2748}
+      Script: {instanceID: 3006}
     - Class: 114
-      Script: {instanceID: 2846}
+      Script: {instanceID: 3144}
     - Class: 114
-      Script: {instanceID: 2854}
+      Script: {instanceID: 3508}
     - Class: 114
-      Script: {instanceID: 3000}
+      Script: {instanceID: 3856}
     - Class: 114
-      Script: {instanceID: 3094}
+      Script: {instanceID: 4470}
     - Class: 114
-      Script: {instanceID: 3138}
+      Script: {instanceID: 4588}
     - Class: 114
-      Script: {instanceID: 3334}
+      Script: {instanceID: 4732}
     - Class: 114
-      Script: {instanceID: 3498}
+      Script: {instanceID: 4982}
     - Class: 114
-      Script: {instanceID: 3774}
+      Script: {instanceID: 5152}
     - Class: 114
-      Script: {instanceID: 3790}
+      Script: {instanceID: 5638}
     - Class: 114
-      Script: {instanceID: 3846}
+      Script: {instanceID: 5798}
     - Class: 114
-      Script: {instanceID: 3868}
+      Script: {instanceID: 5844}
     - Class: 114
-      Script: {instanceID: 4036}
+      Script: {instanceID: 6012}
     - Class: 114
-      Script: {instanceID: 4384}
+      Script: {instanceID: 6290}
     - Class: 114
-      Script: {instanceID: 4402}
+      Script: {instanceID: 6440}
     - Class: 114
-      Script: {instanceID: 4458}
+      Script: {instanceID: 7434}
     - Class: 114
-      Script: {instanceID: 4576}
+      Script: {instanceID: 7566}
     - Class: 114
-      Script: {instanceID: 4720}
+      Script: {instanceID: 7658}
     - Class: 114
-      Script: {instanceID: 4796}
+      Script: {instanceID: 7666}
     - Class: 114
-      Script: {instanceID: 4968}
-    - Class: 114
-      Script: {instanceID: 4992}
-    - Class: 114
-      Script: {instanceID: 5138}
-    - Class: 114
-      Script: {instanceID: 5214}
-    - Class: 114
-      Script: {instanceID: 5380}
-    - Class: 114
-      Script: {instanceID: 5386}
-    - Class: 114
-      Script: {instanceID: 5620}
-    - Class: 114
-      Script: {instanceID: 5780}
-    - Class: 114
-      Script: {instanceID: 5826}
-    - Class: 114
-      Script: {instanceID: 5948}
-    - Class: 114
-      Script: {instanceID: 5994}
-    - Class: 114
-      Script: {instanceID: 6270}
-    - Class: 114
-      Script: {instanceID: 6272}
-    - Class: 114
-      Script: {instanceID: 6420}
-    - Class: 114
-      Script: {instanceID: 6488}
-    - Class: 114
-      Script: {instanceID: 6604}
-    - Class: 114
-      Script: {instanceID: 6892}
-    - Class: 114
-      Script: {instanceID: 7138}
-    - Class: 114
-      Script: {instanceID: 7412}
-    - Class: 114
-      Script: {instanceID: 7510}
-    - Class: 114
-      Script: {instanceID: 7544}
-    - Class: 114
-      Script: {instanceID: 7624}
-    - Class: 114
-      Script: {instanceID: 7634}
-    - Class: 114
-      Script: {instanceID: 7642}
-    - Class: 114
-      Script: {instanceID: 7784}
-    - Class: 114
-      Script: {instanceID: 7962}
-    - Class: 114
-      Script: {instanceID: 7966}
+      Script: {instanceID: 7990}
     - Class: 114
       Script: {instanceID: 7994}
     - Class: 114
-      Script: {instanceID: 8198}
+      Script: {instanceID: 8022}
     - Class: 114
-      Script: {instanceID: 8320}
+      Script: {instanceID: 8442}
     - Class: 114
-      Script: {instanceID: 8374}
+      Script: {instanceID: 8894}
     - Class: 114
-      Script: {instanceID: 8410}
+      Script: {instanceID: 8912}
     - Class: 114
-      Script: {instanceID: 8446}
+      Script: {instanceID: 9020}
     - Class: 114
-      Script: {instanceID: 8552}
+      Script: {instanceID: 9028}
     - Class: 114
-      Script: {instanceID: 8554}
+      Script: {instanceID: 9216}
     - Class: 114
-      Script: {instanceID: 8666}
+      Script: {instanceID: 9272}
     - Class: 114
-      Script: {instanceID: 8732}
+      Script: {instanceID: 9352}
     - Class: 114
-      Script: {instanceID: 8860}
+      Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 8878}
+      Script: {instanceID: 9470}
     - Class: 114
-      Script: {instanceID: 8984}
+      Script: {instanceID: 9630}
     - Class: 114
-      Script: {instanceID: 8988}
+      Script: {instanceID: 9848}
     - Class: 114
-      Script: {instanceID: 8992}
+      Script: {instanceID: 10030}
     - Class: 114
-      Script: {instanceID: 9180}
+      Script: {instanceID: 10596}
     - Class: 114
-      Script: {instanceID: 9236}
+      Script: {instanceID: 10774}
     - Class: 114
-      Script: {instanceID: 9316}
+      Script: {instanceID: 11646}
     - Class: 114
-      Script: {instanceID: 9402}
-    - Class: 114
-      Script: {instanceID: 9418}
-    - Class: 114
-      Script: {instanceID: 9428}
-    - Class: 114
-      Script: {instanceID: 9434}
-    - Class: 114
-      Script: {instanceID: 9592}
-    - Class: 114
-      Script: {instanceID: 9724}
-    - Class: 114
-      Script: {instanceID: 9790}
-    - Class: 114
-      Script: {instanceID: 9810}
-    - Class: 114
-      Script: {instanceID: 9906}
-    - Class: 114
-      Script: {instanceID: 9990}
-    - Class: 114
-      Script: {instanceID: 10022}
-    - Class: 114
-      Script: {instanceID: 10040}
-    - Class: 114
-      Script: {instanceID: 10110}
-    - Class: 114
-      Script: {instanceID: 10554}
-    - Class: 114
-      Script: {instanceID: 11084}
-    - Class: 114
-      Script: {instanceID: 11180}
-    - Class: 114
-      Script: {instanceID: 11232}
-    - Class: 114
-      Script: {instanceID: 11462}
-    - Class: 114
-      Script: {instanceID: 11596}
-    - Class: 114
-      Script: {instanceID: 11776}
-    - Class: 114
-      Script: {instanceID: 12032}
-    - Class: 114
-      Script: {instanceID: 12264}
-    - Class: 114
-      Script: {instanceID: 12336}
+      Script: {instanceID: 12084}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -660,12 +854,6 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 198
-      Script: {instanceID: 0}
-    - Class: 199
-      Script: {instanceID: 0}
-    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -713,16 +901,16 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: 8e0c8b499f64b686c0ec50f43e94d3af
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Text
-  - hash:
-      serializedVersion: 2
       Hash: 60848472e362199ae5eac55c8892dcbe
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 8e0c8b499f64b686c0ec50f43e94d3af
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
   - hash:
       serializedVersion: 2
       Hash: 8165edc0ea71078aadd02b6c3ce945a1
@@ -761,7 +949,7 @@ ScriptsOnlyBuild:
     className: PanelRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 0c9c7d2fe39942a4dc6491572e013079
+      Hash: 7e93e26cc9a4f525798cc713d404dab3
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: EnemySlot
@@ -783,6 +971,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.U2D.Animation
     className: SpriteSkin
+  - hash:
+      serializedVersion: 2
+      Hash: 533fc5dbd01e501046eb9b7f6ed08c45
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: AddedShieldPassive
   - hash:
       serializedVersion: 2
       Hash: 719a1390f9eb856966a1aaab72041631
@@ -821,6 +1015,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 775768e149e1db811c19b0194ad1caa8
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: ChanceOfAdditionalHitsBehaviour
+  - hash:
+      serializedVersion: 2
       Hash: 1acbb8326e621e22d69a17004cfd568a
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -857,6 +1057,12 @@ ScriptsOnlyBuild:
     className: SimpleScript
   - hash:
       serializedVersion: 2
+      Hash: 98a2bb4b242ab0e3e5c6236f4f87382b
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: DebugManager
+  - hash:
+      serializedVersion: 2
       Hash: eada4020445107b05f3a10ddb72b795a
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -869,7 +1075,7 @@ ScriptsOnlyBuild:
     className: WhiteBalance
   - hash:
       serializedVersion: 2
-      Hash: 7628da81f4c50572996f60cc6a27598b
+      Hash: 2589ac6ccfc761b24cd11fbf7ac99255
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: TurnManager
@@ -917,7 +1123,7 @@ ScriptsOnlyBuild:
     className: UnityOnJointBreakMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d206ca5df140344bc6738cb36dba7d89
+      Hash: d0137d124d874deeacb759b3e38c4cf1
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: PartyMember
@@ -959,7 +1165,7 @@ ScriptsOnlyBuild:
     className: IKManager2D
   - hash:
       serializedVersion: 2
-      Hash: 34f46c2cc92938380339a5e142976817
+      Hash: 52ed306ca646598591f709888175ca55
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: RoomNodeUI
@@ -989,6 +1195,12 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerGroup
   - hash:
       serializedVersion: 2
+      Hash: 40689b8f0fafbf439b70986c13710729
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: ConsumeShield
+  - hash:
+      serializedVersion: 2
       Hash: 5998b2f7e4bab6617818ecce41cb4422
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -1011,6 +1223,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering
     className: LensFlareComponentSRP
+  - hash:
+      serializedVersion: 2
+      Hash: ab47a0ad0658b395f405e295dcb30681
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: HubWorldMenu
   - hash:
       serializedVersion: 2
       Hash: 9687130a2cb34e3270f13279065c5830
@@ -1169,7 +1387,7 @@ ScriptsOnlyBuild:
     className: UnityOnInputFieldEndEditMessageListener
   - hash:
       serializedVersion: 2
-      Hash: bd69a40ec874d0d53fcf136ea60f673d
+      Hash: f5fea32254c1b0e558ff700037dc209f
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: GameManager
@@ -1223,7 +1441,7 @@ ScriptsOnlyBuild:
     className: InterferenceBehaviour
   - hash:
       serializedVersion: 2
-      Hash: 96d980cb15c498b2c6b0e81e0886f450
+      Hash: 030fc207264604a3b31bc48db42de7c8
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: PartySlot
@@ -1325,6 +1543,12 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
+      Hash: 6af81f4aaf2ecebf3aa7dccfb72d1c45
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: AbilityDescriptionShower
+  - hash:
+      serializedVersion: 2
       Hash: 8f9a278c3710899bd5d8c5a557b2a926
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -1343,7 +1567,7 @@ ScriptsOnlyBuild:
     className: TextMeshProFloatingText
   - hash:
       serializedVersion: 2
-      Hash: eaf076942e6efa0eea9fbfab7aa1c951
+      Hash: a26ee7701f54fb5a0bc898c0481d0919
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: EquipSlot
@@ -1415,6 +1639,12 @@ ScriptsOnlyBuild:
     className: ScriptGraphAsset
   - hash:
       serializedVersion: 2
+      Hash: 1b7efe653d3a18fbda8a5ff90ac680cd
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: ConstantReflect
+  - hash:
+      serializedVersion: 2
       Hash: bf3cacfe418f1593b7e3cf2a7c2efb99
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -1427,7 +1657,7 @@ ScriptsOnlyBuild:
     className: VertexShakeB
   - hash:
       serializedVersion: 2
-      Hash: 7e5655adc92d1eaaacae70806a20b2c3
+      Hash: e1a266e3c99e8a729dea88bff18aeacf
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: EnemyMember
@@ -1439,7 +1669,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: 0c9d7caec605c3a7be7f5fbd4a4d64a1
+      Hash: 54fe2b94b8ed83e305cac00d9bb5478a
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: DungeonRuntimeState
@@ -1455,6 +1685,12 @@ ScriptsOnlyBuild:
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: DispelBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: ad376466752cbe77e735395a67678536
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: HardAI
   - hash:
       serializedVersion: 2
       Hash: d33bb75cf560292b703559c0065c6c27
@@ -1535,7 +1771,7 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 85a7049bb17dfd18427b7e4eadf85cd8
+      Hash: 0f446bb70157c3d5f0a1e6db5e74004a
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: AbilityData
@@ -1577,7 +1813,7 @@ ScriptsOnlyBuild:
     className: Bloom
   - hash:
       serializedVersion: 2
-      Hash: ff2991499445dc25996f9ed4421a6ad7
+      Hash: 136b5a1b3d6c96bfc34732982a915dae
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: UnStunBehaviour
@@ -1593,6 +1829,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: DictionaryAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 638a2bf3ec175687a5ae58a7624f641b
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: ConstantRegen
   - hash:
       serializedVersion: 2
       Hash: 2bf60885e5d883df24fca7ada14d5708
@@ -1733,6 +1975,12 @@ ScriptsOnlyBuild:
     className: TMP_TextInfoDebugTool
   - hash:
       serializedVersion: 2
+      Hash: 2454ccc39b33e462bd8a28c654fcccbd
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: AgressionPassive
+  - hash:
+      serializedVersion: 2
       Hash: 4c82d371febf845716adf3637e40b456
     assemblyName: PlansAndPerils.dll
     namespaceName: 
@@ -1775,7 +2023,7 @@ ScriptsOnlyBuild:
     className: SleepBehaviour
   - hash:
       serializedVersion: 2
-      Hash: f9cd794658ac7e65ea02b93a71e3f181
+      Hash: 036cb1ff11e99a6435ab0def43aef0b9
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: GameStats
@@ -1871,6 +2119,12 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerVector3
   - hash:
       serializedVersion: 2
+      Hash: e5d11b5bf5dec794e9f0ff7f878a0da7
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: AdditionalDamageWithEffect
+  - hash:
+      serializedVersion: 2
       Hash: d25bf13242bc2b31d5eba209437d2b8b
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1905,6 +2159,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
     className: ChannelMixer
+  - hash:
+      serializedVersion: 2
+      Hash: 26b9fd9d3e2b2bb1d42d38cb19cd2c5c
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: BlowBackBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: cabfb36f06d01308062bb3c886dac24c
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: DamageTypeResistance
   - hash:
       serializedVersion: 2
       Hash: b261f502bebc5d105dcb5fbe3023ec44
@@ -1961,7 +2227,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinUpdateHelper
   - hash:
       serializedVersion: 2
-      Hash: 35347f2911caa374461a0dfe0f56e01a
+      Hash: 9c433e35f18ff6235b902af001e542af
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: FlatStatBoost
@@ -1971,6 +2237,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: GroupTrack
+  - hash:
+      serializedVersion: 2
+      Hash: e21937b864abd704f03961a2ce532bce
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: DelayedAttack
   - hash:
       serializedVersion: 2
       Hash: 3546043ac90b8f412ae573115dac7e00
@@ -1989,6 +2261,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnDeselectMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 21a1e4102222389c738ce8e783c1ec0f
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: TutorialManager
   - hash:
       serializedVersion: 2
       Hash: 43247c3541e76d075417952c3d9e3306
@@ -2021,7 +2299,7 @@ ScriptsOnlyBuild:
     className: StateGraphAsset
   - hash:
       serializedVersion: 2
-      Hash: 01f02477e290fe56aa22ef9b608843df
+      Hash: 10e68b236319ac3b66efe633b4d359ad
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: HubWorldManager
@@ -2069,6 +2347,12 @@ ScriptsOnlyBuild:
     className: GuardBehaviour
   - hash:
       serializedVersion: 2
+      Hash: 31d43b90b6efb27d6bc9af802086b38c
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: TutorialUIManager
+  - hash:
+      serializedVersion: 2
       Hash: 068541f190d532b2dba05c38ed38693d
     assemblyName: PlansAndPerils.dll
     namespaceName: 
@@ -2103,6 +2387,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: bc752c9034d36610ff1b713b0d1acac2
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: ImmunityToEffects
   - hash:
       serializedVersion: 2
       Hash: 6dda83aced86b730317e2d2fa48f2881
@@ -2207,6 +2497,12 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: 8f7279ff445672181c6b386d66f606ee
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: MediumAI
+  - hash:
+      serializedVersion: 2
       Hash: 8da3bad80dac0f757130dbaa9ceae075
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering
@@ -2231,7 +2527,7 @@ ScriptsOnlyBuild:
     className: SpriteShapeController
   - hash:
       serializedVersion: 2
-      Hash: 8bd4edd24c83fbb1c747f2ba8a683dec
+      Hash: c774a640b3179fc2a213c6754061517f
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: AbilityUnlockManager
@@ -2267,6 +2563,12 @@ ScriptsOnlyBuild:
     className: FilmGrain
   - hash:
       serializedVersion: 2
+      Hash: eab3f797c16059e060f5b41a29fb7fd5
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: ActionOrderQueue
+  - hash:
+      serializedVersion: 2
       Hash: 1a0f1016e8681d899694519a6335e21f
     assemblyName: PlansAndPerils.dll
     namespaceName: 
@@ -2285,7 +2587,7 @@ ScriptsOnlyBuild:
     className: UnityOnDragMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 72266a1388ad13f2314f7130f1777a8a
+      Hash: 3a87c9669a9d9a39c6e334e1e76518cc
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: CombatManager
@@ -2321,7 +2623,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerEnterMessageListener
   - hash:
       serializedVersion: 2
-      Hash: eadd5ff38778f0bb48f83e03b8228389
+      Hash: fd2991cf80a9c326257241d9a92f7296
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: DungeonSelection
@@ -2355,6 +2657,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.Tilemap.Extras.dll
     namespaceName: UnityEngine
     className: RuleTile
+  - hash:
+      serializedVersion: 2
+      Hash: 5ba2976867d0114c8a52a5bb249b5318
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: CurseBehaviour
   - hash:
       serializedVersion: 2
       Hash: 251090d01e5e25d3a9b799419f13c220
@@ -2411,7 +2719,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerDownMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 863d353b27fec585655119ee9348953e
+      Hash: 57efb8fd60379307138092c59f9b79e1
     assemblyName: PlansAndPerils.dll
     namespaceName: 
     className: LifeStealBeahviour
@@ -2465,6 +2773,12 @@ ScriptsOnlyBuild:
     className: TMP_TextSelector_B
   - hash:
       serializedVersion: 2
+      Hash: 5a3d44c4fb6c03e190352ad38639e626
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: MainMenu
+  - hash:
+      serializedVersion: 2
       Hash: abc4f7c833f1506a639e9bd81246176f
     assemblyName: Unity.2D.SpriteShape.Runtime.dll
     namespaceName: UnityEngine.U2D
@@ -2499,6 +2813,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine
     className: LightAnchor
+  - hash:
+      serializedVersion: 2
+      Hash: 8bd63d5aa01afb8acb443ea981f63f36
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: AbilityToolTip
   - hash:
       serializedVersion: 2
       Hash: 31767680feb3436e0210bf9fa13bfaee
@@ -2543,6 +2863,12 @@ ScriptsOnlyBuild:
     className: AddUsesBehaviour
   - hash:
       serializedVersion: 2
+      Hash: 68f54b2065dd7057363fe32aa0fd7426
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: BonusDamageBehaviour
+  - hash:
+      serializedVersion: 2
       Hash: 6156843a0ea0a66cccbfa82effc585be
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -2559,6 +2885,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnParticleCollisionMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 193dbf17407af03215029b9019b6878a
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: CritDodgeText
   - hash:
       serializedVersion: 2
       Hash: c62b899b9a1f32ac313da93fc7c92a5f
@@ -2613,6 +2945,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro
     className: TMP_PhoneNumberValidator
+  - hash:
+      serializedVersion: 2
+      Hash: 5b5661b694a0c924a2d7a8c02d93b3c8
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: DungeonMenu
   - hash:
       serializedVersion: 2
       Hash: 3d586786e3fa5ef67bfc715017020aae
@@ -2681,6 +3019,12 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
+      Hash: 755c15fee5aac2fb52843eed17b3ee33
+    assemblyName: PlansAndPerils.dll
+    namespaceName: 
+    className: BreakReminderClose
+  - hash:
+      serializedVersion: 2
       Hash: 5c76b6826c5a42f322ba10c4da3fc50b
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -2735,9 +3079,10 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   platform: 19
   scenePathNames:
+  - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/HubWorld.unity
+  - Assets/Scenes/DungeonTraversal.unity
   - Assets/Scenes/Combat.unity
   - Assets/Scenes/Test.unity
-  - Assets/Scenes/DungeonTraversal.unity
-  playerPath: C:/Users/ja990/OneDrive/Documents/GitHub/COMP3000/Build/Plans & peril
+  playerPath: C:/Users/ja990/Comp 3000/COMP3000-JonathanAndrews/Build/Plans & peril
     - Comp3000.exe

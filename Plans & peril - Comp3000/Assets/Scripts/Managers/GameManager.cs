@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
             }
             gold = Stats.Gold;
             passLevel = Stats.passLevel;
+            tutorialActive = Stats.tutorial;
             StartCoroutine(showBreakPanel());
             if (tutorialActive && tutorialManager != null)
             {

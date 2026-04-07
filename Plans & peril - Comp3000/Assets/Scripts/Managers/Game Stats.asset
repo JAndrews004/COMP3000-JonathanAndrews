@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d8e807f51a08f46b5d658d790f00ac, type: 3}
   m_Name: Game Stats
   m_EditorClassIdentifier: 
-  Gold: 999800
+  Gold: 5000
   passLevel: 0
+  tutorial: 1

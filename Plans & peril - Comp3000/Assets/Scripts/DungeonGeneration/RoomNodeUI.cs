@@ -16,6 +16,8 @@ public class RoomNodeUI : MonoBehaviour
         button.onClick.AddListener(() =>
         {
             ButtonPressed.Invoke(gameObject);
+            GameManager.Instance.tutorialActive = false;
+            GameManager.Instance.Stats.tutorial = false;
         });
     }
 }

@@ -1,4 +1,4 @@
-using Codice.Client.Common;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -203,6 +203,7 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         GameManager.Instance.tutorialActive = false;
+        GameManager.Instance.Stats.tutorial = false;
     }
 }
 

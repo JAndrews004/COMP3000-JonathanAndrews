@@ -7,4 +7,5 @@ public class GameStats : ScriptableObject
 {
     public int Gold;
     public int passLevel;
+    public bool tutorial = true;
 }
