@@ -16,3 +16,6 @@ other Panels for UI: https://opengameart.org/content/ui-pack-rpg-extension
 Panels for UI: https://quintino-pixels.itch.io/pixel-art-ui-elements
 Font used: https://somepx.itch.io/free-font-ruler
 Hit sounds: https://pixabay.com/sound-effects/film-special-effects-punch-and-hits-310521/
+Death sounds: https://pixabay.com/sound-effects/retro-blip-sound-04-474771/
+Button Click sound: https://pixabay.com/sound-effects/film-special-effects-video-game-hovering-menu-sfx-417443/ 
+Background music: https://www.fesliyanstudios.com/royalty-free-music/download/8-bit-surf/568

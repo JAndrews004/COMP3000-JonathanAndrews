@@ -18,22 +18,23 @@ public class BuffBehaviour : AbilityBehaviour
         {
             float scaledPercentage = target.CurrentIntelligence * intelligenceScaling + basePercent;
 
-            if (scaledPercentage >=  maxPercent)
+            if (scaledPercentage >= maxPercent)
             {
-                if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability))
+                if (Random.Range(0, 100) <= target.GetEffectApplyChance(user, ability)) // random chance to apply for certain abilities
                 {
-                    foreach(StatType statToBuff in statsToBuff)
+                    foreach (StatType statToBuff in statsToBuff) // for multi-stat buffs
                     {
                         BuffEffect effectToAdd;
-                        if (user.element == ability.elementTag && ability.elementTag != Element.None && ability.boost != null)
+                        if (user.element == ability.elementTag && ability.elementTag != Element.None && ability.boost != null) // checking for elemental synergy
                         {
-                            effectToAdd = new BuffEffect(statToBuff, maxPercent * ability.boost.multipliedPotency, durationTurns + ability.boost.addedDuration);
+                            effectToAdd = new BuffEffect(statToBuff, maxPercent * ability.boost.multipliedPotency,
+                                durationTurns + ability.boost.addedDuration);
                         }
                         else
                         {
                             effectToAdd = new BuffEffect(statToBuff, maxPercent, durationTurns);
                         }
-                        effectToAdd.name = ability.abilityName;
+                        effectToAdd.name = ability.abilityName; // setting data for the tooltip on effect icon
                         effectToAdd.description = ability.description;
                         effectToAdd.icon = ability.EffectIcon;
                         effectToAdd.colorType = colorType.Positive;
@@ -41,7 +42,7 @@ public class BuffBehaviour : AbilityBehaviour
                         target.ApplyEffect(effectToAdd, false);
 
                     }
-                    target.SpawnBuffEffect();
+                    target.SpawnBuffEffect(); // spawns particle FX on character
                 }
             }
             else
@@ -68,9 +69,7 @@ public class BuffBehaviour : AbilityBehaviour
                     }
                     target.SpawnBuffEffect();
                 }
-            }
-
-            
+            } 
         }
     }
 }

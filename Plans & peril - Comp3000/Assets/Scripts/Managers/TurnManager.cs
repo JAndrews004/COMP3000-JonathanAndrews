@@ -322,8 +322,8 @@ public class TurnManager : MonoBehaviour
                 {
                     if (effect is TauntEffect)
                     {
-                 
-                        Taunters.Add(effect.User);
+                        if(effect.User.Alive)
+                            Taunters.Add(effect.User);
                     }
                 }
                 foreach (CombatMember Taunt in Taunters)

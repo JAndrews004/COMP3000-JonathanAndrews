@@ -332,6 +332,7 @@ public abstract class CombatMember : MonoBehaviour
             activeEffects.Clear();
             if(!combatManager.turnManager.DebugCombatLog.damageReceived.ContainsKey(this))
             combatManager.turnManager.DebugCombatLog.damageReceived.Add(this, AttackPower);
+            AudioManager.Instance.PlayDeathSound();
         }
         else
         {

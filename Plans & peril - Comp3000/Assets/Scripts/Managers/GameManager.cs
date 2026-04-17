@@ -78,28 +78,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void StartGame()
-    {
-
-    }
-    void EndGame()
-    {
-
-    }
-
-    void PauseGame()
-    {
-
-    }
-    void ResumeGame()
-    {
-
-    }
-
-    void ResetGame()
-    {
-
-    }
     public void AddGold(int points)
     {
         gold += points;
@@ -462,7 +440,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetCharacters()
     {
-        List<List<int>> charactersStats =new List<List<int>>{ new List<int> {15,10,5,6,10,12 }, new List<int> {10,15,4,8,10,15},new List<int>{ 12,12,10,12,10,14 }, new List<int> {6,6,19,11,11,11} };
+        List<List<int>> charactersStats =new List<List<int>>{ new List<int> {15,10,5,6,10,25 }, new List<int> {10,15,4,8,10,28},new List<int>{ 12,12,10,12,10,23 }, new List<int> {6,6,19,11,11,22} };
         for(int i =0; i< PartyMembers.Count; i++)
         {
             PartyMembers[i].baseStats.attack = charactersStats[i][0];

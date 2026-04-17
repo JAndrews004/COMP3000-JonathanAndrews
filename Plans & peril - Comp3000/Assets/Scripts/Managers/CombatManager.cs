@@ -453,6 +453,10 @@ public class CombatManager : MonoBehaviour
 
     public void EndCombat()
     {
+        foreach(CombatMember mem in PartyMembers)
+        {
+            mem.activeEffects.Clear();
+        }
         if (GameManager.Instance.tutorialActive)
         {
             GameManager.Instance.loadHubWorld();
