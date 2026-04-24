@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Rest
   m_EditorClassIdentifier: 
+  abilityID: 00d55c14371b8434e86c9423dd3be5c3
   abilityName: Rest
   description: Restores some ability uses
   icon: {fileID: 21300000, guid: cbd252ab070f706428a50b6f57824f43, type: 3}

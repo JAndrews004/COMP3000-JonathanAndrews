@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: HealingCloak
   m_EditorClassIdentifier: 
+  abilityID: 4d261e0bc74e13e46ad18af3ef667a4b
   abilityName: Healing cloak
   description: 'Grants constant health regeneration.
 

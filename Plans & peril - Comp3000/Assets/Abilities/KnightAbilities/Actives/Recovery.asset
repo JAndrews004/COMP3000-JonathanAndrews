@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Recovery
   m_EditorClassIdentifier: 
+  abilityID: 12e70d60c5f397346971b2b93f703e07
   abilityName: Recovery
   description: 'Grants minor health regeneration.
 

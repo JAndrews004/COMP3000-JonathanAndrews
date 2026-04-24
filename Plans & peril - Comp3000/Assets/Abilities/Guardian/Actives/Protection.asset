@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Protection
   m_EditorClassIdentifier: 
+  abilityID: 98291d971d6bf5744941677044679850
   abilityName: Protection
   description: 
   icon: {fileID: 21300000, guid: 80ef08f89284c344690172361135bf63, type: 3}

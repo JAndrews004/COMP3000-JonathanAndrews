@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dede65b957a8564cb4807ccc201d836, type: 3}
   m_Name: Knight
   m_EditorClassIdentifier: 
+  characterID: Knight
   characterName: Knight
   characterSprite: {fileID: 21300000, guid: b0ade4dc4a796a041b6aeeed2f60ad40, type: 3}
-  level: 0
-  xp: 0
-  maxHealth: 120
-  attack: 15
-  defense: 10
-  intelligence: 5
-  magicDefence: 6
-  Luck: 10
-  avaliableStatPoints: 0
+  level: 3
+  xp: 763
+  maxHealth: 260
+  attack: 17
+  defense: 11
+  intelligence: 6
+  magicDefence: 7
+  Luck: 11
+  avaliableStatPoints: 9
   unlockableAbilities:
   - {fileID: 11400000, guid: 716b7339f095dda4786750965b6291bc, type: 2}
   - {fileID: 11400000, guid: bf5bbbb151f43ec4bacbfda335ffe841, type: 2}
@@ -78,8 +79,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 02ff349877c23c14ca29e1b51edb915c, type: 2}
   equippedAbilities:
   - {fileID: 11400000, guid: 716b7339f095dda4786750965b6291bc, type: 2}
-  - {fileID: 11400000, guid: bf5bbbb151f43ec4bacbfda335ffe841, type: 2}
   - {fileID: 11400000, guid: e6faf5f3c64254340ab994a56c767a5c, type: 2}
+  - {fileID: 11400000, guid: bf5bbbb151f43ec4bacbfda335ffe841, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

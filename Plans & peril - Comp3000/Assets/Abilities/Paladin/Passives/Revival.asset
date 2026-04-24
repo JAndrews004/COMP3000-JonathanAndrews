@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Revival
   m_EditorClassIdentifier: 
+  abilityID: ea3e454951c2f0b4d9c3ab0803f23c5f
   abilityName: Revival
   description: 'Revives once to 25% HP.
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: FireSlash
   m_EditorClassIdentifier: 
+  abilityID: 895645ae8dc4534488d63b3a57ebbf1f
   abilityName: Fire slash
   description: "Deals 55 damage with a high chance to burn. \n\n[targets 3][Uses
     25][Cooldown 3]\n\nFire affinity increases burn duration."

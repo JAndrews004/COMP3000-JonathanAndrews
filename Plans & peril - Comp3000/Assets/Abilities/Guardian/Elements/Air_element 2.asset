@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Air_element 2
   m_EditorClassIdentifier: 
+  abilityID: b19c6364e2ee71044bd74a2eb751029a
   abilityName: Air
   description: 
   icon: {fileID: 21300000, guid: c33cb68589d84794bbadcee6d27ea455, type: 3}

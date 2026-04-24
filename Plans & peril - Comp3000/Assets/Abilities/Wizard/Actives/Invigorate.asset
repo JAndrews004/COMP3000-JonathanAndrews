@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Invigorate
   m_EditorClassIdentifier: 
+  abilityID: 691de62e5efd1184f9be51d901ddf09b
   abilityName: Invigorate
   description: 'Increases strength by 25-45% for 3 rounds.
 

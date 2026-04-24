@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Disruption
   m_EditorClassIdentifier: 
+  abilityID: cb1cac8ee6b29cc40a43fcfad3ed3f81
   abilityName: Disruption
   description: 'Applies interference for 3 rounds.
 

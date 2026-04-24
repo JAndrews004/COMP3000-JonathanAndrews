@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: neutral_element 2
   m_EditorClassIdentifier: 
+  abilityID: 5a1d157dc82bacf4c85f1505f00273b8
   abilityName: Neutral
   description: 
   icon: {fileID: 21300000, guid: 7bf661c563efce444889fd35cf49bed7, type: 3}
@@ -33,7 +34,7 @@ MonoBehaviour:
   isElement: 1
   elementTag: 0
   boost: {fileID: 0}
-  unlocked: 1
+  unlocked: 0
   prerequisiteAbilities: []
   strengthRequired: 0
   defenseRequired: 0

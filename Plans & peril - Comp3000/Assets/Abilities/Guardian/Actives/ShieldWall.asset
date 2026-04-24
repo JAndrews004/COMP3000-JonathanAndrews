@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: ShieldWall
   m_EditorClassIdentifier: 
+  abilityID: 2973f6d9514782d4f8fb6f3c38b5ddf3
   abilityName: Shield wall
   description: 
   icon: {fileID: 21300000, guid: 82252ccd64ddcc9468fe1da30fa8f5dd, type: 3}

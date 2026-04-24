@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Bash
   m_EditorClassIdentifier: 
+  abilityID: d7eb1677c59d93a478e115169ab3816e
   abilityName: Bash
   description: 
   icon: {fileID: 21300000, guid: 1b427f920c097574b9111d8f43eea8f7, type: 3}

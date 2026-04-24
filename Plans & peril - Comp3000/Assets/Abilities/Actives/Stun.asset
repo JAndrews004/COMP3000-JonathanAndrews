@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Stun
   m_EditorClassIdentifier: 
+  abilityID: 76e1ade3e4944ad46a1e54a471187c4b
   abilityName: Stun
   description: Target is stunned and can't move
   icon: {fileID: 21300000, guid: 271d9ea1ca3cec641a3e6c18dca329dc, type: 3}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 5
   cooldown: 3
   targetType: 0
@@ -27,7 +29,11 @@ MonoBehaviour:
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
   IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
   unlocked: 0
   prerequisiteAbilities:
   - {fileID: 11400000, guid: be8ba0c6a1c9878489a0ad4ed357fd98, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: HealingLight+
   m_EditorClassIdentifier: 
+  abilityID: 6ccf2d57c84430d47960f1c78d8982d9
   abilityName: Healing light +
   description: 'Restores between 30-45% health.
 

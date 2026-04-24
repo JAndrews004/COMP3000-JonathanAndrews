@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Slice
   m_EditorClassIdentifier: 
+  abilityID: 0d09fa7ea2e513f4c98e14b0862580a7
   abilityName: Slice
   description: 
   icon: {fileID: 21300000, guid: 8cadee2facd44a54f976ddea847d5e58, type: 3}

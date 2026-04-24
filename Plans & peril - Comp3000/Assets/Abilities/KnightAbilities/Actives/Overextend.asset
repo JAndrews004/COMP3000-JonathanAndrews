@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Overextend
   m_EditorClassIdentifier: 
+  abilityID: eae06f01257448048b4311171989e8b1
   abilityName: Overextend
   description: "Grants an extra turn, but reduces damage next round. \n\nWind affinity
     reduces the\r penalty.\r\n"

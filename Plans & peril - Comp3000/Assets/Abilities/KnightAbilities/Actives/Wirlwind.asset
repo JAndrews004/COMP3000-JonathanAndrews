@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Wirlwind
   m_EditorClassIdentifier: 
+  abilityID: d1d7446e636b37c409c2b4de669912fb
   abilityName: Whirlwind
   description: Deals 40 damage to multiple enemies.
   icon: {fileID: 21300000, guid: e5d20a7eb2c38f6499b9cee5fd87a8a4, type: 3}

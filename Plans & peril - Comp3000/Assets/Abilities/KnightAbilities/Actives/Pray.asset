@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Pray
   m_EditorClassIdentifier: 
+  abilityID: 5638200dfe323ca40b73e11d55b9a7a7
   abilityName: Pray
   description: Removes all debuffs.
   icon: {fileID: 21300000, guid: d6659538e43f78b468eb04284f54d88b, type: 3}

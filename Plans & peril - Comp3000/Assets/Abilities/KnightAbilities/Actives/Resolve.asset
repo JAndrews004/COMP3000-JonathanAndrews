@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Resolve
   m_EditorClassIdentifier: 
+  abilityID: 42e44df31e9c0744292821508d627c37
   abilityName: Resolve
   description: ' Increases Defense by 10% - 20% for 2 rounds.
 

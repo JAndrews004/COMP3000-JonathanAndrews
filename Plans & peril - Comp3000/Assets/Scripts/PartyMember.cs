@@ -198,6 +198,7 @@ public class PartyMember : CombatMember
         CurrentIntelligence = baseStats.intelligence;
         CurrentLuck = baseStats.Luck;
         CurrentMagicDefense = baseStats.magicDefence;
+        FindObjectOfType<SaveManager>().SaveGame();
     }
 
     void UpdateXpRequired()
@@ -237,6 +238,7 @@ public class PartyMember : CombatMember
         }
         baseStats.level = level;
         baseStats.avaliableStatPoints = availableStatPoints;
+        FindObjectOfType<SaveManager>().SaveGame();
     }
 
     public bool equipSkill(AbilityData ability, int slot)
@@ -282,7 +284,7 @@ public class PartyMember : CombatMember
             {
                 abilityDatas[slot-1] = ability;
             }
-            
+            FindObjectOfType<SaveManager>().SaveGame();
             return true;
         }
         else if (slot<=6)
@@ -314,7 +316,7 @@ public class PartyMember : CombatMember
             {
                 abilityDatas[slot - 1] = ability;
             }
-            
+            FindObjectOfType<SaveManager>().SaveGame();
             return true;
         }
 
@@ -329,6 +331,7 @@ public class PartyMember : CombatMember
             element = Elmnt.elementTag;
             baseStats.element = Elmnt.elementTag;
             baseStats.EquippedElement = Elmnt;
+            FindObjectOfType<SaveManager>().SaveGame();
         }
     }
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: CleavingStrike
   m_EditorClassIdentifier: 
+  abilityID: 7c48f6574d6e6024e8e5d79cc2f022b0
   abilityName: Cleaving strike
   description: 'Deals 40 damage with a moderate chance to inflict bleed.
 

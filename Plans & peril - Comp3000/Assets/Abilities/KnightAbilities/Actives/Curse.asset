@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Curse
   m_EditorClassIdentifier: 
+  abilityID: d85656ce2afb9a6498965f59d6e0b005
   abilityName: Curse
   description: 'Prevents enemies from gaining buffs for 4 rounds.
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: StoneReprisal
   m_EditorClassIdentifier: 
+  abilityID: 05e6e3ad76bb15549a92e83879cd9fc1
   abilityName: Stone reprisal
   description: "Grants a medium chance to reflect damage. \n\nEarth affinity increases
     duration."

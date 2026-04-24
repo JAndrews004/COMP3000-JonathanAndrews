@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Barrier
   m_EditorClassIdentifier: 
+  abilityID: b69bfe02f715a6a429f485292c102299
   abilityName: Barrier
   description: 'Grants a 75HP shield.
 

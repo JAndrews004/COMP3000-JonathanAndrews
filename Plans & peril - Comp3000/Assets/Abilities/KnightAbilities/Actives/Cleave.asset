@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Cleave
   m_EditorClassIdentifier: 
+  abilityID: fba8bd7d0bd1f23499feccdf4462e988
   abilityName: Cleave
   description: " Deals 60 damage. \n\n[targets 3][Uses 25][Cooldown 3]\n\nWind affinity
     allows it to hit an additional target."

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: FeintStrike
   m_EditorClassIdentifier: 
+  abilityID: 425c93bfa17d30a4080ed21741746e97
   abilityName: Feint strike
   description: 'Deals 50 damage with a chance to taunt.
 

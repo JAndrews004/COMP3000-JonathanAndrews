@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Fortune
   m_EditorClassIdentifier: 
+  abilityID: 607317693029cc140bf28f0371c2a1b9
   abilityName: Fortune
   description: 'Increases Luck by 20-30% for 2 rounds.
 

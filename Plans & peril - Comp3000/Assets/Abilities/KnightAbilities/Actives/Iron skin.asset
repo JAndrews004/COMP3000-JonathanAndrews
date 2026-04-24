@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Iron skin
   m_EditorClassIdentifier: 
+  abilityID: 5b55b399b4fb97c4fa1e9d64e779fe88
   abilityName: Iron skin
   description: "Grants a moderate chance to reflect damage and increases Defense
     by 15%. \n\nEarth\r affinity enhances both effects."

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Bastion
   m_EditorClassIdentifier: 
+  abilityID: bf41d4061a35d3640ab99e698c14e505
   abilityName: Bastion
   description: 'Start each encounter with a 20% HP shield.
 

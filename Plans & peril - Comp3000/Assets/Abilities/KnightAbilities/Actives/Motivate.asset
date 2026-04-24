@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Motivate
   m_EditorClassIdentifier: 
+  abilityID: 2b586c3fe4a09ab4591740ef5785f405
   abilityName: Motivate
   description: ' Increases Strength by 15%. - 25% for 2 rounds.
 

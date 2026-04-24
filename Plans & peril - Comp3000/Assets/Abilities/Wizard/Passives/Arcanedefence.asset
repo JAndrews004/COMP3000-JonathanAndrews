@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Arcanedefence
   m_EditorClassIdentifier: 
+  abilityID: d9daca0744c2c5f4db59689c690d6416
   abilityName: Arcane defence
   description: '20% resistance to magic damage.
 

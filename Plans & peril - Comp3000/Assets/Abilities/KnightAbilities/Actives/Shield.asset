@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
+  abilityID: 03d935060f1757f4b9cdcb7eb0155d33
   abilityName: Shield
   description: "Grants a shield equal to 75 HP. \n\nEarth affinity increases shield
     strength."

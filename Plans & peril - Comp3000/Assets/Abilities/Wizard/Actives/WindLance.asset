@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: WindLance
   m_EditorClassIdentifier: 
+  abilityID: d90e1eea46430b44681acf67f70d555a
   abilityName: Wind lance
   description: "Deals 35 damage. \n\n[targets 2] [Uses 20] [Cooldown 4]\n\nWind affinity
     allows it to hit an additional target.\r\n"

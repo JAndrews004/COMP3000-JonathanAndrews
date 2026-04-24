@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: ShieldStrike
   m_EditorClassIdentifier: 
+  abilityID: bdf075ef8eae3f24d92ddbc4122a4568
   abilityName: Shield strike
   description: 
   icon: {fileID: 21300000, guid: 285fb6222ee361a4eb0bba4e9935df74, type: 3}

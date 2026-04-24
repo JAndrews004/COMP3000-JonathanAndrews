@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Taunt
   m_EditorClassIdentifier: 
+  abilityID: 84c1de60f65b26647a65e19e266ad2bd
   abilityName: Taunt
   description: Prevoke an enemy to hit you instead of ally's
   icon: {fileID: 0}

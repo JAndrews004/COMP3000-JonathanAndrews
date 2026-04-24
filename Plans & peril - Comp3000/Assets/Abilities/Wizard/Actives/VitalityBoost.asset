@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: VitalityBoost
   m_EditorClassIdentifier: 
+  abilityID: 2907405d738d2234780f135c9083f18d
   abilityName: Vitality boost
   description: "Increases max health by 25-40%. \n\n[targets 1] [Uses 20] [Cooldown
     4]\n\nWater affinity increases the effect.\r\n"

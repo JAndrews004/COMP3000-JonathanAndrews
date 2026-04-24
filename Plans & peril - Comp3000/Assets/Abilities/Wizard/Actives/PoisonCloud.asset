@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: PoisonCloud
   m_EditorClassIdentifier: 
+  abilityID: 666b03616bb20e54ab7d999897c6588f
   abilityName: Poison cloud
   description: 'Applies poison to targets for 3 rounds.
 

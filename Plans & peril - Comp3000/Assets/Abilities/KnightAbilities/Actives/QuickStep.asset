@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: QuickStep
   m_EditorClassIdentifier: 
+  abilityID: 40b975cb335ad5c439f87218fca9dbc0
   abilityName: Quick step
   description: 'Grants an immediate extra turn.
 

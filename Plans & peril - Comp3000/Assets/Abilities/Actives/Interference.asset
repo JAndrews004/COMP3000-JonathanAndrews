@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Interference
   m_EditorClassIdentifier: 
+  abilityID: 4cf5674bb3ebe2f458889d5e66c185ca
   abilityName: Inteference
   description: Abilities cost more uses
   icon: {fileID: 0}
   abilityCategory: 0
   powerType: 2
   abilityType: 3
+  tags: 
   maxUsage: 6
   cooldown: 5
   targetType: 0
@@ -27,4 +29,19 @@ MonoBehaviour:
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
   IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
+  unlocked: 0
+  prerequisiteAbilities: []
+  strengthRequired: 0
+  defenseRequired: 0
+  intelligenceRequired: 0
+  magicDefenseRequired: 0
+  luckRequired: 0
+  vitalityRequired: 0
+  goldCost: 0
+  treeCol: 0
+  treeRow: 0

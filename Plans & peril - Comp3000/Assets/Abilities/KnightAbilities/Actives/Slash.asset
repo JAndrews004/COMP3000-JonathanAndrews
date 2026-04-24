@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Slash
   m_EditorClassIdentifier: 
+  abilityID: f8fc11f2addeeaa4c9a12a5062d8b187
   abilityName: Slash
   description: 'Deals 40 damage.
 

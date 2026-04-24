@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dede65b957a8564cb4807ccc201d836, type: 3}
   m_Name: Wizard
   m_EditorClassIdentifier: 
+  characterID: Wizard
   characterName: Wizard
   characterSprite: {fileID: 0}
-  level: 1
-  xp: 6
-  maxHealth: 110
-  attack: 6
-  defense: 6
-  intelligence: 19
-  magicDefence: 11
-  Luck: 11
-  avaliableStatPoints: 0
+  level: 3
+  xp: 553
+  maxHealth: 230
+  attack: 7
+  defense: 7
+  intelligence: 20
+  magicDefence: 12
+  Luck: 12
+  avaliableStatPoints: 9
   unlockableAbilities:
   - {fileID: 11400000, guid: 729e6242944bee449afa796f32a625e0, type: 2}
   - {fileID: 11400000, guid: ba69133172abba14f9a2fba25e2d61b4, type: 2}
@@ -58,6 +59,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   element: 0
-  EquippedElement: {fileID: 11400000, guid: eaaa20d2f8f0aa949965d20d3631e0fe, type: 2}
+  EquippedElement: {fileID: 11400000, guid: 7509afd8629006f409e14a9f0563ed79, type: 2}
   controller: {fileID: 9100000, guid: db5a817588a97994b8f9a60857a8a90d, type: 2}
   HeadShot: {fileID: 21300000, guid: 4917cfbd3a3475a498225785b33ce154, type: 3}

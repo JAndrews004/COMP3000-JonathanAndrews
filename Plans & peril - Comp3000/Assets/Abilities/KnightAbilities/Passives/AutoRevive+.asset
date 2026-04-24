@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: AutoRevive+
   m_EditorClassIdentifier: 
+  abilityID: d4e3afc029204e1448093501be46dbc6
   abilityName: Auto revive +
   description: 'Revives once at 50% health.
 

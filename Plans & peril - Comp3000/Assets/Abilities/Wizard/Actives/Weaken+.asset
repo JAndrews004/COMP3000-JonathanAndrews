@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Weaken+
   m_EditorClassIdentifier: 
+  abilityID: d96c6920b010cdc40bed6f2b41c383df
   abilityName: Weaken+
   description: 'Reduces Strength and Defence by 15-25% for 3 rounds.
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: DivineGuard
   m_EditorClassIdentifier: 
+  abilityID: 64ccbf6763ec4a147af080056b88ff30
   abilityName: Divine guard
   description: 
   icon: {fileID: 21300000, guid: 6bc9f3b77b449d64e8368454453b5010, type: 3}

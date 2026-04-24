@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
+  abilityID: a1e72601e24a46347b451ab30a17cb24
   abilityName: Fire ball
   description: " Deals 30 damage with a chance to burn. \n\n[targets 2] [Uses 25]
     [Cooldown 2]\n\nFire affinity increases burn damage."

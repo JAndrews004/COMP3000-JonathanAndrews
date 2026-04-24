@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: GuardBreak
   m_EditorClassIdentifier: 
+  abilityID: 2d0ee348bb9bcec479a3958b2376013d
   abilityName: Guard break
   description: ' Deals 30 damage with a chance to apply vulnerability.
 

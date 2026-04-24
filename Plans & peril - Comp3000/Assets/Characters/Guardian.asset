@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dede65b957a8564cb4807ccc201d836, type: 3}
   m_Name: Guardian
   m_EditorClassIdentifier: 
+  characterID: Guardian
   characterName: Guardian
   characterSprite: {fileID: 21300000, guid: 9396af5efab1b9b46b943001dec2b1ec, type: 3}
-  level: 1
-  xp: 0
-  maxHealth: 160
+  level: 3
+  xp: 244
+  maxHealth: 290
   attack: 11
   defense: 16
   intelligence: 5
   magicDefence: 9
   Luck: 11
-  avaliableStatPoints: 3
+  avaliableStatPoints: 9
   unlockableAbilities:
   - {fileID: 11400000, guid: ff37bdbbdf01d7240a90ce946724612f, type: 2}
   - {fileID: 11400000, guid: a8c0eca755349d94ea2e74de094111c9, type: 2}
@@ -65,6 +66,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   element: 0
-  EquippedElement: {fileID: 11400000, guid: eaaa20d2f8f0aa949965d20d3631e0fe, type: 2}
+  EquippedElement: {fileID: 11400000, guid: b4902e10ef6b78e4dac61762a1587294, type: 2}
   controller: {fileID: 9100000, guid: c9011862a283fc64ab6cc4c6ea96fb5f, type: 2}
   HeadShot: {fileID: 21300000, guid: db7f12c58a8a97a41b010320135f2458, type: 3}

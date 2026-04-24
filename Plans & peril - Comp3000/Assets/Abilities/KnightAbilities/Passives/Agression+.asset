@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Agression+
   m_EditorClassIdentifier: 
+  abilityID: 981aa64745e14cb40956ef5f6f972ac5
   abilityName: Agression+
   description: 'Greatly increases damage dealt, but also increases damage taken.
 

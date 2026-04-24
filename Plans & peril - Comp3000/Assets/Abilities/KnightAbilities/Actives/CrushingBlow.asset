@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: CrushingBlow
   m_EditorClassIdentifier: 
+  abilityID: e8a88c97c7777b94ea48ec1b1f49a5f8
   abilityName: Crushing blow
   description: 'Deals 75 damage and may stun.
 

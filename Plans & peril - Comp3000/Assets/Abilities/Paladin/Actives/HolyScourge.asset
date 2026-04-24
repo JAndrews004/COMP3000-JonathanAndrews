@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: HolyScourge
   m_EditorClassIdentifier: 
+  abilityID: 1d8a3d173d8248c4c9cebed4fc6dbc27
   abilityName: Holy scourge
   description: 'Deals damage with a chance to poison.
 

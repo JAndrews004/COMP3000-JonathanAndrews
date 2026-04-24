@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Breach
   m_EditorClassIdentifier: 
+  abilityID: 9299ec4b80a70e24aa7f7effe1676cac
   abilityName: Breach
   description: 
   icon: {fileID: 21300000, guid: d6659538e43f78b468eb04284f54d88b, type: 3}

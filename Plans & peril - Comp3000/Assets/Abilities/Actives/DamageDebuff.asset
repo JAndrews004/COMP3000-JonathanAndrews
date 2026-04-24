@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: DamageDebuff
   m_EditorClassIdentifier: 
+  abilityID: 6e44c383a271bb849b4645c60462e853
   abilityName: Damage -50%
   description: Reduces damage by 50%
   icon: {fileID: 21300000, guid: de3e481c48be8aa468c4b2a0cf4ff141, type: 3}

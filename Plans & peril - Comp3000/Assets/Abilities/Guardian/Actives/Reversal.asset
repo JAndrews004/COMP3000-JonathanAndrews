@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Reversal
   m_EditorClassIdentifier: 
+  abilityID: cf9f2f4829fe41b4ebe4a9ac3de7de28
   abilityName: Reversal
   description: 
   icon: {fileID: 21300000, guid: 8705eabe2021c30498fbe82eb6763933, type: 3}

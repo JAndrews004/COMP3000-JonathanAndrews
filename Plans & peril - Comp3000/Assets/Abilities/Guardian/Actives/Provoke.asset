@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Provoke
   m_EditorClassIdentifier: 
+  abilityID: 0f2ff5d17f82b8c48a431077f9ac5205
   abilityName: Provoke
   description: 'Taunts the target.
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: StoneSlam
   m_EditorClassIdentifier: 
+  abilityID: 268dbbc27cbace44ca43dc61cf76cbdd
   abilityName: Stone slam
   description: "Deals 50 damage with a chance to apply vulnerability. \n\n[targets
     1] [Uses 25] [Cooldown 3]\n\nEarth affinity increases\r duration."

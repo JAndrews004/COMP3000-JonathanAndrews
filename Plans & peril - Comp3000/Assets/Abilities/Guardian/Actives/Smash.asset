@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Smash
   m_EditorClassIdentifier: 
+  abilityID: 4d7d1f58f5551424d8c596896899a6f8
   abilityName: Smash
   description: 'Deals 35 damage.
 

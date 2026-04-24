@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: RechargeUses
   m_EditorClassIdentifier: 
+  abilityID: b5df186580d0be846b104bb20991c5e1
   abilityName: Recharge uses
   description: Add uses to abilities
   icon: {fileID: 0}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 10
   cooldown: 5
   targetType: 4
@@ -27,7 +29,11 @@ MonoBehaviour:
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 0
   EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
   IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
   unlocked: 0
   prerequisiteAbilities:
   - {fileID: 11400000, guid: a3ca937c3a9dc6148901f197b19110f4, type: 2}

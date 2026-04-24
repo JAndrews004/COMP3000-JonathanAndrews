@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Stab
   m_EditorClassIdentifier: 
+  abilityID: 7c7522e31e26e6f4cbb676a045c4c03d
   abilityName: Stab
   description: 'Deals 30 damage with a chance to inflict bleed.
 

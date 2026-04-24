@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: RuthlessStrike
   m_EditorClassIdentifier: 
+  abilityID: 8bea9dda584153a4eb212289d7c4968c
   abilityName: Ruthless strike
   description: Deals 60 damage, with increased damage against debuffed targets.
   icon: {fileID: 21300000, guid: 8cadee2facd44a54f976ddea847d5e58, type: 3}

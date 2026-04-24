@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: ShieldBash
   m_EditorClassIdentifier: 
+  abilityID: 131b30bdec19d45469f9f44fab04d712
   abilityName: Shield bash
   description: 'Deals 60 damage with a chance to apply vulnerability.
 

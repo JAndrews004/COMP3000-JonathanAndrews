@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: FirstAid
   m_EditorClassIdentifier: 
+  abilityID: c50989caf264ef64d9b54c13f9eb2596
   abilityName: First aid
   description: "Restores 15% health. \n\n[targets 2][Uses 15][Cooldown 4]\n\nWater
     affinity increases healing."

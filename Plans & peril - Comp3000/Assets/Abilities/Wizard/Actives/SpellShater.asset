@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: SpellShater
   m_EditorClassIdentifier: 
+  abilityID: 9abefcd89e6bf6e4194aadbf6e6fcd41
   abilityName: Spell shatter
   description: 'Decreases magic defence of target by 20-30% for 3 rounds.
 

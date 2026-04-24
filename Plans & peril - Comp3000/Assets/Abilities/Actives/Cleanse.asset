@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: Cleanse
   m_EditorClassIdentifier: 
+  abilityID: 6718bd3617c2df047a79cded2f07ded9
   abilityName: Cleanse
   description: 
   icon: {fileID: 0}
   abilityCategory: 0
   powerType: 0
   abilityType: 0
+  tags: 
   maxUsage: 10
   cooldown: 4
   targetType: 3
@@ -27,7 +29,11 @@ MonoBehaviour:
   passiveBehaviour: {fileID: 0}
   guaranteedEffectHit: 1
   EffectChanceScaling: 0
+  EffectIcon: {fileID: 0}
   IsTauntable: 0
+  isElement: 0
+  elementTag: 0
+  boost: {fileID: 0}
   unlocked: 0
   prerequisiteAbilities:
   - {fileID: 11400000, guid: 54dc62350646a7841abbcd3c9e4c23a4, type: 2}

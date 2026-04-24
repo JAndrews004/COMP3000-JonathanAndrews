@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: SearingCut
   m_EditorClassIdentifier: 
+  abilityID: 2d10b2c1b5996d64496bee2e57222f7f
   abilityName: Searing cut
   description: " Deals 25 damage with a medium chance to burn. \n\nFire affinity
     increases burn duration."

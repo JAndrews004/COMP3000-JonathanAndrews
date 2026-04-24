@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: MagicBolt
   m_EditorClassIdentifier: 
+  abilityID: 3768baf3c35448a458071e77f4a82602
   abilityName: Magic bolt
   description: 'Deals 35 damage.
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using static AbilityData;
@@ -31,7 +32,7 @@ public class AbilityData : ScriptableObject
         Passive
     }
 
-
+    public string abilityID;
     public string abilityName;
     [TextArea] public string description;
     public Sprite icon;
@@ -68,6 +69,17 @@ public class AbilityData : ScriptableObject
     public int goldCost;
     public int treeCol;
     public int treeRow;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (string.IsNullOrEmpty(abilityID))
+        {
+            abilityID = GUID.Generate().ToString();
+            EditorUtility.SetDirty(this);
+        }
+    }
+#endif
 }
 public enum AbilityPowerType
 {

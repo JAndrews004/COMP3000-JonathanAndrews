@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
+            
         if (Instance != null && Instance != this)
         {
             DestroyImmediate(this);
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
         { 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            GetComponent<AudioManager>().BackgroundMusic.Play();
             if (Stats == null)
             {
                 return;
@@ -109,6 +111,7 @@ public class GameManager : MonoBehaviour
 
     public void StartCombat()
     {
+        FindObjectOfType<SaveManager>().SaveGame();
         tutorialActive = false;
         PrepareCombatData();
         LoadCombatScene();
@@ -243,12 +246,14 @@ public class GameManager : MonoBehaviour
     public void LoadCombatScene()
     {
         dungeonRuntimeState.destroyRooms();
+        FindObjectOfType<SaveManager>().SaveGame();
         SceneManager.LoadScene(3);
         
     }
     public void EndCombat()
     {
-        if(dungeonRuntimeState != null && dungeonRuntimeState.rooms[dungeonRuntimeState.currentRoom] != null && dungeonRuntimeState.rooms[dungeonRuntimeState.currentRoom].roomType != RoomType.Boss)
+        FindObjectOfType<SaveManager>().SaveGame();
+        if (dungeonRuntimeState != null && dungeonRuntimeState.rooms[dungeonRuntimeState.currentRoom] != null && dungeonRuntimeState.rooms[dungeonRuntimeState.currentRoom].roomType != RoomType.Boss)
         {
             foreach (GameObject obj in enemyObjects)
             {
@@ -270,6 +275,7 @@ public class GameManager : MonoBehaviour
     }
     public void loadHubWorld()
     {
+        FindObjectOfType<SaveManager>().SaveGame();
         if (tutorialActive)
         {
             SceneManager.LoadScene(1);
@@ -405,6 +411,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadDungeonScene()
     {
+        FindObjectOfType<SaveManager>().SaveGame();
         dungeonRuntimeState.currentData = selectedDungeon;
         if (dungeonRuntimeState.rooms.Count <= 0)
         {

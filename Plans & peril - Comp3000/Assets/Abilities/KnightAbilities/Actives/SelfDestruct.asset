@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e7f0ae83ea9eb4e95c4bc614170e8b, type: 3}
   m_Name: SelfDestruct
   m_EditorClassIdentifier: 
+  abilityID: b1bcd55c6c36ba842bbd45a77f8b99a3
   abilityName: Self-destruct
   description: Deals 125 damage but costs 50% of your health.
   icon: {fileID: 21300000, guid: 3a159f38f604c814b8f8d05289f2d5d6, type: 3}
