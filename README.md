@@ -8,6 +8,8 @@ A turn-based combat system featuring strategic ability interactions, status effe
 ### Supervisor: 
 Rory Hopcraft
 
+## Play here
+https://jandrews004.itch.io/plans-peril
 ---
 
 ## Project vision:
@@ -21,24 +23,24 @@ This project is a game where players must defeat enemies of varying degrees of d
 
 ## Core systems
 ### Combat system
-    * Turn order decided by player
-    * Action system with abilities, cooldowns and uses
-    * Alternating player and enemy phases
+ * Turn order decided by player
+ * Action system with abilities, cooldowns and uses
+ * Alternating player and enemy phases
 
 ### Ability system
-    * Wide range of status effects (e.g buffs, debuffs, DOT, guard, reflect etc)
-    * Applied and self-managed with effect class - ticks per round and is removed at 0
+ * Wide range of status effects (e.g buffs, debuffs, DOT, guard, reflect etc)
+ * Applied and self-managed with effect class - ticks per round and is removed at 0
 
 ### Enemy AI
-    * Three levels of AI (Easy, Medium, Hard)
-    * Each level has different strategic capability
-    * Easy - random targeting, Medium - picks best ability, Hard - picks best ability target combo
-    * Score based decisions
+ * Three levels of AI (Easy, Medium, Hard)
+ * Each level has different strategic capability
+ * Easy - random targeting, Medium - picks best ability, Hard - picks best ability target combo
+ * Score based decisions
 
 ### UI system
-    * MVVM architecture for charcacter combat UI
-    * Interacts with hidden buttons on character and targets for selections
-    * Feedback with FX (sprite flashes, particles, SFX)
+ * MVVM architecture for charcacter combat UI
+ * Interacts with hidden buttons on character and targets for selections
+ * Feedback with FX (sprite flashes, particles, SFX)
 
 ## Demo
 https://youtu.be/Lhz3LPvCMnE
@@ -51,19 +53,19 @@ https://youtu.be/Lhz3LPvCMnE
 The combat system is structured around a central Combat Manager, which controls the flow of battle through a defined turn cycle. Each combatant (player or enemy) is treated as an independent entity that exposes actions to the system rather than directly controlling flow.
 
 Turn progression is handled through a deterministic sequence:
-    * Initiative/turn order is calculated at the start of combat (based on speed or fixed order depending on design choice)
-    * The Combat Manager selects the next active entity
-    * That entity resolves an action (attack, ability, item, etc.)
-    * Control returns to the manager to advance the turn
+ * Initiative/turn order is calculated at the start of combat (based on speed or fixed order depending on design choice)
+ * The Combat Manager selects the next active entity
+ * That entity resolves an action (attack, ability, item, etc.)
+ * Control returns to the manager to advance the turn
 
 This ensures the system remains predictable and extendable, allowing new mechanics to be inserted without rewriting core logic.
 
 ### Ability System Design
 Abilities are implemented as modular data-driven objects rather than hardcoded logic. Each ability defines:
-    * Target type (single, multiple, self)
-    * Cost (turn restriction)
-    * Effect logic (damage, healing, status application)
-    * Optional conditions (passive or active ability, element synergies etc)
+ * Target type (single, multiple, self)
+ * Cost (turn restriction)
+ * Effect logic (damage, healing, status application)
+ * Optional conditions (passive or active ability, element synergies etc)
 
 This separation allows abilities to be reused across different entities without duplication, supporting scalability and rapid iteration for balancing.
 
@@ -71,9 +73,9 @@ This separation allows abilities to be reused across different entities without 
 Status effects are managed through a centralized effect handler attached to each combatant. Effects operate on a turn-based tick system, meaning they resolve at defined points in the combat loop (e.g. start or end of turn).
 
 Each effect contains:
-    * Duration
-    * Trigger timing (end of appliers turn)
-    * Effect logic (damage over time, stun, buffs, etc.)
+ * Duration
+ * Trigger timing (end of appliers turn)
+ * Effect logic (damage over time, stun, buffs, etc.)
 
 This avoids tightly coupling effects to abilities or characters, ensuring they remain reusable and stackable.
 
@@ -81,20 +83,20 @@ This avoids tightly coupling effects to abilities or characters, ensuring they r
 Enemy behaviour is implemented using a rule-based decision system, where actions are selected based on weighted priorities rather than random choice.
 
 Each AI evaluates:
-    * Player health state
-    * Self health state
-    * Available abilities
-    * Status conditions
+ * Player health state
+ * Self health state
+ * Available abilities
+ * Status conditions
 
 Actions are then scored and the highest priority action is selected. This approach provides predictable but adaptable behaviour, making the AI easier to balance compared to fully reactive or complex planning systems.
 
 ---
 
 ## Tools and technologies
-    * Unity 2021.3.38f1
-    * C#
-    * Unity event system
-    * MVVM architecture
+ * Unity 2021.3.38f1
+ * C#
+ * Unity event system
+ * MVVM architecture
 
 ## How to run
 All controls are through mouse and clicking. Start a battle by selecting a dungeon then start.
@@ -127,9 +129,9 @@ The solution was a weighted rule-based system, allowing controllable difficulty 
 Early versions had tight coupling between UI, combat logic, and entity behaviour, making changes risky and slow.
 
 This was improved by separating concerns:
-    * Combat logic handled by Combat Manager
-    * Entities exposed actions but did not control flow
-    * UI acted purely as a listener to combat events
+ * Combat logic handled by Combat Manager
+ * Entities exposed actions but did not control flow
+ * UI acted purely as a listener to combat events
 
 This reduced dependency issues and made the system easier to extend.
 
